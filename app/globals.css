@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #1A3A52;
+  --gold: #B8860B;
+  --gold-light: #D4A017;
+  --dark: #0F0F0F;
+  --light: #F8F9FA;
+  --warning: #8B0000;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-warning: var(--warning);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: var(--light);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+/* Smooth anchor offset for sticky nav */
+[id] {
+  scroll-margin-top: 80px;
+}

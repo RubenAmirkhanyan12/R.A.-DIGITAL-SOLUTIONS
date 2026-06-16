@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/components\")",
+      "Bash(npm run *)"
+    ],
+    "additionalDirectories": [
+      "/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app"
+    ]
+  }
+}
