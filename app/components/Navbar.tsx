@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import RastechLogo from "./RastechLogo";
 
 const links = [
   { label: "Inicio", href: "#inicio" },
@@ -52,13 +52,11 @@ export default function Navbar() {
         <a
           href="#inicio"
           onClick={(e) => handleNavClick(e, "#inicio")}
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-3 group"
         >
-          <span className="text-[#B8860B] font-bold text-2xl font-[family-name:var(--font-playfair)] group-hover:text-[#D4A017] transition-colors">
-            R.A.
-          </span>
-          <span className="hidden sm:inline text-white text-sm font-light tracking-widest uppercase">
-            Soluciones Digitales
+          <RastechLogo size={38} />
+          <span className="text-white font-bold text-lg tracking-[0.18em] uppercase group-hover:text-[#00d4ff] transition-colors">
+            RASTECH
           </span>
         </a>
 

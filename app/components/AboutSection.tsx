@@ -83,7 +83,7 @@ export default function AboutSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 text-sm text-white/50">
-              <span>✉ ruben.amirkhanyan@estudiantat.upc.edu</span>
+              <span>✉ info@rastech.es</span>
               <span>🔗 LinkedIn disponible</span>
             </div>
           </AnimateOnScroll>

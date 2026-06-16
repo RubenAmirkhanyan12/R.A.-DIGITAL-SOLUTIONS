@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "R.A. Soluciones Digitales | Ingeniero Informático",
+  title: "RASTECH | Soluciones Digitales Premium",
   description:
-    "Soluciones digitales premium para empresas que quieren escalar. Webs que convierten, automatizaciones inteligentes y apps 100% personalizadas. Auditoría gratuita.",
+    "RASTECH: soluciones digitales premium para empresas que quieren escalar. Webs que convierten, automatizaciones inteligentes y apps 100% personalizadas. Auditoría gratuita.",
   keywords: [
     "desarrollo web",
     "soluciones digitales",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Rubén Amirkhanyan Svazyan" }],
   openGraph: {
-    title: "R.A. Soluciones Digitales | Transformamos Tu Negocio",
+    title: "RASTECH | Transformamos Tu Negocio",
     description:
       "Cada pixel, cada línea de código, diseñado para generar resultados. Webs y apps 100% personalizadas.",
     type: "website",

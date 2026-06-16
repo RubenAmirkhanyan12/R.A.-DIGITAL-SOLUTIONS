@@ -1,3 +1,5 @@
+import RastechLogo from "./RastechLogo";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -13,8 +15,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B] mb-2">
-              R.A.
+            <div className="flex items-center gap-3 mb-3">
+              <RastechLogo size={40} />
+              <span className="text-white font-bold text-lg tracking-[0.18em] uppercase">
+                RASTECH
+              </span>
             </div>
             <p className="text-[#F8F9FA]/50 text-xs leading-relaxed max-w-xs">
               Soluciones digitales premium para empresas que quieren escalar.
@@ -54,10 +59,10 @@ export default function Footer() {
             </p>
             <div className="space-y-2">
               <a
-                href="mailto:ruben.amirkhanyan@estudiantat.upc.edu"
+                href="mailto:info@rastech.es"
                 className="block text-white/40 hover:text-[#B8860B] text-sm transition-colors"
               >
-                ruben.amirkhanyan@estudiantat.upc.edu
+                info@rastech.es
               </a>
               <p className="text-white/40 text-sm">España · Servicios Nacionales</p>
               <div className="flex gap-4 pt-2">
