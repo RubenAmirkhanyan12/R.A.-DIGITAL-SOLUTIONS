@@ -1,50 +1,61 @@
 import AnimateOnScroll from "./AnimateOnScroll";
+import { Search, Lightbulb, FlaskConical, Rocket, TrendingUp } from "lucide-react";
 
-const phases = [
+const steps = [
   {
-    phase: "Fase 01",
-    title: "Auditoría Profunda",
-    timing: "Semana 1 · GRATIS",
+    number: "01",
+    verb: "ANALIZAMOS",
+    title: "Cartografiamos cada proceso",
+    timing: "Semana 1",
+    Icon: Search,
     description:
-      "Sesión de 2 horas donde entendemos tu negocio, procesos, restricciones y objetivos reales. Analizamos tu tecnología actual, competencia y oportunidades específicas.",
-    outcome: "Documento claro de qué necesitas realmente",
-    highlight: "Gratis y sin compromisos",
+      "Sesión de trabajo de 2 horas donde mapeamos exactamente qué haces, cuánto tiempo tarda y cuánto cuesta. Sin suposiciones. Sin ventas. Solo análisis honesto de tu situación real.",
+    outcome: "Mapa de procesos con coste de cada uno en €/mes",
+    highlight: "100% gratis y sin compromiso",
   },
   {
-    phase: "Fase 02",
-    title: "Propuesta Estratégica",
+    number: "02",
+    verb: "DISEÑAMOS",
+    title: "Construimos el sistema para ti",
     timing: "Semana 2",
+    Icon: Lightbulb,
     description:
-      "Te presentamos la solución específica para TI: qué incluye, timeline exacto, precio claro. Explicamos por qué esa solución y no otra.",
-    outcome: "Sabes exactamente qué esperar antes de empezar",
-    highlight: "Claridad total",
+      "Con el mapa, diseñamos los flujos automáticos específicos para tu negocio. Integramos con lo que ya usas: Gmail, WhatsApp Business, QuickBooks, Shopify, Google Sheets. Sin cambiar tus herramientas.",
+    outcome: "Propuesta técnica + precio fijo + timeline garantizado",
+    highlight: "Precio cerrado, sin sorpresas",
   },
   {
-    phase: "Fase 03",
-    title: "Desarrollo Iterativo",
-    timing: "Semanas 3–8",
+    number: "03",
+    verb: "TESTAMOS",
+    title: "Probamos antes de producción",
+    timing: "Semana 3",
+    Icon: FlaskConical,
     description:
-      "Sprints de 2 semanas con updates constantes. Ves avances en vivo —no «espera 3 meses». Feedback continuo, ajustes rápidos. Tú tienes el control en cada paso.",
-    outcome: "Producto que REALMENTE necesitas",
-    highlight: "Tú ves cada avance",
+      "Creamos entorno de pruebas con casos reales. Simulamos cada escenario: facturas normales, facturas con error, emails que rebotan, clientes que no responden. Nada llega a producción sin pasar 100 pruebas.",
+    outcome: "Sistema probado con tus propios datos reales",
+    highlight: "Cero riesgos en producción",
   },
   {
-    phase: "Fase 04",
-    title: "Testing & Refinamiento",
-    timing: "Semana 9",
+    number: "04",
+    verb: "IMPLEMENTAMOS",
+    title: "Activamos sin interrumpir tu negocio",
+    timing: "Semana 4",
+    Icon: Rocket,
     description:
-      "Testing exhaustivo: buscamos errores antes que el cliente los encuentre. Optimización final y documentación completa del sistema.",
-    outcome: "Sistema robusto, sin sorpresas post-lanzamiento",
-    highlight: "Cero sorpresas",
+      "Lanzamiento sin downtime. Tu negocio sigue funcionando mientras activamos los procesos automáticos uno por uno. Tienes panel de control para ver el estado en tiempo real. 30 minutos de formación para tu equipo.",
+    outcome: "Sistema en producción, equipo formado, tú en control",
+    highlight: "Tu negocio no para ni un minuto",
   },
   {
-    phase: "Fase 05",
-    title: "Lanzamiento & Soporte",
-    timing: "Semana 10+",
+    number: "05",
+    verb: "OPTIMIZAMOS",
+    title: "Mejoramos con datos reales",
+    timing: "Mes 2 en adelante",
+    Icon: TrendingUp,
     description:
-      "Lanzamiento sin downtime (cero interrupciones a tu operación). Training del equipo para que manejes la herramienta con autonomía. Soporte 30 días gratis.",
-    outcome: "Sistema operativo, equipo listo, tú en control",
-    highlight: "30 días de soporte gratis",
+      "Después del primer mes en producción tenemos datos reales. ¿Qué proceso tarda más? ¿Dónde hay cuellos de botella? Reunión mensual de 30 minutos para revisar métricas y proponer mejoras concretas.",
+    outcome: "El sistema mejora cada mes con datos de tu negocio",
+    highlight: "30 días de soporte incluidos",
   },
 ];
 
@@ -54,99 +65,94 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <AnimateOnScroll className="text-center mb-20">
-          <span className="inline-block text-[#B8860B] text-xs font-bold tracking-[0.2em] uppercase mb-4">
-            Transparencia
+          <span className="inline-block text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase mb-4">
+            El proceso
           </span>
-          <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Cómo{" "}
-            <span className="text-[#B8860B]">Trabajamos</span>
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
+            De 40h Manuales a{" "}
+            <span className="text-[#B8860B]">5h Automáticas</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            Proceso claro y predecible. Sabes qué pasa, cuándo y por qué en
-            cada momento.
+            5 pasos. 4 semanas. Proceso predecible sin sorpresas. Sabes exactamente
+            qué pasa, cuándo y por qué en cada momento.
           </p>
         </AnimateOnScroll>
 
-        {/* Timeline */}
+        {/* Steps */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#B8860B]/40 via-[#B8860B]/20 to-transparent hidden sm:block" />
+          {/* Connecting line */}
+          <div className="absolute left-[39px] top-12 bottom-12 w-px bg-gradient-to-b from-[#B8860B]/60 via-[#B8860B]/20 to-transparent hidden md:block" />
 
-          <div className="space-y-12">
-            {phases.map((phase, i) => {
-              const isEven = i % 2 === 0;
-              return (
-                <AnimateOnScroll
-                  key={phase.phase}
-                  delay={i * 120}
-                  direction={isEven ? "left" : "right"}
-                >
-                  <div
-                    className={`relative flex items-start gap-6 md:gap-0 ${
-                      isEven ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
-                  >
-                    {/* Content box */}
-                    <div
-                      className={`flex-1 sm:pl-16 md:pl-0 ${
-                        isEven
-                          ? "md:pr-16 md:text-right"
-                          : "md:pl-16 md:text-left"
-                      }`}
-                    >
-                      <div
-                        className={`bg-[#141414] border border-white/5 hover:border-[#B8860B]/20 p-6 transition-all duration-300 group relative overflow-hidden ${
-                          isEven ? "md:ml-0" : ""
-                        }`}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#B8860B]/0 to-[#B8860B]/0 group-hover:from-[#B8860B]/5 group-hover:to-transparent transition-all duration-500" />
+          <div className="space-y-8">
+            {steps.map((step, i) => (
+              <AnimateOnScroll key={step.number} delay={i * 100} direction="left">
+                <div className="group relative flex gap-6 md:gap-10">
+                  {/* Step indicator */}
+                  <div className="shrink-0 flex flex-col items-center gap-1 pt-6">
+                    <div className="w-20 h-20 bg-[#1A3A52]/40 border border-[#B8860B]/30 group-hover:border-[#B8860B]/60 flex flex-col items-center justify-center transition-all duration-300 group-hover:bg-[#1A3A52]/60 relative z-10 bg-[#0F0F0F]">
+                      <step.Icon size={20} className="text-[#B8860B] mb-1" />
+                      <span className="text-[#B8860B] text-xs font-bold">{step.verb}</span>
+                    </div>
+                  </div>
 
-                        <div className="relative z-10">
-                          <div
-                            className={`flex items-center gap-3 mb-3 ${
-                              isEven
-                                ? "md:flex-row-reverse"
-                                : ""
-                            }`}
-                          >
-                            <span className="text-[#B8860B] text-xs font-bold tracking-widest uppercase">
-                              {phase.phase}
-                            </span>
-                            <span className="text-white/30 text-xs">
-                              {phase.timing}
-                            </span>
-                          </div>
-                          <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-3">
-                            {phase.title}
+                  {/* Content */}
+                  <div className="flex-1 bg-[#111111] border border-white/5 group-hover:border-[#B8860B]/15 p-7 transition-all duration-300 overflow-hidden relative">
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#B8860B]/0 via-[#B8860B]/40 to-[#B8860B]/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white/6 leading-none">
+                            {step.number}
+                          </span>
+                          <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white">
+                            {step.title}
                           </h3>
-                          <p className="text-white/60 text-sm leading-relaxed mb-4">
-                            {phase.description}
-                          </p>
-                          <div
-                            className={`flex items-center gap-2 pt-3 border-t border-white/5 ${
-                              isEven ? "md:flex-row-reverse" : ""
-                            }`}
-                          >
-                            <span className="text-[#B8860B] text-xs">✓</span>
-                            <span className="text-white/50 text-xs">
-                              {phase.outcome}
-                            </span>
-                          </div>
                         </div>
+                        <span className="inline-block text-white/30 text-xs font-mono border border-white/10 px-2 py-1">
+                          {step.timing}
+                        </span>
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <span className="inline-block bg-[#B8860B]/10 border border-[#B8860B]/25 text-[#B8860B] text-xs font-bold px-3 py-1.5">
+                          {step.highlight}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Center dot */}
-                    <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-6 w-4 h-4 rounded-full bg-[#B8860B] border-2 border-[#0F0F0F] shadow-[0_0_12px_rgba(184,134,11,0.5)] z-10 hidden sm:block" />
+                    <p className="text-white/60 text-sm leading-relaxed mb-4">
+                      {step.description}
+                    </p>
 
-                    {/* Empty half for alternating layout */}
-                    <div className="hidden md:block flex-1" />
+                    <div className="flex items-start gap-2 pt-4 border-t border-white/5">
+                      <span className="text-[#10B981] text-sm shrink-0">✓</span>
+                      <p className="text-white/50 text-sm">{step.outcome}</p>
+                    </div>
                   </div>
-                </AnimateOnScroll>
-              );
-            })}
+                </div>
+              </AnimateOnScroll>
+            ))}
           </div>
         </div>
+
+        {/* Guarantee strip */}
+        <AnimateOnScroll delay={550} className="mt-16">
+          <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/30 p-8 grid md:grid-cols-3 gap-6 text-center">
+            {[
+              { stat: "4 semanas", label: "Implementación garantizada" },
+              { stat: "0 min", label: "Tiempo que pierdes en el proceso" },
+              { stat: "30 días", label: "Soporte post-lanzamiento" },
+            ].map(({ stat, label }) => (
+              <div key={stat}>
+                <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B] mb-1">
+                  {stat}
+                </p>
+                <p className="text-white/45 text-sm">{label}</p>
+              </div>
+            ))}
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

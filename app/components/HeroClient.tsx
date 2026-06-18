@@ -1,130 +1,214 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowDown, CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
 
-const trustBadges = [
-  "Ingeniero Informático",
-  "Máxima Profesionalidad",
-  "Resultados Garantizados",
+const trustSignals = [
+  "15+ casos documentados",
+  "ROI calculado en 3 meses",
+  "Desde €3,500",
+];
+
+const dashboardItems = [
+  { label: "Facturación automática", time: "0 min", was: "30 min/factura", ok: true },
+  { label: "Emails de seguimiento", time: "Automático", was: "2h/día", ok: true },
+  { label: "Reporte semanal", time: "En vivo", was: "3h/lunes", ok: true },
+  { label: "Cobros y pagos", time: "Sincronizado", was: "Desorden total", ok: true },
 ];
 
 export default function HeroClient() {
+  const overlineRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const badgesRef = useRef<HTMLDivElement>(null);
+  const trustRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const dashRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const els = [headlineRef, subRef, badgesRef, ctaRef];
+    const els = [overlineRef, headlineRef, subRef, trustRef, ctaRef, dashRef];
     els.forEach((ref, i) => {
       if (!ref.current) return;
       const el = ref.current;
       el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
+      el.style.transform = i === 5 ? "translateX(30px)" : "translateY(28px)";
       setTimeout(() => {
-        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+        el.style.transition = "opacity 0.85s ease, transform 0.85s ease";
         el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      }, 200 + i * 150);
+        el.style.transform = "translate(0,0)";
+      }, 150 + i * 140);
     });
   }, []);
 
-  const scrollToHow = () => {
-    document.querySelector("#como-funciona")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToContact = () => {
-    document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16 text-center lg:text-left">
-      <div className="max-w-4xl">
-        {/* Trust strip */}
-        <div ref={badgesRef} className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
-          {trustBadges.map((badge) => (
-            <span
-              key={badge}
-              className="flex items-center gap-1.5 text-[#B8860B] text-xs font-semibold tracking-widest uppercase"
-            >
-              <CheckCircle size={12} className="shrink-0" />
-              {badge}
+    <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* LEFT: Text */}
+        <div>
+          {/* Overline */}
+          <div ref={overlineRef} className="flex items-center gap-2 mb-6">
+            <span className="w-8 h-px bg-[#B8860B]" />
+            <span className="text-[#B8860B] text-xs font-bold tracking-[0.25em] uppercase">
+              Automatización de Procesos · Barcelona
             </span>
-          ))}
+          </div>
+
+          {/* Headline */}
+          <h1
+            ref={headlineRef}
+            className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6"
+          >
+            40 Horas Que{" "}
+            <span className="relative inline-block">
+              <span className="text-[#B8860B]">No Necesitas</span>
+              <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-[#B8860B] to-transparent" />
+            </span>
+          </h1>
+
+          {/* Subheadline */}
+          <p
+            ref={subRef}
+            className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-8"
+          >
+            Restaurantes, agencias y despachos en Barcelona reducen su
+            trabajo administrativo en{" "}
+            <span className="text-white font-semibold">85%</span>.{" "}
+            Sin programar. Sin cambiar tus herramientas. Aquí cómo.
+          </p>
+
+          {/* Trust signals */}
+          <div ref={trustRef} className="flex flex-wrap gap-x-6 gap-y-2 mb-10">
+            {trustSignals.map((signal) => (
+              <span
+                key={signal}
+                className="flex items-center gap-1.5 text-white/60 text-sm"
+              >
+                <CheckCircle size={13} className="text-[#10B981] shrink-0" />
+                {signal}
+              </span>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div
+            ref={ctaRef}
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+          >
+            <button
+              onClick={() => scrollTo("#como-funciona")}
+              className="group inline-flex items-center gap-3 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm px-7 py-4 tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(26,58,82,0.6)] active:scale-95"
+            >
+              Ver cómo lo hacen
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => scrollTo("#calculadora")}
+              className="inline-flex items-center gap-2 text-[#B8860B] hover:text-[#D4A017] text-sm font-semibold transition-colors group"
+            >
+              <TrendingDown size={15} className="group-hover:-translate-y-0.5 transition-transform" />
+              Calcular mi ahorro →
+            </button>
+          </div>
         </div>
 
-        {/* Main headline */}
-        <h1
-          ref={headlineRef}
-          className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6"
-        >
-          Soluciones Digitales Que{" "}
-          <span className="relative inline-block">
-            <span className="text-[#B8860B]">Transforman</span>
-            <span className="absolute bottom-0 left-0 right-0 h-px bg-[#B8860B]/50" />
-          </span>{" "}
-          Tu Negocio
-        </h1>
+        {/* RIGHT: Dashboard mockup */}
+        <div ref={dashRef} className="hidden lg:block">
+          <div className="relative">
+            {/* Glow behind card */}
+            <div className="absolute inset-0 bg-[#1A3A52]/20 blur-3xl rounded-2xl scale-110" />
 
-        {/* Subheadline */}
-        <p
-          ref={subRef}
-          className="text-lg md:text-xl text-white/65 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10"
-        >
-          Cada pixel, cada línea de código, diseñado para generar resultados.
-          Webs y apps{" "}
-          <span className="text-white font-medium">100% personalizadas</span>{" "}
-          que hacen lo que{" "}
-          <span className="text-white font-medium">NECESITAS</span>, no lo que
-          alguien más hizo.
-        </p>
-
-        {/* CTAs */}
-        <div
-          ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-        >
-          <button
-            onClick={scrollToContact}
-            className="group relative bg-[#B8860B] hover:bg-[#D4A017] text-white font-bold text-base px-8 py-4 tracking-wide transition-all duration-300 hover:shadow-[0_0_40px_rgba(184,134,11,0.4)] active:scale-95"
-          >
-            Descubre Cómo Transformamos Negocios
-            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/30 scale-x-0 group-hover:scale-x-100 transition-transform" />
-          </button>
-
-          <button
-            onClick={scrollToHow}
-            className="flex items-center gap-2 text-white/60 hover:text-white text-sm font-medium transition-colors group"
-          >
-            <ArrowDown
-              size={16}
-              className="group-hover:translate-y-1 transition-transform"
-            />
-            Ver cómo funciona
-          </button>
-        </div>
-
-        {/* Stats strip */}
-        <div className="mt-16 pt-8 border-t border-white/10 grid grid-cols-3 gap-8 max-w-lg mx-auto lg:mx-0">
-          {[
-            { value: "+40%", label: "Más leads" },
-            { value: "20h", label: "Ahorradas/semana" },
-            { value: "100%", label: "Personalizado" },
-          ].map(({ value, label }) => (
-            <div key={label} className="text-center lg:text-left">
-              <div className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
-                {value}
+            <div className="relative bg-[#111827] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+              {/* Window header */}
+              <div className="flex items-center gap-2 px-5 py-4 border-b border-white/5 bg-[#0F172A]">
+                <div className="w-3 h-3 rounded-full bg-[#EF4444]/70" />
+                <div className="w-3 h-3 rounded-full bg-[#F59E0B]/70" />
+                <div className="w-3 h-3 rounded-full bg-[#10B981]/70" />
+                <span className="ml-3 text-white/30 text-xs font-mono">
+                  rastech · panel automatización
+                </span>
               </div>
-              <div className="text-white/50 text-xs mt-1">{label}</div>
+
+              {/* Dashboard content */}
+              <div className="p-6 space-y-3">
+                {/* Header stat */}
+                <div className="flex items-center justify-between mb-5">
+                  <div>
+                    <p className="text-white/40 text-xs uppercase tracking-widest">
+                      Horas liberadas esta semana
+                    </p>
+                    <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-[#10B981] mt-1">
+                      38.5h
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-white/40 text-xs">Ahorro mensual</p>
+                    <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B] mt-1">
+                      €2,500
+                    </p>
+                  </div>
+                </div>
+
+                {/* Process list */}
+                <div className="space-y-2.5">
+                  {dashboardItems.map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex items-center justify-between bg-white/[0.04] border border-white/5 rounded-lg px-4 py-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center">
+                          <CheckCircle size={11} className="text-[#10B981]" />
+                        </div>
+                        <div>
+                          <p className="text-white text-xs font-medium">{item.label}</p>
+                          <p className="text-white/30 text-[10px]">Antes: {item.was}</p>
+                        </div>
+                      </div>
+                      <span className="text-[#10B981] text-xs font-bold">{item.time}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Progress bar */}
+                <div className="mt-5 pt-4 border-t border-white/5">
+                  <div className="flex justify-between text-xs mb-2">
+                    <span className="text-white/40">Reducción trabajo manual</span>
+                    <span className="text-[#B8860B] font-bold">87%</span>
+                  </div>
+                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-[#1A3A52] to-[#B8860B] rounded-full"
+                      style={{ width: "87%" }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block">
-        <div className="w-px h-12 bg-gradient-to-b from-[#B8860B]/60 to-transparent mx-auto" />
+      {/* Bottom stats */}
+      <div className="mt-20 pt-8 border-t border-white/8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
+          {[
+            { value: "87%", label: "Reducción promedio" },
+            { value: "€2,500", label: "Ahorro mensual medio" },
+            { value: "4 sem", label: "Tiempo implementación" },
+            { value: "15+", label: "Casos documentados" },
+          ].map(({ value, label }) => (
+            <div key={label}>
+              <div className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-[#B8860B]">
+                {value}
+              </div>
+              <div className="text-white/40 text-xs mt-1">{label}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

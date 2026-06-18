@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/lib\" && mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/blog/[slug]\" && echo \"Dirs created\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s http://localhost:3000/blog)",
+      "Bash(curl -s http://localhost:3000/blog/automatizacion-procesos-barcelona)",
+      "Bash(curl -s http://localhost:3000/blog/5-procesos-manuales-destructivos-barcelona)"
+    ],
+    "additionalDirectories": [
+      "/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/blog"
+    ]
+  }
+}

@@ -17,24 +17,32 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RASTECH | Soluciones Digitales Premium",
+  title: "RASTECH | Automatización de Procesos Barcelona · Ahorra 40h/semana",
   description:
-    "RASTECH: soluciones digitales premium para empresas que quieren escalar. Webs que convierten, automatizaciones inteligentes y apps 100% personalizadas. Auditoría gratuita.",
+    "Automatizamos los procesos administrativos de restaurantes, agencias y despachos en Barcelona. Facturación, emails, reportes y seguimiento en automático. ROI documentado desde el mes 1.",
   keywords: [
-    "desarrollo web",
-    "soluciones digitales",
-    "ingeniero informático",
-    "automatización",
-    "apps personalizadas",
-    "España",
+    "automatización procesos Barcelona",
+    "automatizar facturación empresa",
+    "eliminar tareas manuales negocio",
+    "ahorro tiempo administración",
+    "automatización small business España",
+    "Zapier Make n8n Barcelona",
+    "reducir horas administrativas",
   ],
-  authors: [{ name: "Rubén Amirkhanyan Svazyan" }],
+  authors: [{ name: "Rubén Amirkhanyan" }],
   openGraph: {
-    title: "RASTECH | Transformamos Tu Negocio",
+    title: "RASTECH | 40 Horas Que No Necesitas",
     description:
-      "Cada pixel, cada línea de código, diseñado para generar resultados. Webs y apps 100% personalizadas.",
+      "Restaurantes, agencias y despachos en Barcelona reducen administrativo en 85%. ROI documentado. Desde €3,500.",
     type: "website",
     locale: "es_ES",
+    siteName: "RASTECH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RASTECH | Automatización de Procesos Barcelona",
+    description:
+      "Reducimos las horas administrativas de tu empresa en un 85%. Casos documentados, ROI real.",
   },
 };
 
