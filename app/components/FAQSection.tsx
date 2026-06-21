@@ -80,7 +80,7 @@ export default function FAQSection() {
             <span className="text-[#B8860B]">Resueltas.</span>
           </h2>
           <p className="text-white/50 text-base">
-            Si tu pregunta no está aquí, escríbeme directamente a info@rastech.es
+            Si tu pregunta no está aquí, escríbeme directamente a rubenamirkhanyan12@gmail.com
           </p>
         </AnimateOnScroll>
 
@@ -98,10 +98,10 @@ export default function FAQSection() {
             ¿Tienes una pregunta que no está aquí?
           </p>
           <a
-            href="mailto:info@rastech.es"
+            href="mailto:rubenamirkhanyan12@gmail.com"
             className="inline-flex items-center gap-2 text-[#B8860B] hover:text-[#D4A017] text-sm font-semibold transition-colors"
           >
-            info@rastech.es →
+            rubenamirkhanyan12@gmail.com →
           </a>
         </AnimateOnScroll>
       </div>

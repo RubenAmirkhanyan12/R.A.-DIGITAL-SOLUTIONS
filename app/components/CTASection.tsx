@@ -89,10 +89,10 @@ export default function CTASection() {
                     +34 613 361 175
                   </a>
                   <a
-                    href="mailto:info@rastech.es"
+                    href="mailto:rubenamirkhanyan12@gmail.com"
                     className="inline-flex items-center gap-2 text-white/40 text-sm hover:text-[#B8860B] transition-colors"
                   >
-                    info@rastech.es
+                    rubenamirkhanyan12@gmail.com
                   </a>
                 </div>
               </div>

@@ -25,10 +25,10 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-1 text-sm">
               <a
-                href="mailto:info@rastech.es"
+                href="mailto:rubenamirkhanyan12@gmail.com"
                 className="text-white/40 hover:text-[#B8860B] transition-colors"
               >
-                info@rastech.es
+                rubenamirkhanyan12@gmail.com
               </a>
               <a
                 href="tel:+34613361175"

@@ -341,7 +341,7 @@ Análisis gratuito de 30 minutos:
 - Propuesta concreta de qué automatizar
 - Sin compromiso
 
-Contacto directo: info@rastech.es · +34 613 361 175
+Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
 
 ---
 
@@ -584,7 +584,7 @@ En esa llamada:
 - Proponemos exactamente qué automatizar primero
 - Te mostramos el ROI antes de invertir un euro
 
-Contacto: info@rastech.es · +34 613 361 175
+Contacto: rubenamirkhanyan12@gmail.com · +34 613 361 175
 
 ---
 

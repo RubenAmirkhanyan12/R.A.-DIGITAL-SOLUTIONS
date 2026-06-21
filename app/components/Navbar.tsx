@@ -114,11 +114,11 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-[8px]">
             <a
-              href="mailto:info@rastech.es"
+              href="mailto:rubenamirkhanyan12@gmail.com"
               className="flex items-center gap-[6px] text-[13px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors whitespace-nowrap"
             >
               <Mail size={13} />
-              info@rastech.es
+              rubenamirkhanyan12@gmail.com
             </a>
             <a
               href="tel:+34613361115"
@@ -176,11 +176,11 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-3 pt-5">
             <a
-              href="mailto:info@rastech.es"
+              href="mailto:rubenamirkhanyan12@gmail.com"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 text-[14px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors"
             >
-              <Mail size={14} /> info@rastech.es
+              <Mail size={14} /> rubenamirkhanyan12@gmail.com
             </a>
             <a
               href="tel:+34613361115"
