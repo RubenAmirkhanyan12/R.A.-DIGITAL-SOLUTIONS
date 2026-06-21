@@ -6,7 +6,7 @@ const steps = [
     number: "01",
     verb: "ANALIZAMOS",
     title: "Cartografiamos cada proceso",
-    timing: "Semana 1",
+    timing: "Semana 1 · Día 1",
     Icon: Search,
     description:
       "Sesión de trabajo de 2 horas donde mapeamos exactamente qué haces, cuánto tiempo tarda y cuánto cuesta. Sin suposiciones. Sin ventas. Solo análisis honesto de tu situación real.",
@@ -17,18 +17,18 @@ const steps = [
     number: "02",
     verb: "DISEÑAMOS",
     title: "Construimos el sistema para ti",
-    timing: "Semana 2",
+    timing: "Semana 1 · Días 2-5",
     Icon: Lightbulb,
     description:
-      "Con el mapa, diseñamos los flujos automáticos específicos para tu negocio. Integramos con lo que ya usas: Gmail, WhatsApp Business, QuickBooks, Shopify, Google Sheets. Sin cambiar tus herramientas.",
-    outcome: "Propuesta técnica + precio fijo + timeline garantizado",
+      "Con el mapa en mano, diseñamos los flujos automáticos específicos para tu negocio. Integramos con lo que ya usas: Gmail, WhatsApp Business, QuickBooks, Shopify, Google Sheets. Sin cambiar tus herramientas.",
+    outcome: "Propuesta técnica + precio cerrado + inicio inmediato",
     highlight: "Precio cerrado, sin sorpresas",
   },
   {
     number: "03",
     verb: "TESTAMOS",
     title: "Probamos antes de producción",
-    timing: "Semana 3",
+    timing: "Semana 2 · Días 6-9",
     Icon: FlaskConical,
     description:
       "Creamos entorno de pruebas con casos reales. Simulamos cada escenario: facturas normales, facturas con error, emails que rebotan, clientes que no responden. Nada llega a producción sin pasar 100 pruebas.",
@@ -39,7 +39,7 @@ const steps = [
     number: "04",
     verb: "IMPLEMENTAMOS",
     title: "Activamos sin interrumpir tu negocio",
-    timing: "Semana 4",
+    timing: "Semana 2 · Día 10-14",
     Icon: Rocket,
     description:
       "Lanzamiento sin downtime. Tu negocio sigue funcionando mientras activamos los procesos automáticos uno por uno. Tienes panel de control para ver el estado en tiempo real. 30 minutos de formación para tu equipo.",
@@ -50,11 +50,11 @@ const steps = [
     number: "05",
     verb: "OPTIMIZAMOS",
     title: "Mejoramos con datos reales",
-    timing: "Mes 2 en adelante",
+    timing: "Semana 3 en adelante",
     Icon: TrendingUp,
     description:
-      "Después del primer mes en producción tenemos datos reales. ¿Qué proceso tarda más? ¿Dónde hay cuellos de botella? Reunión mensual de 30 minutos para revisar métricas y proponer mejoras concretas.",
-    outcome: "El sistema mejora cada mes con datos de tu negocio",
+      "Con las primeras semanas en producción ya tenemos datos reales. ¿Qué proceso tarda más? ¿Dónde hay cuellos de botella? Revisión express para afinar el sistema e ir añadiendo mejoras progresivas.",
+    outcome: "El sistema mejora cada semana con datos de tu negocio",
     highlight: "30 días de soporte incluidos",
   },
 ];
@@ -73,7 +73,7 @@ export default function ProcessSection() {
             <span className="text-[#B8860B]">5h Automáticas</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            5 pasos. 4 semanas. Proceso predecible sin sorpresas. Sabes exactamente
+            5 pasos. 2 semanas. Proceso predecible sin sorpresas. Sabes exactamente
             qué pasa, cuándo y por qué en cada momento.
           </p>
         </AnimateOnScroll>
@@ -140,7 +140,7 @@ export default function ProcessSection() {
         <AnimateOnScroll delay={550} className="mt-16">
           <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/30 p-8 grid md:grid-cols-3 gap-6 text-center">
             {[
-              { stat: "4 semanas", label: "Implementación garantizada" },
+              { stat: "2 semanas", label: "De cero a sistema funcionando" },
               { stat: "0 min", label: "Tiempo que pierdes en el proceso" },
               { stat: "30 días", label: "Soporte post-lanzamiento" },
             ].map(({ stat, label }) => (

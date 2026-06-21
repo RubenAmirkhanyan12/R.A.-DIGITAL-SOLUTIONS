@@ -5,16 +5,17 @@ const plans = [
   {
     name: "STARTER",
     tagline: "Para empezar a ahorrar rápido",
-    price: "€3,500",
-    priceNote: "pago único",
-    roi: "ROI estimado: 1-2 meses",
+    price: "€550",
+    priceNote: "precio a medida",
+    roi: "Primera automatización en 2 semanas",
     highlight: false,
-    processes: "2-3 procesos",
-    duration: "3 semanas",
+    processes: "1-2 procesos",
+    duration: "2 semanas",
     support: "30 días",
+
     features: [
       "Análisis de procesos (gratis)",
-      "Automatización de 2-3 procesos clave",
+      "Automatización de 1-2 procesos clave",
       "Facturación O emails O reportes",
       "Integración con tus herramientas",
       "Panel de control básico",
@@ -27,29 +28,29 @@ const plans = [
       "Consultoría estratégica",
     ],
     cta: "Analizar mi situación",
-    ideal: "Restaurante, tienda o despacho pequeño queriendo automatizar lo urgente.",
+    ideal: "Restaurante, tienda o despacho pequeño queriendo automatizar lo más urgente.",
   },
   {
     name: "GROWTH",
     tagline: "El más elegido por empresas Barcelona",
-    price: "€7,500",
-    priceNote: "pago único",
-    roi: "ROI estimado: <1 mes",
+    price: "€2.600",
+    priceNote: "precio a medida",
+    roi: "Sistema completo en 2 semanas",
     highlight: true,
-    processes: "5-7 procesos",
-    duration: "6 semanas",
+    processes: "3-5 procesos",
+    duration: "2-3 semanas",
     support: "60 días",
     features: [
       "Análisis de procesos (gratis)",
-      "Automatización de 5-7 procesos",
+      "Automatización de 3-5 procesos",
       "Sistema completo integrado",
       "Integración multiherramienta avanzada",
       "Dashboard personalizado en vivo",
       "Alertas y notificaciones inteligentes",
-      "Formación de equipo (3h)",
+      "Formación de equipo (2h)",
       "Consultoría estratégica incluida",
       "Soporte 60 días",
-      "Revisión de optimización mes 2",
+      "Revisión de optimización semana 3",
     ],
     notIncluded: [],
     cta: "Solicitar consulta gratuita",
@@ -58,16 +59,16 @@ const plans = [
   {
     name: "ENTERPRISE",
     tagline: "Para transformación completa",
-    price: "€15,000+",
-    priceNote: "personalizado",
-    roi: "ROI estimado: <1 mes",
+    price: "€5.150",
+    priceNote: "precio a medida",
+    roi: "Implementación en 2-3 semanas",
     highlight: false,
-    processes: "10+ procesos",
-    duration: "Timeline personalizado",
+    processes: "6+ procesos",
+    duration: "3-4 semanas",
     support: "Retainer mensual",
     features: [
       "Todo lo de GROWTH",
-      "10+ procesos automatizados",
+      "6+ procesos automatizados",
       "Integración total de sistemas",
       "API personalizada si necesaria",
       "Retainer mensual disponible",
@@ -97,8 +98,8 @@ export default function PricingSection() {
             <span className="text-[#B8860B]">Sin Sorpresas.</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            Pago único. Sin mensualidades ocultas. Precio fijo acordado antes de empezar.
-            El análisis inicial siempre es gratuito.
+            Precios desde, adaptados a tu proyecto real. Sin mensualidades ocultas.
+            El análisis inicial siempre es <span className="text-white/70 font-medium">gratuito y sin compromiso</span>.
           </p>
         </AnimateOnScroll>
 
@@ -135,9 +136,8 @@ export default function PricingSection() {
 
                     {/* Price */}
                     <div className="flex items-baseline gap-2 mb-1">
-                      <span className={`font-[family-name:var(--font-playfair)] text-4xl font-bold ${
-                        plan.highlight ? "text-white" : "text-white"
-                      }`}>
+                      <span className="text-white/40 text-sm font-normal">desde</span>
+                      <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">
                         {plan.price}
                       </span>
                     </div>
@@ -213,7 +213,7 @@ export default function PricingSection() {
         <AnimateOnScroll delay={400} className="mt-12 text-center">
           <p className="text-white/30 text-sm max-w-xl mx-auto">
             El análisis inicial es <span className="text-white/50 font-medium">siempre gratuito y sin compromisos</span>.
-            Antes de cualquier contrato, sabes exactamente qué incluye, cuánto cuesta y qué ROI esperar.
+            El precio final depende del alcance concreto — hablamos, analizamos y te damos un número exacto antes de empezar.
           </p>
         </AnimateOnScroll>
       </div>

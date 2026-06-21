@@ -61,7 +61,7 @@ export default function CTASection() {
                   <div className="flex flex-wrap gap-3 text-xs text-white/40">
                     <span className="flex items-center gap-1">✓ Sin compromiso</span>
                     <span className="flex items-center gap-1">✓ Resultado concreto</span>
-                    <span className="flex items-center gap-1">✓ Gratis siempre</span>
+                    <span className="flex items-center gap-1">✓ Sin coste inicial</span>
                   </div>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function CTASection() {
                   </span>
                 </div>
                 <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-2">
-                  Llamada o WhatsApp · GRATIS
+                  Llamada o WhatsApp
                 </h3>
                 <p className="text-white/55 text-sm leading-relaxed mb-4">
                   ¿Tienes una necesidad concreta y quieres hablar sin rodeos?

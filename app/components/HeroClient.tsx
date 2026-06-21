@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
 const trustSignals = [
   "15+ casos documentados",
   "ROI calculado en 3 meses",
-  "Desde €3,500",
+  "Desde €550",
 ];
 
 const dashboardItems = [
