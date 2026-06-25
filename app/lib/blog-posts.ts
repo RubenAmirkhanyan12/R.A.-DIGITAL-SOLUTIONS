@@ -590,6 +590,243 @@ Contacto: rubenamirkhanyan12@gmail.com · +34 613 361 175
 
 **La pregunta no es "¿puedo automatizar?" La pregunta es "¿cuánto más voy a esperar?"**`,
   },
+  {
+    title: "Cuánto Cuesta Automatizar Tu Empresa Barcelona — Guía Real 2025",
+    slug: "cuanto-cuesta-automatizar-barcelona",
+    description:
+      "Presupuesto real para automatizar procesos en Barcelona. Desde €550 hasta €15k. Análisis gratis, sin compromisos. Ves ejemplos de empresas reales.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "Especialista en Automatización de Procesos",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+    },
+    publishDate: "2025-06-25",
+    readTime: 8,
+    category: "Precios",
+    featured: false,
+    keywords: [
+      "cuánto cuesta automatizar barcelona",
+      "precio automatización procesos",
+      "presupuesto automatización empresa",
+      "coste automatización barcelona",
+      "ROI automatización pyme",
+      "automatización barata barcelona",
+      "n8n Make barcelona precio",
+    ],
+    internalLinks: [
+      "automatizacion-procesos-barcelona",
+      "5-procesos-manuales-destructivos-barcelona",
+    ],
+    content: `La pregunta que todo empresario Barcelona hace: *"¿Cuánto me cuesta automatizar mis procesos?"*
+
+Esta guía te dará números reales. Desde empresas de 5 personas (€550) hasta corporaciones (€15k+). Sin presupuestos ocultos. Sin sorpresas.
+
+---
+
+## El Precio Depende De 3 Factores (No Es Magia)
+
+La automatización NO es un producto estándar. Es como la construcción: una casa de 2 pisos no cuesta lo mismo que una de 5.
+
+Los 3 factores que determinan tu precio:
+
+### 1. Número De Procesos A Automatizar
+
+| Alcance | Plan | Precio |
+|---|---|---|
+| 1-2 procesos | STARTER | desde €550 |
+| 3-5 procesos | GROWTH ← más popular | desde €2.600 |
+| 6+ procesos | ENTERPRISE | desde €5.150 |
+
+### 2. Complejidad De Tus Integraciones
+
+- **Simple** — Tu CRM + Email: +€300-500
+- **Media** — ERP + Contabilidad + Tienda online: +€1.500-2.000
+- **Compleja** — 5+ sistemas con lógica custom: +€3.000-5.000
+
+### 3. Nivel De Soporte Post-Implementación
+
+- Soporte 30 días: **incluido** en todos los planes
+- Soporte 60 días: +€200/mes
+- Soporte ilimitado: +€500/mes *(ideal si quieres dormir tranquilo)*
+
+---
+
+## Ejemplo Real #1: Asesoría Fiscal Barcelona (8 personas)
+
+**Situación:**
+- Facturaban 100-150 documentos/mes manualmente
+- Gastaban €4.800/mes solo en horas administrativas
+- Querían automatizar YA
+
+**Presupuesto que pagaron:**
+
+| Concepto | Importe |
+|---|---|
+| Plan GROWTH | €2.600 |
+| Soporte 60 días | +€200 |
+| **TOTAL** | **€2.800** |
+
+**Resultado en año 1:**
+
+- Ahorro mensual: €4.320 (40h → 4h al mes)
+- Ahorro anual: **€51.840**
+- ROI: **1.850%** — se recuperó en 3 semanas
+
+### ¿Por Qué Pagaron Ese Precio Y No Más?
+
+No pagaron más porque solo tenían 1 proceso crítico (facturación), integraciones simples (Excel → software contable) y no necesitaban soporte ilimitado.
+
+Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas o requerir soporte 24/7.
+
+---
+
+## Ejemplo Real #2: E-commerce Barcelona (50 personas)
+
+**Situación:**
+- 1.000 pedidos/mes llegaban por email
+- 5 personas gastaban 16h/semana en procesamiento manual
+- Querían 100% automatización + integraciones complejas
+
+**Presupuesto que pagaron:**
+
+| Concepto | Importe |
+|---|---|
+| Plan ENTERPRISE | €5.150 |
+| Integraciones complejas (ERP + Shopify + Shipping) | +€3.000 |
+| Soporte ilimitado | +€500/mes |
+| **TOTAL mes 1** | **€8.650** |
+
+**Resultado:**
+
+- Horas ahorradas: **832/año** (16h/semana × 52)
+- Dinero ahorrado: **€33.280/año** (832h × €40/h)
+- ROI: inversión recuperada en **3-4 meses**
+- Beneficio oculto: pueden crecer sin contratar — eso vale mucho más
+
+---
+
+## Desglose Completo De Precios RASTECH 2025
+
+### STARTER — Para Empezar Rápido
+
+- Automatización 1-2 procesos
+- Integraciones simples (1-2 sistemas)
+- Implementación en 2 semanas
+- Soporte 30 días incluido
+- **Precio: desde €550** (pago único, no recurrente)
+
+### GROWTH — El Más Elegido *(80% de clientes eligen este)*
+
+- Automatización 3-5 procesos
+- Integraciones medias (3-4 sistemas)
+- Implementación en 2 semanas
+- Dashboard personalizado + alertas inteligentes
+- Soporte 60 días incluido
+- **Precio: desde €2.600** + €200/mes soporte opcional
+
+### ENTERPRISE — Transformación Completa
+
+- Automatización 6+ procesos
+- Integraciones complejas (5+ sistemas)
+- Implementación en 3-4 semanas
+- API personalizada + Account Manager dedicado
+- Consultoría estratégica incluida
+- **Precio: desde €5.150** (depende del alcance)
+
+Ver [todos los detalles en la página de precios](/precios).
+
+---
+
+## ¿Cuál Es El Precio Promedio En Barcelona?
+
+Basado en nuestras 20+ implementaciones:
+
+| Tamaño empresa | Presupuesto típico | Ahorro anual |
+|---|---|---|
+| Pequeña (5-15 personas) | €1.500-3.000 | €15.000-30.000 |
+| Mediana (15-50 personas) | €3.000-8.000 | €30.000-80.000 |
+| Grande (50+ personas) | €8.000-20.000 | €80.000-200.000+ |
+
+---
+
+## ¿Por Qué RASTECH Es Más Barato Que Consultoras Grandes?
+
+Consultoras genéricas: €10.000-50.000. RASTECH: €550-15.000.
+
+No es porque seamos peores. Es porque:
+
+1. **Nos especializamos** — No hacemos "de todo". Menos tiempo de análisis = menor coste.
+2. **Usamos herramientas modernas no-code** — n8n, Make. 10× más rápido que código custom.
+3. **Somos ágiles** — Sin overhead de 500 empleados ni oficinas en el Paseo de Gracia.
+4. **Queremos que TODOS puedan automatizar** — Precios accesibles = más clientes = modelo sostenible.
+
+---
+
+## ¿Qué Incluye Y Qué NO Incluye?
+
+**Incluye siempre:**
+- Análisis inicial (60 min, gratis)
+- Diseño de flujos automáticos
+- Testing con tus datos reales
+- Formación del equipo (1-2 sesiones)
+- Documentación completa
+- Soporte inicial según plan
+
+**No incluye:**
+- Migración de herramientas existentes (si quieres cambiar de sistema, coste extra)
+- Formación avanzada de más de 2 sesiones
+- Modificaciones infinitas — 3 iteraciones incluidas, luego €100/cambio
+- Hosting/suscripciones de herramientas de terceros (tú las pagas directamente)
+
+---
+
+## Cómo Calculamos Tu Presupuesto Exacto
+
+**Paso 1 — Auditoría inicial (60 min, gratis)**
+Identificamos tus procesos manuales, calculamos horas ahorradas potencial y estimamos complejidad de integraciones.
+
+**Paso 2 — Propuesta personalizada**
+"Para ti, plan X = €Y". Desglose detallado, timeline exacto, garantía 30 días.
+
+**Paso 3 — Implementación**
+Montamos, testeamos con tus datos reales, validamos contigo. Tu equipo toma el control.
+
+**Paso 4 — Soporte post-lanzamiento**
+Según plan contratado. Si no ves ahorro medible — **dinero atrás**.
+
+---
+
+## Preguntas Frecuentes Sobre Presupuesto
+
+**¿Necesito presupuesto mínimo?**
+No. Empezamos desde €550 (plan STARTER). Si tu caso no justifica automatizar, te lo decimos — sin venderte nada.
+
+**¿Puedo pagar en cuotas?**
+Sí. El plan GROWTH (€2.600) se puede fraccionar en 2 meses de €1.300.
+
+**¿Qué pasa si cambio de opinión después de empezar?**
+Garantía 30 días — dinero atrás sin preguntas. No es habitual en este sector, pero así trabajamos.
+
+**¿El presupuesto puede subir a mitad del proyecto?**
+No. El precio es cerrado y acordado antes de empezar. Sin sorpresas.
+
+---
+
+## Empieza Hoy — Auditoría Gratis
+
+Tu presupuesto exacto en 60 minutos. Sin compromiso.
+
+Cuéntanos tu caso y calculamos cuánto puedes ahorrar antes de invertir un euro.
+
+📧 rubenamirkhanyan12@gmail.com
+📱 +34 613 361 115
+
+O reserva directamente en el [formulario de contacto](/#contacto).
+
+---
+
+*¿Te interesa saber qué procesos conviene automatizar primero? Lee: [5 Procesos Manuales Que Te Destrozan La Productividad](/blog/5-procesos-manuales-destructivos-barcelona)*`,
+  },
 ];
 
 export function getAllPublishedPosts(): BlogPost[] {
@@ -607,7 +844,7 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-export function getRelatedPosts(currentSlug: string, internalLinks: string[]): BlogPost[] {
+export function getRelatedPosts(_currentSlug: string, internalLinks: string[]): BlogPost[] {
   return internalLinks
     .map((slug) => blogPosts.find((p) => p.slug === slug))
     .filter((p): p is BlogPost => p !== undefined);
