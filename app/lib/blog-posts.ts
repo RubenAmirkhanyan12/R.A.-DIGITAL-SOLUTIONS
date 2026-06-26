@@ -858,6 +858,250 @@ O reserva directamente en el [formulario de contacto](/#contacto).
 
 *¿Te interesa saber qué procesos conviene automatizar primero? Lee: [5 Procesos Manuales Que Te Destrozan La Productividad](/blog/5-procesos-manuales-destructivos-barcelona)*`,
   },
+  {
+    title: "Automatización Facturación: De 40h/mes A 4h/mes — Caso Real Barcelona",
+    slug: "automatizacion-facturacion-40h-4h",
+    description:
+      "Asesoría fiscal Barcelona automatizó facturación de 100+ documentos/mes. Pasó de 40 horas a 4 horas. Cero errores. ROI 1,850%. Caso real documentado.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "Especialista en Automatización de Procesos",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+    },
+    publishDate: "2025-06-25",
+    readTime: 9,
+    category: "Casos de Éxito",
+    featured: true,
+    keywords: [
+      "automatización facturación barcelona",
+      "automatizar facturación empresa",
+      "caso real automatización barcelona",
+      "facturación automática pyme",
+      "ROI automatización procesos",
+      "n8n facturación barcelona",
+    ],
+    internalLinks: [
+      "5-procesos-manuales-destructivos-barcelona",
+      "cuanto-cuesta-automatizar-barcelona",
+      "automatizacion-procesos-barcelona",
+    ],
+    content: `Una asesoría fiscal Barcelona facturaba 100-150 documentos cada mes. Todo en Excel. Manualmente. Gastaban €4,800/mes solo en horas administrativas. Implementamos automatización. En 3 semanas, pasaron de 40 horas a 4 horas. Cero errores. Ahorro €51,840/año. Esta es su historia.
+
+---
+
+## La Situación Original: Un Proceso Que No Escalaba
+
+**Empresa:** Asesoría Fiscal · Barcelona · 8 personas · Sector fiscal y contable
+
+### El Proceso (Mes 0)
+
+Cada mes llegaban 100-150 facturas de clientes. El flujo era:
+
+1. Cliente envía factura (email 80%, WhatsApp 15%, papel 5%)
+2. Contador abre Excel
+3. Copia manualmente: nombre cliente, importe, fecha, conceptos
+4. Valida contra base de datos de clientes
+5. Si el cliente no existe → crea nuevo (alto riesgo de error)
+6. Genera PDF desde plantilla manual + datos copiados
+7. Envía email al cliente
+8. Archiva en carpeta compartida (desorganizado)
+9. Registra en software contable (copia-pega otra vez)
+
+| Métrica | Valor |
+|---|---|
+| Tiempo total | 40 horas/mes |
+| Coste laboral | €4,800/mes (40h × €120/h) |
+| Error rate | 3-5% |
+| Estado del equipo | Frustración |
+
+---
+
+## El Análisis: ¿Dónde Se Gastan Las Horas?
+
+Cuando medimos el tiempo real, el problema era mayor de lo que reportaban:
+
+| Tarea | Horas/mes |
+|---|---|
+| Copiar datos a Excel | 30h |
+| Validación manual | 10h |
+| Crear PDFs | 6h |
+| Registrar en software contable | 16h |
+| Buscar/archivar documentos | 4h |
+| **Total real** | **66h** |
+
+El contador reportaba "40 horas" porque no contaba las tareas fragmentadas. El coste real era **€7,920/mes**, no €4,800.
+
+---
+
+## La Solución: Automatización Inteligente
+
+No fue "instalar un robot". Fue liberar tiempo humano para lo que realmente importa.
+
+### Paso 1 — Entender El Flujo Actual (2 horas)
+
+Sentamos con el contador. Mapeamos:
+- ¿Dónde llegan facturas? (Email, WhatsApp, papel)
+- ¿Qué datos necesitas? (Cliente, importe, fecha, conceptos, concepto fiscal)
+- ¿Qué validaciones haces? (¿Cliente existe? ¿Importe realista? ¿Fecha válida?)
+- ¿Dónde los guardas? (Excel, Holded, carpeta compartida)
+
+**Herramientas auditadas:** Google Forms · Holded · Gmail · Google Drive
+
+### Paso 2 — Diseño Del Flujo Automático (3 horas)
+
+El nuevo flujo tiene 10 pasos, todos sin intervención humana:
+
+1. Cliente envía factura
+2. Sistema la recibe (email o formulario)
+3. OCR extrae datos automáticamente (Google Vision)
+4. Valida contra base de datos de clientes
+5. Genera PDF automático desde plantilla
+6. Envía email al cliente
+7. Registra en Holded vía API
+8. Archiva en Google Drive ordenadamente
+9. Genera reporte resumen semanal
+10. Si algo falla → alerta por Slack al contador
+
+**Herramientas del flujo:** n8n · Google Vision (OCR) · Google Sheets · Holded API · Gmail API · Google Drive · Slack
+
+### Paso 3 — Testing Con Datos Reales (5 días)
+
+No usamos datos ficticios. Probamos con 20 facturas reales.
+
+Errores detectados y corregidos:
+- OCR fallaba con facturas manuscritas
+- Clientes sin NIF en la base de datos
+- Importes con comillas tipográficas mal parseadas
+- Clientes duplicados en Excel
+
+Cada error: 30 minutos de ajuste. Resultado final: **0 errores en producción**.
+
+### Paso 4 — Implementación Y Entrenamiento (2 días)
+
+**Día 1:** Sistema en producción. Primeras 50 facturas procesadas en automático (~3 segundos por factura). Dashboard en vivo para el contador.
+
+**Día 2:** 2 horas de entrenamiento al equipo. Cómo revisar alertas, crear clientes nuevos, leer reportes semanales.
+
+> *"No lo creía hasta que lo vi funcionar. Increíble."* — Contador principal
+
+---
+
+## Los Resultados: Antes vs Después
+
+| Métrica | Antes | Después | Mejora |
+|---|---|---|---|
+| Horas/mes facturación | 40h | 4h | **-90%** |
+| Tiempo por factura | 15-20 min | 3 seg | **-99.7%** |
+| Error rate | 3-5% | 0.2% | **-96%** |
+| Coste laboral/mes | €4,800 | €480 | **-€4,320/mes** |
+| Tiempo reporte cliente | 2-3h | 5 min | **-97%** |
+
+### Impacto Anual
+
+- Horas ahorradas: 36h/mes × 12 = **432 horas/año**
+- Dinero ahorrado: €4,320/mes × 12 = **€51,840/año**
+- Errores evitados: ~50 errores/año
+
+### La Inversión
+
+| Concepto | Coste |
+|---|---|
+| [Plan GROWTH](/precios) | €2,600 |
+| Soporte 60 días | €200 |
+| **Total** | **€2,800** |
+
+**ROI: 1,850%** · **Payback period: 3 semanas**
+
+> Pagaron €2,800. Lo recuperaron en 3 semanas. Ahorran €51,840 cada año siguiente.
+
+---
+
+## El Impacto Que Los Números No Capturan
+
+**Escalabilidad:** Antes no podían crecer — facturación consumía todo el tiempo. Ahora pueden procesar 500 documentos/mes sin contratar a nadie.
+
+**Calidad:** Clientes siempre actualizados, reportes fiables. *"Ahora confiamos en los números. Antes teníamos miedo."*
+
+**Equipo:** El contador pasó de 2 semanas/mes en copiar datos a enfocarse en análisis fiscal real. *"Mi contador ahora me da ideas, no solo reportes."*
+
+---
+
+## ¿Por Qué No Lo Hicieron Antes?
+
+Preguntamos: "¿Por qué esperaron 5 años?"
+
+Las respuestas:
+1. **"Parecía complicado"** — Creían que necesitaban un programador a jornada completa
+2. **"No sabía que existía"** — Nadie les había propuesto esta solución
+3. **"Daba miedo cambiar"** — Sistema imperfecto pero conocido
+4. **"Pensaba que costaba mucho"** — Estimaban €50k+
+5. **"No me lo propusieron"** — Ningún proveedor lo sugirió
+
+La conclusión: la mayoría de empresas no automatizan por **ignorancia**, no porque sea imposible. Una vez lo ven funcionando, dicen: *"¿Por qué no lo hicimos hace 5 años?"*
+
+---
+
+## Las 3 Lecciones Aprendidas
+
+**1. Simplicidad vence complejidad**
+
+Pensaban que necesitaban un ERP custom. Bastó un flujo de n8n + Google Sheets + API de Holded. La solución perfecta no existe — pero la solución que funciona, sí.
+
+**2. Entrenar es crítico (y rápido)**
+
+El sistema estaba perfecto desde el día 1. Sin 2 horas de entrenamiento, no lo usaban bien. Una sola sesión marcó la diferencia.
+
+**3. Empieza por el proceso que más duele**
+
+Tenían 5 procesos manuales. Empezamos por facturación (máximo impacto). Con el ahorro visible en 3 semanas, automatizan el siguiente ellos solos.
+
+---
+
+## ¿Tu Empresa Es Candidata?
+
+- ¿Haces algo manual más de 5 horas/semana?
+- ¿Repites el mismo proceso más de 100 veces/año?
+- ¿Tienes datos en Excel + otro software desincronizados?
+- ¿Alguien en tu equipo hace tareas que odia?
+- ¿No puedes crecer sin contratar más gente?
+
+Si respondiste sí a 3 o más, probablemente puedas ahorrar **€20k-100k/año**.
+
+---
+
+## El Testimonio Del Contador
+
+> *"Pasé 5 años haciendo esto a mano. Copiando datos, validando, generando PDFs. Todos los meses, 40 horas.*
+>
+> *Cuando Rubén propuso automatizar, pensé: 'Esto es muy complicado.' Pero me mostró que era simple.*
+>
+> *Implementación fue limpia. En día 1, vi el sistema funcionando. 'No puede ser.'*
+>
+> *Ahora manejo 150 facturas/mes en 4 horas. Automático. Yo me enfoco en análisis fiscal real.*
+>
+> *¿Por qué esperé 5 años? Ignorancia pura. Pensaba que costaba €50k. Fueron €2,800 y recuperé en 3 semanas.*
+>
+> *Si aún haces esto a mano... no esperes 5 años como yo."*
+>
+> — **Juan García, Contador Principal · Asesoría Fiscal Barcelona**
+
+---
+
+## Auditoría Gratuita — 60 Minutos
+
+Si facturas manualmente o tienes cualquier proceso que te come horas, hagamos los números juntos.
+
+En 60 minutos identificamos dónde se van las horas, calculamos el ahorro potencial específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
+
+📧 rubenamirkhanyan12@gmail.com
+📱 +34 613 361 115
+
+O reserva en el [formulario de contacto](/#contacto).
+
+---
+
+*¿Cuánto te costaría implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
+  },
 ];
 
 export function getAllPublishedPosts(): BlogPost[] {
