@@ -1102,6 +1102,279 @@ O reserva en el [formulario de contacto](/#contacto).
 
 *¿Cuánto te costaría implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
   },
+  {
+    title: "n8n vs Make vs Zapier: Cuál Elegir Para Tu Empresa Barcelona — Comparativa 2025",
+    slug: "n8n-vs-make-vs-zapier-barcelona",
+    description:
+      "Comparativa n8n, Make, Zapier para Barcelona. Precios reales, características, pros/contras. Cuál elegir según tu empresa. Análisis de experto automatización.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "Especialista en Automatización de Procesos",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+    },
+    publishDate: "2025-06-25",
+    readTime: 11,
+    category: "Herramientas",
+    featured: false,
+    keywords: [
+      "n8n vs make vs zapier",
+      "herramientas automatización barcelona",
+      "make vs zapier",
+      "n8n pricing",
+      "comparativa automatización barcelona",
+      "n8n barcelona",
+    ],
+    internalLinks: [
+      "automatizacion-procesos-barcelona",
+      "cuanto-cuesta-automatizar-barcelona",
+      "automatizacion-facturacion-40h-4h",
+    ],
+    content: `Decidiste automatizar. Abriste Google. "¿Cuál herramienta uso?" Tres opciones populares: n8n, Make, Zapier. Las tres funcionan. Las tres son diferentes. Una te cuesta €0. Otra €10/mes. Otra €99/mes.
+
+Esta es la comparativa más honesta que encontrarás. Sin sesgos. Con números reales de Barcelona. No "mejor o peor" — sino cuál es mejor **para tu caso**.
+
+---
+
+## ¿Qué Son n8n, Make y Zapier?
+
+Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. La diferencia está en el precio, la complejidad y el control.
+
+**Zapier** — La "Netflix del workflow". La más antigua (2011), la más cara, la más estable. Empresa de EEUU.
+
+**Make** (antes Integromat) — La alternativa barata a Zapier. Más visual, más potente, más barata. Empresa de Eslovenia.
+
+**n8n** — La alternativa open-source. Self-hosted o cloud. Gratis o €20/mes. Empresa alemana (startup).
+
+---
+
+## Tabla Comparativa
+
+| Característica | n8n | Make | Zapier |
+|---|---|---|---|
+| Precio base | €0 (self-hosted) / €20/mes (cloud) | €9.99/mes | €29.99/mes |
+| Integraciones | 400+ | 500+ | 5.000+ |
+| Curva de aprendizaje | Media-Alta | Media | Baja |
+| Límite mensual | 200K/mes gratis | 10K ops (pagado) | 100K tasks |
+| Soporte | Community | Email + Chat | Email + Chat + Teléfono |
+| UI/UX | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Self-hosted | ✅ Sí | ❌ No | ❌ No |
+| API personalizada | ✅ Sí | Limitada | Limitada |
+| Para principiantes | ❌ No | ✅ Sí | ✅✅ El mejor |
+
+---
+
+## Zapier — Para Empresas Que No Quieren Problemas
+
+### Precios
+
+| Plan | Precio | Tasks/mes |
+|---|---|---|
+| Free | €0 | 100 |
+| Starter | €29.99/mes | 750 |
+| Professional | €99/mes | 5.000 |
+| Team | €299/mes | 50.000 |
+
+Una empresa mediana en Barcelona suele necesitar el plan Professional: **€1.188/año**.
+
+### Ventajas
+
+**Facilidad máxima** — Drag & drop super intuitivo. Sin pensar en flujos. Conectas y configuras. Un día de aprendizaje.
+
+**Soporte 24/7** — En planes premium, teléfono disponible. Si algo rompe, Zapier lo arregla.
+
+**5.000+ integraciones** — Si la app existe, Zapier la tiene.
+
+**Confiabilidad** — 14 años en mercado, millones de empresas, uptime 99.99%.
+
+### Desventajas
+
+**Caro** — €30-300/mes. Para startups, demasiado.
+
+**Pricing por tasks** — Cada acción consume tasks. Si creces, el coste crece con sorpresas.
+
+**Sin self-hosted** — Tus datos en servidores de EEUU. Problema GDPR.
+
+### Mejor para
+
+✅ CEOs sin perfil técnico · ✅ Presupuesto disponible (€50-300/mes) · ✅ Workflows simples · ✅ Soporte empresarial crítico
+
+❌ Startups con presupuesto bajo · ❌ Datos sensibles (GDPR) · ❌ Workflows muy complejos
+
+> *"Usamos Zapier para pedidos → email → Slack. €30/mes. Funciona perfecto. Cero problemas."* — Restaurante, Barcelona
+
+---
+
+## Make — El Equilibrio Entre Precio y Potencia
+
+### Precios
+
+| Plan | Precio | Operaciones/mes |
+|---|---|---|
+| Free | €0 | 1.000 |
+| Basic | €9.99/mes | 10.000 |
+| Standard | €29.99/mes | 50.000 |
+| Professional | €99/mes | 200.000 |
+
+Una empresa mediana puede arrancar con Standard: **€360/año** (vs €1.188 de Zapier).
+
+### Ventajas
+
+**Barato** — 1/3 del precio de Zapier. Startups pueden usarlo desde el mes 1.
+
+**Visual e intuitivo** — Interface clara con nodos conectados. Ves el flujo entero. 1-2 días de aprendizaje.
+
+**Operations, no tasks** — El modelo de pricing escala mejor. Creces sin sorpresas.
+
+**500+ integraciones** — Suficientes para el 99% de empresas en Barcelona.
+
+### Desventajas
+
+**Soporte limitado en planes bajos** — Solo email. Respuesta en 24-48h. Sin teléfono.
+
+**No self-hosted** — Tus datos en servidores de Make (Eslovenia). GDPR aplica, pero no es tu servidor.
+
+**Menos integraciones que Zapier** — 500 vs 5.000. Raramente es un problema real.
+
+### Mejor para
+
+✅ Startups Barcelona (presupuesto bajo) · ✅ Workflows medianos (15-30 integraciones) · ✅ Relación precio-potencia · ✅ Equipo sin perfil técnico profundo
+
+❌ Grandes empresas (soporte limitado) · ❌ GDPR estricto (servidor propio) · ❌ Workflows ultra-complejos con lógica custom
+
+> *"Hicimos 20 workflows en Make por €30/mes. Con Zapier hubiera sido €300. Funciona exactamente igual."* — Agencia de marketing, Barcelona
+
+---
+
+## n8n — Para Quienes Quieren Control Total
+
+### Precios
+
+**n8n Cloud:**
+
+| Plan | Precio | Ejecuciones/mes |
+|---|---|---|
+| Free | €0 | 200 |
+| Pro | €20/mes | 500 |
+| Scale | €500+/mes | Empresarial |
+
+**n8n Self-Hosted:**
+- Código abierto: €0 (solo pagas el hosting, ~€10-50/mes)
+- Sin límite de workflows ni ejecuciones
+
+### Ventajas
+
+**Gratis o casi gratis** — Self-hosted con hosting básico: €0-20/mes. Para una startup, la diferencia es enorme.
+
+**Open-source** — Puedes ver todo el código. Sin black box. Comunidad activa.
+
+**Self-hosted = datos tuyos** — Cumple GDPR estricto. Datos en tu servidor en España o UE. Ideal para sectores regulados.
+
+**Sin límites reales** — API custom, lógica compleja, loops, condicionales. Si lo puedes imaginar, lo puedes construir.
+
+### Desventajas
+
+**Curva de aprendizaje alta** — No es "arrastra y suelta". Requiere pensar en flujos. 1-2 semanas para dominar.
+
+**Sin soporte oficial** — Community en Slack/Discord. Si algo rompe, tú lo arreglas o buscas en foros.
+
+**Self-hosted = tú administras** — Servidor, updates, backups: responsabilidad tuya. Requiere algo de DevOps.
+
+**400 integraciones nativas** — Pero puedes conectar cualquier API con HTTP nodes. La limitación es menor de lo que parece.
+
+### Mejor para
+
+✅ Desarrolladores y perfiles técnicos · ✅ Startups con presupuesto €0 · ✅ Workflows complejos con lógica avanzada · ✅ GDPR/privacidad crítica · ✅ Datos sensibles (banca, salud, legal)
+
+❌ CEOs sin perfil técnico · ❌ Empresas que necesitan soporte garantizado · ❌ Workflows simples (es overkill)
+
+> *"Usé n8n self-hosted, €0/mes. Hice 50 workflows. Con Zapier hubiera sido €500/mes. Aprendí en 1 semana."* — Desarrollador freelance, Barcelona
+
+---
+
+## Comparativa De Coste Real (Empresa Mediana, 1 Año)
+
+**Supuesto:** 30 workflows · 3.000 ejecuciones/mes · 10 integraciones
+
+| Herramienta | Plan | Coste anual |
+|---|---|---|
+| Zapier | Professional | €1.188 |
+| Make | Standard | €360 |
+| n8n Cloud | Pro | €240 |
+| n8n Self-Hosted | Community + hosting | €120-600 |
+
+La diferencia entre Zapier y n8n en un año: **€948** que pueden ir a otro proceso automatizado.
+
+---
+
+## ¿Cuál Elegir? La Respuesta Honesta
+
+No existe "la mejor". Existe la mejor **para tu situación ahora mismo**.
+
+**Eres gerente o CEO sin perfil técnico →** **Zapier**
+- UI más sencilla del mercado
+- Soporte por teléfono si algo falla
+- Tranquilidad total
+- Coste: €30-100/mes (aceptable si el ahorro de tiempo lo justifica)
+
+**Eres startup Barcelona con presupuesto ajustado →** **Make Plan Basic (€10/mes)**
+- 1/3 del precio de Zapier
+- Visual y aprendible en 2 días
+- Si creces, escalas el plan
+- Si no funciona, perdiste €10
+
+**Tienes perfil técnico o desarrollador en el equipo →** **n8n Self-Hosted**
+- €0 en licencias
+- Control total de datos
+- Workflows sin límite
+- Coste real: solo el hosting
+
+**Necesitas cumplir GDPR estricto (datos de pacientes, clientes financieros, datos legales) →** **n8n Self-Hosted**
+- Datos en tu servidor en España
+- Sin enviar nada a EEUU ni Eslovenia
+- Cumple RGPD por diseño
+
+---
+
+## ¿Es Fácil Cambiar De Herramienta?
+
+| Migración | Dificultad | Tiempo |
+|---|---|---|
+| Zapier → Make | Media | 1-2 semanas |
+| Make → Zapier | Media | 1-2 semanas |
+| Zapier/Make → n8n | Alta | 3-4 semanas |
+| n8n → Zapier/Make | Media | 2-3 semanas |
+
+El salto más difícil es hacia n8n: estructura diferente, requiere perfil técnico. El consejo: empieza donde estés más cómodo. Cuando crezcas, reevalúa.
+
+---
+
+## Recomendación Final
+
+**Primera vez automatizando →** Make Plan Basic (€10/mes). Barato, visual, sin sorpresas.
+
+**Ya tienes 10+ workflows →** Reevalúa: si Zapier da mejor soporte para tu tamaño, cambia. Si Make funciona, sigue. Si necesitas GDPR, migra a n8n.
+
+**Nunca empieces en n8n self-hosted** si no tienes perfil técnico — es overkill y te frustrará en la primera semana.
+
+Las tres tienen plan gratuito. Prueba 7 días en cada una y elige la que más cómoda se sienta. Coste: €0.
+
+---
+
+## Necesitas Ayuda Eligiendo
+
+Si tu empresa tiene más de 5 procesos manuales, elegir la herramienta correcta puede ahorrarte €10k-50k al año en coste de licencias y tiempo de implementación.
+
+En 30 minutos, analizamos tu stack actual, tus procesos y te decimos cuál herramienta encaja mejor. Sin compromiso.
+
+📧 rubenamirkhanyan12@gmail.com
+📱 +34 613 361 115
+
+O reserva en el [formulario de contacto](/#contacto).
+
+---
+
+*¿Quieres ver n8n en acción con un caso real? Lee: [Automatización Facturación: De 40h/mes A 4h/mes](/blog/automatizacion-facturacion-40h-4h)*`,
+  },
 ];
 
 export function getAllPublishedPosts(): BlogPost[] {
