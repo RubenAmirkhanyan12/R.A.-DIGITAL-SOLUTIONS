@@ -8,6 +8,7 @@ import { Calculator, Mail, Phone, Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Inicio",         href: "#inicio" },
+  { label: "Sobre Mí",      href: "/sobre-nosotros" },
   { label: "¿Por qué?",     href: "#problemas" },
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Blog",           href: "/blog" },
@@ -49,7 +50,8 @@ export default function Navbar() {
 
   const navItemCls = (h: string) =>
     `whitespace-nowrap font-normal transition-colors ${
-      h === "/blog" && pathname === "/blog"
+      (h === "/blog" && pathname === "/blog") ||
+      (h === "/sobre-nosotros" && pathname === "/sobre-nosotros")
         ? "text-[#B8860B]"
         : "text-[#F8F9FA] hover:text-[#B8860B]"
     }`;
