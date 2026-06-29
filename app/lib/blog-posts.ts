@@ -26,6 +26,10 @@ export const blogPosts: BlogPost[] = [
     ],
     internalLinks: [
       "5-procesos-manuales-destructivos-barcelona",
+      "n8n-vs-make-vs-zapier-barcelona",
+      "cuanto-cuesta-automatizar-barcelona",
+      "automatizacion-facturacion-40h-4h",
+      "errores-automatizar-empresa-barcelona",
     ],
     content: `## El Problema Real Que Nadie Te Dice
 
@@ -69,6 +73,8 @@ Con automatización:
 ---
 
 ## Los 5 Procesos Que Te Cuestan Más Dinero
+
+*(Análisis detallado con coste y solución por proceso: [5 procesos manuales que destrozan la productividad en Barcelona](/blog/5-procesos-manuales-destructivos-barcelona))*
 
 ### Facturación Manual: El Destructor #1
 
@@ -222,6 +228,8 @@ TRIGGER: Cliente llena formulario contacto → ACTION 1: Envía email automátic
 - **Ventaja:** Gratis, máximo control, privacidad total
 - **Mejor para:** Empresas técnicas o data-sensitive
 
+*(¿No sabes cuál elegir para tu empresa? Lee la [comparativa completa n8n vs Make vs Zapier para Barcelona](/blog/n8n-vs-make-vs-zapier-barcelona))*
+
 ---
 
 ## Cómo Implementar en 4 Semanas
@@ -292,6 +300,8 @@ Output: Procesos automáticos 24/7
 
 **Recuperas la inversión en menos de un mes. Ganas €55,500 en año 1.**
 
+*(¿Cuánto cuesta exactamente para tu tamaño de empresa? Consulta la [guía de precios reales de automatización en Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
+
 ---
 
 ## Preguntas Frecuentes
@@ -300,7 +310,7 @@ Output: Procesos automáticos 24/7
 No. Zapier es visual. Arrastras bloques. Cero código requerido.
 
 **¿Qué pasa si falla el automático?**
-Fallbacks activados. Si falla, el sistema envía alerta. Sigues manualmente sin pérdida de datos.
+Fallbacks activados. Si falla, el sistema envía alerta. Sigues manualmente sin pérdida de datos. *(Lee: [7 errores comunes al automatizar y cómo evitarlos](/blog/errores-automatizar-empresa-barcelona))*
 
 **¿Es seguro? ¿Mis datos?**
 Sí. Encriptación end-to-end. Cumplimiento GDPR. Datos en tus cuentas, no en servidores externos.
@@ -334,6 +344,8 @@ Las que no automatizaron: mismo volumen, menos margen, más horas.
 ---
 
 ## Siguiente Paso
+
+*(¿Quieres ver un caso real documentado? [Asesoría fiscal de Barcelona: de 40h/mes a 4h/mes](/blog/automatizacion-facturacion-40h-4h))*
 
 Análisis gratuito de 30 minutos:
 - Auditoría de tus procesos
@@ -373,6 +385,9 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
     internalLinks: [
       "automatizacion-procesos-barcelona",
       "cuanto-cuesta-automatizar-barcelona",
+      "automatizacion-facturacion-40h-4h",
+      "n8n-vs-make-vs-zapier-barcelona",
+      "errores-automatizar-empresa-barcelona",
     ],
     content: `Eres empresario en Barcelona. Miras a tu equipo y ves:
 
@@ -386,7 +401,7 @@ Todo trabajo "necesario". Ninguno agrega valor real.
 
 Son **30-40 horas/semana** de tu empresa. En automático, serían **4-5 horas**. Sin programar. Sin cambiar herramientas.
 
-Estos son los 5 procesos que más tiempo consumen — y cómo eliminarlos.
+Estos son los 5 procesos que más tiempo consumen — y cómo eliminarlos. *(Para el contexto completo de por qué esto sucede, lee la [guía de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
@@ -596,7 +611,7 @@ Si tienes 20 personas y 2-3 de ellas dedican el 50% del tiempo a estos procesos:
 ## Las 3 Lecciones Que Aprendimos
 
 **1. No automatices todo — automatiza el que más duele primero.**
-Un proceso bien automatizado ya genera ahorro visible en 3 semanas. Cuando ves el resultado, el siguiente es fácil.
+Un proceso bien automatizado ya genera ahorro visible en 3 semanas. Cuando ves el resultado, el siguiente es fácil. *(¿Qué herramienta usar para el primero? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
 
 **2. La automatización no reemplaza personas, las libera.**
 Tu contador dejará de copiar datos (lo que odia) para hacer análisis fiscal (lo que le gusta). Tu sales dejará el admin para llamar clientes. Todos ganan.
@@ -608,7 +623,7 @@ Cada mes de espera son €X.000 perdidos. No hay presupuesto perfecto ni momento
 
 ## Auditoría Gratuita — 60 Minutos
 
-Si reconoces 2 o más de estos procesos en tu empresa, probablemente ahorres €20k-100k al año.
+Si reconoces 2 o más de estos procesos en tu empresa, probablemente ahorres €20k-100k al año. *(Ver caso documentado: [asesoría fiscal que pasó de 40h a 4h al mes](/blog/automatizacion-facturacion-40h-4h))*
 
 En 60 minutos identificamos exactamente dónde pierdes horas, calculamos el ahorro específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
 
@@ -647,10 +662,12 @@ O reserva directamente en el [formulario de contacto](/#contacto).
     internalLinks: [
       "automatizacion-procesos-barcelona",
       "5-procesos-manuales-destructivos-barcelona",
+      "automatizacion-facturacion-40h-4h",
+      "n8n-vs-make-vs-zapier-barcelona",
     ],
     content: `La pregunta que todo empresario Barcelona hace: *"¿Cuánto me cuesta automatizar mis procesos?"*
 
-Esta guía te dará números reales. Desde empresas de 5 personas (€550) hasta corporaciones (€15k+). Sin presupuestos ocultos. Sin sorpresas.
+Esta guía te dará números reales. Desde empresas de 5 personas (€550) hasta corporaciones (€15k+). Sin presupuestos ocultos. Sin sorpresas. *(¿Nuevo en automatización? Empieza con la [guía completa de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
@@ -707,7 +724,7 @@ Los 3 factores que determinan tu precio:
 
 No pagaron más porque solo tenían 1 proceso crítico (facturación), integraciones simples (Excel → software contable) y no necesitaban soporte ilimitado.
 
-Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas o requerir soporte 24/7.
+Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas o requerir soporte 24/7. *(Caso completo documentado: [asesoría fiscal de 40h/mes a 4h/mes, ROI 1.850%](/blog/automatizacion-facturacion-40h-4h))*
 
 ---
 
@@ -787,7 +804,7 @@ Consultoras genéricas: €10.000-50.000. RASTECH: €550-15.000.
 No es porque seamos peores. Es porque:
 
 1. **Nos especializamos** — No hacemos "de todo". Menos tiempo de análisis = menor coste.
-2. **Usamos herramientas modernas no-code** — n8n, Make. 10× más rápido que código custom.
+2. **Usamos herramientas modernas no-code** — n8n, Make. 10× más rápido que código custom. *(¿Cuál herramienta es la correcta para ti? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
 3. **Somos ágiles** — Sin overhead de 500 empleados ni oficinas en el Paseo de Gracia.
 4. **Queremos que TODOS puedan automatizar** — Precios accesibles = más clientes = modelo sostenible.
 
@@ -884,8 +901,10 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "5-procesos-manuales-destructivos-barcelona",
       "cuanto-cuesta-automatizar-barcelona",
       "automatizacion-procesos-barcelona",
+      "n8n-vs-make-vs-zapier-barcelona",
+      "errores-automatizar-empresa-barcelona",
     ],
-    content: `Una asesoría fiscal Barcelona facturaba 100-150 documentos cada mes. Todo en Excel. Manualmente. Gastaban €4,800/mes solo en horas administrativas. Implementamos automatización. En 3 semanas, pasaron de 40 horas a 4 horas. Cero errores. Ahorro €51,840/año. Esta es su historia.
+    content: `Una asesoría fiscal Barcelona facturaba 100-150 documentos cada mes. Todo en Excel. Manualmente. Gastaban €4,800/mes solo en horas administrativas. Implementamos automatización. En 3 semanas, pasaron de 40 horas a 4 horas. Cero errores. Ahorro €51,840/año. Esta es su historia. *(¿Contexto general? Lee la [guía de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
@@ -962,7 +981,7 @@ El nuevo flujo tiene 10 pasos, todos sin intervención humana:
 9. Genera reporte resumen semanal
 10. Si algo falla → alerta por Slack al contador
 
-**Herramientas del flujo:** n8n · Google Vision (OCR) · Google Sheets · Holded API · Gmail API · Google Drive · Slack
+**Herramientas del flujo:** n8n · Google Vision (OCR) · Google Sheets · Holded API · Gmail API · Google Drive · Slack *(¿No sabes cuál elegir? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
 
 ### Paso 3 — Testing Con Datos Reales (5 días)
 
@@ -1037,7 +1056,7 @@ Las respuestas:
 4. **"Pensaba que costaba mucho"** — Estimaban €50k+
 5. **"No me lo propusieron"** — Ningún proveedor lo sugirió
 
-La conclusión: la mayoría de empresas no automatizan por **ignorancia**, no porque sea imposible. Una vez lo ven funcionando, dicen: *"¿Por qué no lo hicimos hace 5 años?"*
+La conclusión: la mayoría de empresas no automatizan por **ignorancia**, no porque sea imposible. Una vez lo ven funcionando, dicen: *"¿Por qué no lo hicimos hace 5 años?"* *(Para no cometer errores en tu implementación: [7 errores comunes al automatizar en Barcelona](/blog/errores-automatizar-empresa-barcelona))*
 
 ---
 
@@ -1128,10 +1147,12 @@ O reserva en el [formulario de contacto](/#contacto).
       "automatizacion-procesos-barcelona",
       "cuanto-cuesta-automatizar-barcelona",
       "automatizacion-facturacion-40h-4h",
+      "5-procesos-manuales-destructivos-barcelona",
+      "errores-automatizar-empresa-barcelona",
     ],
     content: `Decidiste automatizar. Abriste Google. "¿Cuál herramienta uso?" Tres opciones populares: n8n, Make, Zapier. Las tres funcionan. Las tres son diferentes. Una te cuesta €0. Otra €10/mes. Otra €99/mes.
 
-Esta es la comparativa más honesta que encontrarás. Sin sesgos. Con números reales de Barcelona. No "mejor o peor" — sino cuál es mejor **para tu caso**.
+Esta es la comparativa más honesta que encontrarás. Sin sesgos. Con números reales de Barcelona. No "mejor o peor" — sino cuál es mejor **para tu caso**. *(¿Nuevo en automatización? Primero lee la [guía de automatización de procesos para empresas Barcelona](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
@@ -1350,11 +1371,11 @@ El salto más difícil es hacia n8n: estructura diferente, requiere perfil técn
 
 ## Recomendación Final
 
-**Primera vez automatizando →** Make Plan Basic (€10/mes). Barato, visual, sin sorpresas.
+**Primera vez automatizando →** Make Plan Basic (€10/mes). Barato, visual, sin sorpresas. *(¿Cuánto cuesta todo el proyecto? Consulta la [guía de precios de automatización en Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
 
 **Ya tienes 10+ workflows →** Reevalúa: si Zapier da mejor soporte para tu tamaño, cambia. Si Make funciona, sigue. Si necesitas GDPR, migra a n8n.
 
-**Nunca empieces en n8n self-hosted** si no tienes perfil técnico — es overkill y te frustrará en la primera semana.
+**Nunca empieces en n8n self-hosted** si no tienes perfil técnico — es overkill y te frustrará en la primera semana. *(Antes de empezar cualquier herramienta: [7 errores que arruinan una automatización](/blog/errores-automatizar-empresa-barcelona))*
 
 Las tres tienen plan gratuito. Prueba 7 días en cada una y elige la que más cómoda se sienta. Coste: €0.
 
@@ -1400,12 +1421,14 @@ O reserva en el [formulario de contacto](/#contacto).
       "automatizacion-procesos-barcelona",
       "n8n-vs-make-vs-zapier-barcelona",
       "automatizacion-facturacion-40h-4h",
+      "5-procesos-manuales-destructivos-barcelona",
+      "cuanto-cuesta-automatizar-barcelona",
     ],
     content: `Implementaste automatización. Funcionó 3 semanas. Luego se rompió.
 
 Tú culpas la herramienta (n8n, Make, Zapier). En realidad: cometiste 1 de 7 errores que la mayoría comete. Ni Zapier ni Make los mencionan en sus tutoriales — obvio, los haría ver mal.
 
-Aquí están los 7 errores reales. Con casos de Barcelona. Y cómo evitar cada uno.
+Aquí están los 7 errores reales. Con casos de Barcelona. Y cómo evitar cada uno. *(¿Aún no has empezado? Primero lee la [guía completa de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
@@ -1413,7 +1436,7 @@ Aquí están los 7 errores reales. Con casos de Barcelona. Y cómo evitar cada u
 
 ### Qué Sucede
 
-La empresa decide automatizar. Elige el proceso más fácil de conectar, no el que más tiempo consume.
+La empresa decide automatizar. Elige el proceso más fácil de conectar, no el que más tiempo consume. *(Lee: [los 5 procesos manuales que más horas consumen en empresas Barcelona](/blog/5-procesos-manuales-destructivos-barcelona))*
 
 Ejemplo real:
 - **Proceso A:** Generar PDFs — 5 min/día → 20 horas/año ahorradas
@@ -1463,7 +1486,7 @@ Sin entrenamiento: adopción del 0%, sistema muerto, dinero perdido.
 
 ### Qué Sucede
 
-Entusiasmo tras la primera automatización: "Hagamos algo grande. Automaticemos toda la facturación en 1 flujo. 40 pasos."
+Entusiasmo tras la primera automatización: "Hagamos algo grande. Automaticemos toda la facturación en 1 flujo. 40 pasos." *(Ver cómo se hace correctamente: [caso real de automatización de facturación en 4 pasos](/blog/automatizacion-facturacion-40h-4h))*
 
 Día 1-3: Funciona. Día 4: Error sin culpa clara. Día 7: Sistema desconectado, vuelta a manual.
 
@@ -1624,7 +1647,7 @@ No necesitas empezar de cero. No descartes el sistema. Solo arregla el error.
 
 ## Auditoría Gratuita — 60 Minutos
 
-Si tu automatización falló o no está dando el resultado esperado, en 60 minutos identificamos qué error cometiste y te damos el plan para arreglarlo. Sin coste, sin compromiso.
+Si tu automatización falló o no está dando el resultado esperado, en 60 minutos identificamos qué error cometiste y te damos el plan para arreglarlo. Sin coste, sin compromiso. *(¿Quieres saber cuánto cuesta rehacerlo bien? [Guía de precios reales de automatización Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
 
 📧 rubenamirkhanyan12@gmail.com
 📱 +34 613 361 115
