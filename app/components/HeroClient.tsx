@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
 
 const trustSignals = [
-  "15+ casos documentados",
-  "ROI calculado en 3 meses",
+  "20+ empresas Barcelona",
+  "ROI documentado desde mes 1",
   "Desde €550",
 ];
 
@@ -59,11 +59,12 @@ export default function HeroClient() {
           {/* Headline */}
           <h1
             ref={headlineRef}
-            className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6"
+            className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6"
           >
-            40 Horas Que{" "}
-            <span className="relative inline-block">
-              <span className="text-[#B8860B]">No Necesitas</span>
+            <span className="block">RASTECH: Automatiza</span>
+            <span className="block">Tus Procesos Barcelona</span>
+            <span className="relative inline-block text-[#B8860B] mt-1">
+              €51k/año de Ahorro Real
               <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-[#B8860B] to-transparent" />
             </span>
           </h1>
@@ -71,12 +72,21 @@ export default function HeroClient() {
           {/* Subheadline */}
           <p
             ref={subRef}
-            className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-8"
+            className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-4"
           >
             Restaurantes, agencias y despachos en Barcelona reducen su
             trabajo administrativo en{" "}
             <span className="text-white font-semibold">85%</span>.{" "}
             Sin programar. Sin cambiar tus herramientas. Aquí cómo.
+          </p>
+
+          {/* SEO intro paragraph */}
+          <p className="text-sm text-white/45 leading-relaxed max-w-xl mb-8">
+            RASTECH automatiza procesos manuales que consumen horas de tu empresa
+            en Barcelona. Especialistas en n8n, Make e integraciones. 20+ empresas
+            ya automatizan con nosotros: €51,840 de ahorro promedio al año, 87%
+            reducción en tareas manuales, sistemas que funcionan 24/7. Desde €550.
+            Sin código. Auditoría gratis.
           </p>
 
           {/* Trust signals */}
@@ -192,17 +202,17 @@ export default function HeroClient() {
         </div>
       </div>
 
-      {/* Bottom stats */}
+      {/* Bottom trust badges */}
       <div className="mt-20 pt-8 border-t border-white/8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
           {[
-            { value: "87%", label: "Reducción promedio" },
-            { value: "€2,500", label: "Ahorro mensual medio" },
-            { value: "4 sem", label: "Tiempo implementación" },
-            { value: "15+", label: "Casos documentados" },
+            { value: "n8n · Make", label: "Especialista certificado" },
+            { value: "20+", label: "Empresas Barcelona" },
+            { value: "95%", label: "Satisfacción clientes" },
+            { value: "€51,840", label: "Ahorro promedio/año" },
           ].map(({ value, label }) => (
             <div key={label}>
-              <div className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-[#B8860B]">
+              <div className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
                 {value}
               </div>
               <div className="text-white/40 text-xs mt-1">{label}</div>
