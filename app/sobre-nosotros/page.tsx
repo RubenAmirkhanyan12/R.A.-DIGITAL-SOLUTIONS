@@ -14,36 +14,94 @@ import {
 
 /* ── Metadata ────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: "Rubén Amirkhanyan | Especialista Automatización Barcelona | RASTECH",
+  title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
   description:
-    "Ingeniero informático especializado en automatización de procesos para empresas Barcelona. Reduce 40h/mes de trabajo manual. Analiza tu situación gratis.",
+    "Especialista n8n, Make y Zapier en Barcelona. 20+ empresas automatizadas, €51k ahorrados/año. Auditoría gratuita sin compromiso.",
   keywords:
-    "Rubén Amirkhanyan, automatización procesos Barcelona, especialista automatización, RASTECH, ingeniero informático",
+    "especialista n8n barcelona, Rubén Amirkhanyan, automatización procesos Barcelona, RASTECH, Make Zapier Barcelona",
   openGraph: {
-    title: "Rubén Amirkhanyan | Especialista Automatización Barcelona | RASTECH",
+    title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
     description:
-      "Ingeniero informático especializado en automatización de procesos para empresas Barcelona. Reduce 40h/mes de trabajo manual.",
+      "Especialista n8n, Make y Zapier en Barcelona. 20+ empresas automatizadas, €51k ahorrados/año.",
     type: "profile",
     locale: "es_ES",
   },
   alternates: { canonical: "https://ras-tech.es/sobre-nosotros" },
 };
 
-/* ── JSON-LD ─────────────────────────────────────────────────── */
+/* ── JSON-LD: Person ─────────────────────────────────────────── */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Rubén Amirkhanyan",
-  jobTitle: "Ingeniero Informático, Fundador RASTECH",
+  jobTitle: "Especialista en Automatización de Procesos (n8n, Make, Zapier)",
   areaServed: "Barcelona, España",
   email: "rubenamirkhanyan12@gmail.com",
   telephone: "+34 613 361 115",
+  url: "https://ras-tech.es/sobre-nosotros",
+  knowsAbout: [
+    "n8n",
+    "Make",
+    "Zapier",
+    "Automatización de procesos",
+    "Integraciones de software",
+  ],
+  workLocation: {
+    "@type": "Place",
+    name: "Barcelona, España",
+  },
   worksFor: {
     "@type": "Organization",
     name: "RASTECH",
     url: "https://ras-tech.es",
   },
-  description: "Especialista en automatización de procesos para empresas Barcelona",
+  description: "Especialista n8n, Make y Zapier en Barcelona. Fundador de RASTECH.",
+};
+
+/* ── JSON-LD: FAQPage ────────────────────────────────────────── */
+const faqs = [
+  {
+    q: "¿En qué herramientas eres especialista?",
+    a: "n8n, Make y Zapier. Elijo la herramienta según tu caso: control total, velocidad de implementación o máxima fiabilidad — no vendo una sola herramienta para todo.",
+  },
+  {
+    q: "¿Solo trabajas con empresas en Barcelona?",
+    a: "Principalmente sí. Me enfoco en empresas de Barcelona y área metropolitana. Eso me permite mantener una especialización local profunda y tiempos de respuesta rápidos.",
+  },
+  {
+    q: "¿Cuál es la diferencia entre n8n, Make y Zapier?",
+    a: "n8n = máximo control (ideal si quieres self-hosting). Make = velocidad de implementación. Zapier = máxima fiabilidad. Te recomiendo la adecuada según tu caso tras la auditoría inicial.",
+  },
+  {
+    q: "¿Cuánto tiempo tarda una automatización típica?",
+    a: "Entre 2 y 6 semanas según complejidad: análisis (~1 semana), implementación (1–4 semanas) y optimización con datos reales (1 semana).",
+  },
+  {
+    q: "¿Cuál es tu tasa de éxito?",
+    a: "95% de satisfacción en más de 20 empresas. Ningún proyecto cancelado, y ROI medible en el 100% de los casos.",
+  },
+  {
+    q: "¿Necesito cambiar mis herramientas actuales?",
+    a: "No. Trabajo con lo que ya usas (Gmail, Google Sheets, tu CRM, tu ERP…) y lo conecto todo mediante automatización, sin sustituir tu stack.",
+  },
+  {
+    q: "¿Trabajas con empresas pequeñas o solo con grandes corporaciones?",
+    a: "Sobre todo pymes: restaurantes, agencias, despachos, e-commerce y servicios administrativos. El proceso está pensado para equipos de 5 a 200 personas.",
+  },
+  {
+    q: "¿Qué pasa si algo falla después de implementar la automatización?",
+    a: "Cada plan incluye soporte (30, 60 días o ilimitado según el paquete). El código y los flujos son tuyos desde el primer día — sin dependencia.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
 };
 
 /* ── Specialties data ────────────────────────────────────────── */
@@ -67,10 +125,12 @@ const specialties = [
 ];
 
 const stats = [
-  { value: "20+",     label: "Empresas Barcelona con las que hemos trabajado" },
-  { value: "40+",     label: "Procesos automatizados exitosamente" },
-  { value: "€28.000", label: "Ahorro promedio por empresa al año" },
-  { value: "95%",     label: "Tasa de satisfacción (referencias verificables)" },
+  { value: "20+",    label: "Empresas Barcelona automatizadas" },
+  { value: "40+",    label: "Procesos automatizados exitosamente" },
+  { value: "€51k",   label: "Ahorro promedio por empresa al año" },
+  { value: "95%",    label: "Tasa de satisfacción (referencias verificables)" },
+  { value: "10+",    label: "Integraciones distintas (n8n, Make, Zapier, APIs)" },
+  { value: "0",      label: "Proyectos cancelados" },
 ];
 
 const steps = [
@@ -200,10 +260,15 @@ function ContactSidebar() {
 export default function SobreNosotros() {
   return (
     <>
-      {/* JSON-LD */}
+      {/* JSON-LD: Person */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {/* JSON-LD: FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="min-h-screen bg-[#0F0F0F]">
@@ -219,11 +284,11 @@ export default function SobreNosotros() {
                 Sobre RASTECH
               </span>
             </div>
-            <h1 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl font-bold text-white mb-5 leading-tight">
-              Rubén Amirkhanyan
+            <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+              Rubén Amirkhanyan — Especialista n8n y Make en Barcelona
             </h1>
             <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-semibold text-[#B8860B] mb-6 leading-snug">
-              Ingeniero Informático · Dirijo RASTECH · Especialista Automatización Barcelona
+              Automatización de Procesos · Fundador de RASTECH
             </h2>
             <p className="text-white/65 text-lg max-w-2xl leading-relaxed">
               Automatizamos procesos manuales en empresas Barcelona.
@@ -255,7 +320,7 @@ export default function SobreNosotros() {
                       <strong className="text-white">Soy ingeniero informático.</strong>
                     </p>
                     <p>
-                      Pasé 5 años viendo empresas Barcelona perder 30–40 horas cada semana en
+                      He visto cómo empresas Barcelona pierden 30–40 horas cada semana en
                       tareas que podrían ser automáticas:
                     </p>
                     <ul className="space-y-2 pl-0">
@@ -282,6 +347,51 @@ export default function SobreNosotros() {
                       Nos enfocamos en UN resultado: dinero y tiempo ahorrados, medibles en números.
                     </p>
                   </div>
+                </section>
+              </AnimateOnScroll>
+
+              {/* ── S2b: Credibilidad técnica ─────────────────── */}
+              <AnimateOnScroll direction="up">
+                <section aria-labelledby="especializacion-tecnica">
+                  <h2
+                    id="especializacion-tecnica"
+                    className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-7"
+                  >
+                    Especialización Técnica
+                  </h2>
+                  <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/40 p-7 space-y-4 mb-6">
+                    {[
+                      {
+                        label: "Stack principal",
+                        body: "n8n, Make, Zapier — elijo la herramienta según las necesidades reales de cada proyecto, no al revés.",
+                      },
+                      {
+                        label: "Enfoque",
+                        body: "No-code / low-code, pensado para pymes y empresas medianas que no quieren depender de un equipo de desarrollo.",
+                      },
+                      {
+                        label: "Integraciones habituales",
+                        body: "REST APIs, Google Workspace, Shopify, HubSpot, QuickBooks, WhatsApp Business.",
+                      },
+                      {
+                        label: "Método",
+                        body: "Analizo el proceso real antes de tocar ninguna herramienta. La automatización es el resultado, no el punto de partida.",
+                      },
+                    ].map(({ label, body }) => (
+                      <p key={label} className="flex items-start gap-2 text-[15px] leading-relaxed">
+                        <Zap size={15} className="text-[#B8860B] mt-1 shrink-0" />
+                        <span>
+                          <strong className="text-white">{label}:</strong>{" "}
+                          <span className="text-white/55">{body}</span>
+                        </span>
+                      </p>
+                    ))}
+                  </div>
+                  <p className="text-white/65 text-[16px] leading-[1.85]">
+                    Dirijo RASTECH con un objetivo simple: que cualquier empresa de Barcelona que
+                    necesite automatizar procesos pueda hacerlo sin asumir el coste de un
+                    desarrollo a medida.
+                  </p>
                 </section>
               </AnimateOnScroll>
 
@@ -372,7 +482,7 @@ export default function SobreNosotros() {
                     Números Reales
                   </h2>
 
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                     {stats.map(({ value, label }, i) => (
                       <div
                         key={value}
@@ -432,6 +542,84 @@ export default function SobreNosotros() {
                           </p>
                           <p className="text-white/55 text-[15px] leading-[1.8] mt-2">{body}</p>
                         </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </AnimateOnScroll>
+
+              {/* ── S6b: Comparativa vs agencias ─────────────── */}
+              <AnimateOnScroll direction="up">
+                <section aria-labelledby="rastech-vs">
+                  <h2
+                    id="rastech-vs"
+                    className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-5"
+                  >
+                    RASTECH vs Agencias Generalistas
+                  </h2>
+                  <p className="text-white/60 text-[16px] leading-relaxed mb-7">
+                    La mayoría de agencias digitales ofrecen automatización como un servicio más
+                    entre muchos. RASTECH solo hace esto.
+                  </p>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[14px] border-collapse">
+                      <thead>
+                        <tr className="border-b border-white/10">
+                          <th className="text-left py-3 px-4 text-white/35 font-semibold tracking-wide text-[11px] uppercase">Aspecto</th>
+                          <th className="text-left py-3 px-4 text-[#B8860B] font-bold text-[13px]">RASTECH</th>
+                          <th className="text-left py-3 px-4 text-white/35 font-semibold text-[13px]">Agencia generalista</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          ["Especialización", "Solo automatización de procesos", "Múltiples servicios (marketing, diseño, dev…)"],
+                          ["Enfoque geográfico", "100% Barcelona y área metropolitana", "Nacional o global, sin foco local"],
+                          ["Casos documentados", "20+ empresas con ROI medido", "Casos genéricos, sin cifras locales"],
+                          ["Herramientas", "n8n, Make, Zapier — elegidas según el caso", "Una sola herramienta, la que conocen"],
+                          ["Transparencia de ROI", "€51k ahorro promedio, cifras reales", "Rangos amplios, poco específicos"],
+                          ["Implementación", "2–6 semanas, proceso probado", "Variable, sin timeline fijo"],
+                        ].map(([aspect, rastech, other], i) => (
+                          <tr
+                            key={aspect}
+                            className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}
+                          >
+                            <td className="py-3 px-4 text-white/50 font-medium">{aspect}</td>
+                            <td className="py-3 px-4 text-white/80">
+                              <span className="flex items-start gap-2">
+                                <TrendingUp size={13} className="text-[#10B981] mt-0.5 shrink-0" />
+                                {rastech}
+                              </span>
+                            </td>
+                            <td className="py-3 px-4 text-white/35">{other}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </AnimateOnScroll>
+
+              {/* ── S6c: FAQ ──────────────────────────────────── */}
+              <AnimateOnScroll direction="up">
+                <section aria-labelledby="faq">
+                  <h2
+                    id="faq"
+                    className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-8"
+                  >
+                    Preguntas Frecuentes
+                  </h2>
+                  <div className="space-y-0">
+                    {faqs.map(({ q, a }, i) => (
+                      <div
+                        key={q}
+                        className={`py-5 border-b border-white/6 ${i === 0 ? "border-t" : ""}`}
+                      >
+                        <p className="text-white font-semibold text-[15px] flex items-start gap-2 mb-2">
+                          <Users size={15} className="text-[#B8860B] mt-0.5 shrink-0" />
+                          {q}
+                        </p>
+                        <p className="text-white/55 text-[15px] leading-[1.8] pl-5">{a}</p>
                       </div>
                     ))}
                   </div>
