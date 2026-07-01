@@ -53,7 +53,7 @@ const solutionWeeks = [
     n: "02",
     title: "Setup Dashboards",
     body: "Conectamos Google Analytics → Ads → Conversiones → Dashboard por cliente. Luego reportes automáticos cada lunes 8am. Sin que toques nada.",
-    cost: "€3.500 (GROWTH) o €7.500 (ENTERPRISE)",
+    cost: "desde €1.100 (GROWTH) o desde €1.650 (ENTERPRISE)",
   },
   {
     n: "03",
@@ -157,7 +157,7 @@ const faqs = [
   },
   {
     q: "¿Puedo empezar en GROWTH y migrar a ENTERPRISE?",
-    a: "Sí. Si empiezas con GROWTH (€3.5k) y creces a 15 clientes, migras a ENTERPRISE (€7.5k). Pagas la diferencia (€4k). Nada se pierde.",
+    a: "Sí. Si empiezas con GROWTH y creces a 15 clientes, migras a ENTERPRISE. Pagas solo la diferencia. Nada se pierde ni se repite.",
   },
   {
     q: "¿Qué pasa con datos históricos?",
@@ -365,13 +365,16 @@ export default function AutomatizarAgencias() {
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
               Inversión Para Tu Agencia
             </h2>
-            <p className="text-white/50 text-[15px] mb-10">Sin sorpresas. Precio cerrado antes de empezar. Incluye análisis gratis.</p>
+            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso real. Hablamos, analizamos y acordamos juntos — análisis siempre gratis.</p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mb-6">
               {/* GROWTH */}
               <div className="bg-[#111111] border border-white/8 p-8">
                 <p className="text-white/40 text-[11px] uppercase tracking-widest mb-1">Ideal 3-8 clientes</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white mb-5">€3.500</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-white/40 text-sm font-normal">desde</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.100</span>
+                </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {growthFeatures.map(({ text, ok }) => (
                     <div key={text} className="flex items-center gap-2">
@@ -383,7 +386,7 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <div className="bg-white/3 border border-white/6 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Costo", "€3.500"], ["Ahorro/mes", "€1.500"], ["Payback", "~8 semanas"], ["ROI", "514%/año"]].map(([k, v]) => (
+                  {[["Inversión desde", "€1.100"], ["Ahorro/mes", "€1.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/35">{k}</span>
                       <span className="text-white/65 font-semibold">{v}</span>
@@ -401,7 +404,10 @@ export default function AutomatizarAgencias() {
                   Más popular
                 </span>
                 <p className="text-[#B8860B] text-[11px] uppercase tracking-widest mb-1">9+ clientes</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white mb-5">€7.500</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-[#B8860B]/60 text-sm font-normal">desde</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.650</span>
+                </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {enterpriseFeatures.map(({ text, ok }) => (
                     <div key={text} className="flex items-center gap-2">
@@ -413,7 +419,7 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <div className="bg-[#1A3A52]/40 border border-[#1A3A52]/60 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Costo", "€7.500"], ["Ahorro/mes", "€3.500"], ["Payback", "21 días"], ["ROI", "1.800%/año"]].map(([k, v]) => (
+                  {[["Inversión desde", "€1.650"], ["Ahorro/mes", "€3.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/45">{k}</span>
                       <span className="text-[#B8860B] font-semibold">{v}</span>

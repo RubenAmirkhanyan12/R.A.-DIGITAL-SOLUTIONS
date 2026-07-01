@@ -53,7 +53,7 @@ const solutionWeeks = [
     n: "02",
     title: "Setup de Automáticos",
     body: "Conectamos Shopify → stock automático → email proveedores automático → confirmación cliente automática. Flujo completo sin código.",
-    cost: "€2.000 (STARTER) o €4.500 (GROWTH)",
+    cost: "desde €850 (STARTER) o desde €1.300 (GROWTH)",
   },
   {
     n: "03",
@@ -165,7 +165,7 @@ const faqs = [
   },
   {
     q: "¿Cuál es el costo recurrente?",
-    a: "Inversión única €2k-€4.5k. Herramientas €50-100/mes (Make/Zapier). Sin mensualidades nuestras después de implementación.",
+    a: "Inversión única desde €850 según el caso. Herramientas €50-100/mes (Make/Zapier). Sin mensualidades nuestras después de implementación.",
   },
 ];
 
@@ -365,13 +365,16 @@ export default function AutomatizarEcommerce() {
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
               Inversión Para Tu E-commerce
             </h2>
-            <p className="text-white/50 text-[15px] mb-10">Sin sorpresas. Precio cerrado antes de empezar. Incluye análisis gratis.</p>
+            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso real. Hablamos, analizamos y acordamos juntos — análisis siempre gratis.</p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mb-6">
               {/* STARTER */}
               <div className="bg-[#111111] border border-white/8 p-8">
                 <p className="text-white/40 text-[11px] uppercase tracking-widest mb-1">Ideal pequeño</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white mb-5">€2.000</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-white/40 text-sm font-normal">desde</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€850</span>
+                </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {starterFeatures.map(({ text, ok }) => (
                     <div key={text} className="flex items-center gap-2">
@@ -383,7 +386,7 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <div className="bg-white/3 border border-white/6 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Costo", "€2.000"], ["Ahorro/mes", "€1.500"], ["Payback", "~6 semanas"], ["ROI", "900%/año"]].map(([k, v]) => (
+                  {[["Inversión desde", "€850"], ["Ahorro/mes", "€1.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/35">{k}</span>
                       <span className="text-white/65 font-semibold">{v}</span>
@@ -401,7 +404,10 @@ export default function AutomatizarEcommerce() {
                   Más popular
                 </span>
                 <p className="text-[#B8860B] text-[11px] uppercase tracking-widest mb-1">Completo</p>
-                <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white mb-5">€4.500</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-[#B8860B]/60 text-sm font-normal">desde</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.300</span>
+                </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {growthFeatures.map(({ text, ok }) => (
                     <div key={text} className="flex items-center gap-2">
@@ -413,7 +419,7 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <div className="bg-[#1A3A52]/40 border border-[#1A3A52]/60 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Costo", "€4.500"], ["Ahorro/mes", "€4.200"], ["Payback", "6 semanas"], ["ROI", "850%/año"]].map(([k, v]) => (
+                  {[["Inversión desde", "€1.300"], ["Ahorro/mes", "€4.200"], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/45">{k}</span>
                       <span className="text-[#B8860B] font-semibold">{v}</span>
