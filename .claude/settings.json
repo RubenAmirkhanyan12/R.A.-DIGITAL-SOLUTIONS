@@ -8,7 +8,12 @@
       "Bash(pkill -f \"next dev\")",
       "Bash(curl -s http://localhost:3000/blog)",
       "Bash(curl -s http://localhost:3000/blog/automatizacion-procesos-barcelona)",
-      "Bash(curl -s http://localhost:3000/blog/5-procesos-manuales-destructivos-barcelona)"
+      "Bash(curl -s http://localhost:3000/blog/5-procesos-manuales-destructivos-barcelona)",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/components/landing\")",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/api/contact\")",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-restaurantes\")",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-ecommerce\")",
+      "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-agencias\")"
     ],
     "additionalDirectories": [
       "/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/blog"
