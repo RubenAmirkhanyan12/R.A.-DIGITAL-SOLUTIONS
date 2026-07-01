@@ -62,7 +62,7 @@ En las próximas 24-48 horas Rubén se pondrá en contacto contigo con una propu
 
 Contacto directo:
   Email: rubenamirkhanyan12@gmail.com
-  Tel:   +34 613 361 115
+  Tel:   +34 613 361 175
 
 Un saludo,
 Rubén — RASTECH Barcelona`.trim(),
