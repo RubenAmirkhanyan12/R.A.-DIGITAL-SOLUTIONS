@@ -7,7 +7,7 @@ const formFields: FormField[] = [
   { name: "nombre", label: "Tu nombre", type: "text", required: true },
   { name: "email", label: "Email", type: "email", required: true },
   { name: "empresa", label: "Nombre de tu empresa", type: "text", required: true },
-  { name: "sector", label: "Sector / Industria (ej: Abogacía, Veterinaria, Gym…)", type: "text", required: true },
+  { name: "industria", label: "Sector / Industria (ej: Abogacía, Veterinaria, Gym…)", type: "text", required: true },
   {
     name: "procesos",
     label: "¿Qué procesos quieres automatizar?",
