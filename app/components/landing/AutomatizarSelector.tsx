@@ -1,9 +1,21 @@
 import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { Utensils, Package, BarChart3 } from "lucide-react";
+import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
-const cards = [
+interface Card {
+  icon: React.ReactNode;
+  title: string;
+  pain: string;
+  points: string[];
+  saving: string;
+  savingSubtext?: string;
+  cta: string;
+  href: string;
+  meta: string;
+}
+
+const cards: Card[] = [
   {
     icon: <Utensils size={28} className="text-[#B8860B]" />,
     title: "Restaurantes",
@@ -49,6 +61,22 @@ const cards = [
     href: "/automatizar-agencias",
     meta: "12+ agencias Barcelona",
   },
+  {
+    icon: <Sparkles size={28} className="text-[#B8860B]" />,
+    title: "Tu Empresa",
+    pain: "¿Abogado, consultor, veterinario, gym, academia u otro sector? Automatizamos procesos en cualquier tipo de empresa.",
+    points: [
+      "Análisis personalizado de tus procesos",
+      "Propuesta creada específicamente para ti",
+      "Presupuesto flexible — negociamos juntos",
+      "Solución a medida para tu sector",
+    ],
+    saving: "Propuesta Personalizada",
+    savingSubtext: "Cada empresa es diferente. Hablamos contigo y llegamos a un acuerdo.",
+    cta: "Automatizar Mi Empresa",
+    href: "/automatizar-otros",
+    meta: "¿Tu sector no está arriba? Aquí sí.",
+  },
 ];
 
 export default function AutomatizarSelector() {
@@ -81,10 +109,10 @@ export default function AutomatizarSelector() {
           </div>
         </section>
 
-        {/* ── 3 CARDS ── */}
+        {/* ── 4 CARDS ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6">
-            {cards.map(({ icon, title, pain, points, saving, cta, href, meta }) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cards.map(({ icon, title, pain, points, saving, savingSubtext, cta, href, meta }) => (
               <div
                 key={title}
                 className="bg-[#111111] border border-white/5 hover:border-[#B8860B]/20 p-7 transition-all flex flex-col"
@@ -107,6 +135,9 @@ export default function AutomatizarSelector() {
 
                 <div className="bg-[#1A3A52]/30 border border-[#1A3A52]/60 p-4 mb-5">
                   <p className="text-[#B8860B] font-bold text-[15px]">{saving}</p>
+                  {savingSubtext && (
+                    <p className="text-white/45 text-xs mt-2">{savingSubtext}</p>
+                  )}
                 </div>
 
                 <Link

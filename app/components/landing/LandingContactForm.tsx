@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 export interface FormField {
   name: string;
   label: string;
-  type: "text" | "email" | "number" | "select";
+  type: "text" | "email" | "number" | "select" | "textarea";
   required?: boolean;
   options?: string[];
 }
@@ -90,6 +90,15 @@ export default function LandingContactForm({ title, description, fields, buttonT
                 <option value="" disabled>Selecciona…</option>
                 {f.options?.map(o => <option key={o} value={o}>{o}</option>)}
               </select>
+            ) : f.type === "textarea" ? (
+              <textarea
+                id={f.name}
+                value={values[f.name] || ""}
+                onChange={e => set(f.name, e.target.value)}
+                placeholder={f.label}
+                rows={4}
+                className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/50 rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors placeholder-white/20 resize-none"
+              />
             ) : (
               <input
                 id={f.name}

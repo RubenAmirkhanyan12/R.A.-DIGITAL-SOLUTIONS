@@ -1,221 +1,150 @@
+import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
-import { Check, Star } from "lucide-react";
 
-const plans = [
+const tiers = [
   {
-    name: "STARTER",
+    label: "STARTER",
     tagline: "Para empezar a ahorrar rápido",
-    price: "€550",
-    priceNote: "precio a medida",
-    roi: "Primera automatización en 2 semanas",
+    price: "€700",
+    desc: "1-2 procesos · 2 semanas · 30 días soporte",
     highlight: false,
-    processes: "1-2 procesos",
-    duration: "2 semanas",
-    support: "30 días",
-
-    features: [
-      "Análisis de procesos (gratis)",
-      "Automatización de 1-2 procesos clave",
-      "Facturación O emails O reportes",
-      "Integración con tus herramientas",
-      "Panel de control básico",
-      "Formación de equipo (1h)",
-      "Soporte 30 días",
-    ],
-    notIncluded: [
-      "Integración multiherramienta",
-      "Dashboard personalizado",
-      "Consultoría estratégica",
-    ],
-    cta: "Analizar mi situación",
-    ideal: "Restaurante, tienda o despacho pequeño queriendo automatizar lo más urgente.",
   },
   {
-    name: "GROWTH",
-    tagline: "El más elegido por empresas Barcelona",
-    price: "€2.600",
-    priceNote: "precio a medida",
-    roi: "Sistema completo en 2 semanas",
+    label: "GROWTH",
+    tagline: "El más elegido — sistema completo",
+    price: "€1.150",
+    desc: "3-5 procesos · 2-3 semanas · 60 días soporte",
     highlight: true,
-    processes: "3-5 procesos",
-    duration: "2-3 semanas",
-    support: "60 días",
-    features: [
-      "Análisis de procesos (gratis)",
-      "Automatización de 3-5 procesos",
-      "Sistema completo integrado",
-      "Integración multiherramienta avanzada",
-      "Dashboard personalizado en vivo",
-      "Alertas y notificaciones inteligentes",
-      "Formación de equipo (2h)",
-      "Consultoría estratégica incluida",
-      "Soporte 60 días",
-      "Revisión de optimización semana 3",
-    ],
-    notIncluded: [],
-    cta: "Solicitar consulta gratuita",
-    ideal: "Agencia, e-commerce o empresa de servicios lista para escalar.",
   },
   {
-    name: "ENTERPRISE",
-    tagline: "Para transformación completa",
-    price: "€5.150",
-    priceNote: "precio a medida",
-    roi: "Implementación en 2-3 semanas",
+    label: "ENTERPRISE",
+    tagline: "Transformación completa de procesos",
+    price: "€1.650",
+    desc: "6+ procesos · 3-4 semanas · retainer mensual",
     highlight: false,
-    processes: "6+ procesos",
-    duration: "3-4 semanas",
-    support: "Retainer mensual",
-    features: [
-      "Todo lo de GROWTH",
-      "6+ procesos automatizados",
-      "Integración total de sistemas",
-      "API personalizada si necesaria",
-      "Retainer mensual disponible",
-      "Soporte dedicado prioritario",
-      "Revisiones mensuales incluidas",
-      "Escalabilidad garantizada",
-      "Onboarding del equipo completo",
-      "SLA de uptime garantizado",
-    ],
-    notIncluded: [],
-    cta: "Hablar de mi caso",
-    ideal: "Empresa mediana con múltiples departamentos y necesidad de integración total.",
   },
+];
+
+const sectors = [
+  { label: "Restaurantes", desde: "€700", hasta: "€1.150", href: "/automatizar-restaurantes" },
+  { label: "E-commerce",   desde: "€850", hasta: "€1.300", href: "/automatizar-ecommerce" },
+  { label: "Agencias",     desde: "€1.100", hasta: "€1.650", href: "/automatizar-agencias" },
+  { label: "Tu sector",    desde: "Presupuesto", hasta: "personalizado", href: "/automatizar-otros" },
 ];
 
 export default function PricingSection() {
   return (
     <section id="precios" className="bg-[#080808] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
-        <AnimateOnScroll className="text-center mb-20">
+
+        {/* ── HEADER ── */}
+        <AnimateOnScroll className="text-center mb-16">
           <span className="inline-block text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase mb-4">
-            Transparencia total
+            Inversión transparente
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Precios Claros.{" "}
-            <span className="text-[#B8860B]">Sin Sorpresas.</span>
+            Inversión Adaptada{" "}
+            <span className="text-[#B8860B]">a Tu Empresa</span>
           </h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            Precios desde, adaptados a tu proyecto real. Sin mensualidades ocultas.
-            El análisis inicial siempre es <span className="text-white/70 font-medium">gratuito y sin compromiso</span>.
+          <p className="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed">
+            Cada empresa automatiza procesos diferentes. Los precios varían según tu sector y complejidad.
+            El análisis inicial siempre es{" "}
+            <span className="text-white/70 font-medium">gratuito y sin compromiso</span>.
           </p>
         </AnimateOnScroll>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 items-start">
-          {plans.map((plan, i) => (
-            <AnimateOnScroll key={plan.name} delay={i * 100} direction="up">
+        {/* ── 3 TIERS ── */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          {tiers.map((t, i) => (
+            <AnimateOnScroll key={t.label} delay={i * 100} direction="up">
               <div
-                className={`relative flex flex-col h-full transition-all duration-300 ${
-                  plan.highlight
-                    ? "bg-[#1A3A52] border-2 border-[#B8860B]/60 shadow-[0_0_40px_rgba(184,134,11,0.15)]"
+                className={`p-8 flex flex-col gap-3 transition-all ${
+                  t.highlight
+                    ? "bg-[#1A3A52] border-2 border-[#B8860B]/60 shadow-[0_0_40px_rgba(184,134,11,0.12)]"
                     : "bg-[#111111] border border-white/5 hover:border-white/15"
                 }`}
               >
-                {/* Recommended badge */}
-                {plan.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1.5 bg-[#B8860B] text-white text-xs font-bold px-4 py-1.5 uppercase tracking-widest">
-                      <Star size={10} fill="currentColor" />
-                      Recomendado
-                    </span>
-                  </div>
+                {t.highlight && (
+                  <span className="text-[#B8860B] text-[10px] font-bold tracking-widest uppercase">
+                    Recomendado
+                  </span>
                 )}
-
-                <div className="p-8 flex flex-col flex-1">
-                  {/* Plan name */}
-                  <div className="mb-6">
-                    <p className={`text-xs font-bold tracking-[0.25em] uppercase mb-2 ${
-                      plan.highlight ? "text-[#B8860B]" : "text-white/40"
-                    }`}>
-                      {plan.name}
-                    </p>
-                    <p className="text-white/60 text-sm mb-5">{plan.tagline}</p>
-
-                    {/* Price */}
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-white/40 text-sm font-normal">desde</span>
-                      <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">
-                        {plan.price}
-                      </span>
-                    </div>
-                    <p className="text-white/35 text-xs">{plan.priceNote}</p>
-                    <p className={`text-sm font-semibold mt-2 ${
-                      plan.highlight ? "text-[#10B981]" : "text-[#10B981]/70"
-                    }`}>
-                      {plan.roi}
-                    </p>
-                  </div>
-
-                  {/* Quick specs */}
-                  <div className={`flex flex-wrap gap-3 mb-6 pb-6 border-b ${
-                    plan.highlight ? "border-white/20" : "border-white/5"
-                  }`}>
-                    {[
-                      { label: "Procesos", val: plan.processes },
-                      { label: "Duración", val: plan.duration },
-                      { label: "Soporte", val: plan.support },
-                    ].map(({ label, val }) => (
-                      <div key={label} className={`text-center px-3 py-2 flex-1 min-w-[80px] ${
-                        plan.highlight ? "bg-white/10" : "bg-white/[0.03]"
-                      }`}>
-                        <p className="text-white/40 text-[10px] uppercase tracking-widest">{label}</p>
-                        <p className="text-white text-xs font-semibold mt-0.5">{val}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Features */}
-                  <ul className="space-y-2.5 mb-6 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm">
-                        <Check size={13} className={`mt-0.5 shrink-0 ${
-                          plan.highlight ? "text-[#10B981]" : "text-[#10B981]/70"
-                        }`} />
-                        <span className="text-white/70">{f}</span>
-                      </li>
-                    ))}
-                    {plan.notIncluded.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm opacity-40">
-                        <span className="text-white/30 mt-0.5 shrink-0 text-xs">×</span>
-                        <span className="text-white/40 line-through">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Ideal for */}
-                  <p className={`text-xs leading-relaxed mb-6 p-3 ${
-                    plan.highlight ? "bg-white/10 text-white/60" : "bg-white/[0.03] text-white/40"
-                  }`}>
-                    Ideal para: {plan.ideal}
-                  </p>
-
-                  {/* CTA */}
-                  <a
-                    href="#contacto"
-                    className={`block text-center font-bold text-sm tracking-wide px-6 py-4 transition-all duration-200 ${
-                      plan.highlight
-                        ? "bg-[#B8860B] hover:bg-[#9A7009] text-white hover:shadow-[0_0_25px_rgba(184,134,11,0.4)]"
-                        : "border border-white/20 text-white hover:border-[#B8860B]/50 hover:text-[#B8860B]"
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
+                <p className={`text-xs font-bold tracking-[0.22em] uppercase ${t.highlight ? "text-[#B8860B]" : "text-white/35"}`}>
+                  {t.label}
+                </p>
+                <p className="text-white/55 text-sm">{t.tagline}</p>
+                <div className="flex items-baseline gap-1.5 mt-1">
+                  <span className={`text-sm font-normal ${t.highlight ? "text-[#B8860B]/60" : "text-white/35"}`}>desde</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">{t.price}</span>
                 </div>
+                <p className={`text-xs leading-relaxed ${t.highlight ? "text-white/55" : "text-white/35"}`}>{t.desc}</p>
               </div>
             </AnimateOnScroll>
           ))}
         </div>
 
-        {/* Disclaimer */}
-        <AnimateOnScroll delay={400} className="mt-12 text-center">
-          <p className="text-white/30 text-sm max-w-xl mx-auto">
-            El análisis inicial es <span className="text-white/50 font-medium">siempre gratuito y sin compromisos</span>.
-            El precio final depende del alcance concreto — hablamos, analizamos y te damos un número exacto antes de empezar.
+        {/* ── NOTA SECTORES ── */}
+        <AnimateOnScroll delay={300}>
+          <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/40 p-8 mb-10">
+            <p className="text-white font-bold text-[15px] mb-5">
+              El precio final depende de tu sector y procesos — hablamos y lo acordamos juntos:
+            </p>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {sectors.map(({ label, desde, hasta, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="group bg-white/[0.03] hover:bg-[#1A3A52]/30 border border-white/8 hover:border-[#B8860B]/20 p-4 transition-all"
+                >
+                  <p className="text-[#B8860B] font-bold text-sm mb-1 group-hover:underline">{label}</p>
+                  <p className="text-white/55 text-xs">
+                    {label === "Tu sector" ? `${desde} ${hasta}` : `${desde} — ${hasta}`}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <p className="text-white/35 text-xs mt-5 leading-relaxed">
+              Cada empresa es diferente. Analizamos tu caso y te damos un número exacto antes de empezar. Sin sorpresas.
+            </p>
+          </div>
+        </AnimateOnScroll>
+
+        {/* ── CTAs ── */}
+        <AnimateOnScroll delay={400} className="text-center">
+          <p className="text-white/60 text-sm mb-6">¿Cuál es tu sector?</p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link
+              href="/automatizar-restaurantes"
+              className="bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm py-3 px-6 transition-all"
+            >
+              Restaurantes
+            </Link>
+            <Link
+              href="/automatizar-ecommerce"
+              className="bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm py-3 px-6 transition-all"
+            >
+              E-commerce
+            </Link>
+            <Link
+              href="/automatizar-agencias"
+              className="bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm py-3 px-6 transition-all"
+            >
+              Agencias
+            </Link>
+            <Link
+              href="/automatizar-otros"
+              className="border border-white/20 hover:border-[#B8860B]/50 hover:text-[#B8860B] text-white/70 font-bold text-sm py-3 px-6 transition-all"
+            >
+              Otro sector
+            </Link>
+          </div>
+
+          <p className="text-white/25 text-xs mt-8 max-w-lg mx-auto leading-relaxed">
+            El análisis inicial es siempre gratuito y sin compromisos.
+            Hablamos, analizamos y te damos un número exacto antes de empezar.
           </p>
         </AnimateOnScroll>
+
       </div>
     </section>
   );
