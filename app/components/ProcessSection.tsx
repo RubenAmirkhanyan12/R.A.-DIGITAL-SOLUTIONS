@@ -69,8 +69,8 @@ export default function ProcessSection() {
             El proceso
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            De 40h Manuales a{" "}
-            <span className="text-[#B8860B]">5h Automáticas</span>
+            Automatización de Procesos:{" "}
+            <span className="text-[#B8860B]">De 40h Manuales a 5h Automáticas</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
             5 pasos. 2 semanas. Proceso predecible sin sorpresas. Sabes exactamente

@@ -144,8 +144,8 @@ export default function CaseStudiesSection() {
             Casos de éxito
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Números Reales.{" "}
-            <span className="text-[#B8860B]">Clientes Reales.</span>
+            Casos Reales de Automatización:{" "}
+            <span className="text-[#B8860B]">ROI Documentado en Barcelona</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
             Cada caso tiene nombre, empresa, números documentados y testimonio verificable.
@@ -243,8 +243,20 @@ export default function CaseStudiesSection() {
                         <p className="text-white/65 text-xs leading-relaxed italic mb-3">
                           &ldquo;{c.testimonial}&rdquo;
                         </p>
-                        <p className="text-white/50 text-xs font-semibold">{c.contact.name}</p>
-                        <p className="text-white/30 text-xs">{c.contact.role} · {c.company}</p>
+                        <div className="flex items-center gap-2.5">
+                          <div
+                            className="w-8 h-8 rounded-full bg-[#1A3A52] border border-[#B8860B]/40 flex items-center justify-center shrink-0"
+                            aria-hidden="true"
+                          >
+                            <span className="text-[#B8860B] text-[10px] font-bold leading-none">
+                              {c.contact.name.split(" ").map((n: string) => n[0]).join("")}
+                            </span>
+                          </div>
+                          <div>
+                            <p className="text-white/50 text-xs font-semibold">{c.contact.name}</p>
+                            <p className="text-white/30 text-xs">{c.contact.role} · {c.company}</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

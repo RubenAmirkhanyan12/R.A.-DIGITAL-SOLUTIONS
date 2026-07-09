@@ -64,8 +64,8 @@ export default function ProblemsSection() {
             ¿Te reconoces aquí?
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            El Dinero Que Pierdes{" "}
-            <span className="text-[#EF4444]">Cada Mes</span>
+            El Coste Real: Procesos Manuales{" "}
+            <span className="text-[#EF4444]">Que Te Cuestan €43k/Año en Barcelona</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
             No es falta de trabajo duro. Es trabajo innecesario. Cada uno de estos

@@ -43,8 +43,8 @@ export default function PricingSection() {
             Inversión transparente
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Inversión Adaptada{" "}
-            <span className="text-[#B8860B]">a Tu Empresa</span>
+            Precio Automatización Procesos Barcelona:{" "}
+            <span className="text-[#B8860B]">Desde €700 Según Tu Caso</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed">
             Cada empresa automatiza procesos diferentes. Los precios varían según tu sector y complejidad.

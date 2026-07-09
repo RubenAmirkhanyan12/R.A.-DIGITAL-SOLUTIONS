@@ -21,33 +21,37 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RASTECH — Automatización Procesos Barcelona | €51k/año Ahorrados | Especialista n8n",
+  title: "Cuánto Cuesta Automatizar Procesos Barcelona | Desde €700 | RASTECH Especialista n8n",
   description:
-    "RASTECH automatiza procesos manuales en empresas Barcelona. €51k/año ahorrados. 20+ empresas. Especialista n8n, Make. Auditoría gratis 60 min sin compromiso.",
+    "¿Cuánto cuesta automatizar procesos en Barcelona? Desde €700. RASTECH: 20+ empresas, €51k/año ahorrados, ROI documentado. Especialista n8n, Make. Auditoría gratis sin compromiso.",
   keywords: [
+    "cuánto cuesta automatizar procesos barcelona",
+    "precio automatización procesos barcelona",
     "automatización procesos Barcelona",
-    "RASTECH automatización Barcelona",
-    "n8n Barcelona especialista",
-    "automatizar facturación empresa",
-    "eliminar tareas manuales negocio",
+    "ROI automatización barcelona",
+    "payback automatización",
+    "especialista n8n Barcelona",
+    "automatizar procesos empresa Barcelona",
+    "casos automatización real barcelona",
+    "ahorros automatización empresa",
+    "automatizar facturación empresa Barcelona",
     "Make Zapier n8n Barcelona",
-    "reducir horas administrativas",
-    "ahorro automatización empresa",
+    "RASTECH automatización Barcelona",
   ],
   authors: [{ name: "Rubén Amirkhanyan" }],
   openGraph: {
-    title: "RASTECH — Automatización Procesos Barcelona | €51k/año Ahorrados",
+    title: "Cuánto Cuesta Automatizar Procesos Barcelona | Desde €700 | RASTECH",
     description:
-      "RASTECH automatiza procesos manuales en empresas Barcelona. €51k/año ahorrados. 20+ empresas. Especialista n8n, Make. Auditoría gratis sin compromiso.",
+      "¿Cuánto cuesta automatizar procesos en Barcelona? Desde €700. 20+ empresas, €51k/año ahorrados. Especialista n8n, Make. Auditoría gratis.",
     type: "website",
     locale: "es_ES",
     siteName: "RASTECH",
   },
   twitter: {
     card: "summary_large_image",
-    title: "RASTECH — Automatización Procesos Barcelona",
+    title: "Cuánto Cuesta Automatizar Procesos Barcelona | RASTECH",
     description:
-      "RASTECH automatiza procesos manuales. €51k/año ahorrados. 20+ empresas Barcelona. Auditoría gratis 60 min.",
+      "Desde €700. ROI documentado. 20+ empresas Barcelona automatizadas. Especialista n8n Make. Auditoría gratis 60 min.",
   },
 };
 

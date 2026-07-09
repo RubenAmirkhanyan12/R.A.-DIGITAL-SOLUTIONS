@@ -61,10 +61,10 @@ export default function HeroClient() {
             ref={headlineRef}
             className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6"
           >
-            <span className="block">RASTECH: Automatiza</span>
-            <span className="block">Tus Procesos Barcelona</span>
+            <span className="block">Automatiza Procesos Barcelona</span>
+            <span className="block">€51k/Año de Ahorro Real</span>
             <span className="relative inline-block text-[#B8860B] mt-1">
-              €51k/año de Ahorro Real
+              Especialista n8n · Sin Código
               <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-[#B8860B] to-transparent" />
             </span>
           </h1>
