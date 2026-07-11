@@ -244,13 +244,11 @@ export default function CaseStudiesSection() {
                           &ldquo;{c.testimonial}&rdquo;
                         </p>
                         <div className="flex items-center gap-2.5">
-                          <div
-                            className="w-8 h-8 rounded-full bg-[#1A3A52] border border-[#B8860B]/40 flex items-center justify-center shrink-0"
-                            aria-hidden="true"
-                          >
-                            <span className="text-[#B8860B] text-[10px] font-bold leading-none">
-                              {c.contact.name.split(" ").map((n: string) => n[0]).join("")}
-                            </span>
+                          <img
+                            src={`/images/cases/${c.id}.${c.id === 'restaurante' || c.id === 'ecommerce' ? 'png' : 'jpg'}`}
+                            alt={`${c.contact.name} - ${c.company}`}
+                            className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#B8860B]/40"
+                          />
                           </div>
                           <div>
                             <p className="text-white/50 text-xs font-semibold">{c.contact.name}</p>
