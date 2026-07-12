@@ -249,7 +249,6 @@ export default function CaseStudiesSection() {
                             alt={`${c.contact.name} - ${c.company}`}
                             className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#B8860B]/40"
                           />
-                          </div>
                           <div>
                             <p className="text-white/50 text-xs font-semibold">{c.contact.name}</p>
                             <p className="text-white/30 text-xs">{c.contact.role} · {c.company}</p>

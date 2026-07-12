@@ -14,7 +14,10 @@
       "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-restaurantes\")",
       "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-ecommerce\")",
       "Bash(mkdir -p \"/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/automatizar-agencias\")",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "/home/ruben/PRO2/Final/repetimos final/ra-digital-solutions/app/blog"
