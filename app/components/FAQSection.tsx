@@ -92,8 +92,34 @@ export default function FAQSection() {
           </div>
         </AnimateOnScroll>
 
+        {/* Blog guides */}
+        <AnimateOnScroll delay={200} className="mt-10">
+          <div className="bg-[#111111] border border-white/5 px-8 py-6">
+            <p className="text-white/25 text-xs uppercase tracking-widest mb-5">
+              Guías relacionadas
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                ["¿Cuánto cuesta automatizar procesos en Barcelona?", "/blog/cuanto-cuesta-automatizar-barcelona"],
+                ["De 40h a 4h: Automatización de facturación real", "/blog/automatizacion-facturacion-40h-4h"],
+                ["5 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
+                ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
+              ].map(([label, href]) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="flex items-start gap-2 text-white/45 hover:text-[#B8860B] text-sm transition-colors group"
+                >
+                  <span className="text-[#B8860B] mt-0.5 shrink-0">→</span>
+                  <span className="group-hover:underline leading-relaxed">{label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </AnimateOnScroll>
+
         {/* Still have questions */}
-        <AnimateOnScroll delay={200} className="mt-10 text-center">
+        <AnimateOnScroll delay={300} className="mt-10 text-center">
           <p className="text-white/35 text-sm mb-4">
             ¿Tienes una pregunta que no está aquí?
           </p>

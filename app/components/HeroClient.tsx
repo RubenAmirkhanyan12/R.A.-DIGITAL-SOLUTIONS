@@ -102,6 +102,23 @@ export default function HeroClient() {
             ))}
           </div>
 
+          {/* Sector quick-links */}
+          <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8 text-xs">
+            <span className="text-white/25">Ver por sector:</span>
+            <a href="/automatizar-restaurantes" className="text-[#B8860B]/70 hover:text-[#B8860B] transition-colors">
+              Restaurantes →
+            </a>
+            <a href="/automatizar-ecommerce" className="text-[#B8860B]/70 hover:text-[#B8860B] transition-colors">
+              E-commerce →
+            </a>
+            <a href="/automatizar-agencias" className="text-[#B8860B]/70 hover:text-[#B8860B] transition-colors">
+              Agencias →
+            </a>
+            <a href="/casos" className="text-white/30 hover:text-white/60 transition-colors">
+              Casos reales →
+            </a>
+          </div>
+
           {/* CTAs */}
           <div
             ref={ctaRef}

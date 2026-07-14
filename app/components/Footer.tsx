@@ -1,3 +1,4 @@
+import Link from "next/link";
 import RastechLogo from "./RastechLogo";
 
 export default function Footer() {
@@ -6,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-12 mb-8">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
@@ -40,64 +41,78 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Páginas */}
           <div>
             <p className="text-white/25 text-xs uppercase tracking-widest mb-5">
-              Navegación
+              Páginas
             </p>
             <ul className="space-y-2.5">
               {[
-                ["Inicio", "#inicio"],
-                ["¿Por qué automatizar?", "#problemas"],
-                ["Cómo funciona", "#como-funciona"],
-                ["Casos de éxito", "#casos"],
-                ["Precios", "#precios"],
-                ["Contacto", "#contacto"],
+                ["Inicio", "/"],
+                ["Sobre Nosotros", "/sobre-nosotros"],
+                ["Casos de Éxito", "/casos"],
+                ["Precios", "/precios"],
+                ["Blog", "/blog"],
+                ["Contacto", "/contacto"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={href}
                     className="text-white/40 hover:text-[#B8860B] text-sm transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Automatizar */}
           <div>
             <p className="text-white/25 text-xs uppercase tracking-widest mb-5">
-              Recursos
+              Automatizar
             </p>
             <ul className="space-y-2.5">
               {[
-                ["Calculadora ROI", "#calculadora"],
-                ["FAQ", "#problemas"],
+                ["Ver todos los sectores", "/automatizar"],
+                ["Restaurantes", "/automatizar-restaurantes"],
+                ["E-commerce", "/automatizar-ecommerce"],
+                ["Agencias", "/automatizar-agencias"],
+                ["Tu sector", "/automatizar-otros"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <a
+                  <Link
                     href={href}
                     className="text-white/40 hover:text-[#B8860B] text-sm transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
 
-            <p className="text-white/25 text-xs uppercase tracking-widest mt-8 mb-5">
-              Social
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="text-white/30 hover:text-[#B8860B] text-xs uppercase tracking-widest transition-colors"
+        {/* Blog articles row */}
+        <div className="border-t border-white/5 pt-8 mb-8">
+          <p className="text-white/25 text-xs uppercase tracking-widest mb-5">
+            Artículos del Blog
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ["¿Cuánto cuesta automatizar procesos en Barcelona?", "/blog/cuanto-cuesta-automatizar-barcelona"],
+              ["De 40h a 4h: Automatización de facturación real", "/blog/automatizacion-facturacion-40h-4h"],
+              ["5 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
+              ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
+            ].map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-white/35 hover:text-[#B8860B] text-xs leading-relaxed transition-colors"
               >
-                LinkedIn
-              </a>
-            </div>
+                {label} →
+              </Link>
+            ))}
           </div>
         </div>
 
