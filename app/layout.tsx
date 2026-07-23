@@ -66,6 +66,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} h-full`}
     >
       <head>
+      <meta name="google-site-verification" content="YK1vSGe2rBq7dJ8fHfqW8uF6qyvUx1Dsm5NIkYNkXjc" />
         {/* Schema: Organization */}
         <script
           type="application/ld+json"
