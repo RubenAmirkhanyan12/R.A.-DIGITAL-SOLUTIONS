@@ -21,37 +21,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cuánto Cuesta Automatizar Procesos Barcelona | Desde €700 | RASTECH Especialista n8n",
+  title: "RASTECH | Automatización de Procesos Barcelona",
   description:
-    "¿Cuánto cuesta automatizar procesos en Barcelona? Desde €700. RASTECH: 20+ empresas, €51k/año ahorrados, ROI documentado. Especialista n8n, Make. Auditoría gratis sin compromiso.",
-  keywords: [
-    "cuánto cuesta automatizar procesos barcelona",
-    "precio automatización procesos barcelona",
-    "automatización procesos Barcelona",
-    "ROI automatización barcelona",
-    "payback automatización",
-    "especialista n8n Barcelona",
-    "automatizar procesos empresa Barcelona",
-    "casos automatización real barcelona",
-    "ahorros automatización empresa",
-    "automatizar facturación empresa Barcelona",
-    "Make Zapier n8n Barcelona",
-    "RASTECH automatización Barcelona",
-  ],
+    "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 20+ empresas automatizadas. Auditoría gratis sin compromiso.",
   authors: [{ name: "Rubén Amirkhanyan" }],
   openGraph: {
-    title: "Cuánto Cuesta Automatizar Procesos Barcelona | Desde €700 | RASTECH",
-    description:
-      "¿Cuánto cuesta automatizar procesos en Barcelona? Desde €700. 20+ empresas, €51k/año ahorrados. Especialista n8n, Make. Auditoría gratis.",
     type: "website",
     locale: "es_ES",
     siteName: "RASTECH",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Cuánto Cuesta Automatizar Procesos Barcelona | RASTECH",
-    description:
-      "Desde €700. ROI documentado. 20+ empresas Barcelona automatizadas. Especialista n8n Make. Auditoría gratis 60 min.",
   },
 };
 
