@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
         headline: post.title,
         description: post.description,
         datePublished: post.publishDate,
-        dateModified: post.publishDate,
+        dateModified: post.updatedDate ?? post.publishDate,
         author: {
           "@type": "Person",
           name: post.author.name,
@@ -211,6 +211,11 @@ export default async function BlogPostPage({ params }: Props) {
                 <Calendar size={11} />
                 {formatDate(post.publishDate)}
               </span>
+              {post.updatedDate && (
+                <span className="flex items-center gap-1.5 text-[#B8860B]/60 text-xs">
+                  Actualizado: {formatDate(post.updatedDate)}
+                </span>
+              )}
             </div>
 
             {/* Title */}

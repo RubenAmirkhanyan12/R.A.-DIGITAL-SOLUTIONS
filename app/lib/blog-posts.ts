@@ -647,6 +647,7 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
+    updatedDate: "2026-09-25",
     readTime: 8,
     category: "Precios",
     featured: false,
@@ -756,7 +757,7 @@ Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas 
 
 ---
 
-## Desglose Completo De Precios RASTECH 2025
+## Desglose Completo De Precios RASTECH
 
 ### STARTER — Para Empezar Rápido
 

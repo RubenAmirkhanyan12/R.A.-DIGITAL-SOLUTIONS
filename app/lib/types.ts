@@ -9,6 +9,7 @@ export interface BlogPost {
     bio: string;
   };
   publishDate: string; // ISO "YYYY-MM-DD"
+  updatedDate?: string; // ISO "YYYY-MM-DD" — si existe, se usa como dateModified en schema
   readTime: number;
   keywords: string[];
   internalLinks: string[];
