@@ -89,7 +89,7 @@ export default function RootLayout({
               },
               "telephone": "+34-613-361-115",
               "url": "https://ras-tech.es",
-              "priceRange": "€550 - €5150",
+              "priceRange": "€700 - €15.000",
             }),
           }}
         />
@@ -115,21 +115,21 @@ export default function RootLayout({
                   {
                     "@type": "Offer",
                     "name": "STARTER",
-                    "price": "550",
+                    "price": "700",
                     "priceCurrency": "EUR",
                     "description": "1-2 procesos, 2 semanas, soporte 30 días",
                   },
                   {
                     "@type": "Offer",
                     "name": "GROWTH",
-                    "price": "2600",
+                    "price": "1150",
                     "priceCurrency": "EUR",
                     "description": "3-5 procesos, 2-3 semanas, soporte 60 días",
                   },
                   {
                     "@type": "Offer",
                     "name": "ENTERPRISE",
-                    "price": "5150",
+                    "price": "1650",
                     "priceCurrency": "EUR",
                     "description": "6+ procesos, 3-4 semanas, retainer mensual disponible",
                   },
