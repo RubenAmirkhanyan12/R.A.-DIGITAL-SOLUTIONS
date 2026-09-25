@@ -431,7 +431,7 @@ Además: clientes faltando en reportes, importes copiados mal, PDFs sin enviar.
 | | Detalle |
 |---|---|
 | Implementación | 2 semanas |
-| Coste | desde €550 ([plan STARTER](/precios)) |
+| Coste | desde €700 ([plan STARTER](/precios)) |
 | Ahorro anual | €51.840 (36h/mes × €120/h) |
 
 > *"Facturación pasó de 40h a 4h/mes. No me lo creía."* — Asesoría fiscal, Barcelona
@@ -591,8 +591,8 @@ Si tienes 20 personas y 2-3 de ellas dedican el 50% del tiempo a estos procesos:
 | Rotación de personal | €20.000 |
 | **Total real** | **€220.000** |
 
-**Solución:** ~€2.800 en automatización.
-**ROI:** 7.857%.
+**Solución:** ~€1.350 en automatización.
+**ROI:** 16.196%.
 
 ---
 
@@ -1467,7 +1467,7 @@ Sistema implementado. Comunicación al equipo: "Aquí está. Úsalo." Sin demost
 
 Dos semanas después: "Esto no funciona." En realidad: el equipo no sabe cómo usarlo y sigue con Excel.
 
-Sistema que costó €2.800: muerto en producción.
+Sistema que costó €1.350: muerto en producción.
 
 **Impacto:** Inversión en cero, equipo frustrado, presupuesto para próxima automatización cortado.
 
