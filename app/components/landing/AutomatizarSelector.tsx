@@ -29,7 +29,7 @@ const cards: Card[] = [
     saving: "€2.500/mes ahorrados promedio",
     cta: "Automatizar Restaurante",
     href: "/automatizar-restaurantes",
-    meta: "20+ restaurantes Barcelona",
+    meta: "15+ restaurantes Barcelona",
   },
   {
     icon: <Package size={28} className="text-[#B8860B]" />,
@@ -161,7 +161,7 @@ export default function AutomatizarSelector() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-white/45">
-              {["20+ empresas Barcelona", "Especialista n8n · Make", "ROI mes 1"].map((t) => (
+              {["15+ empresas Barcelona", "Especialista n8n · Make", "ROI mes 1"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
                   <span className="text-[#10B981] text-xs">✓</span> {t}
                 </span>

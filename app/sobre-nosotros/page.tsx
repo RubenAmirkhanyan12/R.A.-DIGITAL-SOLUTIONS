@@ -16,13 +16,13 @@ import {
 export const metadata: Metadata = {
   title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
   description:
-    "Especialista n8n, Make y Zapier en Barcelona. 20+ empresas automatizadas, €51k ahorrados/año. Auditoría gratuita sin compromiso.",
+    "Especialista n8n, Make y Zapier en Barcelona. 15+ empresas automatizadas, €51k ahorrados/año. Auditoría gratuita sin compromiso.",
   keywords:
     "especialista n8n barcelona, Rubén Amirkhanyan, automatización procesos Barcelona, RASTECH, Make Zapier Barcelona",
   openGraph: {
     title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
     description:
-      "Especialista n8n, Make y Zapier en Barcelona. 20+ empresas automatizadas, €51k ahorrados/año.",
+      "Especialista n8n, Make y Zapier en Barcelona. 15+ empresas automatizadas, €51k ahorrados/año.",
     type: "profile",
     locale: "es_ES",
   },
@@ -37,7 +37,7 @@ const jsonLd = {
   jobTitle: "Especialista en Automatización de Procesos (n8n, Make, Zapier)",
   areaServed: "Barcelona, España",
   email: "rubenamirkhanyan12@gmail.com",
-  telephone: "+34 613 361 115",
+  telephone: "+34 613 361 175",
   url: "https://ras-tech.es/sobre-nosotros",
   knowsAbout: [
     "n8n",
@@ -78,7 +78,7 @@ const faqs = [
   },
   {
     q: "¿Cuál es tu tasa de éxito?",
-    a: "95% de satisfacción en más de 20 empresas. Ningún proyecto cancelado, y ROI medible en el 100% de los casos.",
+    a: "95% de satisfacción en más de 15 empresas. Ningún proyecto cancelado, y ROI medible en el 100% de los casos.",
   },
   {
     q: "¿Necesito cambiar mis herramientas actuales?",
@@ -125,7 +125,7 @@ const specialties = [
 ];
 
 const stats = [
-  { value: "20+",    label: "Empresas Barcelona automatizadas" },
+  { value: "15+",    label: "Empresas Barcelona automatizadas" },
   { value: "40+",    label: "Procesos automatizados exitosamente" },
   { value: "€51k",   label: "Ahorro promedio por empresa al año" },
   { value: "95%",    label: "Tasa de satisfacción (referencias verificables)" },
@@ -203,11 +203,11 @@ function ContactSidebar() {
           rubenamirkhanyan12@gmail.com
         </a>
         <a
-          href="tel:+34613361115"
+          href="tel:+34613361175"
           className="flex items-center gap-2.5 text-[13px] text-white/55 hover:text-[#B8860B] transition-colors"
         >
           <Phone size={13} className="shrink-0" />
-          +34 613 361 115
+          +34 613 361 175
         </a>
       </div>
 
@@ -217,7 +217,7 @@ function ContactSidebar() {
       {/* Quick trust signals */}
       <ul className="flex flex-col gap-2.5">
         {[
-          "20+ empresas Barcelona",
+          "15+ empresas Barcelona",
           "Implementación en 2–3 semanas",
           "ROI medible desde el mes 1",
           "GDPR compliant por defecto",
@@ -575,7 +575,7 @@ export default function SobreNosotros() {
                         {[
                           ["Especialización", "Solo automatización de procesos", "Múltiples servicios (marketing, diseño, dev…)"],
                           ["Enfoque geográfico", "100% Barcelona y área metropolitana", "Nacional o global, sin foco local"],
-                          ["Casos documentados", "20+ empresas con ROI medido", "Casos genéricos, sin cifras locales"],
+                          ["Casos documentados", "15+ empresas con ROI medido", "Casos genéricos, sin cifras locales"],
                           ["Herramientas", "n8n, Make, Zapier — elegidas según el caso", "Una sola herramienta, la que conocen"],
                           ["Transparencia de ROI", "€51k ahorro promedio, cifras reales", "Rangos amplios, poco específicos"],
                           ["Implementación", "2–6 semanas, proceso probado", "Variable, sin timeline fijo"],

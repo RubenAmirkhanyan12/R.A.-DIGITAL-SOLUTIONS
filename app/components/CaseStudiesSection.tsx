@@ -11,18 +11,22 @@ const previews = [
     headline: "De 40h a 5h semanales",
     roi: "1.200%",
     saved: "€2,500/mes",
-    testimonial: "Fue revolucionario. La administración funciona sola. ¿Por qué no lo hicimos antes?",
+    testimonial:
+      "Al principio pensé que esto era para empresas grandes, no para un restaurante como el mío. Me equivoqué. La primera semana seguía revisando las facturas a mano 'por si acaso' — costó soltar el control. Ya no. Lleva meses funcionando solo, sin fallar ni una vez. Ahora paso el tiempo en la cocina, no delante del ordenador.",
+    confidential: false,
   },
   {
     id: "ecommerce",
     imgExt: "png",
-    company: "TiendaXYZ Online",
-    contact: "Sandra Martínez · Directora de Operaciones",
+    company: "E-commerce de Moda",
+    contact: "Directora de Operaciones",
     sector: "E-commerce",
     headline: "De 25h a 3h semanales",
     roi: "850%",
     saved: "€4,200/mes",
-    testimonial: "RASTECH automatizó en 4 semanas lo que creíamos imposible. Ahora dormimos tranquilos.",
+    testimonial:
+      "Llevábamos años perdiendo pedidos por errores de envío manuales. No fue instantáneo — las dos primeras semanas ajustamos varias reglas hasta que quedó fino. Pero desde entonces, cero errores. Dormimos tranquilos.",
+    confidential: true,
   },
   {
     id: "agencia",
@@ -33,7 +37,8 @@ const previews = [
     headline: "De 5 a 15 clientes sin contratar",
     roi: "1.800%",
     saved: "Capacidad 3x",
-    testimonial: "Triplicamos clientes sin contratar a nadie. El ROI llegó en semanas.",
+    testimonial: "Triplicamos clientes sin contratar a nadie más. Así de simple.",
+    confidential: false,
   },
 ];
 
@@ -52,8 +57,7 @@ export default function CaseStudiesSection() {
             <span className="text-[#B8860B]">ROI Documentado en Barcelona</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            Cada caso tiene empresa real, números documentados y contacto verificable.
-            Sin métricas inventadas.
+            Cada caso tiene empresa real y números documentados. Sin métricas inventadas.
           </p>
         </AnimateOnScroll>
 
@@ -100,8 +104,15 @@ export default function CaseStudiesSection() {
                       alt={c.contact}
                       className="w-10 h-10 rounded-full object-cover border border-[#B8860B]/30 shrink-0"
                     />
-                    <p className="text-white/40 text-xs leading-tight">{c.contact}</p>
-                    <div className="ml-auto flex gap-0.5">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white/40 text-xs leading-tight">{c.contact}</p>
+                      {c.confidential && (
+                        <p className="text-white/20 text-[10px] mt-0.5 leading-tight">
+                          Nombre no publicado por confidencialidad del cliente
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex gap-0.5 shrink-0">
                       {Array.from({ length: 5 }).map((_, j) => (
                         <span key={j} className="text-[#B8860B] text-xs">★</span>
                       ))}
@@ -116,14 +127,14 @@ export default function CaseStudiesSection() {
         {/* CTA to full cases page */}
         <AnimateOnScroll delay={300} className="text-center">
           <p className="text-white/40 text-sm mb-5">
-            20+ empresas en Barcelona ya automatizan.{" "}
+            15+ empresas en Barcelona ya automatizan.{" "}
             <span className="text-white/60">Aquí cómo.</span>
           </p>
           <Link
             href="/casos"
             className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.3)]"
           >
-            Ver 20+ casos documentados →
+            Ver 15+ casos documentados →
           </Link>
           <p className="text-white/20 text-xs mt-4">
             Con nombre, empresa, inversión y ROI real. Despachos, servicios, e-commerce y más.

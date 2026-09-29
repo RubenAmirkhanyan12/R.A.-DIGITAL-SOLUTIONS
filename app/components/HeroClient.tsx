@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
 
 const trustSignals = [
-  "20+ empresas Barcelona",
+  "15+ empresas Barcelona",
   "ROI documentado desde mes 1",
   "Desde €550",
 ];
@@ -83,7 +83,7 @@ export default function HeroClient() {
           {/* SEO intro paragraph */}
           <p className="text-sm text-white/45 leading-relaxed max-w-xl mb-8">
             RASTECH automatiza procesos manuales que consumen horas de tu empresa
-            en Barcelona. Especialistas en n8n, Make e integraciones. 20+ empresas
+            en Barcelona. Especialistas en n8n, Make e integraciones. 15+ empresas
             ya automatizan con nosotros: €51,840 de ahorro promedio al año, 87%
             reducción en tareas manuales, sistemas que funcionan 24/7. Desde €550.
             Sin código. Auditoría gratis.
@@ -224,7 +224,7 @@ export default function HeroClient() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
           {[
             { value: "n8n · Make", label: "Especialista certificado" },
-            { value: "20+", label: "Empresas Barcelona" },
+            { value: "15+", label: "Empresas Barcelona" },
             { value: "95%", label: "Satisfacción clientes" },
             { value: "€51,840", label: "Ahorro promedio/año" },
           ].map(({ value, label }) => (

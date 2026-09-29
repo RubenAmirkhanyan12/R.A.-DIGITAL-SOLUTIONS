@@ -128,7 +128,7 @@ export default function LeadMagnetPopup() {
                   <strong className="text-white">
                     Checklist: 7 Pasos Para Automatizar Tu Empresa
                   </strong>{" "}
-                  (PDF · validado en 20+ empresas Barcelona).
+                  (PDF · validado en 15+ empresas Barcelona).
                 </p>
               </div>
 
@@ -137,7 +137,7 @@ export default function LeadMagnetPopup() {
                 <p className="text-white/50 text-xs leading-snug">
                   Ahorro medio documentado:{" "}
                   <strong className="text-[#B8860B]">€51,840/año</strong> ·{" "}
-                  <strong className="text-white">20+ empresas</strong>
+                  <strong className="text-white">15+ empresas</strong>
                 </p>
               </div>
 

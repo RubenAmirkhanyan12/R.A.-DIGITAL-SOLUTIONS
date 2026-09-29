@@ -367,7 +367,7 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
     readTime: 10,
@@ -628,7 +628,7 @@ Si reconoces 2 o más de estos procesos en tu empresa, probablemente ahorres €
 En 60 minutos identificamos exactamente dónde pierdes horas, calculamos el ahorro específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
 
 📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 115
+📱 +34 613 361 175
 
 O reserva directamente en el [formulario de contacto](/#contacto).
 
@@ -644,7 +644,7 @@ O reserva directamente en el [formulario de contacto](/#contacto).
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
     updatedDate: "2026-09-25",
@@ -753,7 +753,7 @@ Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas 
 - ROI: inversión recuperada en **3-4 meses**
 - Beneficio oculto: pueden crecer sin contratar — eso vale mucho más
 
-*(¿Quieres ver más casos con ROI documentado? [20+ casos reales de automatización en Barcelona](/casos))*
+*(¿Quieres ver más casos con ROI documentado? [15+ casos reales de automatización en Barcelona](/casos))*
 
 ---
 
@@ -791,7 +791,7 @@ Ver [todos los detalles en la página de precios](/precios).
 
 ## ¿Cuál Es El Precio Promedio En Barcelona?
 
-Basado en nuestras 20+ implementaciones:
+Basado en nuestras 15+ implementaciones:
 
 | Tamaño empresa | Presupuesto típico | Ahorro anual |
 |---|---|---|
@@ -871,7 +871,7 @@ Tu presupuesto exacto en 60 minutos. Sin compromiso.
 Cuéntanos tu caso y calculamos cuánto puedes ahorrar antes de invertir un euro.
 
 📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 115
+📱 +34 613 361 175
 
 O reserva directamente en el [formulario de contacto](/#contacto).
 
@@ -887,7 +887,7 @@ O reserva directamente en el [formulario de contacto](/#contacto).
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
     readTime: 9,
@@ -1117,7 +1117,7 @@ Si facturas manualmente o tienes cualquier proceso que te come horas, hagamos lo
 En 60 minutos identificamos dónde se van las horas, calculamos el ahorro potencial específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
 
 📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 115
+📱 +34 613 361 175
 
 O reserva en el [formulario de contacto](/#contacto).
 
@@ -1133,7 +1133,7 @@ O reserva en el [formulario de contacto](/#contacto).
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
     readTime: 11,
@@ -1392,7 +1392,7 @@ Si tu empresa tiene más de 5 procesos manuales, elegir la herramienta correcta 
 En 30 minutos, analizamos tu stack actual, tus procesos y te decimos cuál herramienta encaja mejor. Sin compromiso.
 
 📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 115
+📱 +34 613 361 175
 
 O reserva en el [formulario de contacto](/#contacto).
 
@@ -1408,7 +1408,7 @@ O reserva en el [formulario de contacto](/#contacto).
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 20 casos documentados con ROI positivo desde el primer mes.",
+      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
     publishDate: "2025-06-25",
     readTime: 10,
@@ -1654,7 +1654,7 @@ No necesitas empezar de cero. No descartes el sistema. Solo arregla el error.
 Si tu automatización falló o no está dando el resultado esperado, en 60 minutos identificamos qué error cometiste y te damos el plan para arreglarlo. Sin coste, sin compromiso. *(¿Quieres saber cuánto cuesta rehacerlo bien? [Guía de precios reales de automatización Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
 
 📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 115
+📱 +34 613 361 175
 
 O reserva en el [formulario de contacto](/#contacto).
 

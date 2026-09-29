@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 export const metadata: Metadata = {
   title: "Casos Reales de Automatización: ROI Documentado 730-2800% | RASTECH Barcelona",
   description:
-    "5 casos reales de automatización en Barcelona. Restaurantes, e-commerce, agencias, despachos, servicios. ROI documentado. 20+ empresas automatizadas. €51,840 ahorrados promedio.",
+    "5 casos reales de automatización en Barcelona. Restaurantes, e-commerce, agencias, despachos, servicios. ROI documentado. 15+ empresas automatizadas. €51,840 ahorrados promedio.",
   keywords: [
     "automatización casos reales barcelona",
     "ROI automatización",
@@ -31,7 +31,6 @@ const cases = [
     id: "restaurante",
     sector: "Restauración",
     company: "Restaurante El Sabor",
-    location: "Paseo de Gracia, Barcelona",
     contact: { name: "Javier García", role: "Chef Propietario" },
     imgExt: "png",
     headline: "De 40h a 5h Semanales en Administración",
@@ -49,16 +48,16 @@ const cases = [
     investment: "€3,500",
     duration: "4 semanas",
     testimonial:
-      "Fue revolucionario. Ahora tengo tiempo real para estar con los clientes, mejorar las recetas, pensar en el negocio. La administración funciona sola. ¿Por qué no lo hicimos antes?",
+      "Al principio pensé que esto era para empresas grandes, no para un restaurante como el mío. Me equivoqué. La primera semana seguía revisando las facturas a mano 'por si acaso' — costó soltar el control. Ya no. Lleva meses funcionando solo, sin fallar ni una vez. Ahora paso el tiempo en la cocina, no delante del ordenador.",
     ctaLabel: "Automatizar mi restaurante",
     ctaHref: "/automatizar-restaurantes",
   },
   {
     id: "ecommerce",
     sector: "E-commerce",
-    company: "TiendaXYZ Online",
-    location: "Barcelona",
-    contact: { name: "Sandra Martínez", role: "Directora de Operaciones" },
+    company: "E-commerce de Moda",
+    confidential: true,
+    contact: { name: "", role: "Directora de Operaciones" },
     imgExt: "png",
     headline: "Gestión de Pedidos: 25h a 3h Semanales",
     challenge:
@@ -75,7 +74,7 @@ const cases = [
     investment: "€5,500",
     duration: "5 semanas",
     testimonial:
-      "Llevábamos años perdiendo dinero en errores manuales. RASTECH automatizó en 4 semanas lo que creíamos imposible. Ahora dormimos tranquilos sabiendo que los pedidos se gestionan solos.",
+      "Llevábamos años perdiendo pedidos por errores de envío manuales. No fue instantáneo — las dos primeras semanas ajustamos varias reglas hasta que quedó fino. Pero desde entonces, cero errores. Dormimos tranquilos.",
     ctaLabel: "Automatizar mi e-commerce",
     ctaHref: "/automatizar-ecommerce",
   },
@@ -83,7 +82,6 @@ const cases = [
     id: "agencia",
     sector: "Agencia Marketing",
     company: "Agencia Grow",
-    location: "L'Eixample, Barcelona",
     contact: { name: "Marc Puig", role: "Fundador" },
     imgExt: "jpg",
     headline: "Triplicaron Clientes Sin Contratar a Nadie",
@@ -101,7 +99,7 @@ const cases = [
     investment: "€7,500",
     duration: "6 semanas",
     testimonial:
-      "Triplicamos clientes sin contratar a nadie. Los procesos automáticos hacen el trabajo de 2 personas. El ROI llegó en semanas. Ojalá lo hubiéramos hecho 2 años antes.",
+      "Triplicamos clientes sin contratar a nadie más. Así de simple.",
     ctaLabel: "Automatizar mi agencia",
     ctaHref: "/automatizar-agencias",
   },
@@ -109,7 +107,6 @@ const cases = [
     id: "despacho",
     sector: "Despacho de Abogados",
     company: "Jurídico BCN",
-    location: "Barcelona",
     contact: { name: "Ana Soler", role: "Socia Directora" },
     imgExt: "jpg",
     headline: "Facturación y Expedientes: 30h a 4h",
@@ -135,7 +132,6 @@ const cases = [
     id: "servicios",
     sector: "Servicios Administrativos",
     company: "AdminPlus Barcelona",
-    location: "Barcelona",
     contact: { name: "Pedro Ruiz", role: "Director General" },
     imgExt: "jpg",
     headline: "De 3 Empleados Admin a 1 Part-Time",
@@ -229,7 +225,7 @@ export default function CasosPage() {
             {/* Trust row */}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
               {[
-                "20+ empresas automatizadas",
+                "15+ empresas automatizadas",
                 "€51,840 ahorrados promedio",
                 "95% satisfacción",
                 "ROI desde el mes 1",
@@ -257,7 +253,6 @@ export default function CasosPage() {
                     <span className="text-[#B8860B] text-xs font-bold tracking-widest uppercase">{c.sector}</span>
                     <span className="text-white/20">·</span>
                     <span className="text-white font-[family-name:var(--font-playfair)] font-bold text-lg">{c.company}</span>
-                    <span className="text-white/25 text-xs">{c.location}</span>
                   </div>
                   <div className="flex items-center gap-3 text-xs">
                     <span className="font-mono border border-white/10 px-2 py-1 text-white/30">{c.duration}</span>
@@ -332,12 +327,19 @@ export default function CasosPage() {
                     <div className="flex items-center gap-3">
                       <img
                         src={`/images/cases/${c.id}.${c.imgExt}`}
-                        alt={`${c.contact.name} - ${c.company}`}
+                        alt={c.contact.name ? `${c.contact.name} - ${c.company}` : c.company}
                         className="w-10 h-10 rounded-full object-cover border border-[#B8860B]/40 shrink-0"
                       />
                       <div>
-                        <p className="text-white/70 text-sm font-semibold">{c.contact.name}</p>
+                        {c.contact.name && (
+                          <p className="text-white/70 text-sm font-semibold">{c.contact.name}</p>
+                        )}
                         <p className="text-white/35 text-xs">{c.contact.role} · {c.company}</p>
+                        {"confidential" in c && c.confidential && (
+                          <p className="text-white/20 text-[10px] mt-0.5 leading-tight">
+                            Nombre no publicado por confidencialidad del cliente
+                          </p>
+                        )}
                       </div>
                       <div className="ml-auto flex gap-0.5">
                         {Array.from({ length: 5 }).map((_, j) => (

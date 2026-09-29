@@ -125,11 +125,11 @@ export default function Navbar() {
               rubenamirkhanyan12@gmail.com
             </a>
             <a
-              href="tel:+34613361115"
+              href="tel:+34613361175"
               className="flex items-center gap-[6px] text-[13px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors whitespace-nowrap"
             >
               <Phone size={13} />
-              +34 613 361 115
+              +34 613 361 175
             </a>
           </div>
         </div>
@@ -187,11 +187,11 @@ export default function Navbar() {
               <Mail size={14} /> rubenamirkhanyan12@gmail.com
             </a>
             <a
-              href="tel:+34613361115"
+              href="tel:+34613361175"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 text-[14px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors"
             >
-              <Phone size={14} /> +34 613 361 115
+              <Phone size={14} /> +34 613 361 175
             </a>
           </div>
 

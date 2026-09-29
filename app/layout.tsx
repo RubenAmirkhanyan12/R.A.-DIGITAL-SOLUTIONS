@@ -23,7 +23,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "RASTECH | Automatización de Procesos Barcelona",
   description:
-    "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 20+ empresas automatizadas. Auditoría gratis sin compromiso.",
+    "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 15+ empresas automatizadas. Auditoría gratis sin compromiso.",
   authors: [{ name: "Rubén Amirkhanyan" }],
   openGraph: {
     type: "website",

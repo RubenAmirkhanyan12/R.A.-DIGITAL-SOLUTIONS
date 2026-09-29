@@ -3,39 +3,38 @@ import AnimateOnScroll from "./AnimateOnScroll";
 const testimonials = [
   {
     quote:
-      "Fue revolucionario. Antes pasaba horas en facturas y emails. Ahora el sistema lo hace solo y yo puedo estar en la cocina, con los clientes, haciendo lo que de verdad me importa. El ROI fue en el primer mes.",
+      "Al principio pensé que esto era para empresas grandes, no para un restaurante como el mío. Me equivoqué. La primera semana seguía revisando las facturas a mano 'por si acaso' — costó soltar el control. Ya no. Lleva meses funcionando solo, sin fallar ni una vez. Ahora paso el tiempo en la cocina, no delante del ordenador.",
     name: "Javier García",
     role: "Chef Propietario",
     company: "Restaurante El Sabor",
-    location: "Paseo de Gracia, Barcelona",
     saved: "€2,500/mes",
     hours: "↓87% horas admin",
     stars: 5,
     initial: "JG",
+    confidential: false,
   },
   {
     quote:
-      "Llevábamos años perdiendo dinero en errores manuales de envío. RASTECH automatizó en 4 semanas lo que creíamos imposible. Ahora dormimos tranquilos sabiendo que cada pedido se procesa perfectamente, sin intervención humana.",
-    name: "Sandra Martínez",
+      "Llevábamos años perdiendo pedidos por errores de envío manuales. No fue instantáneo — las dos primeras semanas ajustamos varias reglas hasta que quedó fino. Pero desde entonces, cero errores. Dormimos tranquilos.",
+    name: "",
     role: "Directora de Operaciones",
-    company: "TiendaXYZ Online",
-    location: "Barcelona",
+    company: "E-commerce de Moda",
     saved: "€4,200/mes",
     hours: "↓88% horas gestión",
     stars: 5,
-    initial: "SM",
+    initial: "DO",
+    confidential: true,
   },
   {
-    quote:
-      "Triplicamos clientes sin contratar a nadie. Los reportes automáticos hacen el trabajo de 2 personas. Marc y yo ahora pensamos en estrategia, no en Excel. El payback llegó en 3 semanas. Increíble.",
+    quote: "Triplicamos clientes sin contratar a nadie más. Así de simple.",
     name: "Marc Puig",
     role: "Fundador",
     company: "Agencia Grow",
-    location: "L'Eixample, Barcelona",
     saved: "3× capacidad",
     hours: "↓83% reportes",
     stars: 5,
     initial: "MP",
+    confidential: false,
   },
 ];
 
@@ -60,7 +59,7 @@ export default function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <AnimateOnScroll key={t.name} delay={i * 120} direction="up">
+            <AnimateOnScroll key={t.company} delay={i * 120} direction="up">
               <div className="group bg-[#111111] border border-white/5 hover:border-[#B8860B]/20 p-8 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
                 {/* Background glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8860B]/3 rounded-full blur-3xl" />
@@ -100,11 +99,17 @@ export default function TestimonialsSection() {
                     {t.initial}
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm">{t.name}</p>
+                    {t.name && (
+                      <p className="text-white font-semibold text-sm">{t.name}</p>
+                    )}
                     <p className="text-white/40 text-xs mt-0.5">
                       {t.role} · {t.company}
                     </p>
-                    <p className="text-white/25 text-[10px]">{t.location}</p>
+                    {t.confidential && (
+                      <p className="text-white/20 text-[10px] mt-0.5 leading-tight">
+                        Nombre no publicado por confidencialidad del cliente
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

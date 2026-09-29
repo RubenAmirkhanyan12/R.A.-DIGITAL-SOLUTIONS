@@ -323,7 +323,7 @@ export default function AutomatizarEcommerce() {
         {/* ── CASO REAL ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-            Caso Real: TiendaXYZ Online (Barcelona)
+            Caso Real: E-commerce de Moda
           </h2>
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-8">

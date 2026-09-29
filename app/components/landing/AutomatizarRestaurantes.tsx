@@ -221,7 +221,7 @@ export default function AutomatizarRestaurantes() {
 
                 <div className="inline-flex items-center gap-2 bg-[#1A3A52]/60 border border-[#1A3A52] text-white/70 text-xs px-3 py-1.5 mb-5">
                   <CheckCircle size={11} className="text-[#10B981]" />
-                  20+ Restaurantes Barcelona
+                  15+ Restaurantes Barcelona
                 </div>
 
                 <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-5">
@@ -229,7 +229,7 @@ export default function AutomatizarRestaurantes() {
                 </h1>
 
                 <p className="text-white/65 text-lg leading-relaxed mb-8 max-w-xl">
-                  Especialistas en automatización para restaurantes, bares y catering Barcelona. 20+ implementados. Payback 1 mes.
+                  Especialistas en automatización para restaurantes, bares y catering Barcelona. 15+ implementados. Payback 1 mes.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -323,7 +323,7 @@ export default function AutomatizarRestaurantes() {
         {/* ── CASO REAL ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-            Caso Real: Restaurante El Sabor (Paseo de Gracia, Barcelona)
+            Caso Real: Restaurante El Sabor
           </h2>
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-8">

@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 export const metadata: Metadata = {
   title: "Automatización de Procesos Barcelona | €51k/Año · RASTECH",
   description:
-    "Automatización de procesos en Barcelona: RASTECH. 20+ empresas, €51k/año ahorrados, ROI desde mes 1. Especialista n8n y Make. Auditoría gratis sin compromiso.",
+    "Automatización de procesos en Barcelona: RASTECH. 15+ empresas, €51k/año ahorrados, ROI desde mes 1. Especialista n8n y Make. Auditoría gratis sin compromiso.",
   keywords: [
     "automatización de procesos barcelona",
     "automatizar procesos empresa barcelona",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Automatización de Procesos Barcelona | €51k/Año · RASTECH",
     description:
-      "¿Cuánto ahorra tu empresa automatizando en Barcelona? RASTECH: 20+ empresas, €51k/año ahorrados. Especialista n8n. Auditoría gratis.",
+      "¿Cuánto ahorra tu empresa automatizando en Barcelona? RASTECH: 15+ empresas, €51k/año ahorrados. Especialista n8n. Auditoría gratis.",
     type: "website",
     locale: "es_ES",
     siteName: "RASTECH",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Automatización de Procesos Barcelona | €51k/Año · RASTECH",
     description:
-      "Automatización de procesos Barcelona. 20+ empresas, €51k/año ahorrados. Especialista n8n. Auditoría gratis.",
+      "Automatización de procesos Barcelona. 15+ empresas, €51k/año ahorrados. Especialista n8n. Auditoría gratis.",
   },
 };
 import HeroSection from "./components/HeroSection";
