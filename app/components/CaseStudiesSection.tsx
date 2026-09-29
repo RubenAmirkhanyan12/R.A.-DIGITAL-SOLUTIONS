@@ -134,7 +134,7 @@ export default function CaseStudiesSection() {
             href="/casos"
             className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.3)]"
           >
-            Ver 15+ casos documentados →
+            Ver casos documentados →
           </Link>
           <p className="text-white/20 text-xs mt-4">
             Con nombre, empresa, inversión y ROI real. Despachos, servicios, e-commerce y más.
