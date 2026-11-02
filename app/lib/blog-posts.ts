@@ -1263,7 +1263,7 @@ Como referencia, Professional con 5.000 tareas al mes cuesta 89 $/mes con pago a
 
 ### Precios
 
-Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encima están Core, Pro, Teams y Enterprise. No he podido confirmar en la página oficial el precio de cada plan, así que no lo cito aquí: consúltalo en [make.com/en/pricing](https://www.make.com/en/pricing). La propia página indica que el pago anual sale más barato que el mensual.
+Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encima están Core, Pro, Teams y Enterprise. Los planes de pago (Core, Pro, Teams y Enterprise) dependen de los créditos que contrates y de si pagas al año o al mes. Consulta las tarifas vigentes en [make.com/en/pricing](https://www.make.com/en/pricing). La propia página indica que el pago anual sale más barato que el mensual.
 
 ### Ventajas
 
@@ -1731,7 +1731,7 @@ Conviene tener esto preparado antes de abrir el editor:
 
 Mi recomendación es que no. n8n mueve datos entre aplicaciones, pero la numeración, los impuestos y la conservación de las facturas deben quedar en un programa de facturación. Además, el nodo [Convert to File](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.converttofile/) genera formatos como CSV, HTML o XLSX, pero no PDF, de modo que lo razonable es que el programa cree el documento y n8n se limite a pedirlo y repartirlo.
 
-Hay otro motivo. La Agencia Tributaria indica que los sistemas informáticos de facturación deben estar adaptados [antes del 1 de enero de 2027 para quienes tributan por el Impuesto sobre Sociedades y antes del 1 de julio de 2027 para el resto](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/nota-informativa-ampliacion-plazo-adaptacion-facturacion.html), según el Real Decreto-ley 15/2025 (página de la AEAT actualizada el 13 de octubre de 2026). Pregunta a tu proveedor si su programa está adaptado antes de conectarlo.
+Hay otro motivo. Los plazos de adaptación de los sistemas de facturación han cambiado varias veces, así que conviene consultar la [página de la Agencia Tributaria sobre sistemas informáticos de facturación (Verifactu)](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/nota-informativa-ampliacion-plazo-adaptacion-facturacion.html) antes de decidir. Pregunta también a tu proveedor si su programa está adaptado antes de conectarlo.
 
 La factura electrónica entre empresas va por otro camino: el [Real Decreto 238/2026](https://www.boe.es/buscar/act.php?id=BOE-A-2026-7295) entró en vigor el 20 de abril de 2026, pero su aplicación depende de una orden ministerial posterior. Esto es información general, no asesoramiento: para tu caso concreto, habla con tu asesoría.
 
