@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { X, Download, CheckCircle } from "lucide-react";
+import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "./Consent";
 
 const STORAGE_KEY = "rastech_lm_until";
 const SUPPRESS_DAYS = 30;
@@ -32,6 +33,8 @@ export default function LeadMagnetPopup() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState("");
 
   const open = useCallback(() => {
     if (!isDismissed()) setIsOpen(true);
@@ -68,6 +71,10 @@ export default function LeadMagnetPopup() {
       setError("Introduce un email válido.");
       return;
     }
+    if (!consent) {
+      setConsentError(CONSENT_ERROR);
+      return;
+    }
     setLoading(true);
     setError("");
 
@@ -102,7 +109,7 @@ export default function LeadMagnetPopup() {
         aria-labelledby="lm-title"
         className="fixed inset-0 z-[101] flex items-center justify-center p-4"
       >
-        <div className="relative bg-[#141414] border border-white/10 rounded-2xl w-full max-w-md p-8 shadow-2xl">
+        <div className="relative bg-[#141414] border border-white/10 rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-8 shadow-2xl">
           <button
             onClick={dismiss}
             aria-label="Cerrar popup"
@@ -158,6 +165,15 @@ export default function LeadMagnetPopup() {
                     {error}
                   </p>
                 )}
+                <ConsentCheckbox
+                  id="consent-checklist"
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    setConsentError("");
+                  }}
+                  error={consentError}
+                />
                 <button
                   type="submit"
                   disabled={loading}
@@ -166,6 +182,7 @@ export default function LeadMagnetPopup() {
                   <Download size={14} />
                   {loading ? "Preparando…" : "Descargar PDF Gratis"}
                 </button>
+                <ConsentNotice />
               </form>
 
               <p className="text-white/25 text-xs text-center mt-4">

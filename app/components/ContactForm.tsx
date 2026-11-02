@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "./Consent";
 
 type FormValues = {
   name: string;
@@ -12,6 +13,7 @@ type FormValues = {
   service: string;
   hours: string;
   message: string;
+  consent: boolean;
 };
 
 const services = [
@@ -25,6 +27,7 @@ const services = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -32,9 +35,28 @@ export default function ContactForm() {
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
-    await new Promise((r) => setTimeout(r, 800));
-    console.log("Form submitted:", data);
-    setSubmitted(true);
+    setSendError(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sector: "home",
+          nombre: data.name,
+          email: data.email,
+          empresa: data.company,
+          telefono: data.phone,
+          proceso: data.service,
+          horas: data.hours,
+          mensaje: data.message,
+          consent: data.consent,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitted(true);
+    } catch {
+      setSendError(true);
+    }
   };
 
   if (submitted) {
@@ -164,6 +186,18 @@ export default function ContactForm() {
         />
       </div>
 
+      <ConsentCheckbox
+        id="consent-contacto"
+        error={errors.consent?.message}
+        {...register("consent", { required: CONSENT_ERROR })}
+      />
+
+      {sendError && (
+        <p role="alert" className="text-[#EF4444] text-xs">
+          No se ha podido enviar. Escríbeme a rubenamirkhanyan12@gmail.com o llama al +34 613 361 175.
+        </p>
+      )}
+
       <button
         type="submit"
         disabled={isSubmitting}
@@ -176,6 +210,8 @@ export default function ContactForm() {
         )}
         {isSubmitting ? "Enviando..." : "Agendar Análisis Gratuito"}
       </button>
+
+      <ConsentNotice />
 
       <p className="text-white/20 text-xs text-center">
         Respondo en menos de 24h · Sin spam · Sin compromisos

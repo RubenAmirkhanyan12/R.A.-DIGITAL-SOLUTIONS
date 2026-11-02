@@ -14,8 +14,12 @@ function formatRows(data: Record<string, string>): string {
 export async function POST(req: NextRequest) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const body: Record<string, string> = await req.json();
-    const { sector, nombre, email, ...rest } = body;
+    const { consent, ...fields }: { consent?: unknown } & Record<string, string> = await req.json();
+    if (consent !== true) {
+      return NextResponse.json({ ok: false, error: "consent_required" }, { status: 400 });
+    }
+    const consentAt = new Date().toISOString();
+    const { sector, nombre, email, ...rest } = fields;
 
     const sectorLabels: Record<string, string> = {
       restaurantes: "RESTAURANTE",
@@ -36,17 +40,20 @@ Email:   ${email ?? "—"}
 Datos del formulario:
 ${formatRows(rest) || "  (ninguno)"}
 
+Consentimiento aceptado el ${consentAt}
+
 ────────────────────────────────────
 Responde directamente a: ${email ?? "—"}
 `.trim();
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: FROM,
       to: TO,
       replyTo: email || undefined,
       subject,
       text,
     });
+    if (error) throw new Error(error.message);
 
     // Confirmación al cliente
     if (email && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {

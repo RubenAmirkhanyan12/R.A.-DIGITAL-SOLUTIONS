@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "../Consent";
 
 export interface FormField {
   name: string;
@@ -24,6 +25,9 @@ export default function LandingContactForm({ title, description, fields, buttonT
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState("");
+  const [sendError, setSendError] = useState(false);
 
   const set = (name: string, value: string) => {
     setValues(v => ({ ...v, [name]: value }));
@@ -38,16 +42,21 @@ export default function LandingContactForm({ title, description, fields, buttonT
       if (f.type === "email" && values[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[f.name]))
         errs[f.name] = "Email no válido";
     });
-    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setConsentError(consent ? "" : CONSENT_ERROR);
+    if (Object.keys(errs).length || !consent) { setErrors(errs); return; }
     setLoading(true);
+    setSendError(false);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sector, ...values }),
+        body: JSON.stringify({ sector, ...values, consent }),
       });
-    } catch { /* show success regardless of network error */ }
-    setSubmitted(true);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitted(true);
+    } catch {
+      setSendError(true);
+    }
     setLoading(false);
   };
 
@@ -116,6 +125,19 @@ export default function LandingContactForm({ title, description, fields, buttonT
           </div>
         ))}
 
+        <ConsentCheckbox
+          id={`consent-${sector}`}
+          checked={consent}
+          onChange={e => { setConsent(e.target.checked); setConsentError(""); }}
+          error={consentError}
+        />
+
+        {sendError && (
+          <p role="alert" className="text-red-400 text-xs">
+            No se ha podido enviar. Escríbeme a rubenamirkhanyan12@gmail.com o llama al +34 613 361 175.
+          </p>
+        )}
+
         <button
           type="submit"
           disabled={loading}
@@ -123,6 +145,8 @@ export default function LandingContactForm({ title, description, fields, buttonT
         >
           {loading ? "Enviando…" : <>{buttonText} <ArrowRight size={15} /></>}
         </button>
+
+        <ConsentNotice />
       </form>
 
       <p className="text-white/25 text-xs text-center mt-5">
