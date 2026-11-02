@@ -1688,6 +1688,614 @@ O reserva en el [formulario de contacto](/#contacto).
 
 *¿Buscas la herramienta adecuada para empezar bien? Lee: [n8n vs Make vs Zapier — Cuál Elegir Para Tu Empresa Barcelona](/blog/n8n-vs-make-vs-zapier-barcelona)*`,
   },
+  {
+    title: "Cómo automatizar facturas con n8n paso a paso",
+    seoTitle: "Cómo automatizar facturas con n8n paso a paso | RASTECH",
+    slug: "automatizar-facturas-con-n8n",
+    description:
+      "Cómo automatizar facturas con n8n paso a paso: del pedido o cobro a la factura enviada y registrada, con los errores típicos que conviene evitar.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 6,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "automatizar facturas con n8n",
+      "facturación automática",
+      "n8n facturas",
+      "automatizar facturación pyme",
+    ],
+    internalLinks: [
+      "automatizar-cobros-y-facturas-impagadas",
+      "que-es-n8n-y-cuando-usarlo-en-una-pyme",
+    ],
+    content: `Cada venta deja la misma tarea detrás: copiar los datos del pedido o del cobro, crear la factura, guardarla y enviarla. Con pocas ventas se hace en un rato; cuando crecen, se acumulan a final de mes y aparecen importes mal copiados o facturas que nadie llegó a enviar.
+
+En esta guía explico cómo montar ese recorrido en n8n, desde el evento que lo dispara hasta la factura enviada y registrada. Si todavía no sabes qué herramienta es, empieza por [qué es n8n y cuándo usarlo en una pyme](/blog/que-es-n8n-y-cuando-usarlo-en-una-pyme).
+
+## ¿Qué necesito antes de empezar?
+
+Conviene tener esto preparado antes de abrir el editor:
+
+- **Una instancia de n8n**, en la nube o [autoalojada](https://docs.n8n.io/hosting/).
+- **Un programa de facturación con API.** n8n trae nodo propio para algunos, como [QuickBooks Online](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.quickbooks/). Con los demás se usa el nodo [HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) contra la API que publique tu programa.
+- **El origen de los datos:** tu pasarela de pago, tu tienda online o una hoja de cálculo con las ventas.
+- **Credenciales de cada servicio**, creadas con el mínimo de permisos necesario.
+- **Una hoja de control** en Google Sheets para saber qué se ha facturado ya.
+
+## ¿Puede n8n emitir las facturas por sí solo?
+
+Mi recomendación es que no. n8n mueve datos entre aplicaciones, pero la numeración, los impuestos y la conservación de las facturas deben quedar en un programa de facturación. Además, el nodo [Convert to File](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.converttofile/) genera formatos como CSV, HTML o XLSX, pero no PDF, de modo que lo razonable es que el programa cree el documento y n8n se limite a pedirlo y repartirlo.
+
+Hay otro motivo. La Agencia Tributaria indica que los sistemas informáticos de facturación deben estar adaptados [antes del 1 de enero de 2027 para quienes tributan por el Impuesto sobre Sociedades y antes del 1 de julio de 2027 para el resto](https://sede.agenciatributaria.gob.es/Sede/iva/sistemas-informaticos-facturacion-verifactu/nota-informativa-ampliacion-plazo-adaptacion-facturacion.html), según el Real Decreto-ley 15/2025 (página de la AEAT actualizada el 13 de octubre de 2026). Pregunta a tu proveedor si su programa está adaptado antes de conectarlo.
+
+La factura electrónica entre empresas va por otro camino: el [Real Decreto 238/2026](https://www.boe.es/buscar/act.php?id=BOE-A-2026-7295) entró en vigor el 20 de abril de 2026, pero su aplicación depende de una orden ministerial posterior. Esto es información general, no asesoramiento: para tu caso concreto, habla con tu asesoría.
+
+## ¿Cómo es el flujo paso a paso?
+
+Este es el recorrido que te propongo, nodo a nodo:
+
+1. **Disparador.** Si cobras online, [Stripe Trigger](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.stripetrigger/) arranca el flujo con cada pago; configura el Signature Secret, porque sin él n8n no verifica que el aviso venga de Stripe. Si vendes en Shopify, [Shopify Trigger](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.shopifytrigger/) con el evento de pedido pagado. Si prefieres facturar por lotes, [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) lee cada día las ventas pendientes.
+2. **Ordenar los datos.** Con [Edit Fields](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.set/) dejas cliente, NIF, conceptos e importes en un formato único, venga de donde venga la venta.
+3. **Comprobar duplicados.** El nodo [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) busca el identificador de la venta con Get Row(s) y un nodo [If](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.if/) detiene el flujo si ya existe.
+4. **Validar lo fiscal.** Otro If revisa que no falten NIF ni dirección. Si faltan, esa venta se aparta y alguien recibe un aviso para completarla.
+5. **Crear la factura.** QuickBooks Online o HTTP Request envían los datos al programa, que asigna número e impuestos.
+6. **Recuperar el PDF.** Un segundo HTTP Request descarga el documento generado, si tu programa lo permite por API.
+7. **Enviarla.** [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/) adjunta el archivo con la opción Attachments. Si usas otro correo, tienes [Send Email](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.sendemail/).
+8. **Registrar.** Google Sheets guarda el identificador de la venta, el número de factura y la fecha con Append or Update Row.
+9. **Vigilar fallos.** Crea un flujo aparte con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/), asígnalo como flujo de error en los ajustes del principal y haz que te avise.
+
+Cuando funcione en pruebas, publica el flujo. Los que arrancan con Schedule Trigger no se ejecutan solos hasta que lo haces.
+
+## ¿Qué errores son los más habituales?
+
+- **Facturar dos veces.** Las pasarelas pueden repetir un aviso, y sin el paso 3 esa repetición acaba en una factura duplicada.
+- **Calcular el IVA en el flujo.** Los redondeos pueden no coincidir con los del programa. Deja ese cálculo en un solo sitio.
+- **Fechas descuadradas.** Schedule Trigger usa la zona horaria del flujo o la de la instancia, y en n8n autoalojado [la predeterminada es la de Nueva York](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/). Ponla en Europe/Madrid.
+- **Olvidar las devoluciones.** Una devolución exige una rectificativa, y si el flujo no la contempla, alguien debe saber que le toca hacerla a mano.
+- **Probar con la serie real.** Usa una cuenta de pruebas o una serie aparte para no consumir numeración.
+
+## ¿Cuándo no conviene automatizarlo?
+
+Hay situaciones en las que no compensa montarlo:
+
+- Emites pocas facturas al mes y hacerlo a mano te lleva menos que mantener el flujo.
+- Cada factura se negocia y cambia de conceptos, descuentos o condiciones.
+- Tu programa no tiene API. Se puede rodear con exportaciones, pero el resultado es frágil.
+- Los datos de origen están desordenados. Antes de automatizar, hay que arreglar cómo se recogen.
+
+## ¿Cuánto cuesta montarlo?
+
+El coste tiene tres piezas. La primera es n8n: en la nube pagas según el número de ejecuciones, y [n8n cuenta cada ejecución como una pasada completa del flujo](https://n8n.io/pricing/), sea cual sea su número de pasos; autoalojado no pagas licencia, pero sí el servidor y el tiempo de mantenerlo. La segunda es tu programa de facturación, que puede cobrar aparte el acceso a la API. La tercera es el montaje, si no lo haces tú. Puedes consultar mis [precios de automatización](/precios) y los [planes oficiales de n8n](https://n8n.io/pricing/).
+
+## ¿Cómo quedaría en un negocio concreto?
+
+**Ejemplo ilustrativo.** Una academia cobra las matrículas online con Stripe. Cuando entra un pago, n8n comprueba que esa matrícula no esté facturada, revisa que el alumno tenga NIF y crea la factura en el programa de la academia. Después descarga el PDF, lo envía al alumno y anota el número en una hoja. Si falta el NIF, secretaría recibe un aviso y la factura espera hasta que alguien lo complete.
+
+## ¿Qué hago cuando la factura ya está enviada?
+
+Emitirla es la mitad del trabajo; la otra mitad es cobrarla. El siguiente paso natural es [automatizar los cobros y los avisos de facturas impagadas](/blog/automatizar-cobros-y-facturas-impagadas), que aprovecha la hoja de control de este flujo.
+
+Si tu negocio no es de los habituales, en [automatización de procesos de negocio a medida](/automatizar-otros) tienes ejemplos para despachos, clínicas, gimnasios y academias. Y si quieres ver qué más se puede conectar, repasa los [procesos que se automatizan en empresas de Barcelona](/automatizar).
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
+  {
+    title: "Cómo automatizar los pedidos a proveedores de un restaurante",
+    seoTitle: "Automatizar pedidos a proveedores en restaurantes | RASTECH",
+    slug: "automatizar-pedidos-a-proveedores-restaurante",
+    description:
+      "Cómo automatizar los pedidos a proveedores de un restaurante: stock mínimo, pedido automático y aviso al proveedor, paso a paso con n8n o Make.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 6,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "pedidos a proveedores restaurante",
+      "sistema de pedidos restaurante",
+      "automatizar stock restaurante",
+      "n8n restaurante",
+    ],
+    internalLinks: [
+      "automatizar-pedidos-shopify-woocommerce",
+      "automatizar-facturas-con-n8n",
+    ],
+    content: `Un domingo por la noche, alguien cuenta lo que queda en la cámara, lo apunta en una libreta y manda varios mensajes a distintos proveedores. Si esa persona se olvida de un producto, el martes falta en cocina. Si pide de más por si acaso, parte acaba en la basura.
+
+Esta guía explica cómo pasar de ese recuento a un pedido que se prepara solo cuando el stock baja de un mínimo, y que tú revisas antes de que salga. Lo planteo con n8n, y al final indico los módulos equivalentes en Make.
+
+## ¿Qué debe tener un sistema de pedidos para un restaurante?
+
+Un sistema de pedidos útil no tiene que ser un programa caro. Necesita cuatro cosas: saber cuánto stock hay, saber cuánto debería haber, saber a quién se le pide cada producto y dejar constancia de lo pedido. Con eso, el resto es conectar piezas.
+
+La parte delicada es la primera. Si tu TPV o tu programa de escandallos descuenta ingredientes con cada venta y tiene API, el dato llega solo. Si no, alguien tiene que seguir contando, aunque sea en una hoja desde el móvil. Automatizar no evita ese recuento; evita lo que viene después.
+
+## ¿Qué necesito antes de empezar?
+
+- **Una hoja de stock** en Google Sheets, con una fila por producto: nombre, unidad, stock actual, stock mínimo, cantidad habitual de pedido y proveedor.
+- **Una hoja de proveedores**, con el correo o el teléfono de cada uno, sus días de reparto y su hora límite de pedido.
+- **n8n o Make**, con acceso a Google Sheets y a tu correo.
+- **Un canal de aviso** para ti: correo, Slack o Telegram.
+
+Dedica tiempo a los mínimos antes de tocar nada técnico. Un mínimo mal puesto genera pedidos inútiles con la misma eficacia con la que un buen mínimo los evita.
+
+## ¿Cómo es el flujo paso a paso?
+
+1. **Disparador.** [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) arranca el flujo unas horas antes de la hora límite de tus proveedores. Fija la zona horaria Europe/Madrid en los ajustes del flujo.
+2. **Leer el stock.** El nodo [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) con la operación Get Row(s) trae todas las filas.
+3. **Quedarse con lo que falta.** [Filter](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.filter/) deja pasar solo los productos cuyo stock actual está por debajo del mínimo.
+4. **Agrupar por proveedor.** [Summarize](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.summarize/) o [Aggregate](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.aggregate/) juntan los productos de cada proveedor para que reciba un solo mensaje.
+5. **Unir sus datos.** [Merge](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/) añade el correo y las condiciones de cada proveedor desde la segunda hoja.
+6. **Pedirte el visto bueno.** Te llega el borrador de cada pedido con un enlace para aprobarlo. El nodo [Wait](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/), en modo On Webhook Call, deja el flujo en pausa hasta que pulsas.
+7. **Enviar.** [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/) o [Send Email](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.sendemail/) mandan el pedido. Si un proveedor trabaja por WhatsApp, existe el nodo [WhatsApp Business Cloud](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.whatsapp/), que necesita una cuenta de empresa configurada aparte.
+8. **Dejar constancia.** Google Sheets añade con Append Row la fecha, el proveedor y lo pedido en una hoja de histórico.
+9. **Avisar si falla.** Un flujo con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/) te notifica si algo se rompe. Un pedido que no sale y nadie lo sabe es peor que el papel.
+
+## ¿Se puede hacer con Make?
+
+Sí. El planteamiento es el mismo y cambian los nombres. El escenario se programa con su propio horario, el módulo de [Google Sheets](https://apps.make.com/google-sheets) lee las filas y un [filtro](https://help.make.com/filtering) entre módulos deja pasar solo lo que está bajo mínimos. Para agrupar por proveedor se usa el [Array aggregator](https://help.make.com/flow-control), y un Router separa los proveedores por canal de envío.
+
+Make es más cómodo si nadie de tu equipo tiene perfil técnico. n8n da más margen cuando la lógica se complica, por ejemplo si cada proveedor tiene días de reparto distintos. Tienes la comparación completa en [n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona).
+
+## ¿Qué errores son los más habituales?
+
+- **Enviar sin revisar desde el primer día.** Deja la aprobación manual hasta que te fíes de los mínimos. Quitarla después es una decisión tuya; ponerla tras un pedido absurdo ya llega tarde.
+- **No contar lo que ya está en camino.** Si pediste ayer y el reparto llega mañana, el flujo verá stock bajo y volverá a pedir. Añade a la hoja una columna de pedido pendiente y réstala.
+- **Ignorar días de reparto y festivos.** Un pedido enviado después de la hora límite no sirve de nada. Guarda esos datos por proveedor.
+- **Tratar igual el género fresco y el seco.** Unos mínimos fijos funcionan con el seco. Con el fresco, la previsión de reservas pesa más que el stock.
+- **Depender de un stock que nadie actualiza.** Si la hoja lleva días sin tocarse, el flujo pedirá sobre datos falsos. Haz que te avise cuando la última actualización sea antigua.
+
+## ¿Cuándo no conviene automatizar los pedidos?
+
+- Compras en el mercado cada mañana según lo que encuentras. La decisión es tuya y no se puede convertir en reglas.
+- La carta cambia cada semana y los productos no se repiten.
+- Trabajas con uno o dos proveedores y resuelves el pedido en una llamada.
+- Nadie va a mantener el stock al día. En ese caso, conviene arreglar antes el recuento.
+
+## ¿Cuánto cuesta un sistema así?
+
+Por estructura, el gasto depende de la herramienta. n8n en la nube cobra por ejecución y Make, por [créditos](https://www.make.com/en/pricing), que se consumen con las acciones de cada módulo: un flujo que recorre muchos productos gasta más en Make que uno corto, mientras que en n8n una pasada completa cuenta como [una sola ejecución](https://n8n.io/pricing/). Si autoalojas n8n no pagas licencia, pero sí el servidor y su mantenimiento. Mis [precios de automatización de procesos](/precios) cubren el montaje, por si no quieres hacerlo tú.
+
+## ¿Cómo quedaría en un restaurante?
+
+**Ejemplo ilustrativo.** Un restaurante de menú anota el stock en una hoja desde el móvil al cerrar. A primera hora, el flujo detecta qué productos están bajo mínimos, descuenta lo que ya está pedido y prepara un borrador para cada proveedor. El responsable lo revisa desde el móvil, cambia una cantidad si hay una reserva grande y lo aprueba. El proveedor recibe un solo correo con todo, y el pedido queda registrado.
+
+## ¿Qué más puedo conectar después?
+
+Cuando el pedido funciona, lo siguiente suele ser la factura que llega de vuelta. Puedes adaptar la lógica de [automatizar facturas con n8n](/blog/automatizar-facturas-con-n8n) para registrarlas. Y si además vendes por internet, la guía sobre [pedidos de Shopify y WooCommerce](/blog/automatizar-pedidos-shopify-woocommerce) cubre el lado del cliente.
+
+Tienes más procesos del sector en [automatización para restaurantes en Barcelona](/automatizar-restaurantes), y una visión por sectores en la página de [automatización de procesos en Barcelona](/automatizar).
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
+  {
+    title: "Cómo automatizar los pedidos de Shopify y WooCommerce",
+    seoTitle: "Cómo automatizar pedidos de Shopify y WooCommerce | RASTECH",
+    slug: "automatizar-pedidos-shopify-woocommerce",
+    description:
+      "Cómo automatizar los pedidos de Shopify y WooCommerce: del pedido al aviso de envío, el stock y la factura, con n8n o Make y los fallos que evitar.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 6,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "automatizar pedidos shopify",
+      "automatizar pedidos woocommerce",
+      "sistema de pedidos ecommerce",
+      "n8n shopify",
+    ],
+    internalLinks: [
+      "automatizar-pedidos-a-proveedores-restaurante",
+      "automatizar-facturas-con-n8n",
+    ],
+    content: `Un pedido entra de madrugada. Por la mañana alguien lo copia a la hoja de almacén, avisa a logística, ajusta el stock de otro canal y prepara la factura. Cada copia es una oportunidad de equivocarse, y el error suele aparecer cuando el cliente pregunta dónde está su paquete.
+
+Aquí explico qué partes de ese recorrido merece la pena automatizar en Shopify y WooCommerce, y cómo hacerlo con n8n o Make.
+
+## ¿Qué partes de un sistema de pedidos conviene automatizar primero?
+
+Antes de conectar nada, mira qué hace ya tu tienda. Shopify [envía avisos automáticos de pedidos y envíos](https://help.shopify.com/en/manual/fulfillment/setup/notifications), que puedes personalizar desde el panel. Si montas un flujo que manda otro correo de envío, el cliente recibirá dos.
+
+Lo que suele faltar en un sistema de pedidos no es el aviso al cliente, sino lo que pasa entre aplicaciones:
+
+- Pasar el pedido a tu almacén, tu operador logístico o tu programa de gestión.
+- Mantener el stock alineado si vendes en más de un canal.
+- Crear la factura cuando el pedido se paga.
+- Separar los pedidos que requieren atención: dirección incompleta, importe alto o producto agotado.
+
+Empieza por la tarea que más tiempo consume o la que más errores provoca. Con una sola bien resuelta aprenderás más que montando las cuatro a la vez.
+
+## ¿Qué necesito antes de empezar?
+
+- **Acceso de administrador** a la tienda, para crear credenciales.
+- **En Shopify**, una app propia o unas credenciales con permisos sobre pedidos e inventario. La [documentación de n8n](https://docs.n8n.io/integrations/builtin/credentials/shopify/) detalla el proceso.
+- **En WooCommerce**, claves de la API REST y [webhooks](https://woocommerce.com/document/webhooks/), que se gestionan en WooCommerce > Ajustes > Avanzado > Webhooks.
+- **n8n o Make**, con acceso a tu programa de gestión, tu hoja de almacén o la API de tu operador logístico.
+- **Un entorno de pruebas** o pedidos de prueba. No uses pedidos reales de clientes para probar.
+
+## ¿Cómo es el flujo en n8n paso a paso?
+
+1. **Disparador.** Para Shopify, [Shopify Trigger](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.shopifytrigger/) con el evento de pedido creado o, si solo quieres procesar lo cobrado, el de pedido pagado (orders/paid). Para WooCommerce, [WooCommerce Trigger](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.woocommercetrigger/) con order.created u order.updated.
+2. **Unificar el formato.** Si tienes las dos tiendas, [Edit Fields](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.set/) deja cada pedido con los mismos campos, de forma que el resto del flujo sirva para ambas.
+3. **Evitar repetidos.** [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) busca el número de pedido con Get Row(s) y un nodo [If](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.if/) corta si ya se procesó. Es especialmente útil con order.updated, que se dispara cada vez que el pedido cambia.
+4. **Clasificar.** [Switch](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.switch/) reparte los pedidos por ruta: normal, a revisar a mano o con producto bajo pedido.
+5. **Pasarlo a logística.** [HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) envía los datos a la API de tu operador, o [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/) manda el pedido a almacén si trabajáis por correo.
+6. **Actualizar el stock en el otro canal.** Si vendes también fuera de la tienda, HTTP Request o los nodos [Shopify](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.shopify/) y [WooCommerce](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.woocommerce/) ajustan allí las unidades, según lo que permita cada operación.
+7. **Crear la factura.** Una llamada a tu programa de facturación, con la misma lógica de [automatizar facturas con n8n](/blog/automatizar-facturas-con-n8n).
+8. **Registrar.** Google Sheets guarda número de pedido, estado y fecha con Append or Update Row.
+9. **Avisar de fallos.** Un flujo con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/) te notifica si algo se rompe.
+
+Cuando el flujo funcione en pruebas, publícalo. Hasta entonces, los webhooks de producción no lo disparan.
+
+## ¿Y si prefiero hacerlo con Make?
+
+Make tiene módulos para las dos plataformas. En [Shopify](https://apps.make.com/shopify) cuentas con Watch orders, Search orders, Create a fulfillment y Adjust an inventory level. En [WooCommerce](https://apps.make.com/woocommerce), con Watch Orders, Search for an Order y Update an Order Status. Un [Router](https://help.make.com/flow-control) hace el papel del nodo Switch, y los [filtros](https://help.make.com/filtering) entre módulos, el del If.
+
+Elegiría Make si el flujo es lineal y quieres manejarlo tú. Si necesitas lógica propia o vas a mover mucho volumen, compara antes en [n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona), porque cada una mide el consumo de forma distinta.
+
+## ¿Qué errores son los más habituales?
+
+- **Duplicar correos que la tienda ya envía.** Revisa las notificaciones activas antes de añadir las tuyas.
+- **Disparar con el pedido creado y facturar sin cobrar.** Si aceptas transferencia o contrarreembolso, un pedido creado no es un pedido pagado. Elige bien el evento.
+- **No vigilar los webhooks de WooCommerce.** WooCommerce [desactiva un webhook tras más de cinco fallos de entrega consecutivos](https://woocommerce.com/document/webhooks/). Si tu servidor de n8n cae un rato, los pedidos pueden dejar de llegar sin que nadie se entere. Revisa el estado del webhook y ten una comprobación periódica con [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) que compare pedidos recientes con tu hoja.
+- **Sobrescribir el stock.** Si dos sistemas escriben la cantidad total, el último gana. Trabaja con ajustes (restar unidades) y decide qué sistema manda.
+- **Olvidar devoluciones y cancelaciones.** Un pedido cancelado debe devolver stock y parar la factura. Shopify tiene un evento propio para ello, orders/cancelled.
+
+## ¿Cuándo no conviene automatizarlo?
+
+- Recibes pocos pedidos y los preparas tú. El tiempo de mantener el flujo puede superar al ahorrado.
+- Una app de la tienda ya resuelve tu caso. Compruébalo antes de construir nada.
+- Vendes productos personalizados que requieren hablar con cada cliente.
+- Tu catálogo o tus referencias están desordenados. Si un producto no se llama igual en dos sistemas, el stock no cuadrará.
+
+## ¿Cuánto cuesta automatizar los pedidos?
+
+Aquí el volumen pesa más que en otros procesos, porque el flujo corre con cada pedido. n8n en la nube cobra por ejecución, sin contar los pasos; [Make](https://www.make.com/en/pricing) cobra por créditos y [Zapier](https://zapier.com/pricing) por tareas, de modo que cada acción suma. Con n8n autoalojado no pagas licencia, pero sí el servidor, y aquí conviene que esté bien vigilado. Revisa también si tu plataforma o tu operador cobran por el acceso a su API. Tienes los [planes oficiales de n8n](https://n8n.io/pricing/) y mis [precios de automatización](/precios) para el montaje.
+
+## ¿Cómo quedaría en una tienda online?
+
+**Ejemplo ilustrativo.** Una tienda de cosmética vende en WooCommerce y en una feria mensual. Cuando un pedido pasa a pagado, n8n comprueba que no se haya procesado, lo envía por correo a almacén con la dirección validada y crea la factura. Si la dirección viene incompleta, el pedido queda apartado y la persona de atención al cliente recibe un aviso. Tras cada feria, una hoja con las ventas ajusta el stock de la web.
+
+## ¿Por dónde sigo?
+
+Si también compras a proveedores de forma recurrente, la lógica de stock mínimo de [automatizar pedidos a proveedores](/blog/automatizar-pedidos-a-proveedores-restaurante) te servirá, aunque el ejemplo sea de hostelería.
+
+En la página de [automatización para e-commerce en Barcelona](/automatizar-ecommerce) tienes otros procesos de tienda online, y aquí puedes ver [qué se automatiza en otros sectores](/automatizar).
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
+  {
+    title: "Reportes automáticos para agencias de marketing",
+    seoTitle: "Reportes automáticos para agencias de marketing | RASTECH",
+    slug: "reportes-automaticos-para-agencias-de-marketing",
+    description:
+      "Cómo montar reportes automáticos para los clientes de una agencia de marketing: datos, plantilla y envío programado con n8n o Make.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 5,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "reportes automáticos agencia",
+      "informes clientes agencia marketing",
+      "automatizar reportes",
+      "n8n google analytics",
+    ],
+    internalLinks: [
+      "que-es-n8n-y-cuando-usarlo-en-una-pyme",
+      "automatizar-cobros-y-facturas-impagadas",
+    ],
+    content: `A final de mes, alguien abre Google Analytics, Google Ads y Meta para cada cliente, exporta datos, los pega en una plantilla y escribe un resumen. Es un trabajo mecánico que ocupa a gente que debería estar pensando en campañas, y un número mal copiado acaba delante del cliente.
+
+Esta guía explica cómo separar lo mecánico (recoger datos y montar el informe) de lo que solo puede hacer una persona (interpretarlos), usando n8n o Make.
+
+## ¿Qué parte del reporte se puede automatizar?
+
+Casi todo lo que sea mover datos: conectarse a cada plataforma, traer las métricas del periodo, ordenarlas por cliente, volcarlas en una plantilla y enviar el resultado en una fecha fija.
+
+Lo que no conviene automatizar del todo es la lectura. Un cliente paga por saber por qué ha bajado el coste por lead y qué vas a hacer al respecto. Lo más sensato es que el flujo prepare el informe y deje un hueco para el comentario del responsable de la cuenta antes de enviarlo.
+
+## ¿Qué necesito antes de empezar?
+
+- **Acceso a las cuentas de cada cliente** con un usuario de la agencia, con permisos de lectura.
+- **Una hoja maestra** en Google Sheets: cliente, identificadores de sus cuentas, métricas que le interesan, responsable y correo de destino.
+- **Una plantilla de informe**: una hoja de cálculo, un documento o un panel de Looker Studio conectado a una hoja.
+- **n8n o Make**, con credenciales para Google y Meta.
+
+Decide las métricas antes de construir. Si cada cliente recibe un informe distinto, tendrás un flujo con mil excepciones. Lo más mantenible es una plantilla común con pocas variantes.
+
+## ¿Cómo es el flujo paso a paso?
+
+1. **Disparador.** [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) arranca el primer día laborable del mes, o cada lunes si el reporte es semanal.
+2. **Leer los clientes.** [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) trae la hoja maestra con Get Row(s).
+3. **Recorrerlos uno a uno.** [Loop Over Items](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.splitinbatches/) procesa cada cliente por separado, de modo que un fallo en uno se pueda tratar sin mezclar datos.
+4. **Traer los datos web.** El nodo [Google Analytics](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googleanalytics/) saca el informe del periodo.
+5. **Traer los datos de campañas.** [Google Ads](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googleads/) para las campañas de Google y [Facebook Graph API](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.facebookgraphapi/) para Meta. Si una métrica no está disponible en el nodo, [HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) permite llamar directamente a la API de la plataforma.
+6. **Unirlo todo.** [Merge](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/) junta las fuentes y [Code](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/) calcula lo que no viene hecho, como la variación frente al periodo anterior.
+7. **Rellenar la plantilla.** Google Sheets escribe los datos en la pestaña de ese cliente. Si quieres un archivo adjunto, [Convert to File](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.converttofile/) genera XLSX o HTML.
+8. **Revisión humana.** [Slack](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.slack/) avisa al responsable con la operación Send and Wait for Response. El flujo espera hasta que aprueba, y el comentario queda en la plantilla.
+9. **Enviar.** [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/) manda el informe al cliente desde la cuenta de la agencia.
+10. **Vigilar fallos.** Un flujo con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/) avisa si una conexión ha caducado.
+
+## ¿Se puede montar con Make?
+
+Sí, y para una agencia sin perfil técnico suele ser el camino más directo. El escenario se programa por fechas, un módulo de [Google Sheets](https://apps.make.com/google-sheets) lee la lista de clientes y el [Iterator](https://help.make.com/flow-control) los recorre uno a uno. Después, un [Array aggregator](https://help.make.com/flow-control) reúne las métricas en un solo paquete antes de escribirlas en la plantilla.
+
+Vigila el consumo: [Make cobra por créditos](https://www.make.com/en/pricing), y recorrer muchos clientes con varias fuentes multiplica las acciones. Si no tienes claro qué te encaja, la [comparativa de n8n, Make y Zapier](/blog/n8n-vs-make-vs-zapier-barcelona) lo explica con más detalle.
+
+## ¿Qué errores son los más habituales?
+
+- **Mezclar datos de clientes.** Es el peor fallo posible, porque es un problema de confianza y puede serlo de confidencialidad. Procesa cada cliente aislado y prueba con cuentas internas antes de enviar nada fuera.
+- **Permisos que caducan.** Las conexiones con plataformas publicitarias pueden necesitar reautorización. Si no tienes aviso de errores, lo descubrirás cuando el cliente pregunte por su informe.
+- **Fechas mal calculadas.** Un error típico es lanzar el flujo el día 1 con datos aún incompletos. Las plataformas pueden consolidar cifras con retraso, así que deja un margen y fija la zona horaria Europe/Madrid en los ajustes del flujo.
+- **Comparar métricas que no significan lo mismo.** Cada plataforma atribuye las conversiones a su manera. Si sumas conversiones de Google y Meta sin avisar, puedes contar la misma venta dos veces.
+- **Enviar sin leer.** Un informe automático con una caída brusca que nadie comenta genera más inquietud que uno tardío.
+
+## ¿Cuándo no conviene automatizar los reportes?
+
+- Tienes pocos clientes y cada informe es una pieza a medida que forma parte de lo que vendes.
+- Los clientes piden métricas distintas cada mes.
+- Las cuentas están a nombre de cada cliente y no tienes un acceso estable.
+- Ya usas una herramienta de reporting que cubre lo que necesitas. Si funciona, añadir otra capa no aporta.
+
+## ¿Cuánto cuesta montar los reportes automáticos?
+
+La estructura depende de cómo se mida el consumo. n8n en la nube factura [por ejecución completa](https://n8n.io/pricing/), de modo que un flujo mensual largo cuenta poco; Make cobra por las acciones de cada módulo, y ahí el número de clientes y de fuentes sí pesa. Si autoalojas n8n, no pagas licencia, pero sí servidor y mantenimiento. Las APIs de Google y Meta requieren alta y permisos, y conviene revisar sus condiciones. Para el montaje puedes consultar mis [precios de automatización](/precios).
+
+## ¿Cómo quedaría en una agencia?
+
+**Ejemplo ilustrativo.** Una agencia gestiona campañas para varias pymes. El primer día laborable del mes, n8n recorre la lista de clientes, trae los datos de Analytics, Google Ads y Meta y rellena la pestaña de cada uno. Cada responsable de cuenta recibe un mensaje en Slack, revisa los números, escribe dos líneas de interpretación y aprueba. El cliente recibe el informe con ese comentario, y la agencia deja de copiar y pegar.
+
+## ¿Y si no conozco n8n?
+
+Si esta guía te ha sonado técnica, empieza por [qué es n8n y cuándo usarlo en una pyme](/blog/que-es-n8n-y-cuando-usarlo-en-una-pyme). Y si tu agencia persigue facturas tanto como métricas, te interesará [automatizar los cobros y las facturas impagadas](/blog/automatizar-cobros-y-facturas-impagadas).
+
+En la página de [automatización para agencias en Barcelona](/automatizar-agencias) tienes más procesos del sector, y aquí un [resumen de qué se puede automatizar por sectores](/automatizar).
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
+  {
+    title: "Cómo automatizar los cobros y las facturas impagadas",
+    seoTitle: "Automatizar cobros y facturas impagadas en pymes | RASTECH",
+    slug: "automatizar-cobros-y-facturas-impagadas",
+    description:
+      "Cómo automatizar los cobros y los recordatorios de facturas impagadas en una pyme: avisos escalonados, registro y cuándo intervenir a mano.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 6,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "automatizar cobros",
+      "facturas impagadas",
+      "recordatorios de pago automáticos",
+      "reclamar facturas pyme",
+    ],
+    internalLinks: [
+      "automatizar-facturas-con-n8n",
+      "reportes-automaticos-para-agencias-de-marketing",
+    ],
+    content: `Las facturas vencidas rara vez se quedan sin cobrar por mala fe: muchas veces nadie ha mirado la lista. Reclamar da pereza, se deja para la semana que viene y el cliente interpreta el silencio como que no corre prisa. Mientras tanto, la caja lo nota.
+
+Esta guía explica cómo montar una secuencia de avisos escalonados que se detiene sola cuando el cliente paga y te pasa el caso cuando ya hace falta hablar con él.
+
+## ¿Qué se puede automatizar en los cobros?
+
+Tres cosas con claridad: detectar qué facturas han vencido, enviar recordatorios en fechas fijas y dejar registro de cada aviso. También puedes automatizar los recordatorios previos al vencimiento, que son los que menos incomodan.
+
+Lo que debería seguir en manos de una persona es la negociación: un aplazamiento, una factura discutida o un cliente con dificultades. Un mensaje automático en mitad de una conversación delicada puede estropear una relación que costó años construir.
+
+## ¿Qué necesito antes de empezar?
+
+- **Una lista fiable de facturas**, con número, cliente, correo, importe, fecha de vencimiento y estado. Puede salir de tu programa de facturación por API o de una hoja.
+- **Una forma de saber qué está pagado.** Es la pieza crítica. Puede venir del programa, de [Stripe](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.stripe/) o de una marca manual después de conciliar el banco.
+- **Plantillas de mensaje** para cada escalón, revisadas por ti.
+- **n8n o Make**, con acceso al correo de administración.
+
+Si ya tienes el flujo de [automatizar facturas con n8n](/blog/automatizar-facturas-con-n8n), su hoja de control es un buen punto de partida.
+
+## ¿Qué dice la ley sobre los plazos de pago?
+
+Para fijar los escalones conviene conocer el marco. Según la [Ley 3/2004 de lucha contra la morosidad](https://www.boe.es/buscar/act.php?id=BOE-A-2004-21830) (texto consolidado, última actualización publicada el 1 de octubre de 2014), entre empresas el plazo es de treinta días naturales si no se ha pactado otro, y el acuerdo entre las partes no puede ampliarlo más allá de sesenta. La misma ley prevé una cantidad fija de 40 euros por costes de cobro cuando hay mora.
+
+Esto es información general. Antes de citar la ley en un aviso o de reclamar intereses, consúltalo con tu asesoría.
+
+## ¿Cómo es el flujo paso a paso?
+
+1. **Disparador.** [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) arranca cada mañana laborable, con zona horaria Europe/Madrid.
+2. **Traer las facturas abiertas.** [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) con Get Row(s), o [HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) contra la API de tu programa.
+3. **Descartar lo pagado.** [Filter](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.filter/) deja solo las facturas sin cobrar y excluye las marcadas como "en gestión manual".
+4. **Calcular el retraso.** [Edit Fields](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.set/) o [Code](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/) obtienen los días que faltan o que han pasado desde el vencimiento.
+5. **Elegir el escalón.** [Switch](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.switch/) envía cada factura a su rama: aviso previo, primer recordatorio, segundo recordatorio o intervención manual. Los días exactos los decides tú.
+6. **Comprobar el último aviso.** Un nodo [If](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.if/) mira en la hoja si ya se envió ese escalón, para no repetirlo.
+7. **Enviar.** [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/) manda la plantilla con los datos de la factura.
+8. **Registrar.** Google Sheets actualiza fecha y escalón con Append or Update Row. Ese historial te servirá si el caso se complica.
+9. **Pasar a mano.** En el último escalón no sale ningún correo al cliente: [Slack](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.slack/) o un correo interno avisan a la persona responsable para que llame.
+10. **Vigilar fallos.** Un flujo con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/) te avisa si el proceso diario no se ha completado.
+
+Este diseño, que revisa el estado cada día, resulta más seguro que un flujo largo con pausas. Si usaras el nodo [Wait](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/) para esperar semanas, el estado de la factura podría haber cambiado sin que el flujo lo supiera.
+
+## ¿Cómo es con Make?
+
+La lógica se traslada casi igual. El escenario se programa a diario, un módulo lee las facturas y un [Router](https://help.make.com/flow-control) reparte cada una a su escalón, con un [filtro](https://help.make.com/filtering) en cada ruta. Elegir entre las dos depende más de tu equipo que del proceso, como explico en la [comparativa de herramientas](/blog/n8n-vs-make-vs-zapier-barcelona).
+
+## ¿Cómo deben ser los mensajes?
+
+- **Primer aviso, cordial.** Da por hecho un despiste, indica número, importe y fecha, y facilita el pago con un enlace o tu IBAN.
+- **Segundo aviso, directo.** Pregunta si hay algún problema con la factura y ofrece un contacto.
+- **Último escalón, personal.** Lo hace una persona por teléfono.
+
+Escribe desde una dirección a la que se pueda responder, y haz que alguien lea esas respuestas. Es frecuente que un cliente conteste que ya ha pagado o que la factura tiene un error.
+
+## ¿Qué errores son los más habituales?
+
+- **Reclamar lo que ya está pagado.** Es el fallo que más daña la imagen. Si el estado de pago llega tarde, retrasa los avisos o concilia antes de enviar.
+- **Seguir avisando durante una negociación.** Añade un estado "en gestión manual" que saque la factura de la secuencia.
+- **Disparar en lote.** Si un día se acumulan muchas facturas, parte de los envíos pueden fallar por límites del correo. Reparte la tanda.
+- **Dar datos de más.** El aviso va a la persona de contacto de la factura. Comprueba que sigue siendo la correcta.
+- **Tratar igual a todos los clientes.** Un cliente grande con pagos pactados no debería recibir el mismo aviso que una factura puntual.
+
+## ¿Cuándo no conviene automatizar los cobros?
+
+- Tienes pocos clientes y una relación muy personal con ellos. Una llamada funciona mejor.
+- No tienes una forma fiable de saber qué se ha pagado.
+- Tu programa de facturación ya incluye recordatorios. Actívalos antes de construir nada.
+- Tus clientes domicilian el pago o pagan con tarjeta al comprar, y las facturas vencidas son una rareza.
+
+## ¿Cuánto cuesta esta automatización?
+
+Un flujo diario como este consume poco. En n8n en la nube, cada pasada cuenta como [una ejecución](https://n8n.io/pricing/) aunque tenga muchos pasos; en [Make](https://www.make.com/en/pricing), el consumo depende de las acciones que hagan sus módulos. Si autoalojas n8n, no hay licencia, pero sí servidor y mantenimiento. Al montaje se suma el tiempo de preparar plantillas y limpiar la lista de facturas. Tienes mis [precios de automatización de procesos](/precios) por si prefieres delegarlo.
+
+## ¿Cómo quedaría en una pyme?
+
+**Ejemplo ilustrativo.** Una empresa de servicios factura a varias decenas de clientes al mes. Cada mañana, n8n revisa las facturas abiertas: unos días antes del vencimiento envía un recordatorio amable; poco después, otro con enlace de pago; más adelante, uno preguntando si hay algún problema. Si sigue sin cobrarse, administración recibe un aviso con el historial completo y llama. Cuando alguien marca una factura como pagada, la secuencia se detiene.
+
+## ¿Qué puedo automatizar después?
+
+Si aún emites a mano, empieza antes por [automatizar las facturas](/blog/automatizar-facturas-con-n8n). Y si tienes una agencia, el mismo patrón de datos y envío programado sirve para los [reportes automáticos a clientes](/blog/reportes-automaticos-para-agencias-de-marketing).
+
+En [automatización de procesos de negocio a medida](/automatizar-otros) verás ejemplos por tipo de negocio, y aquí tienes [los servicios para empresas de Barcelona](/automatizar).
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
+  {
+    title: "Qué es n8n y cuándo usarlo en una pyme",
+    seoTitle: "Qué es n8n y cuándo usarlo en una pyme | RASTECH",
+    slug: "que-es-n8n-y-cuando-usarlo-en-una-pyme",
+    description:
+      "Qué es n8n, cómo funciona, qué opciones de uso tiene (autoalojado o en la nube) y cuándo conviene a una pyme frente a Make o Zapier.",
+    author: {
+      name: "Rubén Amirkhanyan",
+      role: "",
+      bio: "",
+    },
+    publishDate: "2026-11-02",
+    readTime: 6,
+    category: "Guías",
+    featured: false,
+    keywords: [
+      "qué es n8n",
+      "n8n autoalojado",
+      "n8n para pymes",
+      "n8n cloud",
+    ],
+    internalLinks: [
+      "n8n-vs-make-vs-zapier-barcelona",
+      "reportes-automaticos-para-agencias-de-marketing",
+    ],
+    content: `Tienes una aplicación para las ventas, otra para las facturas y una hoja de cálculo que une las dos a base de copiar y pegar. n8n sirve para conectarlas, pero su nombre aparece junto a palabras como "autoalojado" o "fair-code" que no ayudan a saber si te conviene.
+
+Aquí explico qué es, cómo funciona y en qué casos tiene sentido para una pyme.
+
+## ¿Qué es n8n exactamente?
+
+n8n es una herramienta de automatización de flujos de trabajo. En un editor visual colocas bloques, llamados nodos, y los conectas: cuando pasa algo en una aplicación, n8n lee datos, toma decisiones y actúa en otras. Trabaja en el mismo terreno que Make y Zapier, con una diferencia importante: puedes instalarlo en tu propio servidor.
+
+Se pronuncia "n-eight-n". No hace falta programar para los flujos sencillos, aunque tener cierta base técnica ayuda bastante cuando se complican.
+
+## ¿Cómo funciona un flujo de n8n?
+
+Un flujo, o workflow, tiene tres tipos de pieza:
+
+- **Disparadores.** Deciden cuándo arranca. Puede ser una hora fija con [Schedule Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/), una llamada externa con [Webhook](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/) o un evento de una aplicación, como un correo nuevo con [Gmail Trigger](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.gmailtrigger/).
+- **Nodos de aplicación.** Leen o escriben en un servicio concreto, como [Google Sheets](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/) o [Gmail](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail/). Si un servicio no tiene nodo, [HTTP Request](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/) llama a su API.
+- **Nodos de lógica.** Deciden qué ocurre con los datos: [If](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.if/) separa en dos caminos, [Switch](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.switch/) en varios y [Code](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/) permite escribir código cuando lo visual se queda corto.
+
+Cada vez que el flujo corre se produce una ejecución, que queda registrada para que puedas revisar qué pasó en cada nodo. Si algo falla, un flujo aparte con [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/) puede avisarte.
+
+## ¿Cómo sería un primer flujo sencillo?
+
+Para hacerte una idea, un recordatorio semanal de tareas pendientes se monta así:
+
+1. **Schedule Trigger** arranca cada lunes a primera hora.
+2. **Google Sheets** lee las filas de una hoja de tareas con Get Row(s).
+3. **[Filter](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.filter/)** deja solo las que siguen abiertas.
+4. **[Aggregate](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.aggregate/)** las reúne en un único elemento.
+5. **Gmail** envía un resumen a la persona responsable.
+
+Son cinco nodos y ningún código. Pruébalo con el botón de ejecución manual y, cuando esté bien, publica el flujo: los que usan Schedule Trigger [no arrancan solos hasta que están publicados](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/).
+
+## ¿Qué significa autoalojado o en la nube?
+
+Tienes dos formas de usarlo:
+
+- **n8n Cloud.** n8n se encarga del servidor y de las actualizaciones. Solo creas la cuenta y empiezas. Es de pago y [no tiene plan gratuito permanente](https://n8n.io/pricing/), aunque ofrece un periodo de prueba.
+- **Autoalojado.** Lo instalas tú en un servidor propio o alquilado. La [documentación oficial](https://docs.n8n.io/hosting/) explica opciones como Docker Compose. La edición Community no paga licencia, pero tú respondes de las copias de seguridad, las actualizaciones y la seguridad.
+
+La decisión no va solo de dinero. Si nadie en tu empresa sabe mantener un servidor, autoalojar traslada el coste de la factura mensual al riesgo de que algo caiga y no sepas arreglarlo.
+
+## ¿n8n es open source?
+
+No exactamente, y conviene decirlo bien. n8n se distribuye con licencia [fair-code](https://docs.n8n.io/n8n-community-license/community-license): la [Sustainable Use License](https://github.com/n8n-io/n8n/blob/master/LICENSE.md). El código se puede ver y la edición Community es gratuita, pero la licencia limita el uso a fines internos de negocio, personales o no comerciales.
+
+Para una pyme que automatiza sus propios procesos, eso encaja. Según las [preguntas frecuentes de n8n](https://docs.n8n.io/n8n-community-license/community-license/license-faq), lo que no permite es, por ejemplo, ofrecer n8n como servicio para que tus clientes construyan sus propios flujos. Si tu idea va por ahí, léelas antes o escríbeles.
+
+## ¿Cuándo conviene n8n a una pyme?
+
+- **Quieres controlar dónde están tus datos.** Autoalojarlo te deja decidir en qué servidor viven. El cumplimiento de la protección de datos sigue dependiendo de cómo lo configures.
+- **Tus flujos tienen muchos pasos.** n8n en la nube [factura por ejecución completa, no por paso](https://n8n.io/pricing/), lo que favorece a los flujos largos.
+- **Necesitas lógica propia.** Cuando hay condiciones, cálculos o APIs poco habituales, el nodo Code y HTTP Request dan mucho margen.
+- **Tienes a alguien técnico cerca**, en el equipo o de forma externa, para mantenerlo.
+
+## ¿Cuándo es mejor Make o Zapier?
+
+- **Nadie técnico en la empresa.** Make y Zapier te ahorran el mantenimiento y sus editores resultan más fáciles para empezar.
+- **Tu aplicación no está en n8n.** Zapier anuncia [más de 9.000 apps conectadas](https://zapier.com/pricing). Si la tuya solo está allí, puede decidir por ti.
+- **Automatizaciones cortas y sencillas.** Con dos pasos y poco volumen, el plan gratuito de otra herramienta puede bastar.
+
+Lo desarrollo con planes y ejemplos en [n8n vs Make vs Zapier: cuál elegir](/blog/n8n-vs-make-vs-zapier-barcelona).
+
+## ¿Qué errores cometen quienes empiezan?
+
+- **Autoalojar por ahorrar sin plan de mantenimiento.** Un servidor sin copias de seguridad es un riesgo aunque salga barato.
+- **Dejar la zona horaria por defecto.** En instalaciones autoalojadas la predeterminada es [la de Nueva York](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/), y los flujos programados correrán a horas extrañas.
+- **No configurar avisos de error.** Un flujo que falla en silencio puede pasar semanas sin que nadie lo note.
+- **Dar permisos de más.** Crea credenciales con el acceso justo para cada flujo.
+- **Empezar por el proceso más difícil.** Elige uno pequeño, repetitivo y con un resultado fácil de comprobar.
+
+## ¿Cuándo no conviene usar n8n?
+
+- El proceso cambia cada semana o depende del criterio de alguien.
+- Haces esa tarea muy de vez en cuando y no compensa mantener nada.
+- Tu programa de gestión ya trae esa automatización.
+- No hay nadie que pueda revisar los flujos cuando una aplicación cambie su API.
+
+## ¿Cuánto cuesta usar n8n?
+
+Depende de la opción. En la nube pagas una suscripción según las ejecuciones mensuales, y cada ejecución es una pasada completa del flujo. Autoalojado no hay licencia en la edición Community, y el coste pasa a ser el servidor y las horas de mantenimiento. Los planes están en la [página oficial de precios](https://n8n.io/pricing/). Si quieres que alguien lo monte por ti, tienes mis [precios de automatización de procesos](/precios).
+
+## ¿Cómo lo usaría una pyme?
+
+**Ejemplo ilustrativo.** Un despacho de abogados recibe consultas por un formulario web. Con Webhook, cada consulta llega a n8n, que la guarda en una hoja, la clasifica por materia con un Switch y avisa a la persona indicada por correo. Si no se ha respondido a final de día, un segundo flujo programado manda un recordatorio. Como trata datos de clientes, el despacho decide autoalojarlo en un servidor que controla.
+
+## ¿Por dónde sigo?
+
+Dos guías te servirán para ver n8n aplicado a algo concreto: [cómo automatizar facturas paso a paso](/blog/automatizar-facturas-con-n8n) y [cómo montar reportes automáticos](/blog/reportes-automaticos-para-agencias-de-marketing). Si prefieres empezar por tu sector, en la página de [automatización de procesos en Barcelona](/automatizar) los tienes ordenados.
+
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).`,
+  },
 ];
 
 export function getAllPublishedPosts(): BlogPost[] {
