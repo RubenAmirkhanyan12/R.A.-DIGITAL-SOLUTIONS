@@ -230,8 +230,8 @@ function ContactSidebar() {
           Explorar
         </p>
         {[
-          { label: "Ver casos de éxito", href: "/#casos" },
-          { label: "Ver precios", href: "/#precios" },
+          { label: "Ver casos de éxito", href: "/casos" },
+          { label: "Ver precios", href: "/precios" },
           { label: "Blog de automatización", href: "/blog" },
         ].map(({ label, href }) => (
           <a
@@ -646,7 +646,7 @@ export default function SobreNosotros() {
                       Agendar auditoría gratuita
                     </a>
                     <Link
-                      href="/#casos"
+                      href="/casos"
                       className="inline-flex items-center gap-2 border border-white/20 text-white/70 hover:border-[#B8860B]/50 hover:text-[#B8860B] font-semibold text-[15px] px-7 py-4 rounded-[6px] transition-all"
                     >
                       Ver casos de éxito
