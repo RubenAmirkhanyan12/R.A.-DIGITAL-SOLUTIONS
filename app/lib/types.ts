@@ -1,5 +1,6 @@
 export interface BlogPost {
   title: string;
+  seoTitle?: string; // <title>; si falta, se usa title (que es el H1)
   slug: string;
   description: string;
   content: string;
@@ -15,4 +16,5 @@ export interface BlogPost {
   internalLinks: string[];
   category: string;
   featured?: boolean;
+  continueReading?: { href: string; label: string }[];
 }

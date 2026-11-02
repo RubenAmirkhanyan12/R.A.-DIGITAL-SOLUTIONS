@@ -102,7 +102,9 @@ export default function BlogPage() {
                         </div>
                         <div>
                           <p className="text-white/70 text-sm font-medium">{post.author.name}</p>
-                          <p className="text-white/30 text-xs">{post.author.role}</p>
+                          {post.author.role && (
+                            <p className="text-white/30 text-xs">{post.author.role}</p>
+                          )}
                         </div>
                       </div>
                     </div>

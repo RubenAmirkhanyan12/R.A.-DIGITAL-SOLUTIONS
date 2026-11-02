@@ -8,9 +8,8 @@ import {
   getRelatedPosts,
   formatDate,
 } from "../../lib/blog-posts";
+import { pageMetadata, SITE_URL } from "../../lib/seo";
 import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, ExternalLink, Mail } from "lucide-react";
-
-const BASE_URL = "https://rastech.es";
 
 /* ── Heading slug helper ─────────────────────────────── */
 function headingSlug(rawText: string): string {
@@ -83,31 +82,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post no encontrado" };
 
-  const url = `${BASE_URL}/blog/${post.slug}`;
-
-  return {
-    title: `${post.title} | RASTECH Blog`,
+  return pageMetadata({
+    title: post.seoTitle ?? post.title,
     description: post.description,
-    keywords: post.keywords,
-    authors: [{ name: post.author.name }],
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      url,
-      type: "article",
-      locale: "es_ES",
-      siteName: "RASTECH",
-      publishedTime: post.publishDate,
-      authors: [post.author.name],
-      tags: post.keywords,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-    },
-    alternates: { canonical: url },
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+    publishedTime: post.publishDate,
+    modifiedTime: post.updatedDate ?? post.publishDate,
+    authors: [post.author.name],
+    tags: post.keywords,
+  });
 }
 
 /* ── Page component ───────────────────────────────────── */
@@ -119,7 +103,7 @@ export default async function BlogPostPage({ params }: Props) {
   const htmlContent = renderMarkdown(post.content);
   const toc = extractTOC(post.content);
   const relatedPosts = getRelatedPosts(slug, post.internalLinks);
-  const postUrl = `${BASE_URL}/blog/${post.slug}`;
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
   const shareEmail = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(`Te puede interesar este artículo: ${postUrl}`)}`;
   const shareLinkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
 
@@ -137,13 +121,13 @@ export default async function BlogPostPage({ params }: Props) {
         author: {
           "@type": "Person",
           name: post.author.name,
-          description: post.author.bio,
-          url: BASE_URL,
+          ...(post.author.bio && { description: post.author.bio }),
+          url: `${SITE_URL}/sobre-nosotros`,
         },
         publisher: {
           "@type": "Organization",
           name: "RASTECH",
-          url: BASE_URL,
+          url: SITE_URL,
         },
         url: postUrl,
         inLanguage: "es-ES",
@@ -152,12 +136,12 @@ export default async function BlogPostPage({ params }: Props) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Inicio", item: BASE_URL },
+          { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: `${BASE_URL}/blog`,
+            item: `${SITE_URL}/blog`,
           },
           {
             "@type": "ListItem",
@@ -234,8 +218,10 @@ export default async function BlogPostPage({ params }: Props) {
                 RA
               </div>
               <div>
-                <p className="text-white font-semibold text-sm">{post.author.name}</p>
-                <p className="text-white/40 text-xs">{post.author.role}</p>
+                <Link href="/sobre-nosotros" className="text-white font-semibold text-sm hover:text-[#B8860B] transition-colors">
+                  {post.author.name}
+                </Link>
+                {post.author.role && <p className="text-white/40 text-xs">{post.author.role}</p>}
               </div>
             </div>
           </div>
@@ -250,6 +236,24 @@ export default async function BlogPostPage({ params }: Props) {
                 className="blog-content"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
+
+              {/* ── Sigue leyendo ── */}
+              {post.continueReading && (
+                <div className="mt-14">
+                  <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-5">
+                    Sigue leyendo
+                  </h2>
+                  <ul className="space-y-3">
+                    {post.continueReading.map(({ href, label }) => (
+                      <li key={href}>
+                        <Link href={href} className="text-[#B8860B] hover:underline text-base">
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* ── Share buttons ── */}
               <div className="mt-14 pt-8 border-t border-white/8">
@@ -280,9 +284,9 @@ export default async function BlogPostPage({ params }: Props) {
               {/* ── Related posts ── */}
               {relatedPosts.length > 0 && (
                 <div className="mt-14">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-6">
+                  <h2 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-6">
                     Artículos relacionados
-                  </h3>
+                  </h2>
                   <div className="space-y-4">
                     {relatedPosts.map((rp) => (
                       <Link
@@ -316,9 +320,9 @@ export default async function BlogPostPage({ params }: Props) {
                 <p className="text-[#B8860B] text-xs font-bold tracking-widest uppercase mb-3">
                   ¿Listo para implementarlo?
                 </p>
-                <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-3">
+                <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-3">
                   Análisis gratuito de 30 minutos
-                </h3>
+                </h2>
                 <p className="text-white/55 text-base leading-relaxed mb-6">
                   Calculamos exactamente cuántas horas y cuánto dinero puedes ahorrar
                   en tu empresa específica. Sin compromiso.
@@ -392,11 +396,15 @@ export default async function BlogPostPage({ params }: Props) {
                       RA
                     </div>
                     <div>
-                      <p className="text-white text-sm font-semibold">{post.author.name}</p>
-                      <p className="text-white/40 text-xs">{post.author.role}</p>
+                      <Link href="/sobre-nosotros" className="text-white text-sm font-semibold hover:text-[#B8860B] transition-colors">
+                        {post.author.name}
+                      </Link>
+                      {post.author.role && <p className="text-white/40 text-xs">{post.author.role}</p>}
                     </div>
                   </div>
-                  <p className="text-white/40 text-xs leading-relaxed">{post.author.bio}</p>
+                  {post.author.bio && (
+                    <p className="text-white/40 text-xs leading-relaxed">{post.author.bio}</p>
+                  )}
                 </div>
 
                 {/* Keywords */}

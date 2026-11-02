@@ -2,16 +2,17 @@ import type { BlogPost } from "./types";
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "Automatización Procesos Barcelona - Guía Completa 2025",
+    title: "Automatización de procesos: guía para pymes (2026)",
+    seoTitle: "Automatización de procesos: guía para pymes (2026) | RASTECH",
     slug: "automatizacion-procesos-barcelona",
     description:
-      "Descubre cómo empresas de Barcelona ahorran 40h/semana y €157,870/año automatizando facturación, emails, reportes y cobros. Guía con casos reales, herramientas y ROI calculado.",
+      "Qué es la automatización de procesos, qué procesos conviene automatizar primero en una pyme y con qué herramientas empezar.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2026-01-15",
+    publishDate: "2026-06-18",
     readTime: 12,
     category: "Automatización",
     featured: true,
@@ -23,6 +24,10 @@ export const blogPosts: BlogPost[] = [
       "ROI automatización",
       "facturación automática",
       "productividad empresa",
+    ],
+    continueReading: [
+      { href: "/blog/que-es-n8n-y-cuando-usarlo-en-una-pyme", label: "Qué es n8n y cuándo tiene sentido usarlo en una pyme" },
+      { href: "/automatizar", label: "Qué automatizar en tu empresa de Barcelona, según tu sector" },
     ],
     internalLinks: [
       "5-procesos-manuales-destructivos-barcelona",
@@ -360,16 +365,17 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
 **¿Tu competencia ya está automatizando. ¿Cuánto tiempo esperas?**`,
   },
   {
-    title: "5 Procesos Manuales Que Te Destrozan La Productividad Barcelona — Cómo Automatizarlos",
+    title: "5 procesos de tu pyme que conviene automatizar",
+    seoTitle: "5 procesos de tu pyme que conviene automatizar | RASTECH",
     slug: "5-procesos-manuales-destructivos-barcelona",
     description:
-      "Los 5 procesos manuales que más horas comen. Facturación, emails, reportes, seguimiento, cobros. Cómo automatizarlos en Barcelona. Ejemplos reales, soluciones prácticas.",
+      "Cinco procesos manuales que suelen consumir horas cada semana en una pyme y cómo automatizarlos con n8n o Make.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2025-06-25",
+    publishDate: "2026-06-18",
     readTime: 10,
     category: "Automatización",
     featured: true,
@@ -381,6 +387,10 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
       "facturación manual coste",
       "automatizar seguimiento clientes",
       "productividad barcelona",
+    ],
+    continueReading: [
+      { href: "/blog/automatizar-cobros-y-facturas-impagadas", label: "Cómo automatizar los cobros y los avisos de facturas impagadas" },
+      { href: "/automatizar", label: "Por dónde empezar a automatizar según tu sector en Barcelona" },
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
@@ -637,16 +647,16 @@ O reserva directamente en el [formulario de contacto](/#contacto).
 *¿Quieres saber cuánto cuesta implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
   },
   {
-    title: "Cuánto Cuesta Automatizar Procesos en Barcelona — Guía de Precios Real",
+    title: "Cuánto cuesta automatizar procesos en Barcelona (2026)",
     slug: "cuanto-cuesta-automatizar-barcelona",
     description:
-      "¿Cuánto cuesta automatizar procesos en Barcelona? Desde €700 (STARTER) hasta €1.650 (ENTERPRISE). Comparativa n8n vs Make, factores de precio y cálculo de ROI real. Auditoría gratis.",
+      "De qué depende el precio de automatizar procesos en una pyme de Barcelona, qué suele incluir y cómo estimar el ahorro antes de decidir.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2025-06-25",
+    publishDate: "2026-06-26",
     updatedDate: "2026-09-25",
     readTime: 8,
     category: "Precios",
@@ -660,6 +670,11 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "ROI automatización pyme",
       "automatización barata barcelona",
       "n8n Make barcelona precio",
+    ],
+    continueReading: [
+      { href: "/precios", label: "Precios de automatización de procesos" },
+      { href: "/blog/automatizar-facturas-con-n8n", label: "Cómo automatizar facturas con n8n, paso a paso" },
+      { href: "/automatizar", label: "Servicios de automatización para empresas de Barcelona, por sector" },
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
@@ -880,16 +895,17 @@ O reserva directamente en el [formulario de contacto](/#contacto).
 *¿Te interesa saber qué procesos conviene automatizar primero? Lee: [5 Procesos Manuales Que Te Destrozan La Productividad](/blog/5-procesos-manuales-destructivos-barcelona)*`,
   },
   {
-    title: "Automatización Facturación: De 40h/mes A 4h/mes — Caso Real Barcelona",
+    title: "Cómo automatizar la facturación de una asesoría",
+    seoTitle: "Cómo automatizar la facturación de una asesoría | RASTECH",
     slug: "automatizacion-facturacion-40h-4h",
     description:
-      "Asesoría fiscal Barcelona automatizó facturación de 100+ documentos/mes. Pasó de 40 horas a 4 horas. Cero errores. ROI 1,850%. Caso real documentado.",
+      "Ejemplo de cómo automatizar la facturación de una asesoría: qué pasos se automatizan, con qué herramientas y qué hay que vigilar.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2025-06-25",
+    publishDate: "2026-06-26",
     readTime: 9,
     category: "Casos de Éxito",
     featured: true,
@@ -900,6 +916,10 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "facturación automática pyme",
       "ROI automatización procesos",
       "n8n facturación barcelona",
+    ],
+    continueReading: [
+      { href: "/blog/automatizar-facturas-con-n8n", label: "La guía paso a paso para automatizar facturas con n8n" },
+      { href: "/automatizar", label: "Otros procesos que se pueden automatizar en una empresa de Barcelona" },
     ],
     internalLinks: [
       "5-procesos-manuales-destructivos-barcelona",
@@ -1126,16 +1146,17 @@ O reserva en el [formulario de contacto](/#contacto).
 *¿Cuánto te costaría implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
   },
   {
-    title: "n8n vs Make vs Zapier: Cuál Elegir Para Tu Empresa Barcelona — Comparativa 2025",
+    title: "n8n vs Make vs Zapier: cuál elegir en 2026",
+    seoTitle: "n8n vs Make vs Zapier: cuál elegir en 2026 | RASTECH",
     slug: "n8n-vs-make-vs-zapier-barcelona",
     description:
-      "Comparativa n8n, Make, Zapier para Barcelona. Precios reales, características, pros/contras. Cuál elegir según tu empresa. Análisis de experto automatización.",
+      "Comparativa de n8n, Make y Zapier para pymes: diferencias, límites de cada plan y cuál elegir según tus procesos. Con enlaces a las páginas oficiales.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2025-06-25",
+    publishDate: "2026-06-28",
     readTime: 11,
     category: "Herramientas",
     featured: false,
@@ -1146,6 +1167,10 @@ O reserva en el [formulario de contacto](/#contacto).
       "n8n pricing",
       "comparativa automatización barcelona",
       "n8n barcelona",
+    ],
+    continueReading: [
+      { href: "/blog/que-es-n8n-y-cuando-usarlo-en-una-pyme", label: "Qué es n8n y cuándo conviene a una pyme" },
+      { href: "/automatizar", label: "Cómo se aplican estas herramientas en empresas de Barcelona, por sector" },
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
@@ -1401,16 +1426,16 @@ O reserva en el [formulario de contacto](/#contacto).
 *¿Quieres ver n8n en acción con un caso real? Lee: [Automatización Facturación: De 40h/mes A 4h/mes](/blog/automatizacion-facturacion-40h-4h)*`,
   },
   {
-    title: "Errores Al Automatizar Tu Empresa Barcelona — Cómo Evitarlos (Antes De Que Falle)",
+    title: "7 errores al automatizar una empresa y cómo evitarlos",
     slug: "errores-automatizar-empresa-barcelona",
     description:
-      "¿Tu automatización falló? 7 errores comunes en Barcelona: mala integración, falta de entrenamiento, flujos complejos. Cómo evitar cada uno. Casos reales de qué NO hacer.",
+      "Los 7 errores más habituales al automatizar los procesos de una empresa y cómo evitarlos antes de empezar.",
     author: {
       name: "Rubén Amirkhanyan",
       role: "Especialista en Automatización de Procesos",
       bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
     },
-    publishDate: "2025-06-25",
+    publishDate: "2026-06-29",
     readTime: 10,
     category: "Educación",
     featured: false,
@@ -1420,6 +1445,10 @@ O reserva en el [formulario de contacto](/#contacto).
       "problemas automatización barcelona",
       "cómo evitar errores automatización",
       "automatización empresa barcelona",
+    ],
+    continueReading: [
+      { href: "/blog/reportes-automaticos-para-agencias-de-marketing", label: "Reportes automáticos para agencias de marketing: cómo montarlos" },
+      { href: "/automatizar", label: "Qué automatizar primero en una empresa de Barcelona" },
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
