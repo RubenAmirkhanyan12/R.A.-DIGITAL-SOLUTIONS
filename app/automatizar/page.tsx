@@ -4,7 +4,7 @@ import AutomatizarSelector from "../components/landing/AutomatizarSelector";
 export const metadata = pageMetadata({
   title: "Automatización de Procesos Barcelona: Guía por Sectores | RASTECH",
   description:
-    "Automatización de procesos en Barcelona. Guía completa por sector: restaurantes, e-commerce, agencias, despachos, servicios. ROI documentado. Especialista n8n y Make.",
+    "Automatización de procesos en Barcelona: guía por sectores (restaurantes, e-commerce, agencias, despachos y más) con n8n y Make. Pide una llamada gratuita.",
   path: "/automatizar",
 });
 
