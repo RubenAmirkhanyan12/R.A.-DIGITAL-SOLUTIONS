@@ -1,7 +1,12 @@
 import Link from "next/link";
 import RastechLogo from "./RastechLogo";
+import { CONTACT_HREF } from "../lib/seo";
 
-export default function Footer() {
+export default function Footer({
+  hubLabel = "Automatización de procesos en Barcelona",
+}: {
+  hubLabel?: string;
+}) {
   const year = new Date().getFullYear();
 
   return (
@@ -53,7 +58,7 @@ export default function Footer() {
                 ["Casos de Éxito", "/casos"],
                 ["Precios", "/precios"],
                 ["Blog", "/blog"],
-                ["Contacto", "/contacto"],
+                ["Contacto", CONTACT_HREF],
               ].map(([label, href]) => (
                 <li key={href}>
                   <Link
@@ -74,7 +79,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2.5">
               {[
-                ["Ver todos los sectores", "/automatizar"],
+                [hubLabel, "/automatizar"],
                 ["Restaurantes", "/automatizar-restaurantes"],
                 ["E-commerce", "/automatizar-ecommerce"],
                 ["Agencias", "/automatizar-agencias"],
@@ -102,7 +107,7 @@ export default function Footer() {
             {[
               ["¿Cuánto cuesta automatizar procesos en Barcelona?", "/blog/cuanto-cuesta-automatizar-barcelona"],
               ["De 40h a 4h: Automatización de facturación real", "/blog/automatizacion-facturacion-40h-4h"],
-              ["5 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
+              ["7 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
               ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
             ].map(([label, href]) => (
               <Link
@@ -119,17 +124,6 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/20">
           <p>© {year} Rubén Amirkhanyan. Todos los derechos reservados.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-white/40 transition-colors">
-              Privacidad
-            </a>
-            <a href="#" className="hover:text-white/40 transition-colors">
-              Términos
-            </a>
-            <a href="#" className="hover:text-white/40 transition-colors">
-              Cookies
-            </a>
-          </div>
         </div>
       </div>
     </footer>

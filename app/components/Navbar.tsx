@@ -13,8 +13,8 @@ const navLinks = [
   { label: "¿Por qué?",     href: "#problemas" },
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Blog",           href: "/blog" },
-  { label: "Casos",          href: "#casos" },
-  { label: "Precios",        href: "#precios" },
+  { label: "Casos",          href: "/casos" },
+  { label: "Precios",        href: "/precios" },
   { label: "Contacto",       href: "#contacto" },
 ];
 
@@ -53,6 +53,8 @@ export default function Navbar() {
     `whitespace-nowrap font-normal transition-colors ${
       (h === "/blog" && pathname === "/blog") ||
       (h === "/sobre-nosotros" && pathname === "/sobre-nosotros") ||
+      (h === "/casos" && pathname === "/casos") ||
+      (h === "/precios" && pathname === "/precios") ||
       (h === "/automatizar" && pathname.startsWith("/automatizar"))
         ? "text-[#B8860B]"
         : "text-[#F8F9FA] hover:text-[#B8860B]"
