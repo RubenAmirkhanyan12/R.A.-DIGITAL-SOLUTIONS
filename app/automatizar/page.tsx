@@ -1,27 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import AutomatizarSelector from "../components/landing/AutomatizarSelector";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Automatización de Procesos Barcelona: Guía por Sectores | RASTECH",
   description:
     "Automatización de procesos en Barcelona. Guía completa por sector: restaurantes, e-commerce, agencias, despachos, servicios. ROI documentado. Especialista n8n y Make.",
-  keywords: [
-    "automatización de procesos barcelona",
-    "cómo automatizar procesos empresa",
-    "automatización empresa barcelona",
-    "especialista automatización n8n barcelona",
-    "automatizar procesos sin código barcelona",
-    "qué procesos automatizar empresa",
-  ],
-  openGraph: {
-    title: "Automatización de Procesos Barcelona: Guía por Sectores | RASTECH",
-    description: "Guía completa de automatización por sector. Restaurantes, e-commerce, agencias. ROI documentado.",
-    type: "website",
-    locale: "es_ES",
-    siteName: "RASTECH",
-  },
-  alternates: { canonical: "https://ras-tech.es/automatizar" },
-};
+  path: "/automatizar",
+});
 
 const schemaOrg = {
   "@context": "https://schema.org",
@@ -29,8 +14,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ras-tech.es/" },
-        { "@type": "ListItem", "position": 2, "name": "Automatizar", "item": "https://ras-tech.es/automatizar" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
+        { "@type": "ListItem", "position": 2, "name": "Automatizar", "item": "https://www.ras-tech.es/automatizar" },
       ],
     },
     {

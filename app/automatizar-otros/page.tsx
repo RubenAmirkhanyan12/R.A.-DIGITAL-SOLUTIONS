@@ -1,22 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import AutomatizarOtros from "../components/landing/AutomatizarOtros";
 
-const BASE_URL = "https://ras-tech.es";
-
-export const metadata: Metadata = {
-  title: "Automatiza Tu Empresa — Propuesta Personalizada | RASTECH",
+export const metadata = pageMetadata({
+  title: "Automatización de procesos de negocio a medida | RASTECH",
   description:
-    "¿Tu sector no está en nuestras opciones? Cuéntanos tu empresa y te enviamos una propuesta personalizada de automatización. Barcelona. Sin compromiso.",
-  keywords:
-    "automatizar empresa barcelona, propuesta personalizada automatización, automatización procesos empresa",
-  openGraph: {
-    title: "Automatiza Tu Empresa — Propuesta Personalizada | RASTECH",
-    description: "Presupuesto personalizado para tu empresa. Sin compromiso.",
-    type: "website",
-    locale: "es_ES",
-    siteName: "RASTECH",
-  },
-  alternates: { canonical: `${BASE_URL}/automatizar-otros` },
-};
+    "Automatización de procesos de negocio a medida para despachos, clínicas, gimnasios y academias de Barcelona. Cuenta tu caso en una llamada gratuita.",
+  path: "/automatizar-otros",
+});
 
 export default AutomatizarOtros;

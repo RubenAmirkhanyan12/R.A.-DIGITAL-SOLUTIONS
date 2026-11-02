@@ -1,30 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ROICalculator from "../components/ROICalculator";
 
-export const metadata: Metadata = {
-  title: "Precio Automatización Procesos Barcelona: Desde €700 con ROI Garantizado | RASTECH",
+export const metadata = pageMetadata({
+  title: "Precios de automatización de procesos en Barcelona | RASTECH",
   description:
-    "Precio automatización procesos Barcelona. 3 planes: STARTER desde €700, GROWTH desde €1.150, ENTERPRISE desde €1.650. ROI documentado. Análisis gratuito sin compromiso.",
-  keywords: [
-    "precio automatización barcelona",
-    "cuánto cuesta automatizar procesos",
-    "presupuesto automatización empresa",
-    "tarifa automatización procesos barcelona",
-    "desde 700 automatización",
-    "planes automatización barcelona",
-  ],
-  openGraph: {
-    title: "Precio Automatización Procesos Barcelona: Desde €700 | RASTECH",
-    description: "3 planes: STARTER €700, GROWTH €1.150, ENTERPRISE €1.650. ROI documentado. Análisis gratuito.",
-    type: "website",
-    locale: "es_ES",
-    siteName: "RASTECH",
-  },
-  alternates: { canonical: "https://ras-tech.es/precios" },
-};
+    "Precios de automatización de procesos en Barcelona: qué incluye cada plan, cómo se paga y cómo calcular cuánto puede ahorrar tu empresa.",
+  path: "/precios",
+});
 
 const tiers = [
   {
@@ -109,8 +94,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ras-tech.es/" },
-        { "@type": "ListItem", "position": 2, "name": "Precios", "item": "https://ras-tech.es/precios" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
+        { "@type": "ListItem", "position": 2, "name": "Precios", "item": "https://www.ras-tech.es/precios" },
       ],
     },
     {
@@ -125,7 +110,7 @@ const schemaOrg = {
         "priceCurrency": "EUR",
         "description": `${t.tagline}. ${t.processes}. Timeline: ${t.timeline}.`,
         "availability": "https://schema.org/InStock",
-        "url": "https://ras-tech.es/precios",
+        "url": "https://www.ras-tech.es/precios",
       })),
     },
   ],

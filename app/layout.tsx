@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Script from "next/script";
+import { SITE_URL } from "./lib/seo";
 import "./globals.css";
 
 /* ── Pon aquí tu Measurement ID de Google Analytics 4 ───────── */
@@ -21,6 +22,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "RASTECH | Automatización de Procesos Barcelona",
   description:
     "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 15+ empresas automatizadas. Auditoría gratis sin compromiso.",
@@ -44,64 +46,19 @@ export default function RootLayout({
     >
       <head>
       <meta name="google-site-verification" content="YK1vSGe2rBq7dJ8fHfqW8uF6qyvUx1Dsm5NIkYNkXjc" />
-        {/* Schema: Organization */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "RASTECH",
-              "alternateName": "Rubén Amirkhanyan",
-              "url": "https://ras-tech.es",
-              "logo": "https://ras-tech.es/logo.png",
-              "description": "Automatización de procesos para empresas Barcelona. Especialista n8n, Make, integraciones.",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "Customer Service",
-                "telephone": "+34-613-361-115",
-                "email": "rubenamirkhanyan12@gmail.com",
-              },
-              "areaServed": {
-                "@type": "Place",
-                "name": "Barcelona, España",
-              },
-            }),
-          }}
-        />
-        {/* Schema: LocalBusiness */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "RASTECH",
-              "image": "https://ras-tech.es/logo.png",
-              "description": "Automatización de procesos administrativos en Barcelona",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Barcelona",
-                "addressLocality": "Barcelona",
-                "addressRegion": "Catalonia",
-                "postalCode": "08000",
-                "addressCountry": "ES",
-              },
-              "telephone": "+34-613-361-115",
-              "url": "https://ras-tech.es",
-              "priceRange": "€700 - €15.000",
-            }),
-          }}
-        />
-        {/* Schema: ProfessionalService */}
+        {/* Schema: definición única del negocio */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "RASTECH - Automatización de Procesos",
-              "description": "Especialistas en automatización de procesos con n8n, Make, integraciones. ROI documentado desde el mes 1.",
+              "name": "RASTECH",
+              "url": SITE_URL,
+              "description": "Automatización de procesos para pymes de Barcelona con n8n y Make.",
+              "telephone": "+34 613 361 175",
+              "email": "rubenamirkhanyan12@gmail.com",
+              "priceRange": "€700 - €15.000",
               "provider": {
                 "@type": "Person",
                 "name": "Rubén Amirkhanyan",

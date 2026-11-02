@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import AnimateOnScroll from "../components/AnimateOnScroll";
 import {
@@ -13,21 +13,13 @@ import {
 } from "lucide-react";
 
 /* ── Metadata ────────────────────────────────────────────────── */
-export const metadata: Metadata = {
-  title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
+export const metadata = pageMetadata({
+  title: "Sobre Rubén Amirkhanyan: automatización con n8n | RASTECH",
   description:
-    "Especialista n8n, Make y Zapier en Barcelona. 15+ empresas automatizadas, €51k ahorrados/año. Auditoría gratuita sin compromiso.",
-  keywords:
-    "especialista n8n barcelona, Rubén Amirkhanyan, automatización procesos Barcelona, RASTECH, Make Zapier Barcelona",
-  openGraph: {
-    title: "Rubén Amirkhanyan — Especialista n8n Barcelona | Automatización Procesos",
-    description:
-      "Especialista n8n, Make y Zapier en Barcelona. 15+ empresas automatizadas, €51k ahorrados/año.",
-    type: "profile",
-    locale: "es_ES",
-  },
-  alternates: { canonical: "https://ras-tech.es/sobre-nosotros" },
-};
+    "Quién está detrás de RASTECH: soy Rubén Amirkhanyan y automatizo procesos con n8n y Make para pymes de Barcelona. Así trabajo.",
+  path: "/sobre-nosotros",
+  type: "profile",
+});
 
 /* ── JSON-LD: Person ─────────────────────────────────────────── */
 const jsonLd = {
@@ -38,7 +30,7 @@ const jsonLd = {
   areaServed: "Barcelona, España",
   email: "rubenamirkhanyan12@gmail.com",
   telephone: "+34 613 361 175",
-  url: "https://ras-tech.es/sobre-nosotros",
+  url: "https://www.ras-tech.es/sobre-nosotros",
   knowsAbout: [
     "n8n",
     "Make",
@@ -53,7 +45,7 @@ const jsonLd = {
   worksFor: {
     "@type": "Organization",
     name: "RASTECH",
-    url: "https://ras-tech.es",
+    url: "https://www.ras-tech.es",
   },
   description: "Especialista n8n, Make y Zapier en Barcelona. Fundador de RASTECH.",
 };

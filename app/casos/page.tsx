@@ -1,30 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-export const metadata: Metadata = {
-  title: "Casos Reales de Automatización: ROI Documentado 730-2800% | RASTECH Barcelona",
+export const metadata = pageMetadata({
+  title: "Casos de uso de automatización para pymes | RASTECH",
   description:
-    "5 casos reales de automatización en Barcelona. Restaurantes, e-commerce, agencias, despachos, servicios. ROI documentado. 15+ empresas automatizadas. €51,840 ahorrados promedio.",
-  keywords: [
-    "automatización casos reales barcelona",
-    "ROI automatización",
-    "casos éxito automatización",
-    "testimonios automatización barcelona",
-    "automatizar restaurante barcelona",
-    "automatizar ecommerce barcelona",
-    "automatizar agencia barcelona",
-  ],
-  openGraph: {
-    title: "Casos Reales de Automatización: ROI Documentado | RASTECH Barcelona",
-    description: "5 historias reales. ROI 730-2800%. €51,840 ahorrados promedio. Datos documentados.",
-    type: "website",
-    locale: "es_ES",
-    siteName: "RASTECH",
-  },
-  alternates: { canonical: "https://ras-tech.es/casos" },
-};
+    "Ejemplos de procesos que una pyme de Barcelona puede automatizar con n8n y Make: facturación, reportes, pedidos y cobros.",
+  path: "/casos",
+});
 
 const cases = [
   {
@@ -175,8 +159,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ras-tech.es/" },
-        { "@type": "ListItem", "position": 2, "name": "Casos de Éxito", "item": "https://ras-tech.es/casos" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
+        { "@type": "ListItem", "position": 2, "name": "Casos de Éxito", "item": "https://www.ras-tech.es/casos" },
       ],
     },
     {
@@ -185,8 +169,7 @@ const schemaOrg = {
       "itemListElement": cases.map((c, i) => ({
         "@type": "ListItem",
         "position": i + 1,
-        "name": `${c.company} — ${c.headline}`,
-        "description": `ROI ${c.after.roi} en ${c.duration}. Inversión ${c.investment}. Ahorro ${c.after.saved}.`,
+        "name": c.company,
       })),
     },
   ],

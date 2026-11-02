@@ -1,20 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import { getAllPublishedPosts, formatDate } from "../lib/blog-posts";
 import { Clock, Calendar, ArrowRight, Tag } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Blog | RASTECH · Automatización de Procesos Barcelona",
+export const metadata = pageMetadata({
+  title: "Blog de automatización de procesos para pymes | RASTECH",
   description:
-    "Guías prácticas sobre automatización de procesos para empresas en Barcelona. Casos reales, ROI calculado, herramientas sin código.",
-  openGraph: {
-    title: "Blog RASTECH | Automatización de Procesos Barcelona",
-    description:
-      "Guías prácticas sobre automatización de procesos para empresas en Barcelona.",
-    type: "website",
-    locale: "es_ES",
-  },
-};
+    "Guías prácticas para automatizar facturas, pedidos, reportes y cobros en una pyme con n8n y Make, explicadas con ejemplos.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPublishedPosts();
