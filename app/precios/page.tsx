@@ -232,6 +232,13 @@ export default function PreciosPage() {
                 El análisis gratuito te lo dice en 30 min →
               </Link>
             </p>
+            <p className="text-white/40 text-sm mt-2">
+              Si quieres entender de qué depende el precio, lee{" "}
+              <Link href="/blog/cuanto-cuesta-automatizar-barcelona" className="text-[#B8860B] hover:underline">
+                cuánto cuesta automatizar procesos
+              </Link>
+              .
+            </p>
           </div>
         </section>
 

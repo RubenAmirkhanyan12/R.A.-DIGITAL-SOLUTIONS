@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import RelatedGuides from "./RelatedGuides";
+import { GUIDES } from "../../lib/guides";
 import LandingContactForm, { type FormField } from "./LandingContactForm";
 import {
   CheckCircle,
@@ -471,6 +473,8 @@ export default function AutomatizarRestaurantes() {
             />
           </div>
         </section>
+
+        <RelatedGuides guides={[GUIDES.pedidosRestaurante, GUIDES.facturas, GUIDES.cobros]} hubLabel="Ver qué se automatiza en otros sectores" />
 
         <Footer />
       </div>

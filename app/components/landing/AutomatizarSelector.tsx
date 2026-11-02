@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { GUIDES } from "../../lib/guides";
 import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
 interface Card {
@@ -303,6 +304,25 @@ export default function AutomatizarSelector() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── GUÍAS ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-8">
+              Guías de automatización
+            </h2>
+            <ul className="space-y-5">
+              {Object.values(GUIDES).map(({ href, title, description }) => (
+                <li key={href}>
+                  <Link href={href} className="text-[#B8860B] hover:underline font-semibold text-base">
+                    {title}
+                  </Link>
+                  <p className="text-white/50 text-sm mt-1">{description}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
