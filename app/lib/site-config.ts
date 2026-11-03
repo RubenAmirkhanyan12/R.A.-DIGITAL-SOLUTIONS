@@ -161,6 +161,9 @@ export const SCENARIOS = [
   },
 ];
 
+// Horas semanales del ejemplo de la home: la suma da el coste de no automatizar
+export const PROCESS_HOURS = { facturacion: 4, emails: 5, reportes: 2, cobros: 2, seguimiento: 2 };
+
 export function formatEUR(amount: number): string {
   const digits = Math.round(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return `${digits} €`;

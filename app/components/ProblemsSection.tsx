@@ -1,58 +1,52 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import { FileText, Mail, BarChart2, CreditCard, Users } from "lucide-react";
+import { ASSUMPTIONS, formatEUR, monthlySaving, PROCESS_HOURS } from "../lib/site-config";
 
 const problems = [
   {
     Icon: FileText,
     number: "01",
-    title: "Facturación Manual",
-    before: "30 min por factura",
-    scale: "20 facturas/día = 10 horas",
-    cost: "€300/día · €6,000/mes",
-    body: "Abrir Excel. Buscar plantilla. Copiar datos del cliente. Calcular totales. Enviar por email. Esperar confirmación. Y cuando el cliente pregunta «¿dónde está mi factura?», empezar de cero buscando en el historial.",
-    after: "Factura generada y enviada en 0 segundos. Sin intervención humana.",
+    title: "Facturación manual",
+    hours: PROCESS_HOURS.facturacion,
+    body: "Abrir la plantilla, copiar los datos del cliente, calcular totales y enviar por correo. Y cuando alguien pregunta por su factura, buscarla en el historial.",
+    after: "La factura se crea en tu programa y se envía sola a partir de la venta.",
   },
   {
     Icon: Mail,
     number: "02",
-    title: "Emails de Seguimiento",
-    before: "2-3 horas/día en email",
-    scale: "40+ emails repetitivos",
-    cost: "€1,800/mes en tiempo perdido",
-    body: "«¿Cuándo está listo mi pedido?» «Recordatorio de pago pendiente» «Confirmación de cita» «Gracias por tu compra» «¿Cómo fue tu experiencia?» Todos iguales. Todos manuales. Todos robándote tiempo.",
-    after: "Secuencias automáticas. El cliente recibe el email correcto en el momento correcto.",
+    title: "Correos de seguimiento",
+    hours: PROCESS_HOURS.emails,
+    body: "«¿Cuándo está listo mi pedido?», recordatorios de pago, confirmaciones de cita. Casi todos se parecen y casi todos se escriben a mano.",
+    after: "Secuencias automáticas: cada cliente recibe el correo que toca en su momento.",
   },
   {
     Icon: BarChart2,
     number: "03",
-    title: "Reportes del Lunes",
-    before: "3 horas cada lunes por la mañana",
-    scale: "Sin datos = decisiones a ciegas",
-    cost: "€600/mes en horas + errores de decisión",
-    body: "Cada lunes a las 9: abrir Excel, copiar ventas del CRM, calcular márgenes, hacer gráfico, exportar PDF, enviarlo a socio. Tres horas para lo mismo de siempre. Con el 20% de probabilidad de que algún número esté mal.",
-    after: "Dashboard en vivo. El informe llega automático a tu email los lunes a las 7:00.",
+    title: "Reportes del lunes",
+    hours: PROCESS_HOURS.reportes,
+    body: "Abrir el CRM, copiar ventas, calcular márgenes, montar el gráfico y enviarlo. Lo mismo cada semana, con el riesgo de copiar mal un número.",
+    after: "El informe se prepara solo y llega a tu correo el día que decidas.",
   },
   {
     Icon: CreditCard,
     number: "04",
-    title: "Cobros y Pagos",
-    before: "Desorden administrativo total",
-    scale: "Facturas no cobradas: media €4,200/mes",
-    cost: "Mora, estrés y tiempo de gestión",
-    body: "«¿Me pagaron ya?» «¿A quién le toca recordatorio?» «¿Cuándo vence esta factura?» Sin sistema: cheques perdidos, pagos duplicados, clientes morosos que se olvidan porque nadie les recuerda. Dinero que se queda en el aire.",
-    after: "Cobros rastreados. Recordatorios automáticos. Alertas cuando algo falla.",
+    title: "Cobros y pagos",
+    hours: PROCESS_HOURS.cobros,
+    body: "¿Me han pagado ya? ¿A quién le toca recordatorio? ¿Cuándo vence esta factura? Sin un sistema, esas preguntas dependen de que alguien se acuerde.",
+    after: "Cobros registrados, recordatorios escalonados y aviso cuando hace falta llamar.",
   },
   {
     Icon: Users,
     number: "05",
-    title: "Seguimiento de Clientes",
-    before: "Clientes que se olvidan",
-    scale: "30% de clientes potenciales perdidos",
-    cost: "€X,000/mes en oportunidades no capturadas",
-    body: "Alguien pide presupuesto el martes. El viernes nadie le ha llamado. El lunes siguiente ya contrató a tu competencia. Pasa más de lo que crees. No porque no te importe: porque no tienes sistema que te avise a tiempo.",
-    after: "Alertas automáticas. Seguimiento sistematizado. Cero leads olvidados.",
+    title: "Seguimiento de clientes",
+    hours: PROCESS_HOURS.seguimiento,
+    body: "Alguien pide presupuesto el martes y el viernes nadie le ha llamado. No porque no te importe, sino porque nada te avisa a tiempo.",
+    after: "Avisos automáticos para que ninguna solicitud se quede sin respuesta.",
   },
 ];
+
+const totalHours = problems.reduce((sum, p) => sum + p.hours, 0);
+const yearlyCost = problems.reduce((sum, p) => sum + monthlySaving(p.hours), 0) * 12;
 
 export default function ProblemsSection() {
   return (
@@ -64,12 +58,13 @@ export default function ProblemsSection() {
             ¿Te reconoces aquí?
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            El Coste Real: Procesos Manuales{" "}
-            <span className="text-[#EF4444]">Que Te Cuestan €43k/Año en Barcelona</span>
+            El coste de los procesos manuales{" "}
+            <span className="text-[#EF4444]">en una pyme</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            No es falta de trabajo duro. Es trabajo innecesario. Cada uno de estos
-            problemas tiene coste real, documentado, eliminable.
+            Ejemplo ilustrativo con horas modestas y supuestos a la vista:{" "}
+            {ASSUMPTIONS.hourlyCostEUR} €/h y {ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas/mes.
+            Cambia los números por los tuyos en la calculadora.
           </p>
         </AnimateOnScroll>
 
@@ -102,15 +97,11 @@ export default function ProblemsSection() {
                         {/* Quick stats */}
                         <div className="flex flex-wrap gap-4 text-xs mb-4">
                           <span className="text-[#EF4444]/80 font-mono">
-                            Antes: {p.before}
-                          </span>
-                          <span className="text-white/30">·</span>
-                          <span className="text-orange-400/70 font-mono">
-                            Escala: {p.scale}
+                            Ejemplo: {p.hours} h/semana
                           </span>
                           <span className="text-white/30">·</span>
                           <span className="text-[#EF4444] font-bold font-mono">
-                            Coste: {p.cost}
+                            Coste: {formatEUR(monthlySaving(p.hours))}/mes
                           </span>
                         </div>
                         <p className="text-white/55 text-sm leading-relaxed">
@@ -123,7 +114,7 @@ export default function ProblemsSection() {
                   {/* Right: After */}
                   <div className="md:w-72 bg-[#10B981]/5 border-l border-[#10B981]/10 p-8 flex flex-col justify-center">
                     <p className="text-[#10B981] text-xs font-bold tracking-widest uppercase mb-3">
-                      Con RASTECH
+                      Automatizado
                     </p>
                     <p className="text-white/75 text-sm leading-relaxed">
                       {p.after}
@@ -139,13 +130,13 @@ export default function ProblemsSection() {
         <AnimateOnScroll delay={500} className="mt-12">
           <div className="bg-[#EF4444]/5 border border-[#EF4444]/20 p-8 text-center">
             <p className="text-white/40 text-sm uppercase tracking-widest mb-2">
-              Costo total de no hacer nada
+              Coste de no hacer nada en este ejemplo
             </p>
             <p className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#EF4444] mb-2">
-              €43,200 / año
+              {formatEUR(yearlyCost)} / año
             </p>
             <p className="text-white/40 text-sm">
-              En tiempo, errores y oportunidades perdidas. Calculado sobre empresa media Barcelona.
+              Suma de las cinco partidas: {totalHours} h/semana. Es una estimación; el tuyo dependerá de tus horas reales.
             </p>
           </div>
         </AnimateOnScroll>

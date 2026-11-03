@@ -3,36 +3,36 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import AnimateOnScroll from "./AnimateOnScroll";
-import { SITE } from "../lib/site-config";
+import { OFFER, PLANS, SITE } from "../lib/site-config";
 
 const faqs = [
   {
     q: "¿Necesito saber programar o tener equipo técnico?",
-    a: "No. Esa es precisamente la razón de existir de RASTECH. Nos encargamos de todo lo técnico: análisis, diseño, implementación y formación. Tu equipo solo necesita usar las herramientas que ya usa (Gmail, WhatsApp, Excel) —el sistema trabaja detrás de escena.",
+    a: "No. Me encargo de lo técnico: análisis, diseño, puesta en marcha y formación. Tu equipo sigue usando sus herramientas de siempre, como Gmail, WhatsApp o Excel.",
   },
   {
     q: "¿Cuánto tiempo tarda implementar?",
-    a: "Depende del paquete: STARTER (2-3 procesos) se implementa en 3 semanas. GROWTH (5-7 procesos) en 6 semanas. ENTERPRISE con timeline personalizado. La primera semana es análisis gratuito. En la segunda ya tienes propuesta y precio cerrado.",
+    a: `Depende del plan: ${PLANS.map((p) => `${p.name} (${p.processes} procesos), ${p.weeks} semanas`).join("; ")}. Primero hacemos la llamada gratuita y después recibes la propuesta con el precio cerrado.`,
   },
   {
     q: "¿Necesito cambiar mis herramientas actuales?",
-    a: "No necesariamente. Integramos con +200 herramientas: Gmail, Outlook, WhatsApp Business, Google Sheets, QuickBooks, Factusol, Shopify, WooCommerce, Salesforce, HubSpot, entre otras. Automatizamos lo que ya tienes, no te obligamos a cambiar nada.",
+    a: "Normalmente no. n8n y Make se conectan con cientos de aplicaciones, como Gmail, Outlook, Google Sheets, Shopify, WooCommerce o HubSpot. Si la tuya no aparece, reviso si tiene API antes de proponerte nada.",
   },
   {
     q: "¿Es seguro? ¿Dónde van mis datos?",
-    a: "Sí. Encriptación end-to-end, backups diarios automáticos, accesos controlados por permisos. Cumplimiento GDPR completo. Los datos siempre están en tu cuenta (Gmail, Google Drive, etc.) —nosotros no almacenamos datos de tu negocio en servidores propios.",
+    a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD y uso accesos con los permisos justos.",
   },
   {
     q: "¿Qué pasa si el sistema falla?",
-    a: "Sistema de alertas 24/7: si algo falla, te llega notificación inmediata. Acceso a soporte en menos de 2 horas durante el período de garantía. Los flujos automáticos tienen fallbacks: si falla el automático, el proceso vuelve al manual temporalmente sin pérdida de información.",
+    a: `Dejo alertas automáticas si un flujo falla; respondo en ${OFFER.responseTime}. Mientras tanto, la tarea puede hacerse a mano como hasta ahora.`,
   },
   {
-    q: "¿Cómo sé que realmente voy a recuperar la inversión?",
-    a: "Calculamos el ROI antes de empezar. En el análisis gratuito medimos cuántas horas y dinero pierdes en cada proceso. Si los números no justifican la inversión, te lo decimos. No aceptamos proyectos donde el ROI no sea claro y demostrable en menos de 6 meses.",
+    q: "¿Cómo sé si voy a recuperar la inversión?",
+    a: `En la llamada gratuita estimamos tus horas y su coste. Si los números no lo justifican, te lo digo. Además: ${OFFER.guarantee}`,
   },
   {
-    q: "¿Qué incluye el soporte post-implementación?",
-    a: "STARTER: 30 días de soporte incluido. GROWTH: 60 días + revisión de optimización al mes. ENTERPRISE: retainer mensual disponible. El soporte cubre: ajustes menores, resolución de errores, formación adicional del equipo y pequeñas mejoras. Cambios mayores tienen presupuesto adicional.",
+    q: "¿Qué incluye el soporte después de la entrega?",
+    a: `${PLANS.map((p) => `${p.name}: ${p.support}`).join(". ")}. ${OFFER.noHiddenCosts}`,
   },
 ];
 
@@ -101,9 +101,9 @@ export default function FAQSection() {
             </p>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
-                ["¿Cuánto cuesta automatizar procesos en Barcelona?", "/blog/cuanto-cuesta-automatizar-barcelona"],
-                ["De 40h a 4h: Automatización de facturación real", "/blog/automatizacion-facturacion-40h-4h"],
-                ["5 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
+                ["Cuánto cuesta automatizar procesos en Barcelona", "/blog/cuanto-cuesta-automatizar-barcelona"],
+                ["Cómo automatizar la facturación de una asesoría", "/blog/automatizacion-facturacion-40h-4h"],
+                ["7 errores al automatizar una empresa y cómo evitarlos", "/blog/errores-automatizar-empresa-barcelona"],
                 ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
               ].map(([label, href]) => (
                 <a

@@ -1,46 +1,8 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
+import { formatEUR, SCENARIOS, scenarioNumbers } from "../lib/site-config";
 
-const previews = [
-  {
-    id: "restaurante",
-    imgExt: "png",
-    company: "Restaurante El Sabor",
-    contact: "Javier García · Chef Propietario",
-    sector: "Restauración",
-    headline: "De 40h a 5h semanales",
-    roi: "1.200%",
-    saved: "€2,500/mes",
-    testimonial:
-      "Al principio pensé que esto era para empresas grandes, no para un restaurante como el mío. Me equivoqué. La primera semana seguía revisando las facturas a mano 'por si acaso' — costó soltar el control. Ya no. Lleva meses funcionando solo, sin fallar ni una vez. Ahora paso el tiempo en la cocina, no delante del ordenador.",
-    confidential: false,
-  },
-  {
-    id: "ecommerce",
-    imgExt: "png",
-    company: "E-commerce de Moda",
-    contact: "Directora de Operaciones",
-    sector: "E-commerce",
-    headline: "De 25h a 3h semanales",
-    roi: "850%",
-    saved: "€4,200/mes",
-    testimonial:
-      "Llevábamos años perdiendo pedidos por errores de envío manuales. No fue instantáneo — las dos primeras semanas ajustamos varias reglas hasta que quedó fino. Pero desde entonces, cero errores. Dormimos tranquilos.",
-    confidential: true,
-  },
-  {
-    id: "agencia",
-    imgExt: "jpg",
-    company: "Agencia Grow",
-    contact: "Marc Puig · Fundador",
-    sector: "Agencia Marketing",
-    headline: "De 5 a 15 clientes sin contratar",
-    roi: "1.800%",
-    saved: "Capacidad 3x",
-    testimonial: "Triplicamos clientes sin contratar a nadie más. Así de simple.",
-    confidential: false,
-  },
-];
+const previews = SCENARIOS.slice(0, 3);
 
 export default function CaseStudiesSection() {
   return (
@@ -50,95 +12,68 @@ export default function CaseStudiesSection() {
         {/* Header */}
         <AnimateOnScroll className="text-center mb-16">
           <span className="inline-block text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase mb-4">
-            Casos de éxito
+            Casos de uso
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Casos Reales de Automatización:{" "}
-            <span className="text-[#B8860B]">ROI Documentado en Barcelona</span>
+            Qué se puede automatizar{" "}
+            <span className="text-[#B8860B]">según tu negocio</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            Cada caso tiene empresa real y números documentados. Sin métricas inventadas.
+            Escenarios ilustrativos con supuestos a la vista. Los resultados reales dependen de cada empresa.
           </p>
         </AnimateOnScroll>
 
         {/* 3 preview cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {previews.map((c, i) => (
-            <AnimateOnScroll key={c.id} delay={i * 100} direction="up">
-              <div className="bg-[#111111] border border-white/5 hover:border-[#B8860B]/20 transition-all flex flex-col h-full">
-                {/* Card header */}
-                <div className="px-6 pt-6 pb-4 border-b border-white/5">
-                  <span className="text-[#B8860B] text-[10px] font-bold tracking-widest uppercase">
-                    {c.sector}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mt-1 mb-1">
-                    {c.headline}
-                  </h3>
-                  <p className="text-white/35 text-xs">{c.company}</p>
-                </div>
-
-                {/* ROI stats */}
-                <div className="grid grid-cols-2 divide-x divide-white/5 border-b border-white/5">
-                  <div className="p-4 text-center">
-                    <p className="text-white/30 text-[10px] uppercase tracking-widest mb-1">ROI año 1</p>
-                    <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
-                      {c.roi}
-                    </p>
+          {previews.map((c, i) => {
+            const { plan, saving, payback } = scenarioNumbers(c);
+            return (
+              <AnimateOnScroll key={c.id} delay={i * 100} direction="up">
+                <div className="bg-[#111111] border border-white/5 hover:border-[#B8860B]/20 transition-all flex flex-col h-full">
+                  <div className="px-6 pt-6 pb-4 border-b border-white/5">
+                    <span className="text-[#B8860B] text-[10px] font-bold tracking-widest uppercase">
+                      {c.sector}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mt-1">
+                      {c.title}
+                    </h3>
                   </div>
-                  <div className="p-4 text-center">
-                    <p className="text-white/30 text-[10px] uppercase tracking-widest mb-1">Ahorro</p>
-                    <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#10B981]">
-                      {c.saved}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Testimonial */}
-                <div className="px-6 py-5 flex-1">
-                  <p className="text-white/55 text-sm leading-relaxed italic mb-4">
-                    &ldquo;{c.testimonial}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={`/images/cases/${c.id}.${c.imgExt}`}
-                      alt={c.contact}
-                      className="w-10 h-10 rounded-full object-cover border border-[#B8860B]/30 shrink-0"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-white/40 text-xs leading-tight">{c.contact}</p>
-                      {c.confidential && (
-                        <p className="text-white/20 text-[10px] mt-0.5 leading-tight">
-                          Nombre no publicado por confidencialidad del cliente
-                        </p>
-                      )}
+                  <div className="grid grid-cols-2 divide-x divide-white/5 border-b border-white/5">
+                    <div className="p-4 text-center">
+                      <p className="text-white/30 text-[10px] uppercase tracking-widest mb-1">Horas/semana</p>
+                      <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
+                        {c.hoursPerWeek} h
+                      </p>
                     </div>
-                    <div className="flex gap-0.5 shrink-0">
-                      {Array.from({ length: 5 }).map((_, j) => (
-                        <span key={j} className="text-[#B8860B] text-xs">★</span>
-                      ))}
+                    <div className="p-4 text-center">
+                      <p className="text-white/30 text-[10px] uppercase tracking-widest mb-1">Ahorro/mes</p>
+                      <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#10B981]">
+                        {formatEUR(saving)}
+                      </p>
                     </div>
                   </div>
+
+                  <div className="px-6 py-5 flex-1">
+                    <p className="text-white/55 text-sm leading-relaxed mb-4">{c.problem}</p>
+                    <p className="text-white/35 text-xs">
+                      Plan orientativo: {plan.name} · Se recupera en unos {payback} días
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </AnimateOnScroll>
-          ))}
+              </AnimateOnScroll>
+            );
+          })}
         </div>
 
         {/* CTA to full cases page */}
         <AnimateOnScroll delay={300} className="text-center">
-          <p className="text-white/40 text-sm mb-5">
-            15+ empresas en Barcelona ya automatizan.{" "}
-            <span className="text-white/60">Aquí cómo.</span>
-          </p>
           <Link
             href="/casos"
             className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.3)]"
           >
-            Ver casos documentados →
+            Ver todos los casos de uso →
           </Link>
-          <p className="text-white/20 text-xs mt-4">
-            Con nombre, empresa, inversión y ROI real. Despachos, servicios, e-commerce y más.
-          </p>
         </AnimateOnScroll>
 
       </div>

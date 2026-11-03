@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
-import { formatEUR, PLANS } from "../lib/site-config";
+import { formatEUR, OFFER, PLANS } from "../lib/site-config";
 
 const tiers = PLANS.map((plan) => ({
   label: plan.name,
@@ -22,11 +22,11 @@ export default function PricingSection() {
             Inversión transparente
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Precio Automatización Procesos Barcelona:{" "}
-            <span className="text-[#B8860B]">Desde {formatEUR(PLANS[0].fromEUR)} Según Tu Caso</span>
+            Precio de automatización de procesos:{" "}
+            <span className="text-[#B8860B]">desde {formatEUR(PLANS[0].fromEUR)} según tu caso</span>
           </h2>
           <p className="text-white/50 text-lg max-w-xl mx-auto leading-relaxed">
-            Precio exacto se cierra en el análisis gratuito.{" "}
+            El precio exacto se cierra en la llamada gratuita.{" "}
             <span className="text-white/70 font-medium">Sin sorpresas.</span>
           </p>
         </AnimateOnScroll>
@@ -70,7 +70,7 @@ export default function PricingSection() {
         <AnimateOnScroll delay={250} className="text-center">
           <p className="text-white/40 text-sm mb-5">
             Cada empresa automatiza procesos diferentes.{" "}
-            <span className="text-white/60">El análisis inicial siempre es gratuito.</span>
+            <span className="text-white/60">La llamada inicial es gratuita.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -83,11 +83,11 @@ export default function PricingSection() {
               href="/#contacto"
               className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-[#B8860B]/40 text-white/60 hover:text-white font-bold text-sm px-8 py-4 transition-all"
             >
-              Agendar análisis gratuito
+              Reserva tu llamada
             </Link>
           </div>
           <p className="text-white/20 text-xs mt-4">
-            Garantía de ROI documentado en 60 días o dinero de vuelta.
+            {OFFER.guarantee}
           </p>
         </AnimateOnScroll>
 

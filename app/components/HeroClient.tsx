@@ -2,19 +2,23 @@
 
 import { useEffect, useRef } from "react";
 import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
+import { formatEUR, monthlySaving, OFFER, OWNER_INTRO, PLANS, SCENARIOS } from "../lib/site-config";
 
 const trustSignals = [
-  "15+ empresas Barcelona",
-  "ROI documentado desde mes 1",
-  "Desde €550",
+  `Llamada gratuita de ${OFFER.freeCallMinutes} min`,
+  "Precio cerrado antes de empezar",
+  `Desde ${formatEUR(PLANS[0].fromEUR)}`,
 ];
 
 const dashboardItems = [
-  { label: "Facturación automática", time: "0 min", was: "30 min/factura", ok: true },
-  { label: "Emails de seguimiento", time: "Automático", was: "2h/día", ok: true },
-  { label: "Reporte semanal", time: "En vivo", was: "3h/lunes", ok: true },
-  { label: "Cobros y pagos", time: "Sincronizado", was: "Desorden total", ok: true },
+  { label: "Facturación", was: "A mano" },
+  { label: "Correos de seguimiento", was: "Uno a uno" },
+  { label: "Reporte semanal", was: "Cada lunes" },
+  { label: "Cobros y recordatorios", was: "De memoria" },
 ];
+
+const example = SCENARIOS[0];
+const exampleSaving = monthlySaving(example.hoursPerWeek);
 
 export default function HeroClient() {
   const overlineRef = useRef<HTMLDivElement>(null);
@@ -62,7 +66,6 @@ export default function HeroClient() {
             className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6"
           >
             <span className="block">Automatiza Procesos Barcelona</span>
-            <span className="block">€51k/Año de Ahorro Real</span>
             <span className="relative inline-block text-[#B8860B] mt-1">
               Especialista n8n · Sin Código
               <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-[#B8860B] to-transparent" />
@@ -74,19 +77,13 @@ export default function HeroClient() {
             ref={subRef}
             className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-4"
           >
-            Restaurantes, agencias y despachos en Barcelona reducen su
-            trabajo administrativo en{" "}
-            <span className="text-white font-semibold">85%</span>.{" "}
-            Sin programar. Sin cambiar tus herramientas. Aquí cómo.
+            Conecto las herramientas que ya usas para que facturas, correos, reportes y
+            cobros dejen de hacerse a mano. Sin programar y sin cambiar de herramientas.
           </p>
 
           {/* SEO intro paragraph */}
           <p className="text-sm text-white/45 leading-relaxed max-w-xl mb-8">
-            RASTECH automatiza procesos manuales que consumen horas de tu empresa
-            en Barcelona. Especialistas en n8n, Make e integraciones. 15+ empresas
-            ya automatizan con nosotros: €51,840 de ahorro promedio al año, 87%
-            reducción en tareas manuales, sistemas que funcionan 24/7. Desde €550.
-            Sin código. Auditoría gratis.
+            {OWNER_INTRO}
           </p>
 
           {/* Trust signals */}
@@ -115,7 +112,7 @@ export default function HeroClient() {
               Agencias →
             </a>
             <a href="/casos" className="text-white/30 hover:text-white/60 transition-colors">
-              Casos reales →
+              Casos de uso →
             </a>
           </div>
 
@@ -128,7 +125,7 @@ export default function HeroClient() {
               onClick={() => scrollTo("#como-funciona")}
               className="group inline-flex items-center gap-3 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm px-7 py-4 tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(26,58,82,0.6)] active:scale-95"
             >
-              Ver cómo lo hacen
+              Ver cómo trabajo
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
@@ -155,7 +152,7 @@ export default function HeroClient() {
                 <div className="w-3 h-3 rounded-full bg-[#F59E0B]/70" />
                 <div className="w-3 h-3 rounded-full bg-[#10B981]/70" />
                 <span className="ml-3 text-white/30 text-xs font-mono">
-                  rastech · panel automatización
+                  ejemplo ilustrativo · panel de automatización
                 </span>
               </div>
 
@@ -165,16 +162,16 @@ export default function HeroClient() {
                 <div className="flex items-center justify-between mb-5">
                   <div>
                     <p className="text-white/40 text-xs uppercase tracking-widest">
-                      Horas liberadas esta semana
+                      Horas liberadas por semana
                     </p>
                     <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-[#10B981] mt-1">
-                      38.5h
+                      {example.hoursPerWeek} h
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-white/40 text-xs">Ahorro mensual</p>
+                    <p className="text-white/40 text-xs">Ahorro estimado/mes</p>
                     <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B] mt-1">
-                      €2,500
+                      {formatEUR(exampleSaving)}
                     </p>
                   </div>
                 </div>
@@ -195,24 +192,11 @@ export default function HeroClient() {
                           <p className="text-white/30 text-[10px]">Antes: {item.was}</p>
                         </div>
                       </div>
-                      <span className="text-[#10B981] text-xs font-bold">{item.time}</span>
+                      <span className="text-[#10B981] text-xs font-bold">Automático</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Progress bar */}
-                <div className="mt-5 pt-4 border-t border-white/5">
-                  <div className="flex justify-between text-xs mb-2">
-                    <span className="text-white/40">Reducción trabajo manual</span>
-                    <span className="text-[#B8860B] font-bold">87%</span>
-                  </div>
-                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[#1A3A52] to-[#B8860B] rounded-full"
-                      style={{ width: "87%" }}
-                    />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -223,10 +207,10 @@ export default function HeroClient() {
       <div className="mt-20 pt-8 border-t border-white/8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
           {[
-            { value: "n8n · Make", label: "Especialista certificado" },
-            { value: "15+", label: "Empresas Barcelona" },
-            { value: "95%", label: "Satisfacción clientes" },
-            { value: "€51,840", label: "Ahorro promedio/año" },
+            { value: `${OFFER.freeCallMinutes} min`, label: "Llamada gratuita" },
+            { value: "Precio cerrado", label: "Antes de empezar" },
+            { value: "2–4 semanas", label: "Según el plan" },
+            { value: `${OFFER.guaranteeDays} días`, label: "Garantía" },
           ].map(({ value, label }) => (
             <div key={label}>
               <div className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">

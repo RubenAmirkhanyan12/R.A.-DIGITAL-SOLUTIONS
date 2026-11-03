@@ -1,7 +1,31 @@
 import type { BlogPost } from "./types";
-import { OWNER_INTRO, SITE } from "./site-config";
+import {
+  ASSUMPTIONS,
+  formatEUR,
+  monthlySaving,
+  OFFER,
+  OWNER_INTRO,
+  paybackDays,
+  planById,
+  PLANS,
+  roiNet,
+  SCENARIOS,
+  scenarioNumbers,
+  SITE,
+} from "./site-config";
 
 const AUTHOR = { name: SITE.owner, role: SITE.credential, bio: OWNER_INTRO };
+
+const scenario = (id: string) => SCENARIOS.find((c) => c.id === id)!;
+const EX_HOURS = 8;
+const EX_SAVING = monthlySaving(EX_HOURS);
+const EX_PLAN = planById("starter");
+const EX_A = scenario("despacho");
+const EX_A_N = scenarioNumbers(EX_A);
+const EX_B = scenario("ecommerce");
+const EX_B_N = scenarioNumbers(EX_B);
+const EX_F = EX_A;
+const EX_F_N = EX_A_N;
 
 export const blogPosts: BlogPost[] = [
   {
@@ -12,6 +36,7 @@ export const blogPosts: BlogPost[] = [
       "Qué es la automatización de procesos, qué procesos conviene automatizar primero en una pyme y con qué herramientas empezar.",
     author: AUTHOR,
     publishDate: "2026-06-18",
+    updatedDate: "2026-11-03",
     readTime: 12,
     category: "Automatización",
     featured: true,
@@ -35,333 +60,99 @@ export const blogPosts: BlogPost[] = [
       "automatizacion-facturacion-40h-4h",
       "errores-automatizar-empresa-barcelona",
     ],
-    content: `## El Problema Real Que Nadie Te Dice
+    content: `Automatizar un proceso significa que una tarea repetitiva se haga sola, siguiendo unas reglas que defines tú. No es magia ni exige programar: es conectar las aplicaciones que ya usas para que los datos dejen de copiarse a mano.
 
-Según un análisis de 2026 sobre flujos de trabajo empresariales, **el 76% de los oficinistas dedica entre 1 y 3 horas diarias solo a transferir información entre aplicaciones**. Sin contar errores, búsquedas de datos perdidos o procesos que se olvidan.
-
-En Barcelona, la realidad es más cruda. Una empresa típica de 10 personas pierde **€11,500/mes** en procesos que deberían ser automáticos.
-
-No es falta de disciplina. Es falta de sistema.
-
-Este artículo te muestra EXACTAMENTE qué automatizar, cómo hacerlo, y cuánto realmente ahorras. Sin hype. Con números verificables.
+En esta guía explico qué conviene automatizar primero en una pyme, con qué herramientas y cómo calcular si te compensa.
 
 ---
 
-## ¿Qué Es Automatización de Procesos?
+## ¿Qué es la automatización de procesos?
 
-Automatización no es magia. Es tomar tareas repetitivas que haces manualmente y hacerlas automáticas.
+Un ejemplo sencillo. Hoy, un cliente pide presupuesto por correo y alguien abre una hoja, copia sus datos, busca la tarifa, calcula el total, genera el PDF y lo envía.
 
-**Ejemplo concreto:**
-
-Hoy (manual):
-1. Cliente pide presupuesto por email
-2. Tú abres Excel
-3. Copias datos cliente manualmente
-4. Buscas tarifa
-5. Calculas total
-6. Generas PDF
-7. Envías email
-8. Esperas respuesta (a veces nunca llega)
-
-**Tiempo: 20-30 minutos. Si tienes 10 solicitudes/día: 3+ horas diarias solo en presupuestos.**
-
-Con automatización:
-1. Cliente pide presupuesto (cualquier canal)
-2. Sistema capta automático
-3. Genera PDF automático
-4. Envía automático
-5. Te avisa cuando confirma
-
-**Tiempo: 0 minutos. Sistema lo hace 24/7.**
+Automatizado, la solicitud entra por un formulario, el flujo prepara el presupuesto con tu plantilla, tú lo revisas y sale con un clic. La persona sigue decidiendo; lo que desaparece es copiar y pegar.
 
 ---
 
-## Los 5 Procesos Que Te Cuestan Más Dinero
+## ¿Qué procesos conviene automatizar primero?
 
-*(Análisis detallado con coste y solución por proceso: [5 procesos manuales que destrozan la productividad en Barcelona](/blog/5-procesos-manuales-destructivos-barcelona))*
+Busca tareas que se repitan a menudo, sigan siempre los mismos pasos y consuman tiempo. Las más habituales en una pyme son estas. *(Lo desarrollo en [5 procesos de tu pyme que conviene automatizar](/blog/5-procesos-manuales-destructivos-barcelona).)*
 
-### Facturación Manual: El Destructor #1
+### Facturación
 
-**La realidad:**
-- Cada factura: 20-30 minutos (búsqueda, data entry, cálculos, envío)
-- 10 facturas/día = 3.3 horas
-- 20 facturas/día = 6.7 horas
-- **40 horas/semana en solo facturas**
+Pasar los datos de la venta a la factura, enviarla y registrarla. Tienes el paso a paso en [cómo automatizar facturas con n8n](/blog/automatizar-facturas-con-n8n).
 
-**Costo Barcelona (€30/hora promedio):**
-- 40 horas × €30 = €1,200/semana
-- **€4,800/mes = €57,600/año**
+### Correos repetitivos
 
-**Pero hay más:**
-- 1 de cada 10 facturas tiene error
-- Cada error = 30 minutos corrección
-- 400 facturas/mes = 40 con error = 1,200 minutos retrabajos
-- **€600/mes solo en fixes**
+Confirmaciones, recordatorios y seguimientos que se escriben casi igual cada vez. Las secuencias automáticas envían el mensaje correcto en su momento y paran cuando el cliente responde.
 
-**Con automatización (Zapier/n8n):**
-- Orden entra → Factura automática → Envío automático
-- Error rate: 0%
-- Tiempo: 0 horas
+### Reportes semanales
 
-**Ahorro: €5,400/mes (facturación + errores)**
+Entrar en varias herramientas, copiar datos, montar el gráfico y enviarlo. Un flujo programado lo deja preparado para que tú solo lo leas.
+
+### Cobros
+
+Saber qué factura ha vencido y recordarlo sin que se te olvide. Lo explico en [cómo automatizar los cobros y las facturas impagadas](/blog/automatizar-cobros-y-facturas-impagadas).
+
+### Seguimiento de clientes potenciales
+
+Que ninguna solicitud se quede sin respuesta porque nadie la vio a tiempo.
 
 ---
 
-### Emails Repetitivos: El Tiempo Negro
+## ¿Cómo calculo si me compensa?
 
-**Donde se pierden horas:**
-- "¿Dónde está mi pedido?" → 3 min respuesta
-- "Recordatorio: vence pago" → 5 min búsqueda + email
-- "Confirmación de cita" → 2 min email
-- "¿Cómo fue tu experiencia?" → 1 min email
+Con una fórmula sencilla y tus horas reales:
 
-**Total/día: 30-50 emails = 2-3 HORAS DIARIAS**
+**Horas por semana × ${ASSUMPTIONS.weeksPerMonth} semanas × coste por hora = coste mensual del proceso**
 
-**Costo/año:**
-- 2.5 horas × €25/hora × 250 días trabajo = **€15,625/año**
-
-**Con automatización:**
-- Cliente compra → Email automático confirmación (segundo 1)
-- Sin respuesta 3 días → Email automático recordatorio
-- Sin respuesta 7 días → Email automático final call
-
-**Ahorro: €15,625/año + clientes recuperados**
+**Ejemplo ilustrativo:** una tarea de ${EX_HOURS} horas semanales, a ${ASSUMPTIONS.hourlyCostEUR} €/h, supone ${formatEUR(EX_SAVING)} al mes. Con el plan ${EX_PLAN.name}, desde ${formatEUR(EX_PLAN.fromEUR)}, recuperarías la inversión en unos ${paybackDays(EX_PLAN.fromEUR, EX_SAVING)} días si esas horas desaparecieran por completo. Es una estimación: el ahorro real depende de cada empresa. Puedes probar con tus números en la [calculadora](/#calculadora).
 
 ---
 
-### Reportes Semanales: La Pesadilla del Lunes
+## ¿Con qué herramientas se hace?
 
-**Tu rutina actual (cada lunes por la mañana):**
-1. Abres CRM (5 min)
-2. Copia datos a Excel (10 min)
-3. Abres Google Analytics (5 min)
-4. Copia datos a Excel (10 min)
-5. Abres contabilidad (5 min)
-6. Copia datos a Excel (10 min)
-7. Haces gráficos (20 min)
-8. Escribes análisis (30 min)
-9. Envías email (5 min)
-
-**Total: 100 minutos × 52 semanas = 87 horas/año**
-
-**Costo: 87 horas × €35/hora = €3,045/año**
-
-**Con automatización:**
-- Dashboard en vivo actualizado automático
-- Gráficos generados automático
-- Email se envía el lunes 8am automático
-
-**Ahorro: 87 horas/año + decisiones más rápidas**
+Las tres más conocidas son n8n, Make y Zapier. Cobran de forma distinta y requieren distinto perfil técnico. Tienes planes y diferencias en [n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona), y si te interesa la primera, en [qué es n8n y cuándo usarlo en una pyme](/blog/que-es-n8n-y-cuando-usarlo-en-una-pyme).
 
 ---
 
-### Gestión de Cobros: Dinero Que No Ves
+## ¿Cómo se implementa?
 
-**Cómo pierdes dinero:**
-- Factura emitida día 1
-- Día 10: ¿Pagó? (5 min buscando)
-- Día 15: Nada. Recordatorio (5 min escribiendo)
-- Día 30: Sigue sin pagar. Contacto directo (30 min)
-- Promedio dinero en suspense: **€4,200 no cobrados a tiempo**
+1. **Medir.** Apunta cuánto tiempo lleva cada tarea durante una semana.
+2. **Elegir.** Empieza por el proceso que más horas consume y que tenga reglas claras.
+3. **Diseñar.** Define el flujo paso a paso, incluido qué pasa si algo falla.
+4. **Probar.** Haz pruebas con datos reales antes de activar nada.
+5. **Formar.** Enseña al equipo a revisar el flujo y qué hacer si llega una alerta.
+6. **Revisar.** Repasa cada cierto tiempo que todo sigue funcionando.
 
-**Con automatización:**
-- Factura emitida → Email recordatorio automático día 10
-- Sin respuesta → Email automático día 20
-- Sin respuesta → Email automático día 30
-- Resultado: 95% clientes pagan a tiempo
-
-**Ahorro: €4,200/mes (dinero recuperado)**
+Antes de empezar, conviene leer los [7 errores al automatizar una empresa](/blog/errores-automatizar-empresa-barcelona).
 
 ---
 
-### Seguimiento de Leads: Dinero Que No Ganas
-
-**El problema:**
-- Prospect llena formulario web
-- Tú lo ves 3 días después (demasiado tarde)
-- Cliente ya contactó competencia → **PERDIDO**
-
-**Estadística real:**
-- 50% leads responden en primeras 24 horas
-- Sin automatización: 25-40% conversión
-- Con automatización: 70-80% conversión
-
-**Diferencia: 6-8 leads perdidos/semana = €8,000+/mes en dinero no ganado**
-
----
-
-## Costo Total Documentado (Año 1)
-
-| Proceso | Mensual | Anual |
-|---------|---------|-------|
-| Facturación (incluye errores) | €5,400 | €64,800 |
-| Emails repetitivos | €1,302 | €15,625 |
-| Reportes semanales | €254 | €3,045 |
-| Cobros morosos | €4,200 | €50,400 |
-| Leads no convertidos | €2,000 | €24,000 |
-| **TOTAL PÉRDIDA** | **€13,156** | **€157,870** |
-
-**Tu empresa pierde €157,870/año en procesos manuales.**
-
----
-
-## Herramientas Reales (Sin Código)
-
-### Zapier (Recomendado para el 90% de casos)
-
-- **Cómo funciona:** Conectas app A → Trigger → Action → App B visualmente, sin código
-- **Precio:** €25-150/mes
-- **Integraciones:** 5,000+ apps (Gmail, Excel, Stripe, Shopify, etc.)
-- **Dificultad:** Muy fácil — arrastras bloques
-- **Mejor para:** Pequeñas y medianas empresas
-
-**Ejemplo de flujo en Zapier:**
-
-TRIGGER: Cliente llena formulario contacto → ACTION 1: Envía email automático → ACTION 2: Guarda en Google Sheets → ACTION 3: Crea tarea en calendario
-
-### Make (Alternativa económica)
-
-- **Precio:** €15-50/mes
-- **Ventaja:** Más potente, más barato
-- **Desventaja:** Interfaz más técnica
-- **Mejor para:** Usuarios con lógica de procesos
-
-### n8n (Open source, máximo control)
-
-- **Precio:** GRATIS (self-hosted) o €25/mes (cloud)
-- **Ventaja:** Gratis, máximo control, privacidad total
-- **Mejor para:** Empresas técnicas o data-sensitive
-
-*(¿No sabes cuál elegir para tu empresa? Lee la [comparativa completa n8n vs Make vs Zapier para Barcelona](/blog/n8n-vs-make-vs-zapier-barcelona))*
-
----
-
-## Cómo Implementar en 4 Semanas
-
-### Semana 1: ANÁLISIS (Gratis)
-
-Reunión de 2 horas donde:
-- Mapeamos todos tus procesos
-- Medimos tiempo que tarda cada uno
-- Calculamos coste en dinero
-- Identificamos cuáles automatizar primero
-
-Output: Documento con 3-5 procesos a automatizar
-
----
-
-### Semana 2: DISEÑO
-
-Creamos los workflows sin código:
-- Proceso manual hoy vs workflow automático
-- Usamos Zapier/Make visualmente
-- Documentamos cada paso
-
-Output: Diagrama de flujos
-
----
-
-### Semana 3: TESTING
-
-Probamos en ambiente de prueba:
-- Qué pasa si hay error
-- Si se cae la conexión
-- 100 pruebas antes de producción
-
-Output: Sistema probado, sin errores
-
----
-
-### Semana 4: IMPLEMENTACIÓN
-
-Activamos en producción:
-- Migramos datos reales
-- Encendemos automáticos
-- Monitoreamos primeros días
-- Formamos tu equipo (1 hora)
-
-Output: Procesos automáticos 24/7
-
----
-
-## ROI Real: ¿Vale La Pena?
-
-| Item | Costo |
-|------|-------|
-| **INVERSIÓN** | |
-| Implementación (análisis + setup) | €3,500 |
-| Herramientas Zapier/año | €1,200 |
-| **Total inversión** | **€4,700** |
-| **AHORRO (Año 1)** | |
-| Horas administrativo (€30/h × 1,500h) | €45,000 |
-| Errores reducidos | €3,000 |
-| Dinero cobrado a tiempo | €4,200 |
-| Leads convertidos | €8,000 |
-| **Total ahorro** | **€60,200** |
-| **NET (Año 1)** | **+€55,500** |
-| **ROI** | **1,181%** |
-| **Payback** | **26 días** |
-
-**Recuperas la inversión en menos de un mes. Ganas €55,500 en año 1.**
-
-*(¿Cuánto cuesta exactamente para tu tamaño de empresa? Consulta la [guía de precios reales de automatización en Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
-
----
-
-## Preguntas Frecuentes
+## Preguntas frecuentes
 
 **¿Necesito saber programar?**
-No. Zapier es visual. Arrastras bloques. Cero código requerido.
+Para flujos sencillos, no. Las herramientas son visuales, aunque cierta base técnica ayuda cuando se complican.
 
 **¿Qué pasa si falla el automático?**
-Fallbacks activados. Si falla, el sistema envía alerta. Sigues manualmente sin pérdida de datos. *(Lee: [7 errores comunes al automatizar y cómo evitarlos](/blog/errores-automatizar-empresa-barcelona))*
+Un flujo bien montado avisa cuando falla, y mientras tanto la tarea puede hacerse a mano.
 
-**¿Es seguro? ¿Mis datos?**
-Sí. Encriptación end-to-end. Cumplimiento GDPR. Datos en tus cuentas, no en servidores externos.
+**¿Es seguro?**
+Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Conviene dar a cada flujo solo los permisos que necesita.
 
-**¿Qué herramienta recomiendas?**
-90% de casos: Zapier. Fácil, confiable, 5,000+ integraciones.
-
-**¿Necesito cambiar mis herramientas?**
-No. Zapier integra con Gmail, Excel, Shopify, QuickBooks, Salesforce, HubSpot y 200+ más.
-
-**¿Cuánto tiempo se ahorra realmente?**
-Promedio: 30-40 horas/semana. €2,000-5,000/mes documentados.
+**¿Tengo que cambiar mis herramientas?**
+Normalmente no. n8n y Make se conectan con cientos de aplicaciones.
 
 ---
 
-## Por Qué Ahora Es El Momento
+## ¿Por dónde sigo?
 
-Hace 5 años: Automatización requería código y presupuesto alto.
+Si quieres ver un ejemplo completo, lee [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h). Y si quieres calcular cuánto costaría en tu caso, tienes [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona).
 
-Hoy: Automatización es visual y cuesta €25-100/mes.
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
-Las empresas que automatizaron hace 2 años tienen ahora:
-- 5× más clientes (mismo equipo)
-- Margen 3× superior
-- Menos estrés operativo
-
-Las que no automatizaron: mismo volumen, menos margen, más horas.
-
-**En 6 meses, la diferencia será obvia.**
-
----
-
-## Siguiente Paso
-
-*(¿Quieres ver un caso real documentado? [Asesoría fiscal de Barcelona: de 40h/mes a 4h/mes](/blog/automatizacion-facturacion-40h-4h))*
-
-Análisis gratuito de 30 minutos:
-- Auditoría de tus procesos
-- Cálculo de cuánto pierdes ahora mismo
-- Propuesta concreta de qué automatizar
-- Sin compromiso
-
-Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
-
----
-
-**¿Tu competencia ya está automatizando. ¿Cuánto tiempo esperas?**`,
+📧 ${SITE.email}
+📱 ${SITE.phone}`,
   },
   {
     title: "5 procesos de tu pyme que conviene automatizar",
@@ -371,6 +162,7 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
       "Cinco procesos manuales que suelen consumir horas cada semana en una pyme y cómo automatizarlos con n8n o Make.",
     author: AUTHOR,
     publishDate: "2026-06-18",
+    updatedDate: "2026-11-03",
     readTime: 10,
     category: "Automatización",
     featured: true,
@@ -394,35 +186,23 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
       "n8n-vs-make-vs-zapier-barcelona",
       "errores-automatizar-empresa-barcelona",
     ],
-    content: `Eres empresario en Barcelona. Miras a tu equipo y ves:
+    content: `En muchas pymes hay tareas que se repiten igual cada semana: copiar datos a una hoja, pasar contactos al CRM, montar un reporte, recordar quién debe llamar a quién y vigilar qué facturas siguen sin cobrar.
 
-- El contador copia datos de Excel 4 horas al día
-- Sales introduce leads a mano en el CRM
-- Admin genera reportes cada lunes (2 horas)
-- Seguimiento de clientes = recordatorios manuales
-- Cobros = vigilar cada factura individualmente
+Son trabajo necesario, pero casi todo se puede dejar en manos de un flujo automático.
 
-Todo trabajo "necesario". Ninguno agrega valor real.
-
-Son **30-40 horas/semana** de tu empresa. En automático, serían **4-5 horas**. Sin programar. Sin cambiar herramientas.
-
-Estos son los 5 procesos que más tiempo consumen — y cómo eliminarlos. *(Para el contexto completo de por qué esto sucede, lee la [guía de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
+Estos son cinco de los procesos que suelen consumir más tiempo y cómo automatizarlos. *(Para el contexto general, lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
 ---
 
-## Proceso Manual #1: Facturación En Excel (El Clásico)
+## Proceso manual #1: facturación en Excel (El clásico)
 
-### El Problema
+### El problema
 
 > Cliente envía pedido → Contador abre Excel → Copia datos → Genera PDF → Envía email → Archiva
 
-- Tiempo por factura: **15-20 minutos**
-- Volumen habitual: 100-150 facturas/mes
-- **Total: 40 horas/mes — 480 horas/año**
-
 Además: clientes faltando en reportes, importes copiados mal, PDFs sin enviar.
 
-### Cómo Automatizarlo
+### Cómo automatizarlo
 
 1. OCR lee la factura entrante (Google Vision, Claude Vision)
 2. Extrae datos automáticamente: cliente, importe, fecha
@@ -433,29 +213,17 @@ Además: clientes faltando en reportes, importes copiados mal, PDFs sin enviar.
 
 **Herramientas:** n8n · OCR API · Google Sheets · Holded o QuickBooks · Gmail API
 
-| | Detalle |
-|---|---|
-| Implementación | 2 semanas |
-| Coste | desde €700 ([plan STARTER](/precios)) |
-| Ahorro anual | €51.840 (36h/mes × €120/h) |
-
-> *"Facturación pasó de 40h a 4h/mes. No me lo creía."* — Asesoría fiscal, Barcelona
-
 ---
 
-## Proceso Manual #2: Entrada De Datos En CRM (Sales Repite Lo Mismo)
+## Proceso manual #2: entrada de datos en CRM (Sales repite lo mismo)
 
-### El Problema
+### El problema
 
 > Lead llega (email, formulario, LinkedIn, teléfono) → Sales copia datos a mano en CRM → Busca campos → Llena propiedades → Guarda
 
-- Tiempo por lead: **5-10 minutos**
-- Volumen habitual: 50-100 leads/mes
-- **Total: 8-16 horas/mes**
-
 Resultado: leads duplicados, campos vacíos, y sales tan ocupado copiando que no llama a tiempo.
 
-### Cómo Automatizarlo
+### Cómo automatizarlo
 
 1. Lead completa formulario web (Google Forms, Typeform)
 2. Contacto creado automáticamente en CRM (HubSpot, Pipedrive)
@@ -466,29 +234,17 @@ Resultado: leads duplicados, campos vacíos, y sales tan ocupado copiando que no
 
 **Herramientas:** Google Forms · HubSpot o Pipedrive · n8n o Zapier · Gmail API
 
-| | Detalle |
-|---|---|
-| Implementación | 1 semana |
-| Coste | desde €250 ([plan STARTER](/precios)) |
-| Ahorro anual | €19.200 (10h/mes × €160/h) |
-
-> *"Sales ahora llama al lead en 1 hora, no en 3 días. La conversión subió un 40%."* — Startup, Barcelona
-
 ---
 
-## Proceso Manual #3: Reportes Del Lunes A Las 7am
+## Proceso manual #3: reportes del lunes A las 7am
 
-### El Problema
+### El problema
 
 > Admin abre Excel + HubSpot + Google Analytics + Stripe + software contable → Copia números → Crea gráficos → Genera PDF → Envía al CEO
 
-- Tiempo: **2-3 horas cada lunes**
-- Volumen: 4 semanas/mes
-- **Total: 8-12 horas/mes**
-
 Encima, los datos del viernes a veces no están actualizados. Los números no cuadran. El CEO espera.
 
-### Cómo Automatizarlo
+### Cómo automatizarlo
 
 1. Conecta todas las fuentes (HubSpot, Stripe, Analytics, contabilidad)
 2. Dashboard automático con datos en vivo — sin copiar nada
@@ -498,29 +254,17 @@ Encima, los datos del viernes a veces no están actualizados. Los números no cu
 
 **Herramientas:** n8n · Google Sheets + Looker Studio · SendGrid · Slack
 
-| | Detalle |
-|---|---|
-| Implementación | 1,5 semanas |
-| Coste | desde €400 ([plan GROWTH](/precios)) |
-| Ahorro anual | €19.200 (10h/mes × €160/h) |
-
-> *"CEO recibe el reporte los lunes a las 7am sin pedirlo. Las decisiones son más rápidas."* — Agencia, Barcelona
-
 ---
 
-## Proceso Manual #4: Seguimiento De Clientes (El Que Se Olvida)
+## Proceso manual #4: seguimiento de clientes (El que se olvida)
 
-### El Problema
+### El problema
 
 > Admin mantiene lista de clientes → Cada semana revisa quién no compró en 30 días → Decide a quién llamar → Anota resultado en Excel → Reinicia
 
-- Tiempo: **3-5 horas/semana**
-- Clientes activos: 50-100
-- **Total: 12-20 horas/mes**
-
 Resultado: se olvidan llamadas, clientes que podrían recomprar se enfrían, ventas que no llegan.
 
-### Cómo Automatizarlo
+### Cómo automatizarlo
 
 1. Regla definida: cliente sin compra en 30 días = alerta
 2. Sistema genera lista automática cada lunes: 10 clientes prioritarios
@@ -531,29 +275,17 @@ Resultado: se olvidan llamadas, clientes que podrían recomprar se enfrían, ven
 
 **Herramientas:** HubSpot o Pipedrive · n8n · Slack · Google Sheets
 
-| | Detalle |
-|---|---|
-| Implementación | 1 semana |
-| Coste | desde €250 ([plan STARTER](/precios)) |
-| Ahorro anual | €28.800 (15h/mes × €160/h) |
-
-> *"Reactivamos clientes dormidos. Ingresos adicionales de €15k/mes."* — E-commerce, Barcelona
-
 ---
 
-## Proceso Manual #5: Cobros Y Seguimiento De Facturas (El Que Duele)
+## Proceso manual #5: cobros Y seguimiento de facturas (El que duele)
 
-### El Problema
+### El problema
 
 > Factura enviada → Admin revisa correos cada día → Busca si el cliente pagó → Si no pagó, manda recordatorio → Si sigue sin pagar, llama → Anota estado en Excel
 
-- Tiempo: **4-6 horas/semana**
-- Volumen: 100-150 facturas/mes
-- **Total: 16-24 horas/mes**
-
 Facturas sin cobrar, clientes molestos por demasiados recordatorios, cash flow impredecible.
 
-### Cómo Automatizarlo
+### Cómo automatizarlo
 
 1. Factura enviada automáticamente desde el software contable
 2. Sin pago a los 7 días → recordatorio amable automático
@@ -564,82 +296,46 @@ Facturas sin cobrar, clientes molestos por demasiados recordatorios, cash flow i
 
 **Herramientas:** Holded o QuickBooks · n8n · Gmail API · Google Sheets · Slack
 
-| | Detalle |
-|---|---|
-| Implementación | 1 semana |
-| Coste | desde €250 ([plan STARTER](/precios)) |
-| Ahorro anual | €38.400 (20h/mes × €160/h) |
-| Ingreso adicional | €10k-30k/año (cobros más rápidos = mejor cash flow) |
+---
 
-> *"Los pagos llegan 10 días antes en promedio. El cash flow mejoró €40k/mes."* — Distribuidor, Barcelona
+## ¿Cuánto cuesta no automatizarlos?
+
+Calcúlalo con tus horas: horas por semana × ${ASSUMPTIONS.weeksPerMonth} semanas × coste por hora.
+
+**Ejemplo ilustrativo:** si estos procesos sumaran ${EX_HOURS} horas semanales, a ${ASSUMPTIONS.hourlyCostEUR} €/h serían ${formatEUR(EX_SAVING)} al mes. Prueba con tus números en la [calculadora](/#calculadora).
 
 ---
 
-## El Coste Total De NO Automatizar (Lo Que No Ves)
+## ¿Tu empresa tiene estos 5 procesos?
 
-Si tienes 20 personas y 2-3 de ellas dedican el 50% del tiempo a estos procesos:
+- ☐ ¿Facturas en Excel o copiando datos a mano?
+- ☐ ¿Pasas contactos al CRM uno a uno?
+- ☐ ¿Montas reportes semanales o mensuales a mano?
+- ☐ ¿Llevas el seguimiento de clientes en una lista?
+- ☐ ¿Envías los recordatorios de cobro a mano?
 
-**Coste directo anual:** 2 personas × 50% × €50k salario = **€60.000/año**
-
-**Costes invisibles:**
-
-- **Oportunidad perdida** — No puedes crecer sin contratar. Sales ocupa el tiempo en admin, no en vender.
-- **Errores que cuestan dinero** — Facturas mal copiadas, clientes olvidados, decisiones basadas en reportes incorrectos.
-- **Rotación de talento** — Nadie quiere copiar datos 4h/día. Contratar y entrenar cuesta ~€20k por persona.
-- **La competencia te adelanta** — Cada mes que esperas, ellos avanzan.
-
-| Concepto | Coste anual estimado |
-|---|---|
-| Horas admin directas | €60.000 |
-| Oportunidad perdida | €100.000 |
-| Errores y correcciones | €40.000 |
-| Rotación de personal | €20.000 |
-| **Total real** | **€220.000** |
-
-**Solución:** ~€1.350 en automatización.
-**ROI:** 16.196%.
+Si marcas tres o más, conviene medir cuántas horas te llevan.
 
 ---
 
-## ¿Tu Empresa Tiene Estos 5 Procesos?
+## Tres ideas antes de empezar
 
-- ☐ ¿Facturas en Excel o software manual? (+40h/mes)
-- ☐ ¿Entradas de CRM a mano? (+8h/mes)
-- ☐ ¿Reportes semanales o mensuales manuales? (+8h/mes)
-- ☐ ¿Seguimiento de clientes por lista de Excel? (+12h/mes)
-- ☐ ¿Recordatorios de cobro manuales? (+16h/mes)
+**1. Empieza por el que más te duela.** Un proceso bien automatizado enseña más que cinco a medias. *(¿Con qué herramienta? [n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona).)*
 
-**Si marcaste 3 o más:** probablemente gastas 80-120 horas/mes en puro admin. Equivalente a 2 personas a tiempo completo haciendo trabajo sin valor.
+**2. Automatizar libera tiempo, no sustituye el criterio.** Quien hoy copia datos podrá dedicarse a revisarlos.
+
+**3. No todo merece automatizarse.** Si una tarea cambia cada vez o se hace poco, puede que no compense.
 
 ---
 
-## Las 3 Lecciones Que Aprendimos
+## ¿Por dónde sigo?
 
-**1. No automatices todo — automatiza el que más duele primero.**
-Un proceso bien automatizado ya genera ahorro visible en 3 semanas. Cuando ves el resultado, el siguiente es fácil. *(¿Qué herramienta usar para el primero? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
+Si quieres saber cuánto costaría, lee [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona).
 
-**2. La automatización no reemplaza personas, las libera.**
-Tu contador dejará de copiar datos (lo que odia) para hacer análisis fiscal (lo que le gusta). Tu sales dejará el admin para llamar clientes. Todos ganan.
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
-**3. El mejor momento era hace 5 años. El segundo mejor es hoy.**
-Cada mes de espera son €X.000 perdidos. No hay presupuesto perfecto ni momento perfecto. Solo hay un coste de oportunidad que crece.
-
----
-
-## Auditoría Gratuita — 60 Minutos
-
-Si reconoces 2 o más de estos procesos en tu empresa, probablemente ahorres €20k-100k al año. *(Ver caso documentado: [asesoría fiscal que pasó de 40h a 4h al mes](/blog/automatizacion-facturacion-40h-4h))*
-
-En 60 minutos identificamos exactamente dónde pierdes horas, calculamos el ahorro específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
-
-📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 175
-
-O reserva directamente en el [formulario de contacto](/#contacto).
-
----
-
-*¿Quieres saber cuánto cuesta implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
+📧 ${SITE.email}
+📱 ${SITE.phone}`,
   },
   {
     title: "Cuánto cuesta automatizar procesos en Barcelona (2026)",
@@ -648,7 +344,7 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "De qué depende el precio de automatizar procesos en una pyme de Barcelona, qué suele incluir y cómo estimar el ahorro antes de decidir.",
     author: AUTHOR,
     publishDate: "2026-06-26",
-    updatedDate: "2026-09-25",
+    updatedDate: "2026-11-03",
     readTime: 8,
     category: "Precios",
     featured: false,
@@ -674,217 +370,103 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "automatizacion-facturacion-40h-4h",
       "n8n-vs-make-vs-zapier-barcelona",
     ],
-    content: `La pregunta que todo empresario Barcelona hace: *"¿Cuánto me cuesta automatizar mis procesos?"*
-
-Esta guía te dará números reales. Desde empresas de 5 personas (€700) hasta corporaciones (€15k+). Sin presupuestos ocultos. Sin sorpresas. *(¿Nuevo en automatización? Empieza con la [guía completa de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
+    content: `El precio de automatizar un proceso depende de cuántos procesos sean, de cuántas aplicaciones haya que conectar y del soporte que necesites. Aquí explico cómo lo calculo, qué incluye y cómo estimar el ahorro antes de decidir.
 
 ---
 
-## El Precio Depende De 3 Factores (No Es Magia)
+## ¿De qué depende el precio?
 
-La automatización NO es un producto estándar. Es como la construcción: una casa de 2 pisos no cuesta lo mismo que una de 5.
-
-Los 3 factores que determinan tu precio:
-
-### 1. Número De Procesos A Automatizar
+### Número de procesos
 
 | Alcance | Plan | Precio |
 |---|---|---|
-| 1-2 procesos | STARTER | desde €700 |
-| 3-5 procesos | GROWTH ← más popular | desde €1.150 |
-| 6+ procesos | ENTERPRISE | desde €1.650 |
+${PLANS.map((p) => `| ${p.processes} procesos | ${p.name} | desde ${formatEUR(p.fromEUR)} |`).join("\n")}
 
-### 2. Complejidad De Tus Integraciones
+### Complejidad de las integraciones
 
-- **Simple** — Tu CRM + Email: +€300-500
-- **Media** — ERP + Contabilidad + Tienda online: +€1.500-2.000
-- **Compleja** — 5+ sistemas con lógica custom: +€3.000-5.000
+No es lo mismo conectar tu correo con una hoja de cálculo que enlazar un programa de gestión, una tienda online y un operador logístico. Cuantas más aplicaciones y excepciones haya, más trabajo requiere montarlo y probarlo.
 
-### 3. Nivel De Soporte Post-Implementación
+### Soporte
 
-- Soporte 30 días: **incluido** en todos los planes
-- Soporte 60 días: +€200/mes
-- Soporte ilimitado: +€500/mes *(ideal si quieres dormir tranquilo)*
+${PLANS.map((p) => `- **${p.name}:** ${p.support}`).join("\n")}
 
 ---
 
-## Ejemplo Real #1: Asesoría Fiscal Barcelona (8 personas)
+## ¿Cómo se estima el ahorro?
 
-**Situación:**
-- Facturaban 100-150 documentos/mes manualmente
-- Gastaban €4.800/mes solo en horas administrativas
-- Querían automatizar YA
+Con esta fórmula: horas por semana × ${ASSUMPTIONS.weeksPerMonth} semanas × coste por hora. Uso ${ASSUMPTIONS.hourlyCostEUR} €/h como supuesto; pon el tuyo en la [calculadora](/#calculadora).
 
-**Presupuesto que pagaron:**
+### Ejemplo ilustrativo: asesoría pequeña
 
-| Concepto | Importe |
-|---|---|
-| Plan GROWTH | €1.150 |
-| Soporte 60 días | +€200 |
-| **TOTAL** | **€1.350** |
+Una asesoría dedica ${EX_A.hoursPerWeek} horas semanales a archivar documentos y avisar de vencimientos.
 
-**Resultado en año 1:**
+- Ahorro estimado: **${formatEUR(EX_A_N.saving)}/mes**
+- Plan orientativo: ${EX_A_N.plan.name}, desde ${formatEUR(EX_A_N.plan.fromEUR)}
+- Se recuperaría en unos **${EX_A_N.payback} días**
 
-- Ahorro mensual: €4.320 (40h → 4h al mes)
-- Ahorro anual: **€51.840**
-- ROI: **1.850%** — se recuperó en 3 semanas
+### Ejemplo ilustrativo: tienda online
 
-### ¿Por Qué Pagaron Ese Precio Y No Más?
+Una tienda dedica ${EX_B.hoursPerWeek} horas semanales a pasar pedidos, ajustar stock y gestionar devoluciones.
 
-No pagaron más porque solo tenían 1 proceso crítico (facturación), integraciones simples (Excel → software contable) y no necesitaban soporte ilimitado.
+- Ahorro estimado: **${formatEUR(EX_B_N.saving)}/mes**
+- Plan orientativo: ${EX_B_N.plan.name}, desde ${formatEUR(EX_B_N.plan.fromEUR)}
+- Se recuperaría en unos **${EX_B_N.payback} días**
 
-Hubieran pagado más si quisieran automatizar 5+ procesos, integrar 3+ sistemas o requerir soporte 24/7. *(Caso completo documentado: [asesoría fiscal de 40h/mes a 4h/mes, ROI 1.850%](/blog/automatizacion-facturacion-40h-4h))*
+Son estimaciones con supuestos a la vista. Tu resultado dependerá de tus horas reales. Tienes más escenarios en los [casos de uso](/casos).
 
 ---
 
-## Ejemplo Real #2: E-commerce Barcelona (50 personas)
+## ¿Qué incluye cada proyecto?
 
-**Situación:**
-- 1.000 pedidos/mes llegaban por email
-- 5 personas gastaban 16h/semana en procesamiento manual
-- Querían 100% automatización + integraciones complejas
-
-**Presupuesto que pagaron:**
-
-| Concepto | Importe |
-|---|---|
-| Plan ENTERPRISE | €1.650 |
-| Integraciones complejas (ERP + Shopify + Shipping) | +€3.000 |
-| Soporte ilimitado | +€500/mes |
-| **TOTAL mes 1** | **€5.150** |
-
-**Resultado:**
-
-- Horas ahorradas: **832/año** (16h/semana × 52)
-- Dinero ahorrado: **€33.280/año** (832h × €40/h)
-- ROI: inversión recuperada en **3-4 meses**
-- Beneficio oculto: pueden crecer sin contratar — eso vale mucho más
-
-*(¿Quieres ver más casos con ROI documentado? [15+ casos reales de automatización en Barcelona](/casos))*
-
----
-
-## Desglose Completo De Precios RASTECH
-
-### STARTER — Para Empezar Rápido
-
-- Automatización 1-2 procesos
-- Integraciones simples (1-2 sistemas)
-- Implementación en 2 semanas
-- Soporte 30 días incluido
-- **Precio: desde €700** (pago único, no recurrente)
-
-### GROWTH — El Más Elegido *(80% de clientes eligen este)*
-
-- Automatización 3-5 procesos
-- Integraciones medias (3-4 sistemas)
-- Implementación en 2 semanas
-- Dashboard personalizado + alertas inteligentes
-- Soporte 60 días incluido
-- **Precio: desde €1.150** + €200/mes soporte opcional
-
-### ENTERPRISE — Transformación Completa
-
-- Automatización 6+ procesos
-- Integraciones complejas (5+ sistemas)
-- Implementación en 3-4 semanas
-- API personalizada + Account Manager dedicado
-- Consultoría estratégica incluida
-- **Precio: desde €1.650** (depende del alcance)
-
-Ver [todos los detalles en la página de precios](/precios).
-
----
-
-## ¿Cuál Es El Precio Promedio En Barcelona?
-
-Basado en nuestras 15+ implementaciones:
-
-| Tamaño empresa | Presupuesto típico | Ahorro anual |
-|---|---|---|
-| Pequeña (5-15 personas) | €1.500-3.000 | €15.000-30.000 |
-| Mediana (15-50 personas) | €3.000-8.000 | €30.000-80.000 |
-| Grande (50+ personas) | €8.000-20.000 | €80.000-200.000+ |
-
----
-
-## ¿Por Qué RASTECH Es Más Barato Que Consultoras Grandes?
-
-Consultoras genéricas: €10.000-50.000. RASTECH: €700-15.000.
-
-No es porque seamos peores. Es porque:
-
-1. **Nos especializamos** — No hacemos "de todo". Menos tiempo de análisis = menor coste.
-2. **Usamos herramientas modernas no-code** — n8n, Make. 10× más rápido que código custom. *(¿Cuál herramienta es la correcta para ti? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
-3. **Somos ágiles** — Sin overhead de 500 empleados ni oficinas en el Paseo de Gracia.
-4. **Queremos que TODOS puedan automatizar** — Precios accesibles = más clientes = modelo sostenible.
-
----
-
-## ¿Qué Incluye Y Qué NO Incluye?
-
-**Incluye siempre:**
-- Análisis inicial (60 min, gratis)
-- Diseño de flujos automáticos
-- Testing con tus datos reales
-- Formación del equipo (1-2 sesiones)
-- Documentación completa
-- Soporte inicial según plan
+**Incluye:**
+- Llamada inicial gratuita de ${OFFER.freeCallMinutes} minutos
+- Diseño de los flujos
+- Pruebas con tus datos antes de activar
+- ${OFFER.trainingHours} hora de formación para tu equipo
+- Documentación de los flujos
+- Soporte según el plan
 
 **No incluye:**
-- Migración de herramientas existentes (si quieres cambiar de sistema, coste extra)
-- Formación avanzada de más de 2 sesiones
-- Modificaciones infinitas — 3 iteraciones incluidas, luego €100/cambio
-- Hosting/suscripciones de herramientas de terceros (tú las pagas directamente)
+- Suscripciones de herramientas de terceros, que pagas directamente a cada proveedor
+- Lo que no figure en la propuesta. ${OFFER.noHiddenCosts}
+
+Tienes el detalle en la página de [precios](/precios).
 
 ---
 
-## Cómo Calculamos Tu Presupuesto Exacto
+## ¿Cómo se cierra el presupuesto?
 
-**Paso 1 — Auditoría inicial (60 min, gratis)**
-Identificamos tus procesos manuales, calculamos horas ahorradas potencial y estimamos complejidad de integraciones.
-
-**Paso 2 — Propuesta personalizada**
-"Para ti, plan X = €Y". Desglose detallado, timeline exacto, garantía 30 días.
-
-**Paso 3 — Implementación**
-Montamos, testeamos con tus datos reales, validamos contigo. Tu equipo toma el control.
-
-**Paso 4 — Soporte post-lanzamiento**
-Según plan contratado. Si no ves ahorro medible — **dinero atrás**.
+1. **Llamada gratuita.** Vemos tus procesos y estimamos cuánto te cuestan.
+2. **Propuesta por escrito.** Qué incluye, qué no, plazo y precio cerrado.
+3. **Montaje y pruebas.** Con tus datos, antes de activar.
+4. **Entrega y soporte.** Según tu plan.
 
 ---
 
-## Preguntas Frecuentes Sobre Presupuesto
+## Preguntas frecuentes
 
-**¿Necesito presupuesto mínimo?**
-No. Empezamos desde €700 (plan STARTER). Si tu caso no justifica automatizar, te lo decimos — sin venderte nada.
+**¿Cómo se paga?**
+${OFFER.payment}
 
-**¿Puedo pagar en cuotas?**
-Sí. El plan GROWTH (€1.150) se puede fraccionar en 2 pagos de €575.
-
-**¿Qué pasa si cambio de opinión después de empezar?**
-Garantía 30 días — dinero atrás sin preguntas. No es habitual en este sector, pero así trabajamos.
+**¿Y si no funciona como acordamos?**
+${OFFER.guarantee}
 
 **¿El presupuesto puede subir a mitad del proyecto?**
-No. El precio es cerrado y acordado antes de empezar. Sin sorpresas.
+El precio se cierra antes de empezar. ${OFFER.noHiddenCosts}
+
+**¿Hay un presupuesto mínimo?**
+El plan más sencillo parte de ${formatEUR(PLANS[0].fromEUR)}. Si tu caso no justifica automatizar, te lo digo.
 
 ---
 
-## Empieza Hoy — Auditoría Gratis
+## ¿Por dónde empiezo?
 
-Tu presupuesto exacto en 60 minutos. Sin compromiso.
+Si aún no tienes claro qué automatizar, lee [5 procesos de tu pyme que conviene automatizar](/blog/5-procesos-manuales-destructivos-barcelona).
 
-Cuéntanos tu caso y calculamos cuánto puedes ahorrar antes de invertir un euro.
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
-📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 175
-
-O reserva directamente en el [formulario de contacto](/#contacto).
-
----
-
-*¿Te interesa saber qué procesos conviene automatizar primero? Lee: [5 Procesos Manuales Que Te Destrozan La Productividad](/blog/5-procesos-manuales-destructivos-barcelona)*`,
+📧 ${SITE.email}
+📱 ${SITE.phone}`,
   },
   {
     title: "Cómo automatizar la facturación de una asesoría",
@@ -894,15 +476,15 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "Ejemplo de cómo automatizar la facturación de una asesoría: qué pasos se automatizan, con qué herramientas y qué hay que vigilar.",
     author: AUTHOR,
     publishDate: "2026-06-26",
+    updatedDate: "2026-11-03",
     readTime: 9,
-    category: "Casos de Éxito",
+    category: "Ejemplos",
     featured: true,
     keywords: [
       "automatización facturación barcelona",
       "automatizar facturación empresa",
-      "caso real automatización barcelona",
+      "ejemplo automatización facturación",
       "facturación automática pyme",
-      "ROI automatización procesos",
       "n8n facturación barcelona",
     ],
     continueReading: [
@@ -916,222 +498,99 @@ O reserva directamente en el [formulario de contacto](/#contacto).
       "n8n-vs-make-vs-zapier-barcelona",
       "errores-automatizar-empresa-barcelona",
     ],
-    content: `Una asesoría fiscal Barcelona facturaba 100-150 documentos cada mes. Todo en Excel. Manualmente. Gastaban €4,800/mes solo en horas administrativas. Implementamos automatización. En 3 semanas, pasaron de 40 horas a 4 horas. Cero errores. Ahorro €51,840/año. Esta es su historia. *(¿Contexto general? Lee la [guía de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
+    content: `Una asesoría recibe cada mes facturas de sus clientes por correo, WhatsApp o en papel, y alguien las pasa a mano al programa contable. Este artículo es un ejemplo ilustrativo de cómo automatizar ese proceso: qué pasos se automatizan, con qué herramientas y qué hay que vigilar. No describe a ningún cliente. *(¿Buscas el contexto general? Lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
 ---
 
-## La Situación Original: Un Proceso Que No Escalaba
+## La situación de partida
 
-**Empresa:** Asesoría Fiscal · Barcelona · 8 personas · Sector fiscal y contable
+**Ejemplo ilustrativo:** una asesoría de tamaño pequeño recibe documentos de sus clientes y dedica ${EX_F.hoursPerWeek} horas semanales a procesarlos.
 
-### El Proceso (Mes 0)
+El flujo manual suele ser este:
 
-Cada mes llegaban 100-150 facturas de clientes. El flujo era:
+1. El cliente envía la factura por correo o WhatsApp
+2. Alguien abre el archivo
+3. Copia cliente, importe, fecha y conceptos
+4. Comprueba que el cliente exista
+5. Registra los datos en el programa contable
+6. Archiva el documento en la carpeta compartida
 
-1. Cliente envía factura (email 80%, WhatsApp 15%, papel 5%)
-2. Contador abre Excel
-3. Copia manualmente: nombre cliente, importe, fecha, conceptos
-4. Valida contra base de datos de clientes
-5. Si el cliente no existe → crea nuevo (alto riesgo de error)
-6. Genera PDF desde plantilla manual + datos copiados
-7. Envía email al cliente
-8. Archiva en carpeta compartida (desorganizado)
-9. Registra en software contable (copia-pega otra vez)
+Cada paso es sencillo, pero repetirlo muchas veces cada mes acumula horas y errores de copia.
 
-| Métrica | Valor |
+---
+
+## ¿Dónde se van las horas?
+
+Antes de tocar nada conviene medir una semana normal. Suele aparecer trabajo que nadie contaba: buscar un documento, reclamar datos que faltan o corregir un importe mal copiado.
+
+---
+
+## ¿Cómo sería la solución?
+
+### Paso 1: entender el flujo actual
+
+Hay que responder a cuatro preguntas: dónde llegan las facturas, qué datos hacen falta, qué validaciones se hacen y dónde se guardan.
+
+### Paso 2: diseñar el flujo automático
+
+1. Llega el documento (correo o formulario)
+2. Se extraen los datos con un servicio de OCR
+3. Se valida contra la lista de clientes
+4. Si falta algo, se aparta para revisión humana
+5. Se registra en el programa contable mediante su API
+6. Se archiva en la carpeta del cliente
+7. Si algo falla, llega una alerta
+
+**Herramientas posibles:** n8n, un servicio de OCR, Google Sheets, Gmail y Google Drive. *(Si dudas entre herramientas, lee [n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona).)*
+
+### Paso 3: probar con documentos reales
+
+Antes de activar nada, hay que probar con documentos de verdad. Lo que suele dar problemas: facturas escritas a mano, clientes sin NIF en la base de datos, importes con formatos raros y clientes duplicados.
+
+### Paso 4: activar y formar
+
+Se activa poco a poco y se forma al equipo durante ${OFFER.trainingHours} hora: cómo revisar lo apartado, cómo dar de alta clientes y qué hacer si llega una alerta.
+
+---
+
+## ¿Cuánto podría suponer?
+
+Con los supuestos de ${ASSUMPTIONS.hourlyCostEUR} €/h y ${ASSUMPTIONS.weeksPerMonth} semanas al mes:
+
+| Concepto | Valor |
 |---|---|
-| Tiempo total | 40 horas/mes |
-| Coste laboral | €4,800/mes (40h × €120/h) |
-| Error rate | 3-5% |
-| Estado del equipo | Frustración |
+| Horas semanales del ejemplo | ${EX_F.hoursPerWeek} h |
+| Ahorro estimado | ${formatEUR(EX_F_N.saving)}/mes |
+| Plan orientativo | ${EX_F_N.plan.name} |
+| Inversión desde | ${formatEUR(EX_F_N.plan.fromEUR)} |
+| Recuperación | unos ${EX_F_N.payback} días |
+| ROI neto, año 1 | ${roiNet(EX_F_N.saving * 12, EX_F_N.plan.fromEUR)} % |
+
+Es una estimación, no un resultado. Parte de que esas horas desaparecen por completo, y siempre quedará algo de revisión humana.
 
 ---
 
-## El Análisis: ¿Dónde Se Gastan Las Horas?
+## ¿Qué hay que vigilar?
 
-Cuando medimos el tiempo real, el problema era mayor de lo que reportaban:
-
-| Tarea | Horas/mes |
-|---|---|
-| Copiar datos a Excel | 30h |
-| Validación manual | 10h |
-| Crear PDFs | 6h |
-| Registrar en software contable | 16h |
-| Buscar/archivar documentos | 4h |
-| **Total real** | **66h** |
-
-El contador reportaba "40 horas" porque no contaba las tareas fragmentadas. El coste real era **€7,920/mes**, no €4,800.
+- **El OCR no acierta siempre.** Conviene marcar para revisión lo que tenga baja confianza.
+- **La responsabilidad sigue siendo tuya.** Una persona debe poder revisar lo que entra en contabilidad.
+- **Los datos de tus clientes son sensibles.** Elige con cuidado por qué servicios pasan.
+- **Los programas cambian.** Si tu programa contable actualiza su API, habrá que revisar el flujo.
 
 ---
 
-## La Solución: Automatización Inteligente
+## ¿Tu empresa es candidata?
 
-No fue "instalar un robot". Fue liberar tiempo humano para lo que realmente importa.
+- ¿Haces a mano algo más de 5 horas a la semana?
+- ¿Repites el mismo proceso muchas veces al año?
+- ¿Tienes datos en una hoja y en otro programa que no coinciden?
 
-### Paso 1 — Entender El Flujo Actual (2 horas)
+Si respondes que sí a dos o más, merece la pena hacer los números con tus horas reales.
 
-Sentamos con el contador. Mapeamos:
-- ¿Dónde llegan facturas? (Email, WhatsApp, papel)
-- ¿Qué datos necesitas? (Cliente, importe, fecha, conceptos, concepto fiscal)
-- ¿Qué validaciones haces? (¿Cliente existe? ¿Importe realista? ¿Fecha válida?)
-- ¿Dónde los guardas? (Excel, Holded, carpeta compartida)
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
-**Herramientas auditadas:** Google Forms · Holded · Gmail · Google Drive
-
-### Paso 2 — Diseño Del Flujo Automático (3 horas)
-
-El nuevo flujo tiene 10 pasos, todos sin intervención humana:
-
-1. Cliente envía factura
-2. Sistema la recibe (email o formulario)
-3. OCR extrae datos automáticamente (Google Vision)
-4. Valida contra base de datos de clientes
-5. Genera PDF automático desde plantilla
-6. Envía email al cliente
-7. Registra en Holded vía API
-8. Archiva en Google Drive ordenadamente
-9. Genera reporte resumen semanal
-10. Si algo falla → alerta por Slack al contador
-
-**Herramientas del flujo:** n8n · Google Vision (OCR) · Google Sheets · Holded API · Gmail API · Google Drive · Slack *(¿No sabes cuál elegir? [Comparativa n8n vs Make vs Zapier](/blog/n8n-vs-make-vs-zapier-barcelona))*
-
-### Paso 3 — Testing Con Datos Reales (5 días)
-
-No usamos datos ficticios. Probamos con 20 facturas reales.
-
-Errores detectados y corregidos:
-- OCR fallaba con facturas manuscritas
-- Clientes sin NIF en la base de datos
-- Importes con comillas tipográficas mal parseadas
-- Clientes duplicados en Excel
-
-Cada error: 30 minutos de ajuste. Resultado final: **0 errores en producción**.
-
-### Paso 4 — Implementación Y Entrenamiento (2 días)
-
-**Día 1:** Sistema en producción. Primeras 50 facturas procesadas en automático (~3 segundos por factura). Dashboard en vivo para el contador.
-
-**Día 2:** 2 horas de entrenamiento al equipo. Cómo revisar alertas, crear clientes nuevos, leer reportes semanales.
-
-> *"No lo creía hasta que lo vi funcionar. Increíble."* — Contador principal
-
----
-
-## Los Resultados: Antes vs Después
-
-| Métrica | Antes | Después | Mejora |
-|---|---|---|---|
-| Horas/mes facturación | 40h | 4h | **-90%** |
-| Tiempo por factura | 15-20 min | 3 seg | **-99.7%** |
-| Error rate | 3-5% | 0.2% | **-96%** |
-| Coste laboral/mes | €4,800 | €480 | **-€4,320/mes** |
-| Tiempo reporte cliente | 2-3h | 5 min | **-97%** |
-
-### Impacto Anual
-
-- Horas ahorradas: 36h/mes × 12 = **432 horas/año**
-- Dinero ahorrado: €4,320/mes × 12 = **€51,840/año**
-- Errores evitados: ~50 errores/año
-
-### La Inversión
-
-| Concepto | Coste |
-|---|---|
-| [Plan GROWTH](/precios) | €2,600 |
-| Soporte 60 días | €200 |
-| **Total** | **€2,800** |
-
-**ROI: 1,850%** · **Payback period: 3 semanas**
-
-> Pagaron €2,800. Lo recuperaron en 3 semanas. Ahorran €51,840 cada año siguiente.
-
----
-
-## El Impacto Que Los Números No Capturan
-
-**Escalabilidad:** Antes no podían crecer — facturación consumía todo el tiempo. Ahora pueden procesar 500 documentos/mes sin contratar a nadie.
-
-**Calidad:** Clientes siempre actualizados, reportes fiables. *"Ahora confiamos en los números. Antes teníamos miedo."*
-
-**Equipo:** El contador pasó de 2 semanas/mes en copiar datos a enfocarse en análisis fiscal real. *"Mi contador ahora me da ideas, no solo reportes."*
-
----
-
-## ¿Por Qué No Lo Hicieron Antes?
-
-Preguntamos: "¿Por qué esperaron 5 años?"
-
-Las respuestas:
-1. **"Parecía complicado"** — Creían que necesitaban un programador a jornada completa
-2. **"No sabía que existía"** — Nadie les había propuesto esta solución
-3. **"Daba miedo cambiar"** — Sistema imperfecto pero conocido
-4. **"Pensaba que costaba mucho"** — Estimaban €50k+
-5. **"No me lo propusieron"** — Ningún proveedor lo sugirió
-
-La conclusión: la mayoría de empresas no automatizan por **ignorancia**, no porque sea imposible. Una vez lo ven funcionando, dicen: *"¿Por qué no lo hicimos hace 5 años?"* *(Para no cometer errores en tu implementación: [7 errores comunes al automatizar en Barcelona](/blog/errores-automatizar-empresa-barcelona))*
-
----
-
-## Las 3 Lecciones Aprendidas
-
-**1. Simplicidad vence complejidad**
-
-Pensaban que necesitaban un ERP custom. Bastó un flujo de n8n + Google Sheets + API de Holded. La solución perfecta no existe — pero la solución que funciona, sí.
-
-**2. Entrenar es crítico (y rápido)**
-
-El sistema estaba perfecto desde el día 1. Sin 2 horas de entrenamiento, no lo usaban bien. Una sola sesión marcó la diferencia.
-
-**3. Empieza por el proceso que más duele**
-
-Tenían 5 procesos manuales. Empezamos por facturación (máximo impacto). Con el ahorro visible en 3 semanas, automatizan el siguiente ellos solos.
-
----
-
-## ¿Tu Empresa Es Candidata?
-
-- ¿Haces algo manual más de 5 horas/semana?
-- ¿Repites el mismo proceso más de 100 veces/año?
-- ¿Tienes datos en Excel + otro software desincronizados?
-- ¿Alguien en tu equipo hace tareas que odia?
-- ¿No puedes crecer sin contratar más gente?
-
-Si respondiste sí a 3 o más, probablemente puedas ahorrar **€20k-100k/año**.
-
----
-
-## El Testimonio Del Contador
-
-> *"Pasé 5 años haciendo esto a mano. Copiando datos, validando, generando PDFs. Todos los meses, 40 horas.*
->
-> *Cuando Rubén propuso automatizar, pensé: 'Esto es muy complicado.' Pero me mostró que era simple.*
->
-> *Implementación fue limpia. En día 1, vi el sistema funcionando. 'No puede ser.'*
->
-> *Ahora manejo 150 facturas/mes en 4 horas. Automático. Yo me enfoco en análisis fiscal real.*
->
-> *¿Por qué esperé 5 años? Ignorancia pura. Pensaba que costaba €50k. Fueron €2,800 y recuperé en 3 semanas.*
->
-> *Si aún haces esto a mano... no esperes 5 años como yo."*
->
-> — **Juan García, Contador Principal · Asesoría Fiscal Barcelona**
-
----
-
-## Auditoría Gratuita — 60 Minutos
-
-Si facturas manualmente o tienes cualquier proceso que te come horas, hagamos los números juntos.
-
-En 60 minutos identificamos dónde se van las horas, calculamos el ahorro potencial específico para tu empresa y proponemos qué automatizar primero. Sin compromiso.
-
-📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 175
-
-O reserva en el [formulario de contacto](/#contacto).
-
----
-
-*¿Cuánto te costaría implementarlo? Lee: [Cuánto Cuesta Automatizar Tu Empresa Barcelona](/blog/cuanto-cuesta-automatizar-barcelona)*`,
+📧 ${SITE.email}
+📱 ${SITE.phone}`,
   },
   {
     title: "n8n vs Make vs Zapier: cuál elegir en 2026",
@@ -1141,7 +600,7 @@ O reserva en el [formulario de contacto](/#contacto).
       "Comparativa de n8n, Make y Zapier para pymes: diferencias, límites de cada plan y cuál elegir según tus procesos. Con enlaces a las páginas oficiales.",
     author: AUTHOR,
     publishDate: "2026-06-28",
-    updatedDate: "2026-11-02",
+    updatedDate: "2026-11-03",
     readTime: 11,
     category: "Herramientas",
     featured: false,
@@ -1167,11 +626,11 @@ O reserva en el [formulario de contacto](/#contacto).
     ],
     content: `Decidiste automatizar. Abriste Google. "¿Cuál herramienta uso?" Tres opciones populares: n8n, Make, Zapier. Las tres funcionan. Las tres son diferentes. Una se puede autoalojar sin pagar licencia; las otras dos se pagan según el volumen de uso.
 
-Esta comparativa usa los precios publicados en las páginas oficiales de cada herramienta. No "mejor o peor" — sino cuál es mejor **para tu caso**. *(¿Nuevo en automatización? Primero lee la [guía de automatización de procesos para empresas Barcelona](/blog/automatizacion-procesos-barcelona))*
+Esta comparativa usa los precios publicados en las páginas oficiales de cada herramienta. No "mejor o peor" — sino cuál es mejor **para tu caso**. *(¿Nuevo en automatización? Primero lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona))*
 
 ---
 
-## ¿Qué Son n8n, Make y Zapier?
+## ¿Qué son n8n, Make y Zapier?
 
 Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. La diferencia está en el precio, la complejidad y el control.
 
@@ -1185,7 +644,7 @@ Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. 
 
 ---
 
-## Tabla Comparativa
+## Tabla comparativa
 
 | Característica | n8n | Make | Zapier |
 |---|---|---|---|
@@ -1201,7 +660,7 @@ Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. 
 
 ---
 
-## Zapier — Para Empresas Que No Quieren Problemas
+## Zapier — para empresas que no quieren problemas
 
 ### Precios
 
@@ -1220,11 +679,9 @@ Como referencia, Professional con 5.000 tareas al mes cuesta 89 $/mes con pago a
 
 **Facilidad máxima** — Drag & drop super intuitivo. Sin pensar en flujos. Conectas y configuras. Un día de aprendizaje.
 
-**Soporte 24/7** — En planes premium, teléfono disponible. Si algo rompe, Zapier lo arregla.
-
 **Más de 9.000 apps conectadas** — Es el catálogo más amplio de los tres: conviene mirar antes si tu aplicación está.
 
-**Confiabilidad** — 14 años en mercado, millones de empresas, uptime 99.99%.
+**Trayectoria** — Es una de las herramientas más veteranas del sector.
 
 ### Desventajas
 
@@ -1232,19 +689,17 @@ Como referencia, Professional con 5.000 tareas al mes cuesta 89 $/mes con pago a
 
 **Pricing por tasks** — Cada acción consume tasks. Si creces, el coste crece con sorpresas.
 
-**Sin self-hosted** — Tus datos en servidores de EEUU. Problema GDPR.
+**Sin self-hosted** — Tus datos pasan por sus servidores; revisa sus condiciones si tratas datos sensibles.
 
 ### Mejor para
 
 ✅ CEOs sin perfil técnico · ✅ Presupuesto disponible · ✅ Workflows simples · ✅ Soporte empresarial crítico
 
-❌ Startups con presupuesto bajo · ❌ Datos sensibles (GDPR) · ❌ Workflows muy complejos
-
-> *"Usamos Zapier para pedidos → email → Slack. €30/mes. Funciona perfecto. Cero problemas."* — Restaurante, Barcelona
+❌ Startups con presupuesto bajo · ❌ Datos sensibles (RGPD) · ❌ Workflows muy complejos
 
 ---
 
-## Make — El Equilibrio Entre Precio y Potencia
+## Make — el equilibrio entre precio y potencia
 
 ### Precios
 
@@ -1270,13 +725,11 @@ Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encim
 
 ✅ Startups Barcelona (presupuesto bajo) · ✅ Workflows medianos (15-30 integraciones) · ✅ Relación precio-potencia · ✅ Equipo sin perfil técnico profundo
 
-❌ Grandes empresas (soporte limitado) · ❌ GDPR estricto (servidor propio) · ❌ Workflows ultra-complejos con lógica custom
-
-> *"Hicimos 20 workflows en Make por €30/mes. Con Zapier hubiera sido €300. Funciona exactamente igual."* — Agencia de marketing, Barcelona
+❌ Grandes empresas (soporte limitado) · ❌ Requisitos de servidor propio · ❌ Workflows ultra-complejos con lógica custom
 
 ---
 
-## n8n — Para Quienes Quieren Control Total
+## n8n — para quienes quieren control total
 
 ### Precios
 
@@ -1317,11 +770,9 @@ No hay plan gratuito permanente en la nube: se prueba con un periodo de prueba g
 
 ### Mejor para
 
-✅ Desarrolladores y perfiles técnicos · ✅ Presupuesto de licencias ajustado · ✅ Workflows complejos con lógica avanzada · ✅ GDPR/privacidad crítica · ✅ Datos sensibles (banca, salud, legal)
+✅ Desarrolladores y perfiles técnicos · ✅ Presupuesto de licencias ajustado · ✅ Workflows complejos con lógica avanzada · ✅ Privacidad crítica · ✅ Datos sensibles (banca, salud, legal)
 
 ❌ CEOs sin perfil técnico · ❌ Empresas que necesitan soporte garantizado · ❌ Workflows simples (es overkill)
-
-> *"Usé n8n self-hosted, €0/mes. Hice 50 workflows. Con Zapier hubiera sido €500/mes. Aprendí en 1 semana."* — Desarrollador freelance, Barcelona
 
 ---
 
@@ -1340,13 +791,13 @@ Zapier factura en dólares y n8n en euros, y cada una mide el consumo de forma d
 
 ---
 
-## ¿Cuál Elegir? La Respuesta Honesta
+## ¿Cuál elegir? la respuesta honesta
 
 No existe "la mejor". Existe la mejor **para tu situación ahora mismo**.
 
 **Eres gerente o CEO sin perfil técnico →** **Zapier**
 - UI más sencilla del mercado
-- Soporte por teléfono si algo falla
+- Plan gratuito para probar
 - Tranquilidad total
 - Coste: según tus tareas al mes (aceptable si el ahorro de tiempo lo justifica)
 
@@ -1367,7 +818,7 @@ No existe "la mejor". Existe la mejor **para tu situación ahora mismo**.
 
 ---
 
-## ¿Es Fácil Cambiar De Herramienta?
+## ¿Es fácil cambiar de herramienta?
 
 | Migración | Dificultad | Tiempo |
 |---|---|---|
@@ -1380,11 +831,11 @@ El salto más difícil es hacia n8n: estructura diferente, requiere perfil técn
 
 ---
 
-## Recomendación Final
+## Recomendación final
 
 **Primera vez automatizando →** Make, empezando por su plan Free. Visual y sin coste para probar. *(¿Cuánto cuesta todo el proyecto? Consulta la [guía de precios de automatización en Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
 
-**Ya tienes 10+ workflows →** Reevalúa: si Zapier da mejor soporte para tu tamaño, cambia. Si Make funciona, sigue. Si necesitas GDPR, migra a n8n.
+**Ya tienes 10+ workflows →** Reevalúa: si Zapier da mejor soporte para tu tamaño, cambia. Si Make funciona, sigue. Si necesitas tener los datos en tu servidor, migra a n8n.
 
 **Nunca empieces en n8n self-hosted** si no tienes perfil técnico — es overkill y te frustrará en la primera semana. *(Antes de empezar cualquier herramienta: [7 errores que arruinan una automatización](/blog/errores-automatizar-empresa-barcelona))*
 
@@ -1392,20 +843,18 @@ Make y Zapier tienen plan gratuito y n8n Cloud ofrece un periodo de prueba. Prue
 
 ---
 
-## Necesitas Ayuda Eligiendo
+## Necesitas ayuda eligiendo
 
-Si tu empresa tiene más de 5 procesos manuales, elegir la herramienta correcta puede ahorrarte €10k-50k al año en coste de licencias y tiempo de implementación.
+En ${OFFER.freeCallMinutes} minutos vemos tus procesos y te digo qué herramienta encaja mejor. Sin compromiso.
 
-En 30 minutos, analizamos tu stack actual, tus procesos y te decimos cuál herramienta encaja mejor. Sin compromiso.
-
-📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 175
+📧 ${SITE.email}
+📱 ${SITE.phone}
 
 O reserva en el [formulario de contacto](/#contacto).
 
 ---
 
-*¿Quieres ver n8n en acción con un caso real? Lee: [Automatización Facturación: De 40h/mes A 4h/mes](/blog/automatizacion-facturacion-40h-4h)*`,
+*¿Quieres ver n8n aplicado a un ejemplo? Lee: [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h)*`,
   },
   {
     title: "7 errores al automatizar una empresa y cómo evitarlos",
@@ -1414,6 +863,7 @@ O reserva en el [formulario de contacto](/#contacto).
       "Los 7 errores más habituales al automatizar los procesos de una empresa y cómo evitarlos antes de empezar.",
     author: AUTHOR,
     publishDate: "2026-06-29",
+    updatedDate: "2026-11-03",
     readTime: 10,
     category: "Educación",
     featured: false,
@@ -1436,77 +886,63 @@ O reserva en el [formulario de contacto](/#contacto).
       "5-procesos-manuales-destructivos-barcelona",
       "cuanto-cuesta-automatizar-barcelona",
     ],
-    content: `Implementaste automatización. Funcionó 3 semanas. Luego se rompió.
+    content: `Montas una automatización, funciona unas semanas y un día deja de hacerlo. Es fácil culpar a la herramienta, pero muchas veces el problema está en cómo se planteó.
 
-Tú culpas la herramienta (n8n, Make, Zapier). En realidad: cometiste 1 de 7 errores que la mayoría comete. Ni Zapier ni Make los mencionan en sus tutoriales — obvio, los haría ver mal.
-
-Aquí están los 7 errores reales. Con casos de Barcelona. Y cómo evitar cada uno. *(¿Aún no has empezado? Primero lee la [guía completa de automatización de procesos en Barcelona](/blog/automatizacion-procesos-barcelona))*
+Estos son siete errores habituales y cómo evitar cada uno. *(¿Aún no has empezado? Primero lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
 ---
 
-## Error #1: Automatizar El Proceso Fácil En Vez Del Ganador
+## Error #1: automatizar el proceso fácil en vez del ganador
 
-### Qué Sucede
+### Qué sucede
 
-La empresa decide automatizar. Elige el proceso más fácil de conectar, no el que más tiempo consume. *(Lee: [los 5 procesos manuales que más horas consumen en empresas Barcelona](/blog/5-procesos-manuales-destructivos-barcelona))*
+La empresa decide automatizar. Elige el proceso más fácil de conectar, no el que más tiempo consume. *(Lee: [5 procesos de tu pyme que conviene automatizar](/blog/5-procesos-manuales-destructivos-barcelona))*
 
-Ejemplo real:
-- **Proceso A:** Generar PDFs — 5 min/día → 20 horas/año ahorradas
-- **Proceso B:** Entrada CRM manual — 60 min/día → 240 horas/año ahorradas
+Ejemplo ilustrativo: generar un PDF lleva unos minutos al día y pasar contactos al CRM, cerca de una hora. Se automatiza lo primero porque es más fácil, el resultado apenas se nota y se concluye que automatizar no sirve.
 
-Automatizan el Proceso A porque "es más fácil". El CEO ve el resultado: "Meh, poca cosa." Presupuesto agotado. El Proceso B — que valía 240 horas — nunca se automatiza.
+**Impacto:** el proceso que de verdad consumía horas se queda como estaba.
 
-**Impacto:** €26.400/año en ahorro potencial perdido. Y la conclusión errónea: "La automatización no funciona."
-
-### Cómo Evitarlo
+### Cómo evitarlo
 
 1. **Auditoría de tiempo** — Lista todos los procesos manuales y calcula horas/mes de cada uno
-2. **Automatiza el ganador** — Empieza por el que consume más horas. ROI evidente desde el mes 1
+2. **Automatiza el ganador** — Empieza por el que consume más horas
 3. **Itera** — Con el primer resultado visible, el equipo confía y el siguiente proceso se aprueba solo
-
-> *"Intentamos automatizar reportes (2h/mes). Aburrido. Luego automatizamos cobros (20h/mes). €50k ahorrados. Los reportes ahora nos importan poco."* — Distribuidor, Barcelona
 
 ---
 
-## Error #2: No Entrenar Al Equipo (Y Culpar La Herramienta)
+## Error #2: no entrenar al equipo (Y culpar la herramienta)
 
-### Qué Sucede
+### Qué sucede
 
 Sistema implementado. Comunicación al equipo: "Aquí está. Úsalo." Sin demostración, sin contexto.
 
 Dos semanas después: "Esto no funciona." En realidad: el equipo no sabe cómo usarlo y sigue con Excel.
 
-Sistema que costó €1.350: muerto en producción.
+**Impacto:** dinero invertido en algo que nadie usa y un equipo frustrado.
 
-**Impacto:** Inversión en cero, equipo frustrado, presupuesto para próxima automatización cortado.
-
-### Cómo Evitarlo
+### Cómo evitarlo
 
 **Sesión 1 (30 min):** Muestra el sistema en vivo, explica qué ahorra, demuestra el flujo paso a paso.
 
 **Sesión 2 (30 min, 1 semana después):** Preguntas del equipo, casos que no entendieron, ajustes necesarios.
 
-Total: 1 hora. Resultado: adopción del 100%.
-
-Sin entrenamiento: adopción del 0%, sistema muerto, dinero perdido.
-
-> *"Implementamos el sistema. Dijimos 'úsalo'. Nadie lo usó. Mes 2: entrenamos 1 hora. De golpe, todos lo usaban."* — Asesoría, Barcelona
+Es poco tiempo y marca la diferencia entre un sistema que se usa y otro que se ignora.
 
 ---
 
-## Error #3: Flujos Demasiado Complejos (El Síndrome Del Todo A La Vez)
+## Error #3: flujos demasiado complejos (El síndrome del todo A la vez)
 
-### Qué Sucede
+### Qué sucede
 
-Entusiasmo tras la primera automatización: "Hagamos algo grande. Automaticemos toda la facturación en 1 flujo. 40 pasos." *(Ver cómo se hace correctamente: [caso real de automatización de facturación en 4 pasos](/blog/automatizacion-facturacion-40h-4h))*
+Entusiasmo tras la primera automatización: "Hagamos algo grande. Automaticemos toda la facturación en 1 flujo. 40 pasos." *(Tienes un ejemplo por pasos en [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h).)*
 
-Día 1-3: Funciona. Día 4: Error sin culpa clara. Día 7: Sistema desconectado, vuelta a manual.
+Al principio funciona. Un día aparece un error sin causa clara y nadie sabe dónde mirar. El sistema se apaga y se vuelve a lo manual.
 
-**Impacto:** 40 horas de debugging (€4.800), sistema sin funcionar, confianza en cero.
+**Impacto:** muchas horas buscando el fallo y un equipo que deja de confiar.
 
-### Cómo Evitarlo
+### Cómo evitarlo
 
-**Regla: un flujo pequeño es un flujo que funciona.**
+**Regla: un flujo pequeño es más fácil de mantener.**
 
 En lugar de 40 pasos en un solo workflow, divide:
 - Paso 1: Email entrada → Google Sheets (test 1 día)
@@ -1514,69 +950,61 @@ En lugar de 40 pasos en un solo workflow, divide:
 - Paso 3: PDF → email cliente (test 1 día)
 - Paso 4: Registra en software contable (test 1 día)
 
-Si el paso 3 falla, sabes exactamente dónde. Debugging en minutos, no días.
-
-> *"Primer flujo = 40 pasos = falló. Segundo flujo = 5 pasos a la vez = funciona. Luego fuimos agregando. Perfecto."* — E-commerce, Barcelona
+Si el paso 3 falla, sabes dónde mirar.
 
 ---
 
-## Error #4: No Monitorizar = Fallos Silenciosos Que No Ves
+## Error #4: no monitorizar = fallos silenciosos que no ves
 
-### Qué Sucede
+### Qué sucede
 
 Sistema funcionando. Tranquilidad total. Un mes después, el cliente XYZ llama: nunca recibió su factura. El cobro del cliente YYZ no se registró. Lo descubres dos semanas tarde.
 
-El sistema ejecutó al 90% correcto. El 10% falló sin hacer ruido.
+La mayor parte funcionó; el resto falló sin hacer ruido.
 
 **Impacto:** Facturas no enviadas, datos no sincronizados, clientes molestos, decisiones basadas en datos incorrectos.
 
-### Cómo Evitarlo
+### Cómo evitarlo
 
-**30 minutos de setup, infinito valor:**
+**Unos minutos de configuración bastan:**
 
-1. Cuenta workflows ejecutados/día (objetivo: 100%)
-2. Cuenta errores/día (objetivo: 0%)
-3. Alerta automática si error rate > 5%
+1. Crea un aviso automático cuando un flujo falle
+2. Comprueba de vez en cuando cuántas ejecuciones se han hecho
+3. Decide quién recibe la alerta y qué debe hacer
 
-Herramientas: Make y Zapier incluyen alertas en el plan gratuito. n8n tiene alertas por Slack también gratis.
+En n8n puedes hacerlo con un flujo de error basado en [Error Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/).
 
 Rutina: lunes 9am, 10 minutos revisar reporte semanal. ¿Errores? Arregla. ¿Todo limpio? Adelante.
 
-> *"Con alerta en Slack si falla, detectamos el problema en 2 minutos, no en 2 semanas. Sin alerta hubiera perdido 50 pedidos/mes."* — Restaurante, Barcelona
-
 ---
 
-## Error #5: Integración Frágil (Cuando La API Cambia, Todo Rompe)
+## Error #5: integración frágil (Cuando la API cambia, todo rompe)
 
-### Qué Sucede
+### Qué sucede
 
-Flujo conecta CRM + email + spreadsheet. Funciona 6 meses perfectamente. Mes 7: el CRM actualiza su API en silencio. Tu flujo: ERROR ERROR ERROR. Nadie sabe por qué. Downtime de 4 horas.
+Un flujo conecta el CRM, el correo y una hoja. Funciona durante meses hasta que una aplicación cambia su API y empieza a fallar sin que nadie sepa por qué.
 
-**Impacto:** Workaround manual esa semana (16 horas, €1.600), stress, "¿puedo confiar en esto?"
+**Impacto:** vuelta al trabajo manual mientras se arregla y dudas sobre el sistema.
 
-### Cómo Evitarlo
+### Cómo evitarlo
 
-**Usa plataformas, no APIs raw.** Make, Zapier y n8n mantienen sus integraciones. Si el CRM actualiza la API, ellos actualizan la integración. Tú no te enteras, el flujo sigue funcionando.
+**Prefiere los nodos o módulos oficiales.** Las plataformas mantienen sus integraciones, lo que reduce este riesgo aunque no lo elimina.
 
 **Webhooks como red de seguridad.** Configura: "Si algo falla, notifícame." Una alerta inmediata te permite hacer el workaround ese día y arreglarlo después, antes de que el cliente se entere.
 
 **Test automático semanal.** Ejecuta un workflow de prueba cada lunes. Si falla, la alerta llega antes de que nadie en producción sufra el error.
 
-> *"El CRM cambió su API. Con Zapier la integración se actualizó automático. Ni nos enteramos. Con API raw = 8 horas de debugging."* — Agencia, Barcelona
-
 ---
 
-## Error #6: Sin Documentación = Sistema Que Solo Tú Entiendes
+## Error #6: sin documentación = sistema que solo tú entiendes
 
-### Qué Sucede
+### Qué sucede
 
-Implementas el sistema. Funciona perfectamente. Te vas de vacaciones. Algo falla. El equipo no sabe qué hacer. Te llaman. Vacaciones arruinadas.
+El sistema funciona bien hasta que quien lo montó no está y algo falla. Nadie sabe por dónde empezar.
 
-O peor: cambias de trabajo. Nadie sabe cómo funciona el sistema. La empresa sigue pagando €500/mes por algo que nadie puede tocar.
+**Impacto:** dependencia de una sola persona.
 
-**Impacto:** Dependencia total de ti (bus factor = 1). Si te vas, el sistema muere.
-
-### Cómo Evitarlo
+### Cómo evitarlo
 
 **Una página. 20 minutos. Guarda en Google Drive compartido.**
 
@@ -1588,43 +1016,32 @@ Qué incluir:
 5. Contacto: quién preguntar si hay error
 
 Ejemplo:
-> *"Workflow: Pedidos → Slack. Qué: cada pedido de web genera alerta en #orders. Herramienta: Make. Si falla: revisar Make error log → reejecutar → si persiste, contactar rubenamirkhanyan12@gmail.com"*
-
-> *"Implementamos el sistema, nadie lo documentó. Mes 2: falla. Nadie puede arreglarlo. 20 minutos de documentación lo hubieran resuelto en 5 minutos."* — Startup, Barcelona
+> *"Workflow: Pedidos → Slack. Qué: cada pedido de web genera alerta en #orders. Herramienta: Make. Si falla: revisar Make error log → reejecutar → si persiste, avisar al responsable"*
 
 ---
 
-## Error #7: No Iterar Después Del Lanzamiento
+## Error #7: no iterar después del lanzamiento
 
-### Qué Sucede
+### Qué sucede
 
 Sistema lanzado. Funcionando. "Misión cumplida, nos relajamos."
 
 3 meses después: el volumen creció (el workflow es lento), llegó una app nueva que conviene integrar, hay un error recurrente pequeño que nadie arregla. El sistema funciona, pero ya no es óptimo.
 
-| | Mes 1 | Mes 6 | Mes 12 |
-|---|---|---|---|
-| Con revisión trimestral | €50k | €55k | €60k |
-| Sin revisión | €50k | €45k | €40k |
-
 **Impacto:** La degradación es silenciosa y progresiva.
 
-### Cómo Evitarlo
+### Cómo evitarlo
 
 **Revisión trimestral — 1 hora cada 3 meses:**
 
-1. ¿El flujo ejecuta al 100%? Si no, arregla
+1. ¿El flujo se ejecuta sin errores? Si no, arréglalo
 2. ¿Hay nuevas integraciones posibles? Añade
 3. ¿El equipo reportó problemas? Resuelve
 4. ¿El volumen creció? Optimiza la capacidad
 
-1 hora × 4 veces/año = 4 horas. Diferencia: €10k-20k en ahorro mantenido.
-
-> *"Implementamos hace 1 año y nunca revisamos. El ahorro bajó un 20% porque el volumen creció y el sistema no se optimizó. Una revisión de 1 hora recuperó el 50% de lo perdido."* — Asesoría, Barcelona
-
 ---
 
-## Los 7 Errores En Una Tabla
+## Los 7 errores en una tabla
 
 | Error | Síntoma | Solución | Tiempo |
 |---|---|---|---|
@@ -1636,39 +1053,27 @@ Sistema lanzado. Funcionando. "Misión cumplida, nos relajamos."
 | #6 Sin documentación | "Solo yo sé cómo funciona" | 1 página por workflow | 20 min |
 | #7 Sin iteración | "Ahorra menos con el tiempo" | Revisión trimestral | 1h × 4/año |
 
-**Total tiempo:** ~6 horas/año
-**Total valor:** €50k-100k/año mantenido
-
 ---
 
-## ¿Ya Cometiste Alguno? No Importa.
+## ¿Ya cometiste alguno? no importa.
 
 Si tu automatización falla ahora:
 
 1. Identifica cuál de los 7 errores cometiste
 2. Aplica la solución (está arriba)
-3. En 1-2 semanas funciona de nuevo
 
-No necesitas empezar de cero. No descartes el sistema. Solo arregla el error.
-
-> *"Flujo se rompió. Revisé los 7 errores. Era el #4 (sin monitorización). Configuré las alertas. Semana siguiente: funciona. ¿Por qué nadie lo menciona?"*
->
-> Porque nadie quiere admitir que falló. Pero la mayoría falla en al menos 1 de estos 7. Tú ya sabes — evitas los próximos.
+Muchas veces no hace falta empezar de cero.
 
 ---
 
-## Auditoría Gratuita — 60 Minutos
+## ¿Quieres que lo revisemos?
 
-Si tu automatización falló o no está dando el resultado esperado, en 60 minutos identificamos qué error cometiste y te damos el plan para arreglarlo. Sin coste, sin compromiso. *(¿Quieres saber cuánto cuesta rehacerlo bien? [Guía de precios reales de automatización Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
+Si tu automatización falla o no da lo que esperabas, en ${OFFER.freeCallMinutes} minutos vemos qué ha pasado. Si vas a empezar desde cero, consulta [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona) y [qué herramienta elegir](/blog/n8n-vs-make-vs-zapier-barcelona).
 
-📧 rubenamirkhanyan12@gmail.com
-📱 +34 613 361 175
+Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
-O reserva en el [formulario de contacto](/#contacto).
-
----
-
-*¿Buscas la herramienta adecuada para empezar bien? Lee: [n8n vs Make vs Zapier — Cuál Elegir Para Tu Empresa Barcelona](/blog/n8n-vs-make-vs-zapier-barcelona)*`,
+📧 ${SITE.email}
+📱 ${SITE.phone}`,
   },
   {
     title: "Cómo automatizar facturas con n8n paso a paso",

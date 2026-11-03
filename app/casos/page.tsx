@@ -1,5 +1,15 @@
 import { pageMetadata } from "../lib/seo";
-import { SITE } from "../lib/site-config";
+import {
+  ASSUMPTIONS,
+  formatEUR,
+  OFFER,
+  PLANS,
+  REAL_CASES,
+  roiNet,
+  SCENARIOS,
+  scenarioNumbers,
+  SITE,
+} from "../lib/site-config";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -11,147 +21,22 @@ export const metadata = pageMetadata({
   path: "/casos",
 });
 
-const cases = [
-  {
-    id: "restaurante",
-    sector: "Restauración",
-    company: "Restaurante El Sabor",
-    contact: { name: "Javier García", role: "Chef Propietario" },
-    imgExt: "png",
-    headline: "De 40h a 5h Semanales en Administración",
-    challenge:
-      "El chef pasaba el 90% del tiempo en papeleo y solo el 10% en cocina. Cada semana: 40 horas de facturas manuales, pedidos por teléfono a proveedores, reservas dispersas en 3 canales y reportes de caja que tardaban medio día.",
-    automated: [
-      "Facturación automática (comanda → factura → envío cliente)",
-      "Reservas centralizadas (teléfono + email + web = 1 calendario)",
-      "Pedidos automáticos a proveedores cuando baja stock",
-      "Reportes diarios en tiempo real sin intervención",
-      "Seguimiento de cobros pendientes automático",
-    ],
-    before: { hours: "40h/semana", errors: "5-10 facturas con errores/semana", cost: "€3,000/mes en personal admin" },
-    after: { hours: "5h/semana (↓87%)", errors: "0 errores/semana", saved: "€2,500/mes", payback: "1 mes", roi: "1.200%" },
-    investment: "€3,500",
-    duration: "4 semanas",
-    testimonial:
-      "Al principio pensé que esto era para empresas grandes, no para un restaurante como el mío. Me equivoqué. La primera semana seguía revisando las facturas a mano 'por si acaso' — costó soltar el control. Ya no. Lleva meses funcionando solo, sin fallar ni una vez. Ahora paso el tiempo en la cocina, no delante del ordenador.",
-    ctaLabel: "Automatizar mi restaurante",
-    ctaHref: "/automatizar-restaurantes",
-  },
-  {
-    id: "ecommerce",
-    sector: "E-commerce",
-    company: "E-commerce de Moda",
-    confidential: true,
-    contact: { name: "", role: "Directora de Operaciones" },
-    imgExt: "png",
-    headline: "Gestión de Pedidos: 25h a 3h Semanales",
-    challenge:
-      "Un 8% de los pedidos tenía errores de envío. Cada devolución requería 6 pasos manuales. El stock entre Shopify y el almacén nunca cuadraba. Los lunes eran un caos gestionando lo que había salido mal el fin de semana.",
-    automated: [
-      "Confirmación automática de pedidos (Shopify → cliente en 2 min)",
-      "Notificaciones de envío en tiempo real por email y SMS",
-      "Gestión de devoluciones: cliente solicita → reembolso → stock actualizado",
-      "Facturas automáticas según tipo de cliente",
-      "Sincronización de stock en tiempo real (tienda = almacén = proveedor)",
-    ],
-    before: { hours: "25h/semana en gestión pedidos", errors: "8% de errores en envíos", cost: "€2,800/mes en correcciones y devoluciones" },
-    after: { hours: "3h/semana (↓88%)", errors: "0 errores envío", saved: "€4,200/mes", payback: "6 semanas", roi: "850%" },
-    investment: "€5,500",
-    duration: "5 semanas",
-    testimonial:
-      "Llevábamos años perdiendo pedidos por errores de envío manuales. No fue instantáneo — las dos primeras semanas ajustamos varias reglas hasta que quedó fino. Pero desde entonces, cero errores. Dormimos tranquilos.",
-    ctaLabel: "Automatizar mi e-commerce",
-    ctaHref: "/automatizar-ecommerce",
-  },
-  {
-    id: "agencia",
-    sector: "Agencia Marketing",
-    company: "Agencia Grow",
-    contact: { name: "Marc Puig", role: "Fundador" },
-    imgExt: "jpg",
-    headline: "Triplicaron Clientes Sin Contratar a Nadie",
-    challenge:
-      "Con 5 clientes ya era imposible escalar. Cada cliente necesitaba 6 horas de reportes manuales cada semana. Los viernes eran una pesadilla. No podían crecer porque cada cliente nuevo significaba contratar más gente.",
-    automated: [
-      "Reportes automáticos semanales (GA4 + Meta Ads + Conversiones)",
-      "Dashboards por cliente actualizados en tiempo real",
-      "Alertas automáticas cuando un KPI cae por debajo del umbral",
-      "Facturas recurrentes automáticas vía Stripe",
-      "Seguimiento de hitos y entregas con notificaciones automáticas",
-    ],
-    before: { hours: "6h/cliente/semana en reportes", errors: "Reportes con datos de semanas anteriores", cost: "Imposible escalar más de 5 clientes" },
-    after: { hours: "1h/cliente/semana", errors: "Datos en tiempo real", saved: "5 → 15 clientes (3x)", payback: "3 semanas", roi: "1.800%" },
-    investment: "€7,500",
-    duration: "6 semanas",
-    testimonial:
-      "Triplicamos clientes sin contratar a nadie más. Así de simple.",
-    ctaLabel: "Automatizar mi agencia",
-    ctaHref: "/automatizar-agencias",
-  },
-  {
-    id: "despacho",
-    sector: "Despacho de Abogados",
-    company: "Jurídico BCN",
-    contact: { name: "Ana Soler", role: "Socia Directora" },
-    imgExt: "jpg",
-    headline: "Facturación y Expedientes: 30h a 4h",
-    challenge:
-      "Los abogados facturaban menos porque pasaban horas en papeleo. Documentos perdidos, plazos olvidados, €4,500/mes en horas de abogados haciendo administración en lugar de derecho.",
-    automated: [
-      "Generación automática de expedientes desde el primer contacto",
-      "Recordatorios de plazos con alertas escalonadas",
-      "Facturación por horas automática integrada con el calendario",
-      "Notificaciones automáticas a clientes en cada hito del caso",
-      "Archivo automático de documentos por expediente y fecha",
-    ],
-    before: { hours: "30h/semana en gestión documental", errors: "Documentos perdidos, plazos olvidados", cost: "€4,500/mes en horas de abogados en admin" },
-    after: { hours: "4h/semana (↓87%)", errors: "0 documentos perdidos, 0 plazos olvidados", saved: "€3,800/mes", payback: "2 meses", roi: "730%" },
-    investment: "€7,500",
-    duration: "6 semanas",
-    testimonial:
-      "Los abogados ahora se dedican a lo que saben hacer: derecho. La administración va sola. Los clientes reciben sus documentos automáticamente y los plazos nunca se olvidan.",
-    ctaLabel: "Automatizar mi despacho",
-    ctaHref: "/automatizar-otros",
-  },
-  {
-    id: "servicios",
-    sector: "Servicios Administrativos",
-    company: "AdminPlus Barcelona",
-    contact: { name: "Pedro Ruiz", role: "Director General" },
-    imgExt: "jpg",
-    headline: "De 3 Empleados Admin a 1 Part-Time",
-    challenge:
-      "Tenían 3 empleados a tiempo completo haciendo admin (120h/semana, €9,000/mes en salarios). Con más clientes necesitaban más personal — el modelo era imposible de escalar. La calidad variaba según quién hacía cada tarea.",
-    automated: [
-      "Onboarding de nuevos clientes completamente automático",
-      "Facturación recurrente sin intervención humana",
-      "Reportes mensuales generados y enviados automáticamente",
-      "Gestión de incidencias con tickets automáticos y seguimiento",
-      "Comunicaciones automáticas en cada etapa del servicio",
-    ],
-    before: { hours: "120h/semana (3 empleados × 40h)", errors: "Procesos inconsistentes entre empleados", cost: "€9,000/mes en salarios admin" },
-    after: { hours: "20h/semana (1 empleado part-time)", errors: "Procesos 100% estandarizados", saved: "€8,000/mes", payback: "2 semanas", roi: "2.800%" },
-    investment: "€12,000",
-    duration: "8 semanas",
-    testimonial:
-      "Era impensable reducir de 3 a 1 empleado de admin sin perder calidad. El sistema hace más y mejor que los 3 juntos. Escalamos 4x sin contratar.",
-    ctaLabel: "Automatizar mi empresa",
-    ctaHref: "/automatizar-otros",
-  },
-];
+const weeksLabel = ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",");
+const NOTICE = `Escenarios ilustrativos con supuestos a la vista (${ASSUMPTIONS.hourlyCostEUR} €/h, ${weeksLabel} semanas/mes). Los resultados reales dependen de cada empresa. Cuando haya casos de clientes, los publicaré con su permiso por escrito.`;
 
 const sectorMatch = [
-  { icon: "🍽️", title: "Restaurantes y hostelería", desc: "Facturación, reservas, pedidos proveedores, reportes diarios automáticos.", href: "/automatizar-restaurantes", roi: "ROI 1.200% documentado" },
-  { icon: "🛍️", title: "E-commerce y tiendas online", desc: "Pedidos, devoluciones, stock sincronizado, facturas, notificaciones.", href: "/automatizar-ecommerce", roi: "ROI 850% documentado" },
-  { icon: "📊", title: "Agencias y consultoras", desc: "Reportes, dashboards, facturación recurrente, gestión de clientes.", href: "/automatizar-agencias", roi: "ROI 1.800% documentado" },
-  { icon: "⭐", title: "Tu sector", desc: "Despachos, clínicas, academias, servicios. Análisis personalizado.", href: "/automatizar-otros", roi: "Propuesta personalizada" },
+  { icon: "🍽️", title: "Restaurantes y hostelería", desc: "Facturación, reservas, pedidos a proveedores y reportes diarios.", href: "/automatizar-restaurantes" },
+  { icon: "🛍️", title: "E-commerce y tiendas online", desc: "Pedidos, devoluciones, stock, facturas y avisos al cliente.", href: "/automatizar-ecommerce" },
+  { icon: "📊", title: "Agencias y consultoras", desc: "Reportes, facturación recurrente y gestión de clientes.", href: "/automatizar-agencias" },
+  { icon: "⭐", title: "Tu sector", desc: "Despachos, clínicas, academias y servicios, a medida.", href: "/automatizar-otros" },
 ];
 
 const faqs = [
-  { q: "¿Son casos reales o inventados?", a: "Todos los casos son reales, con empresa, nombre del contacto y números verificables. Los testimonios son de clientes actuales. Si quieres hablar con alguno de ellos, lo podemos organizar." },
-  { q: "¿Cuánto tiempo tarda implementar una automatización?", a: "Entre 2 y 8 semanas según la complejidad. Los casos más sencillos (STARTER, 1-2 procesos) se implementan en 2 semanas. Los proyectos ENTERPRISE pueden tardar 6-8 semanas. La primera semana es siempre análisis gratuito." },
-  { q: "¿Funcionará para mi sector específico?", a: "Hemos trabajado con restaurantes, e-commerce, agencias, despachos, clínicas, academias, servicios profesionales y más. Si no ves tu sector aquí, agenda un análisis gratuito — en 30 min te decimos si podemos ayudarte." },
-  { q: "¿Qué herramientas de automatización usáis?", a: "Principalmente n8n y Make (antes Integromat). Ambas se integran con +200 aplicaciones: Gmail, WhatsApp Business, Shopify, Google Sheets, QuickBooks, Stripe, Salesforce, HubSpot y muchas más. Sin código." },
+  { q: "¿Son casos de clientes?", a: "No. Son escenarios ilustrativos para que veas qué se puede automatizar y cómo se calcula. Estoy empezando y, cuando haya casos de clientes, los publicaré con su permiso por escrito." },
+  { q: "¿De dónde salen los números?", a: `De una fórmula que puedes comprobar: horas por semana × ${weeksLabel} semanas × ${ASSUMPTIONS.hourlyCostEUR} €/h. El plan es orientativo y su precio es el precio desde. Tu caso puede dar otra cifra, y por eso la calculamos juntos en la llamada gratuita.` },
+  { q: "¿Cuánto tiempo tarda implementar una automatización?", a: `Entre 2 y 4 semanas según el plan: ${PLANS.map((p) => `${p.name}, ${p.weeks} semanas`).join("; ")}.` },
+  { q: "¿Funcionará para mi sector?", a: `Depende de tus procesos más que del sector. Si no ves el tuyo aquí, reserva tu llamada: en ${OFFER.freeCallMinutes} minutos te digo si puedo ayudarte.` },
+  { q: "¿Qué herramientas usas?", a: "Principalmente n8n y Make. Ambas se conectan con cientos de aplicaciones, como Gmail, Google Sheets, Shopify, Stripe o HubSpot." },
 ];
 
 const schemaOrg = {
@@ -161,16 +46,16 @@ const schemaOrg = {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": SITE.url },
-        { "@type": "ListItem", "position": 2, "name": "Casos de Éxito", "item": `${SITE.url}/casos` },
+        { "@type": "ListItem", "position": 2, "name": "Casos de uso", "item": `${SITE.url}/casos` },
       ],
     },
     {
       "@type": "ItemList",
-      "name": "Casos de automatización RASTECH Barcelona",
-      "itemListElement": cases.map((c, i) => ({
+      "name": "Casos de uso de automatización",
+      "itemListElement": SCENARIOS.map((c, i) => ({
         "@type": "ListItem",
         "position": i + 1,
-        "name": c.company,
+        "name": `${c.sector}: ${c.title}`,
       })),
     },
   ],
@@ -194,154 +79,107 @@ export default function CasosPage() {
             <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-8 h-px bg-[#B8860B]" />
               <span className="text-[#B8860B] text-xs font-bold tracking-[0.25em] uppercase">
-                Resultados verificados · Barcelona
+                Escenarios ilustrativos · Barcelona
               </span>
               <span className="w-8 h-px bg-[#B8860B]" />
             </div>
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-              Casos Reales de Automatización:{" "}
-              <span className="text-[#B8860B]">ROI Documentado en Barcelona</span>
+              Casos de uso de automatización para pymes
             </h1>
-            <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-              5 historias de empresas que pasaron de 40h/semana a 5h/semana.
-              Números documentados. Sin inventos. Con nombre y empresa real.
+            <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+              Cinco situaciones habituales, qué se automatizaría en cada una y cuánto podría suponer.
             </p>
-            {/* Trust row */}
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
-              {[
-                "15+ empresas automatizadas",
-                "€51,840 ahorrados promedio",
-                "95% satisfacción",
-                "ROI desde el mes 1",
-              ].map((t) => (
-                <span key={t} className="flex items-center gap-2 text-white/55">
-                  <span className="text-[#10B981] text-xs">✓</span>
-                  {t}
-                </span>
-              ))}
-            </div>
+            <p className="bg-[#B8860B]/10 border border-[#B8860B]/25 text-white/70 text-sm leading-relaxed max-w-2xl mx-auto px-5 py-4">
+              {NOTICE}
+            </p>
           </div>
         </section>
 
-        {/* ── 5 CASOS EXPANDIDOS ── */}
+        {/* ── CASOS DE CLIENTES ── */}
+        {REAL_CASES.length > 0 && (
+          <section className="py-20 max-w-6xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-8">
+              Casos de clientes
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {REAL_CASES.map((c) => (
+                <article key={c.company} className="bg-[#111111] border border-white/5 p-7">
+                  <p className="text-[#B8860B] text-xs font-bold tracking-widest uppercase mb-2">{c.sector}</p>
+                  <h3 className="text-white font-bold text-lg mb-2">{c.company}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{c.summary}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── ESCENARIOS ── */}
         <section className="py-20 max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="space-y-16">
-            {cases.map((c, i) => (
-              <article
-                key={c.id}
-                className="bg-[#111111] border border-white/5 hover:border-[#B8860B]/15 transition-all overflow-hidden"
-              >
-                {/* Case header */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-8 py-5 border-b border-white/5 bg-[#0F0F0F]">
-                  <div className="flex items-center gap-3 flex-wrap">
+          <div className="space-y-10">
+            {SCENARIOS.map((c) => {
+              const { plan, saving, payback } = scenarioNumbers(c);
+              const rows = [
+                ["Horas ahorradas", `${c.hoursPerWeek} h/semana`],
+                ["Ahorro estimado", `${formatEUR(saving)}/mes`],
+                ["Plan orientativo", `${plan.name}, desde ${formatEUR(plan.fromEUR)}`],
+                ["Recuperación", `unos ${payback} días`],
+                ["ROI neto, año 1", `${roiNet(saving * 12, plan.fromEUR)} %`],
+              ];
+              return (
+                <article
+                  key={c.id}
+                  className="bg-[#111111] border border-white/5 hover:border-[#B8860B]/15 transition-all overflow-hidden"
+                >
+                  <div className="px-8 py-5 border-b border-white/5 bg-[#0F0F0F]">
                     <span className="text-[#B8860B] text-xs font-bold tracking-widest uppercase">{c.sector}</span>
-                    <span className="text-white/20">·</span>
-                    <span className="text-white font-[family-name:var(--font-playfair)] font-bold text-lg">{c.company}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs">
-                    <span className="font-mono border border-white/10 px-2 py-1 text-white/30">{c.duration}</span>
-                    <span className="font-mono border border-[#B8860B]/30 text-[#B8860B] px-2 py-1">Inversión: {c.investment}</span>
-                  </div>
-                </div>
 
-                <div className="p-8">
-                  <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-white mb-4">
-                    {c.headline}
-                  </h2>
-                  <p className="text-white/55 text-sm leading-relaxed mb-8 max-w-2xl">
-                    {c.challenge}
-                  </p>
+                  <div className="p-8">
+                    <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-white mb-4">
+                      {c.title}
+                    </h2>
+                    <p className="text-white/55 text-sm leading-relaxed mb-8 max-w-2xl">{c.problem}</p>
 
-                  <div className="grid md:grid-cols-3 gap-6 mb-8">
-                    {/* Antes */}
-                    <div className="bg-[#EF4444]/5 border border-[#EF4444]/15 p-5">
-                      <p className="text-[#EF4444] text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <span className="w-3 h-px bg-[#EF4444]/50" /> Antes
-                      </p>
-                      <ul className="space-y-2.5">
-                        {Object.values(c.before).map((val, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm text-white/55">
-                            <span className="text-[#EF4444]/60 mt-0.5 shrink-0">×</span>
-                            {val}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                      <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/30 p-5">
+                        <p className="text-[#B8860B] text-xs font-bold tracking-widest uppercase mb-4">
+                          Qué se automatizaría
+                        </p>
+                        <ul className="space-y-2">
+                          {c.automated.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-sm text-white/60">
+                              <span className="text-[#10B981] text-xs mt-0.5 shrink-0">✓</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    {/* Automatizamos */}
-                    <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/30 p-5">
-                      <p className="text-[#B8860B] text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <span className="w-3 h-px bg-[#B8860B]/50" /> Automatizamos
-                      </p>
-                      <ul className="space-y-2">
-                        {c.automated.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-white/60">
-                            <span className="text-[#10B981] text-xs mt-0.5 shrink-0">✓</span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Después */}
-                    <div className="bg-[#10B981]/5 border border-[#10B981]/15 p-5">
-                      <p className="text-[#10B981] text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <span className="w-3 h-px bg-[#10B981]/50" /> Después (documentado)
-                      </p>
-                      <div className="space-y-2.5">
-                        {Object.entries(c.after).map(([key, val]) => (
-                          <div key={key} className="flex justify-between items-center border-b border-white/5 pb-1.5">
-                            <span className="text-white/35 text-xs">
-                              {key === "hours" ? "Horas" : key === "errors" ? "Errores" : key === "saved" ? "Ahorro" : key === "payback" ? "Payback" : "ROI año 1"}
-                            </span>
-                            <span className={`font-bold text-sm font-[family-name:var(--font-playfair)] ${key === "roi" || key === "saved" ? "text-[#B8860B]" : "text-[#10B981]"}`}>
-                              {val}
-                            </span>
-                          </div>
-                        ))}
+                      <div className="bg-[#10B981]/5 border border-[#10B981]/15 p-5">
+                        <p className="text-[#10B981] text-xs font-bold tracking-widest uppercase mb-4">
+                          Estimación con estos supuestos
+                        </p>
+                        <div className="space-y-2.5">
+                          {rows.map(([label, value]) => (
+                            <div key={label} className="flex justify-between items-center gap-4 border-b border-white/5 pb-1.5">
+                              <span className="text-white/35 text-xs">{label}</span>
+                              <span className="font-bold text-sm text-[#10B981] text-right">{value}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Testimonial */}
-                  <div className="bg-[#1A3A52]/15 border-l-2 border-[#B8860B]/40 pl-6 py-4 mb-6">
-                    <p className="text-white/70 text-base leading-relaxed italic mb-4">
-                      &ldquo;{c.testimonial}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <img
-                        src={`/images/cases/${c.id}.${c.imgExt}`}
-                        alt={c.contact.name ? `${c.contact.name} - ${c.company}` : c.company}
-                        className="w-10 h-10 rounded-full object-cover border border-[#B8860B]/40 shrink-0"
-                      />
-                      <div>
-                        {c.contact.name && (
-                          <p className="text-white/70 text-sm font-semibold">{c.contact.name}</p>
-                        )}
-                        <p className="text-white/35 text-xs">{c.contact.role} · {c.company}</p>
-                        {"confidential" in c && c.confidential && (
-                          <p className="text-white/20 text-[10px] mt-0.5 leading-tight">
-                            Nombre no publicado por confidencialidad del cliente
-                          </p>
-                        )}
-                      </div>
-                      <div className="ml-auto flex gap-0.5">
-                        {Array.from({ length: 5 }).map((_, j) => (
-                          <span key={j} className="text-[#B8860B] text-sm">★</span>
-                        ))}
-                      </div>
-                    </div>
+                    <Link
+                      href={c.ctaHref}
+                      className="inline-flex items-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm py-3 px-6 transition-all"
+                    >
+                      {c.ctaLabel} →
+                    </Link>
                   </div>
-
-                  <Link
-                    href={c.ctaHref}
-                    className="inline-flex items-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm py-3 px-6 transition-all"
-                  >
-                    {c.ctaLabel} →
-                  </Link>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -350,15 +188,15 @@ export default function CasosPage() {
           <div className="max-w-5xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-4">
-                ¿Cuál se Parece a{" "}
-                <span className="text-[#B8860B]">Tu Empresa?</span>
+                ¿Cuál se parece a{" "}
+                <span className="text-[#B8860B]">tu empresa?</span>
               </h2>
               <p className="text-white/50 text-base max-w-xl mx-auto">
-                Cada sector tiene procesos distintos. Elige el tuyo para ver exactamente qué automatizamos.
+                Cada sector tiene procesos distintos. Elige el tuyo para ver qué se puede automatizar.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {sectorMatch.map(({ icon, title, desc, href, roi }) => (
+              {sectorMatch.map(({ icon, title, desc, href }) => (
                 <Link
                   key={href}
                   href={href}
@@ -369,7 +207,7 @@ export default function CasosPage() {
                     {title}
                   </p>
                   <p className="text-white/45 text-sm leading-relaxed flex-1 mb-3">{desc}</p>
-                  <span className="text-[#B8860B] text-xs font-bold">{roi} →</span>
+                  <span className="text-[#B8860B] text-xs font-bold">Ver sector →</span>
                 </Link>
               ))}
             </div>
@@ -380,8 +218,8 @@ export default function CasosPage() {
         <section className="py-20 bg-[#0F0F0F]">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-10 text-center">
-              Preguntas Frecuentes sobre{" "}
-              <span className="text-[#B8860B]">los Casos</span>
+              Preguntas frecuentes sobre{" "}
+              <span className="text-[#B8860B]">los casos de uso</span>
             </h2>
             <div className="bg-[#111111] border border-white/5">
               {faqs.map((faq, i) => (
@@ -406,20 +244,19 @@ export default function CasosPage() {
         <section className="py-20 bg-gradient-to-br from-[#1A3A52]/20 to-[#0A0A0A]">
           <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-4">
-              Empieza Tu Análisis Gratuito
+              Calculemos tu caso
             </h2>
             <p className="text-white/55 text-lg leading-relaxed mb-8">
-              30 minutos. Sin compromiso. Te digo exactamente cuánto puedes ahorrar
-              antes de invertir nada.
+              {OFFER.freeCallMinutes} minutos, sin compromiso. Vemos tus horas reales antes de que inviertas nada.
             </p>
             <Link
               href="/#contacto"
               className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-base px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.4)]"
             >
-              Quiero un análisis gratuito →
+              Reserva tu llamada →
             </Link>
             <p className="text-white/25 text-xs mt-4">
-              Análisis gratuito · Sin compromiso · Respuesta en menos de 24h
+              Llamada gratuita · Sin compromiso · Respondo en {OFFER.responseTime}
             </p>
           </div>
         </section>

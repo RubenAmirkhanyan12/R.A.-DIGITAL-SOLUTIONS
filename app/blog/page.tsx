@@ -2,6 +2,7 @@ import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import { getAllPublishedPosts, formatDate } from "../lib/blog-posts";
 import { Clock, Calendar, ArrowRight, Tag } from "lucide-react";
+import { OFFER } from "../lib/site-config";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -33,8 +34,7 @@ export default function BlogPage() {
             Blog de Automatización
           </h1>
           <p className="text-white/60 text-xl max-w-2xl leading-relaxed">
-            Guías prácticas sobre automatización de procesos para empresas en Barcelona.
-            Casos reales, ROI calculado, sin teoría vacía.
+            Guías prácticas sobre automatización de procesos para empresas de Barcelona, explicadas con ejemplos.
           </p>
         </div>
       </section>
@@ -137,17 +137,16 @@ export default function BlogPage() {
         {/* Newsletter / CTA */}
         <div className="mt-16 bg-gradient-to-br from-[#1A3A52]/30 to-[#1A3A52]/10 border border-[#1A3A52]/50 p-10 text-center">
           <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-3">
-            ¿Listo para automatizar tu empresa?
+            ¿Quieres automatizar algo en tu empresa?
           </h3>
           <p className="text-white/50 text-base mb-6 max-w-xl mx-auto">
-            Análisis gratuito de 30 minutos. Calculamos exactamente cuánto puedes
-            ahorrar con tu empresa específica.
+            Llamada gratuita de {OFFER.freeCallMinutes} minutos para estimar cuánto puedes ahorrar en tu empresa.
           </p>
           <Link
             href="/#contacto"
             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm tracking-wide px-8 py-4 transition-all hover:shadow-[0_0_25px_rgba(184,134,11,0.35)]"
           >
-            Agendar análisis gratuito
+            Reserva tu llamada
             <ArrowRight size={15} />
           </Link>
         </div>

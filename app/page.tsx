@@ -11,6 +11,7 @@ import HeroSection from "./components/HeroSection";
 import ProblemsSection from "./components/ProblemsSection";
 import ProcessSection from "./components/ProcessSection";
 import CaseStudiesSection from "./components/CaseStudiesSection";
+import HowIWorkSection from "./components/HowIWorkSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import PricingSection from "./components/PricingSection";
 import FAQSection from "./components/FAQSection";
@@ -29,6 +30,7 @@ export default function Home() {
         <ProblemsSection />
         <ProcessSection />
         <CaseStudiesSection />
+        <HowIWorkSection />
         <TestimonialsSection />
         <PricingSection />
         <FAQSection />

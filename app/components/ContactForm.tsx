@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "./Consent";
-import { SITE } from "../lib/site-config";
+import { OFFER, SITE } from "../lib/site-config";
 
 type FormValues = {
   name: string;
@@ -67,11 +67,10 @@ export default function ContactForm() {
           <CheckCircle size={28} className="text-[#10B981]" />
         </div>
         <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-3">
-          ¡Análisis agendado!
+          Solicitud recibida
         </h3>
         <p className="text-white/55 text-sm max-w-sm leading-relaxed">
-          Te contactaré en menos de 24 horas para confirmar la videollamada
-          de análisis gratuita. Revisa tu email.
+          Te responderé en {OFFER.responseTime} para confirmar la llamada gratuita.
         </p>
       </div>
     );
@@ -86,7 +85,7 @@ export default function ContactForm() {
           </label>
           <input
             {...register("name", { required: "Campo obligatorio" })}
-            placeholder="Javier García"
+            placeholder="Tu nombre"
             className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/60 text-white placeholder-white/20 px-4 py-3 text-sm outline-none transition-colors"
           />
           {errors.name && (
@@ -119,7 +118,7 @@ export default function ContactForm() {
               },
             })}
             type="email"
-            placeholder="javier@empresa.com"
+            placeholder="tu@empresa.com"
             className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/60 text-white placeholder-white/20 px-4 py-3 text-sm outline-none transition-colors"
           />
           {errors.email && (
@@ -209,13 +208,13 @@ export default function ContactForm() {
         ) : (
           <Send size={14} />
         )}
-        {isSubmitting ? "Enviando..." : "Agendar Análisis Gratuito"}
+        {isSubmitting ? "Enviando..." : "Reserva tu llamada"}
       </button>
 
       <ConsentNotice />
 
       <p className="text-white/20 text-xs text-center">
-        Respondo en menos de 24h · Sin spam · Sin compromisos
+        Respondo en {OFFER.responseTime} · Sin spam · Sin compromisos
       </p>
     </form>
   );

@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import LandingContactForm, { type FormField } from "./LandingContactForm";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
+import { OFFER } from "../../lib/site-config";
 import { Search, Phone, FileText } from "lucide-react";
 
 const formFields: FormField[] = [
@@ -23,18 +24,18 @@ const formFields: FormField[] = [
 const steps = [
   {
     icon: <Search size={24} className="text-[#B8860B]" />,
-    title: "Analizamos",
-    desc: "Leemos tu solicitud y analizamos tu empresa en detalle.",
+    title: "Leo tu caso",
+    desc: "Reviso tu solicitud antes de hablar contigo.",
   },
   {
     icon: <Phone size={24} className="text-[#B8860B]" />,
-    title: "Te Contactamos",
-    desc: "Te llamamos para entender mejor tus necesidades y procesos.",
+    title: "Te llamo",
+    desc: "Hablamos para entender tus procesos.",
   },
   {
     icon: <FileText size={24} className="text-[#B8860B]" />,
     title: "Propuesta",
-    desc: "Te enviamos propuesta personalizada con presupuesto cerrado.",
+    desc: "Te envío una propuesta con precio cerrado.",
   },
 ];
 
@@ -204,7 +205,7 @@ export default function AutomatizarOtros() {
         <section className="py-20 bg-[#0F0F0F]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-12 text-center">
-              ¿Qué Pasa Después?
+              ¿Qué pasa después?
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -221,8 +222,8 @@ export default function AutomatizarOtros() {
 
             <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/50 p-8 text-center">
               <p className="text-white/70 text-[15px] leading-relaxed">
-                <span className="text-[#B8860B] font-bold">Presupuesto flexible.</span>{" "}
-                Cada empresa es diferente. Hablamos, analizamos y llegamos a un acuerdo que sea justo para ambos.
+                <span className="text-[#B8860B] font-bold">Cada empresa es diferente.</span>{" "}
+                {OFFER.noHiddenCosts}
               </p>
             </div>
           </div>
@@ -234,10 +235,10 @@ export default function AutomatizarOtros() {
         <section className="py-20 bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <LandingContactForm
-              title="Tu Propuesta Personalizada"
-              description="Cuéntanos tu sector y procesos. Te respondemos en 24-48 horas con un análisis concreto."
+              title="Cuéntame tu caso"
+              description={`Cuéntame tu sector y tus procesos. Te respondo en ${OFFER.responseTime}.`}
               fields={formFields}
-              buttonText="Enviar Mi Información"
+              buttonText="Reserva tu llamada"
               sector="otros"
             />
           </div>

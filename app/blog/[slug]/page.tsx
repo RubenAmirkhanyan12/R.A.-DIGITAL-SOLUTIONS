@@ -9,6 +9,7 @@ import {
   formatDate,
 } from "../../lib/blog-posts";
 import { pageMetadata, SITE_URL } from "../../lib/seo";
+import { OFFER } from "../../lib/site-config";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, ExternalLink, Mail } from "lucide-react";
@@ -324,18 +325,17 @@ export default async function BlogPostPage({ params }: Props) {
                   ¿Listo para implementarlo?
                 </p>
                 <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-3">
-                  Análisis gratuito de 30 minutos
+                  Llamada gratuita de {OFFER.freeCallMinutes} minutos
                 </h2>
                 <p className="text-white/55 text-base leading-relaxed mb-6">
-                  Calculamos exactamente cuántas horas y cuánto dinero puedes ahorrar
-                  en tu empresa específica. Sin compromiso.
+                  Vemos cuántas horas y cuánto dinero puedes ahorrar en tu empresa. Sin compromiso.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
                     href="/#contacto"
                     className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm tracking-wide px-7 py-3.5 transition-all hover:shadow-[0_0_25px_rgba(184,134,11,0.35)]"
                   >
-                    Agendar análisis
+                    Reserva tu llamada
                     <ArrowRight size={15} />
                   </Link>
                   <a
@@ -433,13 +433,13 @@ export default async function BlogPostPage({ params }: Props) {
                     ¿Preguntas?
                   </p>
                   <p className="text-white/55 text-xs leading-relaxed mb-4">
-                    Análisis gratuito de 30 min. Calculamos tu ROI específico.
+                    Llamada gratuita de {OFFER.freeCallMinutes} min, sin compromiso.
                   </p>
                   <Link
                     href="/#contacto"
                     className="block text-center bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-xs tracking-wide px-4 py-3 transition-all"
                   >
-                    Análisis gratuito →
+                    Reserva tu llamada →
                   </Link>
                 </div>
               </div>

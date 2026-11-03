@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "RASTECH | Automatización de Procesos Barcelona",
   description:
-    "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 15+ empresas automatizadas. Auditoría gratis sin compromiso.",
+    "Automatización de procesos para pymes de Barcelona con n8n y Make. Pide una llamada gratuita.",
   authors: [{ name: SITE.owner }],
   openGraph: {
     type: "website",

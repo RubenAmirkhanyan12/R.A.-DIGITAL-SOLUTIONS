@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
+import { ASSUMPTIONS, formatEUR, OFFER, planById, roiNet, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm, { type FormField } from "./LandingContactForm";
 import {
   CheckCircle,
@@ -17,57 +18,62 @@ import {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 
+const scenario = SCENARIOS.find((c) => c.id === "ecommerce")!;
+const { plan, saving, payback } = scenarioNumbers(scenario);
+const plan1 = planById("starter");
+const plan2 = planById("growth");
+
 const problemBlocks = [
   {
     icon: <Package size={22} className="text-[#B8860B]" />,
-    number: "25h/semana",
-    title: "Gestión de Pedidos Manual",
-    desc: "Pedido entra en Shopify. Tú lo copias a Excel. Tú buscas stock. Tú escribes email proveedor. Tú confirmas envío. 30-60 min por pedido × 20 pedidos/día = 25h/semana.",
+    number: "Pedidos",
+    title: "Gestión de pedidos manual",
+    desc: "Cada pedido se copia a la hoja de almacén o al programa de gestión. Cada copia es una oportunidad de equivocarse.",
   },
   {
     icon: <AlertCircle size={22} className="text-[#B8860B]" />,
-    number: "3 desincronizados",
-    title: "Stock En Múltiples Lugares",
-    desc: "Stock en Shopify ≠ stock en almacén ≠ stock en proveedor. Clientes compran producto agotado. Devoluciones. Retrasos. Reputación dañada.",
+    number: "Stock",
+    title: "Stock en varios sitios",
+    desc: "Si la web, el almacén y otro canal no coinciden, acabas vendiendo un producto agotado.",
   },
   {
     icon: <AlertCircle size={22} className="text-[#B8860B]" />,
-    number: "8%",
-    title: "Tasa de Error en Envíos",
-    desc: "1 de cada 12-13 envíos tiene error (dirección mal, producto equivocado). Cada error = 30 min corrección + cliente enfadado + devolución.",
+    number: "Envíos",
+    title: "Errores en envíos",
+    desc: "Una dirección incompleta o un producto equivocado se detectan cuando el cliente ya está esperando.",
   },
   {
     icon: <TrendingDown size={22} className="text-[#B8860B]" />,
-    number: "€800/mes",
-    title: "Dinero Perdido en Devoluciones",
-    desc: "8% tasa error × 20 pedidos/día × 25 días = 40 devoluciones/mes × €20 costo = €800/mes solo en gestión devoluciones.",
+    number: "Devoluciones",
+    title: "Devoluciones a mano",
+    desc: "Cada devolución implica varios pasos: aviso, reembolso y stock. Si falta uno, los números dejan de cuadrar.",
   },
 ];
 
 const solutionWeeks = [
   {
     n: "01",
-    title: "Análisis Gratis",
-    body: "Reunión 2 horas. Mapeamos exactamente tu flujo: Shopify → gestión actual → stock → proveedores. Calculamos pérdidas en €. Resultado: documento con 3-5 procesos a automatizar.",
-    cost: "€0 — sin compromiso",
+    title: "Llamada gratuita",
+    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimamos cuánto te cuestan y decidimos qué conviene automatizar primero.`,
+    cost: "Gratis y sin compromiso",
   },
   {
     n: "02",
-    title: "Setup de Automáticos",
-    body: "Conectamos Shopify → stock automático → email proveedores automático → confirmación cliente automática. Flujo completo sin código.",
-    cost: "desde €850 (STARTER) o desde €1.300 (GROWTH)",
+    title: "Montaje de los flujos",
+    body: "Conecto la tienda con el almacén, la factura y el aviso al proveedor, sin duplicar los correos que tu tienda ya envía.",
+    cost: `desde ${formatEUR(plan1.fromEUR)} (${plan1.name}) o desde ${formatEUR(plan2.fromEUR)} (${plan2.name})`,
   },
   {
     n: "03",
-    title: "Testing Completo",
-    body: "100+ pruebas con datos reales. Qué pasa si cliente compra producto agotado. Si proveedor no responde. Si hay devolución. Cero sorpresas.",
+    title: "Pruebas",
+    body: "Pruebas con tus datos antes de activar: producto agotado, proveedor que no responde, devolución o pedido cancelado.",
     cost: "Incluido",
   },
   {
     n: "04",
-    title: "Lanzamiento + Dashboard",
-    body: "Activamos en producción. Migramos órdenes pasadas. Creamos dashboard en vivo de ventas/stock. Formamos equipo (1 hora).",
-    cost: "30 días soporte incluido",
+    title: "Puesta en marcha + formación",
+    body: `Activo los flujos y dedico ${OFFER.trainingHours} hora a formar a tu equipo. Dejo alertas automáticas si un flujo falla.`,
+    cost: plan1.support,
   },
 ];
 
@@ -76,98 +82,78 @@ const caseColumns = [
     title: "ANTES",
     color: "bg-red-950/20",
     titleColor: "text-red-400/80",
-    rows: [
-      "Gestión pedidos: 25h/semana",
-      "Manual en Excel — stock desincronizado",
-      "Tasa de error: 8% (1 de cada 12)",
-      "Clientes enfadados por envíos erróneos",
-      "Devoluciones: 40/mes — €800 costo",
-      "Reportes: 'el viernes por la noche'",
-      "Capacidad: 500 pedidos/mes máximo",
-      "Dinero perdido/mes: €1.500",
-    ],
+    rows: ["Pedidos copiados a mano", "Stock distinto en cada canal", "Direcciones sin revisar", "Devoluciones sin registro común"],
   },
   {
-    title: "CÓMO LO HICIMOS",
+    title: "QUÉ SE AUTOMATIZARÍA",
     color: "bg-[#1A3A52]/15",
     titleColor: "text-white/50",
-    rows: [
-      "Sem. 1: Auditoría — problema #1 = pedidos",
-      "Calculamos: €1.500/mes en pérdidas",
-      "Sem. 2: Pedido Shopify → factura auto",
-      "Stock: Shopify ↔ almacén sincronizado",
-      "Email proveedor auto si stock < 10",
-      "Herramienta: Make (ideal para Shopify)",
-      "Sem. 3: 100 pruebas — error rate 0.5%",
-      "Sem. 4: Dashboard en vivo, go-live",
-    ],
+    rows: scenario.automated,
   },
   {
-    title: "DESPUÉS",
+    title: "ESTIMACIÓN",
     color: "bg-green-950/20",
     titleColor: "text-[#10B981]",
     rows: [
-      "Gestión pedidos: 3h/semana (↓88%)",
-      "Stock 100% sincronizado en tiempo real",
-      "Tasa de error: 0.5% (vs 8% antes)",
-      "Clientes satisfechos — sin errores",
-      "Devoluciones: 5/mes — €100 costo",
-      "Dashboard actualizado cada hora",
-      "Capacidad: 5.000 pedidos/mes (↑1000%)",
-      "Dinero recuperado/mes: €4.200",
+      `${scenario.hoursPerWeek} h/semana menos de trabajo manual`,
+      `${formatEUR(saving)}/mes de ahorro estimado`,
+      `Plan orientativo: ${plan.name}`,
+      `Supuestos: ${ASSUMPTIONS.hourlyCostEUR} €/h y ${ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas/mes`,
     ],
   },
 ];
 
 const roiNumbers = [
-  { v: "€4.500", l: "Inversión" },
-  { v: "€4.200/mes", l: "Ahorrado" },
-  { v: "6 semanas", l: "Payback" },
-  { v: "850%", l: "ROI" },
+  { v: formatEUR(plan.fromEUR), l: "Inversión desde" },
+  { v: `${formatEUR(saving)}/mes`, l: "Ahorro estimado" },
+  { v: `${payback} días`, l: "Recuperación" },
+  { v: `${roiNet(saving * 12, plan.fromEUR)} %`, l: "ROI neto, año 1" },
 ];
 
 const starterFeatures = [
-  { text: "Gestión pedidos automática", ok: true },
+  { text: "Gestión de pedidos automática", ok: true },
   { text: "Facturación automática", ok: true },
-  { text: "Implementación 2 semanas", ok: true },
   { text: "Soporte 30 días", ok: true },
-  { text: "Stock sincronizado", ok: false },
+  { text: "Stock entre canales", ok: false },
   { text: "Devoluciones automáticas", ok: false },
 ];
 
 const growthFeatures = [
-  { text: "Gestión pedidos automática", ok: true },
-  { text: "Stock sincronizado real-time", ok: true },
+  { text: "Gestión de pedidos automática", ok: true },
+  { text: "Stock entre canales", ok: true },
   { text: "Devoluciones automáticas", ok: true },
-  { text: "Reportes dashboard", ok: true },
-  { text: "Implementación 4 semanas", ok: true },
-  { text: "Soporte 60 días", ok: true },
+  { text: "Informe de ventas", ok: true },
+  { text: "Soporte 60 días + revisión", ok: true },
 ];
 
 const faqs = [
   {
-    q: "¿Pierdo acceso a Shopify si falla el automático?",
-    a: "No. Shopify sigue funcionando 100%. Si falla el automático, el sistema te avisa. Sigues manualmente sin perder datos.",
+    q: "¿Dejo de tener acceso a mi tienda si falla el automático?",
+    a: "No. La tienda sigue funcionando igual. Si falla un flujo, recibes un aviso y puedes seguir a mano.",
   },
   {
-    q: "¿Cómo sincronizas stock entre Shopify y almacén?",
-    a: "Conexión bidireccional. Cada venta en Shopify actualiza el almacén automático. Cada recepción de stock actualiza Shopify. Cero desincronización.",
-  },
-  {
-    q: "¿Qué pasa con las devoluciones?",
-    a: "Automáticas. Cliente solicita devolución → Email con instrucciones → Reembolso cuando recibimos producto → Stock actualizado automático.",
-  },
-  {
-    q: "¿Necesito cambiar mi cuenta de Shopify?",
-    a: "No. Integramos con tu cuenta actual. Cero cambios en tus herramientas.",
+    q: "¿Cómo se mantiene el stock entre canales?",
+    a: "Decidimos qué sistema manda y trabajamos con ajustes de unidades, para que dos sistemas no se pisen.",
   },
   {
     q: "¿Y si mi proveedor no tiene API?",
-    a: "Email automático. Si proveedor no tiene API, les mandamos email cuando stock baja. Es lo que haces hoy manualmente, pero sin que hagas nada.",
+    a: "Se le envía un correo cuando el stock baja del mínimo, igual que haces hoy pero sin tener que acordarte.",
   },
   {
-    q: "¿Cuál es el costo recurrente?",
-    a: "Inversión única desde €850 según el caso. Herramientas €50-100/mes (Make/Zapier). Sin mensualidades nuestras después de implementación.",
+    q: "¿Hay costes recurrentes?",
+    a: "Mi trabajo es un pago único. Las herramientas como n8n o Make tienen su propia tarifa, que pagas directamente a ellas.",
+  },
+  {
+    q: "¿Qué pasa si falla el automático?",
+    a: `Dejo alertas automáticas si un flujo falla; respondo en ${OFFER.responseTime}. Mientras tanto, puedes seguir a mano sin perder datos.`,
+  },
+  {
+    q: "¿Cuánto tiempo lleva implementarlo?",
+    a: `Según el plan: ${plan1.name}, ${plan1.weeks} semanas; ${plan2.name}, ${plan2.weeks} semanas.`,
+  },
+  {
+    q: "¿Es seguro? ¿Dónde van mis datos?",
+    a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD.",
   },
 ];
 
@@ -223,7 +209,7 @@ export default function AutomatizarEcommerce() {
 
                 <div className="inline-flex items-center gap-2 bg-[#1A3A52]/60 border border-[#1A3A52] text-white/70 text-xs px-3 py-1.5 mb-5">
                   <CheckCircle size={11} className="text-[#10B981]" />
-                  15+ E-commerce Implementados
+                  Shopify y WooCommerce
                 </div>
 
                 <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-5">
@@ -231,7 +217,7 @@ export default function AutomatizarEcommerce() {
                 </h1>
 
                 <p className="text-white/65 text-lg leading-relaxed mb-8 max-w-xl">
-                  Para Shopify, WooCommerce y tiendas online. Gestión de pedidos, stock sincronizado, reportes en vivo. 15+ e-commerce implementados.
+                  Automatizo pedidos, stock, devoluciones y facturación en tiendas de Shopify y WooCommerce de Barcelona.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -240,17 +226,17 @@ export default function AutomatizarEcommerce() {
                     className="inline-flex items-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm tracking-wide px-7 py-4 transition-all hover:shadow-[0_0_25px_rgba(26,58,82,0.6)]"
                   >
                     <Calendar size={15} />
-                    Consulta Gratis Para E-commerce
+                    Reserva tu llamada
                   </a>
-                  <span className="text-white/35 text-xs self-center">30 min · Zoom · Sin compromiso</span>
+                  <span className="text-white/35 text-xs self-center">{OFFER.freeCallMinutes} min · Sin compromiso</span>
                 </div>
               </div>
 
               <div className="flex flex-row lg:flex-col gap-4 mt-8 lg:mt-0">
                 {[
-                  { value: "€4.200/mes", label: "Ahorrados promedio" },
-                  { value: "88%", label: "Reducción gestión" },
-                  { value: "4 semanas", label: "Implementación" },
+                  { value: `${OFFER.freeCallMinutes} min`, label: "Llamada gratuita" },
+                  { value: "Precio cerrado", label: "Antes de empezar" },
+                  { value: `${OFFER.guaranteeDays} días`, label: "Garantía" },
                 ].map(({ value, label }) => (
                   <div key={label} className="flex-1 bg-[#1A3A52]/30 border border-[#1A3A52]/60 p-4 lg:p-5 text-center">
                     <p className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl font-bold text-[#B8860B]">{value}</p>
@@ -265,10 +251,10 @@ export default function AutomatizarEcommerce() {
         {/* ── PROBLEMA ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-4">
-            ¿Cuánto Tiempo Pierdes Cada Semana?
+            ¿Cuánto tiempo pierdes cada semana?
           </h2>
           <p className="text-white/60 text-lg mb-10 max-w-2xl leading-relaxed">
-            Cada e-commerce en Barcelona pasa 25+ horas/semana en tareas que deberían ser automáticas. No es falta de sistemas. Es sistemas desconectados.
+            Tu tienda ya hace parte del trabajo. Lo que suele faltar es lo que pasa entre aplicaciones.
           </p>
 
           <div className="grid md:grid-cols-2 gap-5 mb-8">
@@ -286,10 +272,10 @@ export default function AutomatizarEcommerce() {
 
           <div className="bg-[#1A3A52] border border-[#1A3A52] p-7">
             <p className="text-white font-bold text-[15px] mb-1">
-              Costo Total Semanal: €1.050 (gestión manual) + €150 (errores) + €150 (devoluciones){" "}
-              = <span className="text-[#B8860B]">€1.350/semana</span>
+              Ejemplo ilustrativo: {scenario.hoursPerWeek} h/semana × {ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas × {ASSUMPTIONS.hourlyCostEUR} €/h ={" "}
+              <span className="text-[#B8860B]">{formatEUR(saving)}/mes</span>
             </p>
-            <p className="text-white/50 text-sm">€5.400/mes · €64.800/año en procesos que deberían ser automáticos.</p>
+            <p className="text-white/50 text-sm">Es una estimación; lo calculamos con tus horas reales en la llamada gratuita.</p>
           </div>
         </section>
 
@@ -297,7 +283,7 @@ export default function AutomatizarEcommerce() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-              El Proceso RASTECH Para Tu E-commerce (4 Semanas)
+              Cómo lo haría en tu e-commerce
             </h2>
 
             <div className="space-y-0">
@@ -322,10 +308,10 @@ export default function AutomatizarEcommerce() {
           </div>
         </section>
 
-        {/* ── CASO REAL ── */}
+        {/* ── EJEMPLO ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-            Caso Real: E-commerce de Moda
+            Ejemplo ilustrativo: {scenario.sector.toLowerCase()}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-8">
@@ -353,10 +339,10 @@ export default function AutomatizarEcommerce() {
               ))}
             </div>
             <Link
-              href="/blog/5-procesos-manuales-destructivos-barcelona"
+              href="/blog/automatizar-pedidos-shopify-woocommerce"
               className="text-[#B8860B] text-sm hover:underline flex items-center gap-1 shrink-0"
             >
-              Ver casos relacionados <ArrowRight size={13} />
+              Ver la guía de pedidos <ArrowRight size={13} />
             </Link>
           </div>
         </section>
@@ -365,9 +351,9 @@ export default function AutomatizarEcommerce() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
-              Inversión Para Tu E-commerce
+              Inversión para tu e-commerce
             </h2>
-            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso real. Hablamos, analizamos y acordamos juntos — análisis siempre gratis.</p>
+            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso. El precio exacto se cierra por escrito antes de empezar.</p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mb-6">
               {/* STARTER */}
@@ -375,7 +361,7 @@ export default function AutomatizarEcommerce() {
                 <p className="text-white/40 text-[11px] uppercase tracking-widest mb-1">Ideal pequeño</p>
                 <div className="flex items-baseline gap-1.5 mb-5">
                   <span className="text-white/40 text-sm font-normal">desde</span>
-                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€850</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">{formatEUR(plan1.fromEUR)}</span>
                 </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {starterFeatures.map(({ text, ok }) => (
@@ -388,7 +374,7 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <div className="bg-white/3 border border-white/6 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Inversión desde", "€850"], ["Ahorro/mes", "€1.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
+                  {[["Inversión desde", formatEUR(plan1.fromEUR)], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/35">{k}</span>
                       <span className="text-white/65 font-semibold">{v}</span>
@@ -396,19 +382,19 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <a href="#form" className="block text-center border border-white/20 hover:border-[#B8860B]/50 text-white/65 hover:text-[#B8860B] font-bold text-sm py-3 transition-all">
-                  Elegir STARTER
+                  Reserva tu llamada
                 </a>
               </div>
 
               {/* GROWTH */}
               <div className="bg-[#111111] border-2 border-[#B8860B]/50 p-8 relative">
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#B8860B] text-[#0F0F0F] text-[10px] font-bold px-3 py-1 tracking-widest uppercase">
-                  Más popular
+                  Recomendado
                 </span>
                 <p className="text-[#B8860B] text-[11px] uppercase tracking-widest mb-1">Completo</p>
                 <div className="flex items-baseline gap-1.5 mb-5">
                   <span className="text-[#B8860B]/60 text-sm font-normal">desde</span>
-                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.300</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">{formatEUR(plan2.fromEUR)}</span>
                 </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {growthFeatures.map(({ text, ok }) => (
@@ -421,7 +407,7 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <div className="bg-[#1A3A52]/40 border border-[#1A3A52]/60 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Inversión desde", "€1.300"], ["Ahorro/mes", "€4.200"], ["Precio final", "según tu caso"]].map(([k, v]) => (
+                  {[["Inversión desde", formatEUR(plan2.fromEUR)], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/45">{k}</span>
                       <span className="text-[#B8860B] font-semibold">{v}</span>
@@ -429,7 +415,7 @@ export default function AutomatizarEcommerce() {
                   ))}
                 </div>
                 <a href="#form" className="block text-center bg-[#B8860B] hover:bg-[#9A7009] text-[#0F0F0F] font-bold text-sm py-3 transition-all">
-                  Elegir GROWTH
+                  Reserva tu llamada
                 </a>
               </div>
             </div>
@@ -439,7 +425,7 @@ export default function AutomatizarEcommerce() {
         {/* ── FAQ ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-10">
-            Preguntas de E-commerce Como Tú
+            Preguntas frecuentes
           </h2>
           <div className="max-w-2xl space-y-0">
             {faqs.map(({ q, a }, i) => (
@@ -455,10 +441,10 @@ export default function AutomatizarEcommerce() {
         <section id="form" className="py-24 bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <LandingContactForm
-              title="Auditoría Gratis Para Tu E-commerce"
-              description="30 minutos · Zoom · Sin compromiso · Descubre exactamente cuánto ahorrarías"
+              title="Llamada gratuita para tu e-commerce"
+              description="Sin compromiso. Vemos cuánto te cuesta cada proceso antes de que inviertas nada."
               fields={formFields}
-              buttonText="Agendar Auditoría Gratis"
+              buttonText="Reserva tu llamada"
               sector="ecommerce"
             />
           </div>

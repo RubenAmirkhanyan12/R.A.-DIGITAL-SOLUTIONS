@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-import { SITE } from "../../lib/site-config";
+import { OFFER, SITE } from "../../lib/site-config";
 
 const TO = SITE.email;
 const FROM = "RASTECH Leads <onboarding@resend.dev>";
@@ -66,7 +66,7 @@ Responde directamente a: ${email ?? "—"}
 
 Recibimos tu solicitud correctamente.
 
-En las próximas 24-48 horas Rubén se pondrá en contacto contigo con una propuesta personalizada.
+Te responderé en ${OFFER.responseTime}.
 
 Contacto directo:
   Email: ${SITE.email}

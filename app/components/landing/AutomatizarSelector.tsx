@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { GUIDES } from "../../lib/guides";
+import { formatEUR, monthlySaving, OFFER, SCENARIOS } from "../../lib/site-config";
 import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
 interface Card {
@@ -27,10 +28,10 @@ const cards: Card[] = [
       "Pedidos proveedores automáticos",
       "Reportes diarios en vivo",
     ],
-    saving: "€2.500/mes ahorrados promedio",
+    saving: savingLabel("restaurante"),
     cta: "Automatizar Restaurante",
     href: "/automatizar-restaurantes",
-    meta: "15+ restaurantes Barcelona",
+    meta: "Restaurantes, bares y catering",
   },
   {
     icon: <Package size={28} className="text-[#B8860B]" />,
@@ -42,10 +43,10 @@ const cards: Card[] = [
       "Devoluciones automáticas (cliente solicita → reembolso → stock)",
       "Dashboard de ventas en vivo",
     ],
-    saving: "€4.200/mes ahorrados promedio",
+    saving: savingLabel("ecommerce"),
     cta: "Automatizar E-commerce",
     href: "/automatizar-ecommerce",
-    meta: "15+ e-commerce Barcelona",
+    meta: "Shopify y WooCommerce",
   },
   {
     icon: <BarChart3 size={28} className="text-[#B8860B]" />,
@@ -57,10 +58,10 @@ const cards: Card[] = [
       "Alertas de hitos automáticas",
       "Escalabilidad: de 5 clientes a 15 sin contratar",
     ],
-    saving: "€3.500/mes ahorrados promedio",
+    saving: savingLabel("agencia"),
     cta: "Automatizar Agencia",
     href: "/automatizar-agencias",
-    meta: "12+ agencias Barcelona",
+    meta: "Marketing, diseño y desarrollo",
   },
   {
     icon: <Sparkles size={28} className="text-[#B8860B]" />,
@@ -80,11 +81,16 @@ const cards: Card[] = [
   },
 ];
 
+function savingLabel(id: string) {
+  const scenario = SCENARIOS.find((c) => c.id === id)!;
+  return `Ejemplo: ${formatEUR(monthlySaving(scenario.hoursPerWeek))}/mes de ahorro estimado`;
+}
+
 const whyItems = [
   {
     icon: "💶",
-    title: "Ahorro real: €43k/año promedio",
-    desc: "Cada hora manual que eliminas es dinero que recuperas. 40h/semana en admin × €25/h × 52 semanas = €52,000. El 85% de eso ya no lo pagas.",
+    title: "Ahorro que puedes calcular",
+    desc: "Cada hora manual que eliminas es dinero que recuperas. Multiplica tus horas por 4,33 semanas y por 25 €/h, y tendrás una primera estimación mensual.",
   },
   {
     icon: "📈",
@@ -93,8 +99,8 @@ const whyItems = [
   },
   {
     icon: "😌",
-    title: "Procesos 24/7 sin intervención",
-    desc: "Las facturas salen a las 3 AM. Los pedidos se procesan en fin de semana. Los reportes llegan el lunes a las 7 AM. Sin que nadie haga nada.",
+    title: "Alertas si algo falla",
+    desc: `Los flujos trabajan por su cuenta. Alertas automáticas si un flujo falla; respondo en ${OFFER.responseTime}.`,
   },
 ];
 
@@ -127,8 +133,8 @@ const whatWeAutomate = [
 
 const nextSteps = [
   { num: "1", label: "Selecciona tu sector", desc: "Elige arriba la opción que más se parece a tu empresa." },
-  { num: "2", label: "Mira los casos reales", desc: "Empresas como la tuya ya lo hacen. Revisa los números documentados.", href: "/casos" },
-  { num: "3", label: "Agenda análisis gratuito", desc: "30 min. Sin compromiso. Te damos el ROI exacto de tu caso.", href: "/#contacto" },
+  { num: "2", label: "Mira los casos de uso", desc: "Escenarios ilustrativos con los supuestos a la vista.", href: "/casos" },
+  { num: "3", label: "Agenda análisis gratuito", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: "/#contacto" },
 ];
 
 export default function AutomatizarSelector() {
@@ -158,11 +164,11 @@ export default function AutomatizarSelector() {
 
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
               Cada sector tiene procesos diferentes. Aquí mostramos cómo automatizamos
-              empresas como la tuya con ROI documentado desde el mes 1.
+              empresas como la tuya.
             </p>
 
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-white/45">
-              {["15+ empresas Barcelona", "Especialista n8n · Make", "ROI mes 1"].map((t) => (
+              {["Llamada gratuita", "n8n · Make", "Precio cerrado"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
                   <span className="text-[#10B981] text-xs">✓</span> {t}
                 </span>
@@ -274,7 +280,7 @@ export default function AutomatizarSelector() {
               ))}
             </div>
             <p className="text-white/30 text-xs text-center mt-5">
-              +200 integraciones disponibles: Gmail, WhatsApp Business, Shopify, Stripe, Google Sheets, QuickBooks, HubSpot y más
+              Cientos de aplicaciones disponibles: Gmail, WhatsApp Business, Shopify, Stripe, Google Sheets, QuickBooks, HubSpot y más
             </p>
           </div>
         </section>
@@ -344,7 +350,7 @@ export default function AutomatizarSelector() {
                 Agendar análisis gratuito (30 min) →
               </Link>
               <div className="mt-5 flex flex-wrap justify-center gap-5 text-xs text-white/30">
-                {["Sin compromiso", "Respuesta en 24h", "100% gratuito"].map((t) => (
+                {["Sin compromiso", `Respondo en ${OFFER.responseTime}`, "Llamada gratuita"].map((t) => (
                   <span key={t} className="flex items-center gap-1.5">
                     <span className="text-[#10B981]">✓</span> {t}
                   </span>

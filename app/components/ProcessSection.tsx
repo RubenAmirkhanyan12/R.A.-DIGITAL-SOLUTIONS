@@ -1,61 +1,62 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import { Search, Lightbulb, FlaskConical, Rocket, TrendingUp } from "lucide-react";
+import { OFFER } from "../lib/site-config";
 
 const steps = [
   {
     number: "01",
-    verb: "ANALIZAMOS",
-    title: "Cartografiamos cada proceso",
-    timing: "Semana 1 · Día 1",
+    verb: "ANALIZO",
+    title: "Mapeo cada proceso",
+    timing: `Llamada gratuita de ${OFFER.freeCallMinutes} min`,
     Icon: Search,
     description:
-      "Sesión de trabajo de 2 horas donde mapeamos exactamente qué haces, cuánto tiempo tarda y cuánto cuesta. Sin suposiciones. Sin ventas. Solo análisis honesto de tu situación real.",
-    outcome: "Mapa de procesos con coste de cada uno en €/mes",
-    highlight: "100% gratis y sin compromiso",
+      "Vemos juntos qué haces, cuánto tiempo te lleva y cuánto te cuesta. Sin suposiciones y sin compromiso.",
+    outcome: "Qué conviene automatizar primero y qué no merece la pena",
+    highlight: "Gratis y sin compromiso",
   },
   {
     number: "02",
-    verb: "DISEÑAMOS",
-    title: "Construimos el sistema para ti",
-    timing: "Semana 1 · Días 2-5",
+    verb: "DISEÑO",
+    title: "Preparo el sistema para ti",
+    timing: "Propuesta por escrito",
     Icon: Lightbulb,
     description:
-      "Con el mapa en mano, diseñamos los flujos automáticos específicos para tu negocio. Integramos con lo que ya usas: Gmail, WhatsApp Business, QuickBooks, Shopify, Google Sheets. Sin cambiar tus herramientas.",
-    outcome: "Propuesta técnica + precio cerrado + inicio inmediato",
-    highlight: "Precio cerrado, sin sorpresas",
+      "Con ese mapa diseño los flujos para tu negocio con n8n o Make, integrados con lo que ya usas: Gmail, WhatsApp Business, Google Sheets o tu programa de gestión.",
+    outcome: "Propuesta técnica y precio cerrado",
+    highlight: "Precio cerrado antes de empezar",
   },
   {
     number: "03",
-    verb: "TESTAMOS",
-    title: "Probamos antes de producción",
-    timing: "Semana 2 · Días 6-9",
+    verb: "PRUEBO",
+    title: "Compruebo antes de activar",
+    timing: "Antes de ponerlo en marcha",
     Icon: FlaskConical,
     description:
-      "Creamos entorno de pruebas con casos reales. Simulamos cada escenario: facturas normales, facturas con error, emails que rebotan, clientes que no responden. Nada llega a producción sin pasar 100 pruebas.",
-    outcome: "Sistema probado con tus propios datos reales",
-    highlight: "Cero riesgos en producción",
+      "Hago pruebas con tus datos antes de activar: casos normales, documentos con errores, correos que rebotan y clientes que no responden.",
+    outcome: "Sistema probado con ejemplos de tu negocio",
+    highlight: "Pruebas con tus datos",
   },
   {
     number: "04",
-    verb: "IMPLEMENTAMOS",
-    title: "Activamos sin interrumpir tu negocio",
-    timing: "Semana 2 · Día 10-14",
+    verb: "ACTIVO",
+    title: "Lo pongo en marcha sin parar tu negocio",
+    timing: `Formación de ${OFFER.trainingHours} hora`,
     Icon: Rocket,
     description:
-      "Lanzamiento sin downtime. Tu negocio sigue funcionando mientras activamos los procesos automáticos uno por uno. Tienes panel de control para ver el estado en tiempo real. 30 minutos de formación para tu equipo.",
-    outcome: "Sistema en producción, equipo formado, tú en control",
-    highlight: "Tu negocio no para ni un minuto",
+      `Activo los procesos uno por uno mientras sigues trabajando. Dejo alertas automáticas si un flujo falla y dedico ${OFFER.trainingHours} hora a formar a tu equipo.`,
+    outcome: "Sistema en marcha y equipo formado",
+    highlight: "Alertas si un flujo falla",
   },
   {
     number: "05",
-    verb: "OPTIMIZAMOS",
-    title: "Mejoramos con datos reales",
-    timing: "Semana 3 en adelante",
+    verb: "AJUSTO",
+    title: "Afino con el uso real",
+    timing: "Durante el soporte del plan",
     Icon: TrendingUp,
     description:
-      "Con las primeras semanas en producción ya tenemos datos reales. ¿Qué proceso tarda más? ¿Dónde hay cuellos de botella? Revisión express para afinar el sistema e ir añadiendo mejoras progresivas.",
-    outcome: "El sistema mejora cada semana con datos de tu negocio",
-    highlight: "30 días de soporte incluidos",
+      `Con las primeras semanas de uso veo qué tarda más y dónde hay cuellos de botella. Durante el soporte respondo en ${OFFER.responseTime}.`,
+    outcome: "Ajustes según cómo se usa de verdad",
+    highlight: "Soporte incluido según plan",
   },
 ];
 
@@ -69,12 +70,11 @@ export default function ProcessSection() {
             El proceso
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Automatización de Procesos:{" "}
-            <span className="text-[#B8860B]">De 40h Manuales a 5h Automáticas</span>
+            Cómo se automatiza{" "}
+            <span className="text-[#B8860B]">un proceso, paso a paso</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
-            5 pasos. 2 semanas. Proceso predecible sin sorpresas. Sabes exactamente
-            qué pasa, cuándo y por qué en cada momento.
+            Cinco pasos y entre 2 y 4 semanas según el plan. Sabes qué pasa en cada momento.
           </p>
         </AnimateOnScroll>
 
@@ -140,9 +140,9 @@ export default function ProcessSection() {
         <AnimateOnScroll delay={550} className="mt-16">
           <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/30 p-8 grid md:grid-cols-3 gap-6 text-center">
             {[
-              { stat: "2 semanas", label: "De cero a sistema funcionando" },
-              { stat: "0 min", label: "Tiempo que pierdes en el proceso" },
-              { stat: "30 días", label: "Soporte post-lanzamiento" },
+              { stat: "2–4 semanas", label: "Según el plan" },
+              { stat: "Precio cerrado", label: "Antes de empezar" },
+              { stat: `${OFFER.guaranteeDays} días`, label: "Garantía" },
             ].map(({ stat, label }) => (
               <div key={stat}>
                 <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B] mb-1">

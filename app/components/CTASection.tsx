@@ -1,7 +1,7 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import ContactForm from "./ContactForm";
-import { Phone, CalendarCheck, Clock, AlertCircle } from "lucide-react";
-import { SITE } from "../lib/site-config";
+import { Phone, CalendarCheck, Clock } from "lucide-react";
+import { OFFER, SITE } from "../lib/site-config";
 
 export default function CTASection() {
   return (
@@ -11,29 +11,18 @@ export default function CTASection() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#1A3A52]/5 via-transparent to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Urgency banner */}
-        <AnimateOnScroll className="flex justify-center mb-12">
-          <div className="inline-flex items-center gap-3 bg-[#B8860B]/10 border border-[#B8860B]/30 px-6 py-3">
-            <AlertCircle size={14} className="text-[#B8860B] shrink-0" />
-            <p className="text-[#B8860B] text-sm font-medium">
-              <span className="font-bold">3 plazas disponibles</span> este trimestre ·
-              <span className="text-white/60"> Implementaciones se agendan con 2 semanas de antelación</span>
-            </p>
-          </div>
-        </AnimateOnScroll>
-
         {/* Header */}
         <AnimateOnScroll className="text-center mb-16">
           <span className="inline-block text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase mb-4">
             Primer paso gratuito
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            Empieza Hoy.{" "}
-            <span className="text-[#B8860B]">Sin Riesgos.</span>
+            Cuéntame qué{" "}
+            <span className="text-[#B8860B]">quieres automatizar</span>
           </h2>
           <p className="text-white/50 text-lg max-w-xl mx-auto">
-            Análisis gratuito de 30 minutos. Te digo exactamente cuánto tiempo y dinero
-            puedes recuperar. Sin compromiso de ningún tipo.
+            Llamada gratuita de {OFFER.freeCallMinutes} minutos. Vemos cuánto tiempo y dinero
+            se te va en cada proceso y te digo si merece la pena automatizarlo.
           </p>
         </AnimateOnScroll>
 
@@ -52,17 +41,16 @@ export default function CTASection() {
                     </span>
                   </div>
                   <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-3">
-                    Análisis de Procesos (30 min · GRATIS)
+                    Llamada gratuita de {OFFER.freeCallMinutes} minutos
                   </h3>
                   <p className="text-white/60 text-sm leading-relaxed mb-4">
-                    Videollamada donde analizamos tus procesos, calculamos cuánto pierdes
-                    y proponemos qué automatizar primero. Al final sabes exactamente
-                    qué ROI esperar antes de invertir nada.
+                    Analizamos tus procesos, estimamos cuánto te cuestan y vemos qué
+                    conviene automatizar primero. Sales con una idea clara antes de invertir nada.
                   </p>
                   <div className="flex flex-wrap gap-3 text-xs text-white/40">
                     <span className="flex items-center gap-1">✓ Sin compromiso</span>
-                    <span className="flex items-center gap-1">✓ Resultado concreto</span>
-                    <span className="flex items-center gap-1">✓ Sin coste inicial</span>
+                    <span className="flex items-center gap-1">✓ Propuesta por escrito</span>
+                    <span className="flex items-center gap-1">✓ Precio cerrado</span>
                   </div>
                 </div>
               </div>
@@ -80,7 +68,7 @@ export default function CTASection() {
                 </h3>
                 <p className="text-white/55 text-sm leading-relaxed mb-4">
                   ¿Tienes una necesidad concreta y quieres hablar sin rodeos?
-                  Llama o escribe por WhatsApp y lo resolvemos.
+                  Llámame o escríbeme por WhatsApp.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
@@ -103,10 +91,7 @@ export default function CTASection() {
                 <Clock size={15} className="text-[#10B981] mt-0.5 shrink-0" />
                 <div>
                   <p className="text-white/65 text-sm font-medium">
-                    Respuesta garantizada en menos de 24 horas.
-                  </p>
-                  <p className="text-white/30 text-xs mt-0.5">
-                    Si no es así, la primera hora de consultoría te sale completamente gratis.
+                    Respondo en {OFFER.responseTime}.
                   </p>
                 </div>
               </div>
@@ -117,10 +102,10 @@ export default function CTASection() {
           <AnimateOnScroll direction="right" delay={150}>
             <div className="bg-[#141414] border border-white/5 p-8">
               <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-2">
-                Agendar Análisis Gratuito
+                Reserva tu llamada
               </h3>
               <p className="text-white/35 text-xs mb-7">
-                Rellena el formulario · Respondo en menos de 24h · Sin spam
+                Rellena el formulario · Respondo en {OFFER.responseTime} · Sin spam
               </p>
               <ContactForm />
             </div>

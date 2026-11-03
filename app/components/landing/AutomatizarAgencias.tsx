@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
+import { ASSUMPTIONS, formatEUR, OFFER, planById, roiNet, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm, { type FormField } from "./LandingContactForm";
 import {
   CheckCircle,
@@ -17,57 +18,62 @@ import {
 
 /* ── Data ──────────────────────────────────────────────────────── */
 
+const scenario = SCENARIOS.find((c) => c.id === "agencia")!;
+const { plan, saving, payback } = scenarioNumbers(scenario);
+const plan1 = planById("growth");
+const plan2 = planById("enterprise");
+
 const problemBlocks = [
   {
     icon: <BarChart2 size={22} className="text-[#B8860B]" />,
-    number: "6h/cliente",
-    title: "Reportes Manuales",
-    desc: "Cada viernes: 2h en Google Analytics + 2h en Facebook Ads + 2h en conversiones. Por 5 clientes = 10h/semana solo en reportes. Después tienes que enviarlos.",
+    number: "Reportes",
+    title: "Reportes manuales",
+    desc: "Entrar en cada plataforma, copiar datos a una plantilla y revisar que no se cuele nada de otro cliente.",
   },
   {
     icon: <FileText size={22} className="text-[#B8860B]" />,
-    number: "30 min",
-    title: "Facturas Recurrentes Manuales",
-    desc: "5 clientes × 30 min generando factura = 2.5h/mes. Sin contar correcciones. Dinero que debería ser automático.",
+    number: "Facturas",
+    title: "Facturas recurrentes",
+    desc: "Son iguales cada mes, pero alguien tiene que acordarse de emitirlas y enviarlas.",
   },
   {
     icon: <Bell size={22} className="text-[#B8860B]" />,
-    number: "15 hitos/mes",
-    title: "Seguimiento de Hitos Olvidado",
-    desc: "Hito de cliente se pasa. Entrega se retrasa. Cliente se entera cuando pregunta. Mala comunicación. Confianza rota.",
+    number: "Hitos",
+    title: "Seguimiento de hitos",
+    desc: "Si un hito se pasa, el cliente se entera cuando pregunta. Un aviso a tiempo evita esa conversación.",
   },
   {
     icon: <Users size={22} className="text-[#B8860B]" />,
-    number: "Imposible escalar",
-    title: "No Puedes Crecer Sin Contratar",
-    desc: "Quieres 15 clientes. Necesitarías 3 empleados admin más (€20k/mes en nómina). O automatizas y escalas con el mismo equipo.",
+    number: "Capacidad",
+    title: "Crecer sin más operativa",
+    desc: "Si cada cliente nuevo añade horas de administración, crecer obliga a contratar antes de tiempo.",
   },
 ];
 
 const solutionWeeks = [
   {
     n: "01",
-    title: "Auditoría Gratis",
-    body: "Mapeamos exactamente tu flujo actual: clientes, plataformas (GA, Ads, etc.), cálculos manuales. Resultado: documento con 3-5 automáticos de mayor impacto.",
-    cost: "€0 — sin compromiso",
+    title: "Llamada gratuita",
+    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimamos cuánto te cuestan y decidimos qué conviene automatizar primero.`,
+    cost: "Gratis y sin compromiso",
   },
   {
     n: "02",
-    title: "Setup Dashboards",
-    body: "Conectamos Google Analytics → Ads → Conversiones → Dashboard por cliente. Luego reportes automáticos cada lunes 8am. Sin que toques nada.",
-    cost: "desde €1.100 (GROWTH) o desde €1.650 (ENTERPRISE)",
+    title: "Montaje de los reportes",
+    body: "Conecto Google Analytics, las plataformas de anuncios y la plantilla de informe de cada cliente, con revisión del responsable antes de enviar.",
+    cost: `desde ${formatEUR(plan1.fromEUR)} (${plan1.name}) o desde ${formatEUR(plan2.fromEUR)} (${plan2.name})`,
   },
   {
     n: "03",
-    title: "Testing Completo",
-    body: "100+ pruebas con datos reales. Qué pasa si cliente no pagó. Si hay error en datos. Si Google cambia API. Cero sorpresas.",
+    title: "Pruebas",
+    body: "Pruebas con tus datos antes de activar: permisos caducados, datos incompletos o cliente sin una de las fuentes.",
     cost: "Incluido",
   },
   {
     n: "04",
-    title: "Lanzamiento",
-    body: "Dashboards en vivo. Facturas automáticas (Stripe). Alertas hitos automáticas. Equipo formado en 1 hora.",
-    cost: "30 días soporte incluido",
+    title: "Puesta en marcha + formación",
+    body: `Activo facturas recurrentes y avisos de hitos, y dedico ${OFFER.trainingHours} hora a formar a tu equipo. Dejo alertas automáticas si un flujo falla.`,
+    cost: plan1.support,
   },
 ];
 
@@ -76,98 +82,78 @@ const caseColumns = [
     title: "ANTES",
     color: "bg-red-950/20",
     titleColor: "text-red-400/80",
-    rows: [
-      "Clientes activos: 5 máximo",
-      "6h/cliente/semana = 30h admin",
-      "Reportes: 'la pesadilla del viernes'",
-      "Datos siempre 3 días atrasados",
-      "Facturas: manual + olvidos + errores",
-      "Hitos olvidados — clientes esperan",
-      "Marc quería 15 clientes — imposible",
-      "Dinero perdido/mes: €2.000",
-    ],
+    rows: ["Datos copiados plataforma a plataforma", "Facturas recurrentes a mano", "Hitos en la memoria de cada persona", "Operativa que crece con cada cliente"],
   },
   {
-    title: "CÓMO LO HICIMOS",
+    title: "QUÉ SE AUTOMATIZARÍA",
     color: "bg-[#1A3A52]/15",
     titleColor: "text-white/50",
-    rows: [
-      "Sem. 1: Auditoría — reportes #1 problema",
-      "Calculamos: €2.000/mes en pérdidas",
-      "Sem. 2: GA + Ads → dashboard cliente",
-      "Reporte email auto cada lunes 8am",
-      "Facturas: Stripe automático mensual",
-      "Alertas: hito vence → email cliente auto",
-      "Sem. 3: 100 pruebas con datos reales",
-      "Sem. 4: Go-live, Marc tiene 15 clientes",
-    ],
+    rows: scenario.automated,
   },
   {
-    title: "DESPUÉS",
+    title: "ESTIMACIÓN",
     color: "bg-green-950/20",
     titleColor: "text-[#10B981]",
     rows: [
-      "Clientes activos: 15 (mismo equipo)",
-      "1h/cliente/semana = 15h admin (↓87%)",
-      "Dashboards en tiempo real",
-      "Clientes ven resultados sin pedir",
-      "Facturas: 100% automáticas — cero olvidos",
-      "Hitos: 100% on-time con alertas auto",
-      "Marc: 40h/semana (vs 100h antes)",
-      "Dinero recuperado/mes: €3.500",
+      `${scenario.hoursPerWeek} h/semana menos de trabajo manual`,
+      `${formatEUR(saving)}/mes de ahorro estimado`,
+      `Plan orientativo: ${plan.name}`,
+      `Supuestos: ${ASSUMPTIONS.hourlyCostEUR} €/h y ${ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas/mes`,
     ],
   },
 ];
 
 const roiNumbers = [
-  { v: "€7.500", l: "Inversión" },
-  { v: "€3.500/mes", l: "Ahorrado" },
-  { v: "21 días", l: "Payback" },
-  { v: "1.800%", l: "ROI" },
+  { v: formatEUR(plan.fromEUR), l: "Inversión desde" },
+  { v: `${formatEUR(saving)}/mes`, l: "Ahorro estimado" },
+  { v: `${payback} días`, l: "Recuperación" },
+  { v: `${roiNet(saving * 12, plan.fromEUR)} %`, l: "ROI neto, año 1" },
 ];
 
 const growthFeatures = [
-  { text: "Dashboards automáticos (standard)", ok: true },
-  { text: "Facturas recurrentes automáticas", ok: true },
-  { text: "Implementación 2 semanas", ok: true },
-  { text: "Soporte 30 días", ok: true },
-  { text: "Alertas hitos automáticas", ok: false },
-  { text: "Integraciones custom (Slack, etc.)", ok: false },
+  { text: "Reportes automáticos", ok: true },
+  { text: "Facturas recurrentes", ok: true },
+  { text: "Soporte 60 días + revisión", ok: true },
+  { text: "Avisos de hitos", ok: false },
+  { text: "Integraciones a medida", ok: false },
 ];
 
 const enterpriseFeatures = [
-  { text: "Dashboards por cliente (custom)", ok: true },
-  { text: "Facturas recurrentes automáticas", ok: true },
-  { text: "Alertas hitos automáticas", ok: true },
-  { text: "Integraciones custom (Slack, Discord…)", ok: true },
-  { text: "Implementación 4 semanas", ok: true },
-  { text: "Soporte dedicado", ok: true },
+  { text: "Reportes por cliente", ok: true },
+  { text: "Facturas recurrentes", ok: true },
+  { text: "Avisos de hitos", ok: true },
+  { text: "Integraciones a medida (Slack…)", ok: true },
+  { text: "Retainer mensual opcional", ok: true },
 ];
 
 const faqs = [
   {
-    q: "¿Mis clientes necesitan hacer algo?",
-    a: "No. Dashboard automático. Ellos ven resultados sin hacer nada. Tú tampoco haces nada. El sistema lo gestiona 24/7.",
+    q: "¿Mis clientes tienen que hacer algo?",
+    a: "No. Reciben el informe como hasta ahora, después de que lo revise el responsable de la cuenta.",
   },
   {
-    q: "¿Qué pasa si cliente usa Ads pero no Analytics?",
-    a: "Flexible. Conectamos lo que uses: GA + Ads + Conversiones + cualquier plataforma. El sistema se adapta, no al revés.",
+    q: "¿Y si un cliente no usa alguna plataforma?",
+    a: "Conectamos solo lo que use. La plantilla se adapta a sus fuentes.",
   },
   {
-    q: "¿Y si necesito reporte personalizado por cliente?",
-    a: "Dashboard base es estándar. Pero puedes definir qué métricas aparecen por cliente. Algunos quieren ROI, otros conversiones. Flexible total.",
+    q: "¿Puedo empezar por un plan y ampliar después?",
+    a: "Sí. Lo ya montado se aprovecha y el resto se presupuesta por escrito.",
   },
   {
-    q: "¿Puedo empezar en GROWTH y migrar a ENTERPRISE?",
-    a: "Sí. Si empiezas con GROWTH y creces a 15 clientes, migras a ENTERPRISE. Pagas solo la diferencia. Nada se pierde ni se repite.",
+    q: "¿Se pueden personalizar las métricas por cliente?",
+    a: "Sí, dentro de una plantilla común con pocas variantes. Es lo que hace que el sistema sea fácil de mantener.",
   },
   {
-    q: "¿Qué pasa con datos históricos?",
-    a: "Migramos. Dashboard tendrá datos de últimos 12 meses. No pierdes historiales.",
+    q: "¿Qué pasa si falla el automático?",
+    a: `Dejo alertas automáticas si un flujo falla; respondo en ${OFFER.responseTime}. Mientras tanto, puedes seguir a mano sin perder datos.`,
   },
   {
-    q: "¿Necesito agregar un empleado para gestionar esto?",
-    a: "No. De hecho, quitas trabajo a empleados existentes. Sistema automático. El equipo se enfoca en estrategia, no en data entry.",
+    q: "¿Cuánto tiempo lleva implementarlo?",
+    a: `Según el plan: ${plan1.name}, ${plan1.weeks} semanas; ${plan2.name}, ${plan2.weeks} semanas.`,
+  },
+  {
+    q: "¿Es seguro? ¿Dónde van mis datos?",
+    a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD.",
   },
 ];
 
@@ -223,7 +209,7 @@ export default function AutomatizarAgencias() {
 
                 <div className="inline-flex items-center gap-2 bg-[#1A3A52]/60 border border-[#1A3A52] text-white/70 text-xs px-3 py-1.5 mb-5">
                   <CheckCircle size={11} className="text-[#10B981]" />
-                  12+ Agencias Implementadas
+                  Marketing, diseño y desarrollo
                 </div>
 
                 <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-5">
@@ -231,7 +217,7 @@ export default function AutomatizarAgencias() {
                 </h1>
 
                 <p className="text-white/65 text-lg leading-relaxed mb-8 max-w-xl">
-                  Agencias marketing, diseño y desarrollo Barcelona que triplicaron clientes sin nuevo hiring. 12+ implementadas.
+                  Automatizo reportes, facturas recurrentes y seguimiento de hitos en agencias de Barcelona, para que el equipo dedique menos tiempo a la operativa.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -240,17 +226,17 @@ export default function AutomatizarAgencias() {
                     className="inline-flex items-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm tracking-wide px-7 py-4 transition-all hover:shadow-[0_0_25px_rgba(26,58,82,0.6)]"
                   >
                     <Calendar size={15} />
-                    Consulta Gratis Para Agencias
+                    Reserva tu llamada
                   </a>
-                  <span className="text-white/35 text-xs self-center">30 min · Zoom · Sin compromiso</span>
+                  <span className="text-white/35 text-xs self-center">{OFFER.freeCallMinutes} min · Sin compromiso</span>
                 </div>
               </div>
 
               <div className="flex flex-row lg:flex-col gap-4 mt-8 lg:mt-0">
                 {[
-                  { value: "15 clientes", label: "vs 5 antes (mismo equipo)" },
-                  { value: "87%", label: "Menos horas admin" },
-                  { value: "4 semanas", label: "Implementación" },
+                  { value: `${OFFER.freeCallMinutes} min`, label: "Llamada gratuita" },
+                  { value: "Precio cerrado", label: "Antes de empezar" },
+                  { value: `${OFFER.guaranteeDays} días`, label: "Garantía" },
                 ].map(({ value, label }) => (
                   <div key={label} className="flex-1 bg-[#1A3A52]/30 border border-[#1A3A52]/60 p-4 lg:p-5 text-center">
                     <p className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl font-bold text-[#B8860B]">{value}</p>
@@ -265,10 +251,10 @@ export default function AutomatizarAgencias() {
         {/* ── PROBLEMA ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-4">
-            ¿Cuánto Tiempo Pierdes Cada Semana?
+            ¿Cuánto tiempo pierdes cada semana?
           </h2>
           <p className="text-white/60 text-lg mb-10 max-w-2xl leading-relaxed">
-            Cada agencia en Barcelona pasa 30+ horas/semana en tareas administrativas. No porque no sepas ejecutar. Porque la operación es caótica.
+            La operativa crece con cada cliente nuevo, aunque el trabajo sea siempre el mismo.
           </p>
 
           <div className="grid md:grid-cols-2 gap-5 mb-8">
@@ -286,10 +272,10 @@ export default function AutomatizarAgencias() {
 
           <div className="bg-[#1A3A52] border border-[#1A3A52] p-7">
             <p className="text-white font-bold text-[15px] mb-1">
-              Costo Total Semanal: €750 (reportes) + €200 (facturas) + €300 (seguimiento){" "}
-              = <span className="text-[#B8860B]">€1.250/semana</span>
+              Ejemplo ilustrativo: {scenario.hoursPerWeek} h/semana × {ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas × {ASSUMPTIONS.hourlyCostEUR} €/h ={" "}
+              <span className="text-[#B8860B]">{formatEUR(saving)}/mes</span>
             </p>
-            <p className="text-white/50 text-sm">€5.000/mes · €60.000/año en tareas que se pueden automatizar.</p>
+            <p className="text-white/50 text-sm">Es una estimación; lo calculamos con tus horas reales en la llamada gratuita.</p>
           </div>
         </section>
 
@@ -297,7 +283,7 @@ export default function AutomatizarAgencias() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-              El Proceso RASTECH Para Tu Agencia (4 Semanas)
+              Cómo lo haría en tu agencia
             </h2>
 
             <div className="space-y-0">
@@ -322,10 +308,10 @@ export default function AutomatizarAgencias() {
           </div>
         </section>
 
-        {/* ── CASO REAL ── */}
+        {/* ── EJEMPLO ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-            Caso Real: Agencia Grow
+            Ejemplo ilustrativo: {scenario.sector.toLowerCase()}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-px bg-white/5 mb-8">
@@ -353,10 +339,10 @@ export default function AutomatizarAgencias() {
               ))}
             </div>
             <Link
-              href="/blog/automatizacion-procesos-barcelona"
+              href="/blog/reportes-automaticos-para-agencias-de-marketing"
               className="text-[#B8860B] text-sm hover:underline flex items-center gap-1 shrink-0"
             >
-              Ver guía de automatización <ArrowRight size={13} />
+              Ver la guía de reportes <ArrowRight size={13} />
             </Link>
           </div>
         </section>
@@ -365,9 +351,9 @@ export default function AutomatizarAgencias() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
-              Inversión Para Tu Agencia
+              Inversión para tu agencia
             </h2>
-            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso real. Hablamos, analizamos y acordamos juntos — análisis siempre gratis.</p>
+            <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso. El precio exacto se cierra por escrito antes de empezar.</p>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mb-6">
               {/* GROWTH */}
@@ -375,7 +361,7 @@ export default function AutomatizarAgencias() {
                 <p className="text-white/40 text-[11px] uppercase tracking-widest mb-1">Ideal 3-8 clientes</p>
                 <div className="flex items-baseline gap-1.5 mb-5">
                   <span className="text-white/40 text-sm font-normal">desde</span>
-                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.100</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">{formatEUR(plan1.fromEUR)}</span>
                 </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {growthFeatures.map(({ text, ok }) => (
@@ -388,7 +374,7 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <div className="bg-white/3 border border-white/6 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Inversión desde", "€1.100"], ["Ahorro/mes", "€1.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
+                  {[["Inversión desde", formatEUR(plan1.fromEUR)], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/35">{k}</span>
                       <span className="text-white/65 font-semibold">{v}</span>
@@ -396,19 +382,19 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <a href="#form" className="block text-center border border-white/20 hover:border-[#B8860B]/50 text-white/65 hover:text-[#B8860B] font-bold text-sm py-3 transition-all">
-                  Elegir GROWTH
+                  Reserva tu llamada
                 </a>
               </div>
 
               {/* ENTERPRISE */}
               <div className="bg-[#111111] border-2 border-[#B8860B]/50 p-8 relative">
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#B8860B] text-[#0F0F0F] text-[10px] font-bold px-3 py-1 tracking-widest uppercase">
-                  Más popular
+                  Recomendado
                 </span>
                 <p className="text-[#B8860B] text-[11px] uppercase tracking-widest mb-1">9+ clientes</p>
                 <div className="flex items-baseline gap-1.5 mb-5">
                   <span className="text-[#B8860B]/60 text-sm font-normal">desde</span>
-                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">€1.650</span>
+                  <span className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white">{formatEUR(plan2.fromEUR)}</span>
                 </div>
                 <div className="border-t border-white/8 pt-5 space-y-2.5 mb-6">
                   {enterpriseFeatures.map(({ text, ok }) => (
@@ -421,7 +407,7 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <div className="bg-[#1A3A52]/40 border border-[#1A3A52]/60 p-4 text-xs space-y-1.5 mb-5">
-                  {[["Inversión desde", "€1.650"], ["Ahorro/mes", "€3.500"], ["Precio final", "según tu caso"]].map(([k, v]) => (
+                  {[["Inversión desde", formatEUR(plan2.fromEUR)], ["Precio final", "según tu caso"]].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span className="text-white/45">{k}</span>
                       <span className="text-[#B8860B] font-semibold">{v}</span>
@@ -429,7 +415,7 @@ export default function AutomatizarAgencias() {
                   ))}
                 </div>
                 <a href="#form" className="block text-center bg-[#B8860B] hover:bg-[#9A7009] text-[#0F0F0F] font-bold text-sm py-3 transition-all">
-                  Elegir ENTERPRISE
+                  Reserva tu llamada
                 </a>
               </div>
             </div>
@@ -439,7 +425,7 @@ export default function AutomatizarAgencias() {
         {/* ── FAQ ── */}
         <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-10">
-            Preguntas de Agencias Como La Tuya
+            Preguntas frecuentes
           </h2>
           <div className="max-w-2xl space-y-0">
             {faqs.map(({ q, a }, i) => (
@@ -455,10 +441,10 @@ export default function AutomatizarAgencias() {
         <section id="form" className="py-24 bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <LandingContactForm
-              title="Auditoría Gratis Para Tu Agencia"
-              description="30 minutos · Zoom · Sin compromiso · Descubre cuánto podrías escalar"
+              title="Llamada gratuita para tu agencia"
+              description="Sin compromiso. Vemos cuánto te cuesta cada proceso antes de que inviertas nada."
               fields={formFields}
-              buttonText="Agendar Auditoría Gratis"
+              buttonText="Reserva tu llamada"
               sector="agencias"
             />
           </div>

@@ -2,18 +2,18 @@
 
 import { useState } from "react";
 import { ArrowRight, TrendingDown, TrendingUp, Zap } from "lucide-react";
+import { ASSUMPTIONS, formatEUR, OFFER, paybackDays, PLANS } from "../lib/site-config";
 
 export default function ROICalculator() {
-  const [hours, setHours] = useState(40);
-  const [hourCost, setHourCost] = useState(25);
+  const [hours, setHours] = useState(15);
+  const [hourCost, setHourCost] = useState<number>(ASSUMPTIONS.hourlyCostEUR);
 
-  const weeksPerMonth = 4.33;
-  const reductionRate = 0.85;
+  const { weeksPerMonth, reductionPct } = ASSUMPTIONS;
+  const investment = PLANS[0].fromEUR;
   const monthlyWaste = Math.round(hours * hourCost * weeksPerMonth);
-  const monthlySavings = Math.round(monthlyWaste * reductionRate);
+  const monthlySavings = Math.round((monthlyWaste * reductionPct) / 100);
   const annualSavings = monthlySavings * 12;
-  const investmentStarter = 3500;
-  const paybackWeeks = Math.ceil(investmentStarter / (monthlySavings / weeksPerMonth));
+  const payback = paybackDays(investment, monthlySavings);
 
   const scrollToContact = () => {
     document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" });
@@ -112,8 +112,8 @@ export default function ROICalculator() {
             {/* Context */}
             <div className="bg-white/[0.04] border border-white/8 p-4">
               <p className="text-white/40 text-xs leading-relaxed">
-                Cálculo basado en una <span className="text-white/60">reducción del 85%</span> de horas
-                administrativas, validado en 15+ implementaciones reales en Barcelona.
+                Estimación, no garantía: supone que automatizar reduce un{" "}
+                <span className="text-white/60">{reductionPct} %</span> las horas indicadas. Tu caso real puede ser distinto.
               </p>
             </div>
           </div>
@@ -125,14 +125,14 @@ export default function ROICalculator() {
               <div className="flex items-center gap-3 mb-3">
                 <TrendingDown size={16} className="text-[#EF4444]" />
                 <p className="text-white/50 text-xs uppercase tracking-widest">
-                  Lo que pierdes ahora cada mes
+                  Coste estimado cada mes
                 </p>
               </div>
               <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-[#EF4444]">
-                €{monthlyWaste.toLocaleString("es-ES")}
+                {formatEUR(monthlyWaste)}
               </p>
               <p className="text-white/35 text-xs mt-2">
-                {hours}h × €{hourCost}/h × {weeksPerMonth} semanas = dinero en tareas manuales
+                {hours} h × {hourCost} €/h × {weeksPerMonth.toString().replace(".", ",")} semanas = coste de las tareas manuales
               </p>
             </div>
 
@@ -141,14 +141,14 @@ export default function ROICalculator() {
               <div className="flex items-center gap-3 mb-3">
                 <TrendingUp size={16} className="text-[#10B981]" />
                 <p className="text-white/50 text-xs uppercase tracking-widest">
-                  Lo que ahorrarías cada mes con RASTECH
+                  Ahorro estimado cada mes
                 </p>
               </div>
               <p className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-[#10B981]">
-                €{monthlySavings.toLocaleString("es-ES")}
+                {formatEUR(monthlySavings)}
               </p>
               <p className="text-white/35 text-xs mt-2">
-                85% de reducción documentada en casos reales Barcelona
+                Con el supuesto de reducción del {reductionPct} %
               </p>
             </div>
 
@@ -157,17 +157,13 @@ export default function ROICalculator() {
               <div className="bg-white/[0.05] border border-white/10 p-5">
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Ahorro anual</p>
                 <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
-                  €{annualSavings.toLocaleString("es-ES")}
+                  {formatEUR(annualSavings)}
                 </p>
               </div>
               <div className="bg-white/[0.05] border border-white/10 p-5">
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Payback STARTER</p>
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Recuperas STARTER en</p>
                 <p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#B8860B]">
-                  {paybackWeeks <= 4
-                    ? `${paybackWeeks} sem`
-                    : paybackWeeks <= 20
-                    ? `${Math.ceil(paybackWeeks / 4)} meses`
-                    : ">5 meses"}
+                  {payback} días
                 </p>
               </div>
             </div>
@@ -177,12 +173,12 @@ export default function ROICalculator() {
               onClick={scrollToContact}
               className="w-full group flex items-center justify-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm tracking-wide px-6 py-4 transition-all duration-300 hover:shadow-[0_0_30px_rgba(184,134,11,0.4)] active:scale-[0.99]"
             >
-              Implementar esto
+              Reserva tu llamada
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
             <p className="text-white/25 text-xs text-center">
-              Análisis gratuito de 30 min · Sin compromiso · Respuesta en &lt;24h
+              Llamada gratuita de {OFFER.freeCallMinutes} min · Sin compromiso · Respondo en {OFFER.responseTime}
             </p>
           </div>
         </div>

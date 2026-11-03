@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "../Consent";
-import { SITE } from "../../lib/site-config";
+import { OFFER, SITE } from "../../lib/site-config";
 
 export interface FormField {
   name: string;
@@ -66,10 +66,10 @@ export default function LandingContactForm({ title, description, fields, buttonT
       <div className="text-center py-14">
         <CheckCircle size={52} className="text-[#10B981] mx-auto mb-5" />
         <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-2">
-          ✓ Solicitud enviada
+          Solicitud enviada
         </h3>
         <p className="text-white/55 text-sm">
-          Confirmación enviada a tu email. Te contactamos en &lt;24h.
+          Te responderé en {OFFER.responseTime}.
         </p>
       </div>
     );
@@ -151,7 +151,7 @@ export default function LandingContactForm({ title, description, fields, buttonT
       </form>
 
       <p className="text-white/25 text-xs text-center mt-5">
-        Sin spam. Sin compromisos. Solo para calibrar cómo podemos ayudarte.
+        Sin spam ni compromiso. Solo uso estos datos para responderte.
       </p>
     </div>
   );

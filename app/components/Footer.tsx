@@ -27,9 +27,8 @@ export default function Footer({
               </div>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs mb-5">
-              Automatizamos los procesos administrativos de empresas en Barcelona.
-              Facturación, emails, reportes y seguimiento en automático.
-              ROI documentado desde el mes 1.
+              Automatizo procesos administrativos para pymes de Barcelona:
+              facturación, correos, reportes y seguimiento.
             </p>
             <div className="flex flex-col gap-1 text-sm">
               <a
