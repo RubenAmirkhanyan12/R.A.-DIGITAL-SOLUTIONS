@@ -176,7 +176,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "5-procesos-manuales-destructivos-barcelona",
     description:
       "Cinco procesos manuales que suelen consumir horas cada semana en una pyme y cómo automatizarlos con n8n o Make.",
-    answer: `Los cinco que más se repiten son la facturación, pasar datos de clientes de un programa a otro, los informes semanales, el seguimiento de clientes y los cobros pendientes. Conviene empezar por el que más horas te quite cada semana. Lo que haces pocas veces al mes suele poder esperar.`,
+    answer: `Esta guía repasa cinco tareas que suelen comerse horas en una pyme: la facturación, pasar datos de clientes de un programa a otro, los informes semanales, el seguimiento de clientes y los cobros pendientes. Conviene empezar por la que más horas te quite cada semana. Lo que haces pocas veces al mes puede esperar.`,
     author: AUTHOR,
     publishDate: "2026-06-18",
     updatedDate: "2026-11-04",
@@ -751,7 +751,7 @@ En una llamada de ${OFFER.freeCallMinutes} minutos vemos tus procesos y te digo 
     slug: "errores-automatizar-empresa-barcelona",
     description:
       "Los 7 errores más habituales al automatizar los procesos de una empresa y cómo evitarlos antes de empezar.",
-    answer: `El error más común es automatizar lo fácil en vez de lo que más tiempo te quita. Le siguen no enseñar al equipo a usarlo, montar flujos demasiado grandes de golpe y no enterarse cuando algo falla. Casi todos se evitan empezando por un solo proceso, probándolo con tus datos y dejando alertas.`,
+    answer: `Esta guía recoge errores frecuentes: automatizar lo fácil en vez de lo que más tiempo te quita, no enseñar al equipo a usarlo, montar flujos demasiado grandes de golpe y no enterarse cuando algo falla. Suele ayudar empezar por un solo proceso, probarlo con tus datos y dejar alertas.`,
     author: AUTHOR,
     publishDate: "2026-06-29",
     updatedDate: "2026-11-04",
