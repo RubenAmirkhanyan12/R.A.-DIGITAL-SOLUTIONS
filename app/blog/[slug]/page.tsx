@@ -9,6 +9,8 @@ import {
   formatDate,
 } from "../../lib/blog-posts";
 import { pageMetadata, SITE_URL } from "../../lib/seo";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, ExternalLink, Mail } from "lucide-react";
 
 /* ── Heading slug helper ─────────────────────────────── */
@@ -163,6 +165,7 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       <div className="min-h-screen bg-[#0F0F0F]">
+        <Navbar />
         {/* ── Post hero ── */}
         <section className="relative bg-gradient-to-br from-[#1A3A52] via-[#0F1F2E] to-[#0F0F0F] pt-36 pb-14 overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8860B]/40 to-transparent" />
@@ -197,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
               {post.updatedDate && (
                 <span className="flex items-center gap-1.5 text-[#B8860B]/60 text-xs">
-                  Actualizado: {formatDate(post.updatedDate)}
+                  Actualizado el {formatDate(post.updatedDate)}
                 </span>
               )}
             </div>
@@ -443,6 +446,7 @@ export default async function BlogPostPage({ params }: Props) {
             </aside>
           </div>
         </div>
+        <Footer hubLabel="Automatización por sectores" />
       </div>
     </>
   );

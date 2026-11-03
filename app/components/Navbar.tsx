@@ -52,7 +52,7 @@ export default function Navbar() {
 
   const navItemCls = (h: string) =>
     `whitespace-nowrap font-normal transition-colors ${
-      (h === "/blog" && pathname === "/blog") ||
+      (h === "/blog" && pathname.startsWith("/blog")) ||
       (h === "/sobre-nosotros" && pathname === "/sobre-nosotros") ||
       (h === "/casos" && pathname === "/casos") ||
       (h === "/precios" && pathname === "/precios") ||

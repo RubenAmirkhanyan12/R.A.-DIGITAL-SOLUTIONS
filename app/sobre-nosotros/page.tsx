@@ -1,6 +1,8 @@
 import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import {
   Mail,
   Phone,
@@ -265,6 +267,7 @@ export default function SobreNosotros() {
       />
 
       <div className="min-h-screen bg-[#0F0F0F]">
+        <Navbar />
 
         {/* ── Hero band ──────────────────────────────────────── */}
         <section className="relative bg-gradient-to-br from-[#1A3A52] via-[#0F1F2E] to-[#0F0F0F] pt-36 pb-16 overflow-hidden">
@@ -683,6 +686,7 @@ export default function SobreNosotros() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

@@ -1,4 +1,7 @@
 import type { BlogPost } from "./types";
+import { OWNER_INTRO, SITE } from "./site-config";
+
+const AUTHOR = { name: SITE.owner, role: SITE.credential, bio: OWNER_INTRO };
 
 export const blogPosts: BlogPost[] = [
   {
@@ -7,11 +10,7 @@ export const blogPosts: BlogPost[] = [
     slug: "automatizacion-procesos-barcelona",
     description:
       "Qué es la automatización de procesos, qué procesos conviene automatizar primero en una pyme y con qué herramientas empezar.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-18",
     readTime: 12,
     category: "Automatización",
@@ -370,11 +369,7 @@ Contacto directo: rubenamirkhanyan12@gmail.com · +34 613 361 175
     slug: "5-procesos-manuales-destructivos-barcelona",
     description:
       "Cinco procesos manuales que suelen consumir horas cada semana en una pyme y cómo automatizarlos con n8n o Make.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-18",
     readTime: 10,
     category: "Automatización",
@@ -651,16 +646,13 @@ O reserva directamente en el [formulario de contacto](/#contacto).
     slug: "cuanto-cuesta-automatizar-barcelona",
     description:
       "De qué depende el precio de automatizar procesos en una pyme de Barcelona, qué suele incluir y cómo estimar el ahorro antes de decidir.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-26",
     updatedDate: "2026-09-25",
     readTime: 8,
     category: "Precios",
     featured: false,
+    footerFeatured: true,
     keywords: [
       "cuánto cuesta automatizar procesos barcelona",
       "cuánto cuesta automatizar barcelona",
@@ -900,11 +892,7 @@ O reserva directamente en el [formulario de contacto](/#contacto).
     slug: "automatizacion-facturacion-40h-4h",
     description:
       "Ejemplo de cómo automatizar la facturación de una asesoría: qué pasos se automatizan, con qué herramientas y qué hay que vigilar.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-26",
     readTime: 9,
     category: "Casos de Éxito",
@@ -1151,16 +1139,13 @@ O reserva en el [formulario de contacto](/#contacto).
     slug: "n8n-vs-make-vs-zapier-barcelona",
     description:
       "Comparativa de n8n, Make y Zapier para pymes: diferencias, límites de cada plan y cuál elegir según tus procesos. Con enlaces a las páginas oficiales.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-28",
     updatedDate: "2026-11-02",
     readTime: 11,
     category: "Herramientas",
     featured: false,
+    footerFeatured: true,
     keywords: [
       "n8n vs make vs zapier",
       "herramientas automatización barcelona",
@@ -1427,15 +1412,12 @@ O reserva en el [formulario de contacto](/#contacto).
     slug: "errores-automatizar-empresa-barcelona",
     description:
       "Los 7 errores más habituales al automatizar los procesos de una empresa y cómo evitarlos antes de empezar.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "Especialista en Automatización de Procesos",
-      bio: "Ingeniero informático especializado en automatización de procesos para pymes en Barcelona. Más de 15 casos documentados con ROI positivo desde el primer mes.",
-    },
+    author: AUTHOR,
     publishDate: "2026-06-29",
     readTime: 10,
     category: "Educación",
     featured: false,
+    footerFeatured: true,
     keywords: [
       "errores automatización empresa",
       "fallos automatizar procesos",
@@ -1694,15 +1676,12 @@ O reserva en el [formulario de contacto](/#contacto).
     slug: "automatizar-facturas-con-n8n",
     description:
       "Cómo automatizar facturas con n8n paso a paso: del pedido o cobro a la factura enviada y registrada, con los errores típicos que conviene evitar.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
     category: "Guías",
     featured: false,
+    footerFeatured: true,
     keywords: [
       "automatizar facturas con n8n",
       "facturación automática",
@@ -1790,11 +1769,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-pedidos-a-proveedores-restaurante",
     description:
       "Cómo automatizar los pedidos a proveedores de un restaurante: stock mínimo, pedido automático y aviso al proveedor, paso a paso con n8n o Make.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
     category: "Guías",
@@ -1883,11 +1858,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-pedidos-shopify-woocommerce",
     description:
       "Cómo automatizar los pedidos de Shopify y WooCommerce: del pedido al aviso de envío, el stock y la factura, con n8n o Make y los fallos que evitar.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
     category: "Guías",
@@ -1984,11 +1955,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "reportes-automaticos-para-agencias-de-marketing",
     description:
       "Cómo montar reportes automáticos para los clientes de una agencia de marketing: datos, plantilla y envío programado con n8n o Make.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 5,
     category: "Guías",
@@ -2078,11 +2045,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-cobros-y-facturas-impagadas",
     description:
       "Cómo automatizar los cobros y los recordatorios de facturas impagadas en una pyme: avisos escalonados, registro y cuándo intervenir a mano.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
     category: "Guías",
@@ -2186,11 +2149,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "que-es-n8n-y-cuando-usarlo-en-una-pyme",
     description:
       "Qué es n8n, cómo funciona, qué opciones de uso tiene (autoalojado o en la nube) y cuándo conviene a una pyme frente a Make o Zapier.",
-    author: {
-      name: "Rubén Amirkhanyan",
-      role: "",
-      bio: "",
-    },
+    author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
     category: "Guías",
@@ -2307,6 +2266,10 @@ export function getAllPublishedPosts(): BlogPost[] {
       (a, b) =>
         new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
     );
+}
+
+export function getFooterPosts(): BlogPost[] {
+  return blogPosts.filter((post) => post.footerFeatured);
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

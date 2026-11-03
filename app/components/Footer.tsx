@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RastechLogo from "./RastechLogo";
 import { CONTACT_HREF } from "../lib/seo";
+import { getFooterPosts } from "../lib/blog-posts";
 import { SITE } from "../lib/site-config";
 
 export default function Footer({
@@ -56,7 +57,7 @@ export default function Footer({
               {[
                 ["Inicio", "/"],
                 ["Sobre Nosotros", "/sobre-nosotros"],
-                ["Casos de Éxito", "/casos"],
+                ["Casos de uso", "/casos"],
                 ["Precios", "/precios"],
                 ["Blog", "/blog"],
                 ["Contacto", CONTACT_HREF],
@@ -105,18 +106,13 @@ export default function Footer({
             Artículos del Blog
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              ["¿Cuánto cuesta automatizar procesos en Barcelona?", "/blog/cuanto-cuesta-automatizar-barcelona"],
-              ["De 40h a 4h: Automatización de facturación real", "/blog/automatizacion-facturacion-40h-4h"],
-              ["7 errores al automatizar tu empresa en Barcelona", "/blog/errores-automatizar-empresa-barcelona"],
-              ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
-            ].map(([label, href]) => (
+            {getFooterPosts().map(({ slug, title }) => (
               <Link
-                key={href}
-                href={href}
+                key={slug}
+                href={`/blog/${slug}`}
                 className="text-white/35 hover:text-[#B8860B] text-xs leading-relaxed transition-colors"
               >
-                {label} →
+                {title} →
               </Link>
             ))}
           </div>

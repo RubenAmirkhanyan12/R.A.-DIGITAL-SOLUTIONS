@@ -16,5 +16,6 @@ export interface BlogPost {
   internalLinks: string[];
   category: string;
   featured?: boolean;
+  footerFeatured?: boolean;
   continueReading?: { href: string; label: string }[];
 }

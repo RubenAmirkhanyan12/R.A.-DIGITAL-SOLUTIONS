@@ -2,6 +2,8 @@ import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import { getAllPublishedPosts, formatDate } from "../lib/blog-posts";
 import { Clock, Calendar, ArrowRight, Tag } from "lucide-react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const metadata = pageMetadata({
   title: "Blog de automatización de procesos para pymes | RASTECH",
@@ -15,6 +17,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[#0F0F0F]">
+      <Navbar />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#1A3A52] via-[#0F1F2E] to-[#0F0F0F] pt-36 pb-20 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B8860B]/40 to-transparent" />
@@ -62,6 +65,11 @@ export default function BlogPage() {
                           <Calendar size={11} />
                           {formatDate(post.publishDate)}
                         </span>
+                        {post.updatedDate && (
+                          <span className="text-[#B8860B]/60 text-xs">
+                            Actualizado el {formatDate(post.updatedDate)}
+                          </span>
+                        )}
                         <span className="flex items-center gap-1.5 text-white/30 text-xs">
                           <Clock size={11} />
                           {post.readTime} min lectura
@@ -144,6 +152,7 @@ export default function BlogPage() {
           </Link>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
