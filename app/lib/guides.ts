@@ -29,6 +29,11 @@ export const GUIDES = {
     title: "Qué es n8n y cuándo usarlo en una pyme",
     description: "Cómo funciona, autoalojado o en la nube, y cuándo conviene.",
   },
+  costes: {
+    href: "/blog/cuanto-cuesta-automatizar-barcelona",
+    title: "Cuánto cuesta automatizar procesos en Barcelona (2026)",
+    description: "De qué depende el precio, qué incluye y cómo estimar el ahorro.",
+  },
   general: {
     href: "/blog/automatizacion-procesos-barcelona",
     title: "Automatización de procesos: guía para pymes (2026)",

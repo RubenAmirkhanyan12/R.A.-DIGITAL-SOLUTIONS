@@ -46,7 +46,7 @@ export const OTROS_FAQS: Faq[] = [
     q: "¿Qué pasa con los datos de mis clientes?",
     a: "Trabajo con tus datos conforme al RGPD: viajan cifrados (HTTPS) y se quedan en tus propias cuentas.",
   },
-  { ...HUB_FAQS[0], q: "¿Cuánto cuesta?" },
+  { q: "¿Cuánto cuesta?", a: HUB_FAQS[0].a },
   { ...HUB_FAQS[1], q: "¿Cuánto tarda?" },
 ];
 

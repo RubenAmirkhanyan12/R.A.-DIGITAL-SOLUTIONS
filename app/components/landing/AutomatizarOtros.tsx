@@ -147,9 +147,9 @@ export default function AutomatizarOtros() {
               <Link href="/precios" className="text-[#B8860B] hover:underline">
                 precios de automatización de procesos
               </Link>{" "}
-              o ver cómo se aplica en otros sectores en la página de{" "}
+              o ver cómo se aplica en otros sectores en la{" "}
               <Link href="/automatizar" className="text-[#B8860B] hover:underline">
-                automatización de procesos en Barcelona
+                página de automatización por sectores
               </Link>
               .
             </p>
@@ -166,7 +166,11 @@ export default function AutomatizarOtros() {
             </h2>
             <p className="text-white/50 text-sm leading-relaxed mb-10">
               Cada bloque es un ejemplo ilustrativo de procesos habituales en ese tipo de negocio,
-              no un caso de cliente.
+              no un caso de cliente. Tienes más escenarios, con sus números, en los{" "}
+              <Link href="/casos" className="text-[#B8860B] hover:underline">
+                casos de uso
+              </Link>
+              .
             </p>
             <div className="grid md:grid-cols-2 gap-8">
               {businessExamples.map(({ title, intro, items }) => (

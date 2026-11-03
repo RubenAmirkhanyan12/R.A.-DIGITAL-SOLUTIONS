@@ -328,10 +328,10 @@ export default function AutomatizarAgencias() {
               ))}
             </div>
             <Link
-              href="/blog/reportes-automaticos-para-agencias-de-marketing"
+              href="/casos"
               className="text-[#B8860B] text-sm hover:underline flex items-center gap-1 shrink-0"
             >
-              Ver la guía de reportes <ArrowRight size={13} />
+              Ver más escenarios en los casos de uso <ArrowRight size={13} />
             </Link>
           </div>
         </section>
@@ -408,6 +408,13 @@ export default function AutomatizarAgencias() {
                 </a>
               </div>
             </div>
+            <p className="text-white/40 text-[13px] max-w-xl leading-relaxed mt-4">
+              Tienes el detalle de cada plan y lo que queda fuera en la{" "}
+              <Link href="/precios" className="text-[#B8860B] hover:underline">
+                página de precios
+              </Link>
+              .
+            </p>
             <VatNote className="mt-4" />
           </div>
         </section>
@@ -438,7 +445,7 @@ export default function AutomatizarAgencias() {
           </div>
         </section>
 
-        <RelatedGuides guides={[GUIDES.reportes, GUIDES.cobros, GUIDES.n8n]} hubLabel="Ver qué más se puede automatizar en tu empresa" />
+        <RelatedGuides guides={[GUIDES.reportes, GUIDES.cobros, GUIDES.n8n]} hubLabel="Ver todos los sectores" />
 
         <Footer />
       </div>

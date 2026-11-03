@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
     answer: `Empieza por una tarea que se repita cada semana, siga siempre los mismos pasos y te quite tiempo, como pasar facturas a mano o copiar pedidos de un programa a otro. Se conectan los programas que ya usas con n8n o Make, y un primer proyecto cuesta desde ${formatEUR(EX_PLAN.fromEUR)}. Si la tarea cambia cada vez, normalmente no compensa.`,
     author: AUTHOR,
     publishDate: "2026-06-18",
-    updatedDate: "2026-11-03",
+    updatedDate: "2026-11-04",
     readTime: 12,
     category: "Automatización",
     featured: true,
@@ -73,8 +73,6 @@ export const blogPosts: BlogPost[] = [
       "5-procesos-manuales-destructivos-barcelona",
       "n8n-vs-make-vs-zapier-barcelona",
       "cuanto-cuesta-automatizar-barcelona",
-      "automatizacion-facturacion-40h-4h",
-      "errores-automatizar-empresa-barcelona",
     ],
     content: `Automatizar un proceso significa que una tarea repetitiva se haga sola, siguiendo unas reglas que defines tú. No es magia ni exige programar: es conectar las aplicaciones que ya usas para que los datos dejen de copiarse a mano.
 
@@ -123,6 +121,8 @@ Con una fórmula sencilla y tus horas reales:
 **Horas por semana × ${ASSUMPTIONS.weeksPerMonth} semanas × coste por hora = coste mensual del proceso**
 
 **Ejemplo ilustrativo:** una tarea de ${EX_HOURS} horas semanales, a ${ASSUMPTIONS.hourlyCostEUR} €/h, supone ${formatEUR(EX_SAVING)} al mes. Con el plan ${EX_PLAN.name}, desde ${formatEUR(EX_PLAN.fromEUR)}, recuperarías la inversión en unos ${paybackDays(EX_PLAN.fromEUR, EX_SAVING)} días si esas horas desaparecieran por completo. Es una estimación: el ahorro real depende de cada empresa. Puedes probar con tus números en la [calculadora](/#calculadora).
+
+Lo que cuesta cada plan, y qué incluye, está en la [página de precios](/precios).
 
 ---
 
@@ -198,10 +198,8 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
-      "cuanto-cuesta-automatizar-barcelona",
-      "automatizacion-facturacion-40h-4h",
-      "n8n-vs-make-vs-zapier-barcelona",
-      "errores-automatizar-empresa-barcelona",
+      "automatizar-facturas-con-n8n",
+      "automatizar-cobros-y-facturas-impagadas",
     ],
     content: `En muchas pymes hay tareas que se repiten igual cada semana: copiar datos a una hoja, pasar contactos al CRM, montar un reporte, recordar quién debe llamar a quién y vigilar qué facturas siguen sin cobrar.
 
@@ -319,7 +317,7 @@ Facturas sin cobrar, clientes molestos por demasiados recordatorios, cash flow i
 
 Calcúlalo con tus horas: horas por semana × ${ASSUMPTIONS.weeksPerMonth} semanas × coste por hora.
 
-**Ejemplo ilustrativo:** si estos procesos sumaran ${EX_HOURS} horas semanales, a ${ASSUMPTIONS.hourlyCostEUR} €/h serían ${formatEUR(EX_SAVING)} al mes. Prueba con tus números en la [calculadora](/#calculadora).
+**Ejemplo ilustrativo:** si estos procesos sumaran ${EX_HOURS} horas semanales, a ${ASSUMPTIONS.hourlyCostEUR} €/h serían ${formatEUR(EX_SAVING)} al mes. Prueba con tus números en la [calculadora](/#calculadora) y compáralo con los [precios de cada plan](/precios).
 
 ---
 
@@ -385,7 +383,6 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     internalLinks: [
       "automatizacion-procesos-barcelona",
       "5-procesos-manuales-destructivos-barcelona",
-      "automatizacion-facturacion-40h-4h",
       "n8n-vs-make-vs-zapier-barcelona",
     ],
     content: `El precio de automatizar un proceso depende de cuántos procesos sean, de cuántas aplicaciones haya que conectar y del soporte que necesites. Aquí explico cómo lo calculo, qué incluye y cómo estimar el ahorro antes de decidir.
@@ -509,7 +506,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     answer: `El flujo recoge las facturas que llegan por correo o por un formulario, lee sus datos, los comprueba con tu lista de clientes y los registra en el programa contable. Lo que no cuadra se aparta para que lo revise una persona. Funciona si tu programa contable permite conectarse con otros.`,
     author: AUTHOR,
     publishDate: "2026-06-26",
-    updatedDate: "2026-11-03",
+    updatedDate: "2026-11-04",
     readTime: 9,
     category: "Ejemplos",
     featured: true,
@@ -525,11 +522,9 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
       { href: "/automatizar", label: "Otros procesos que se pueden automatizar en una empresa de Barcelona" },
     ],
     internalLinks: [
-      "5-procesos-manuales-destructivos-barcelona",
+      "automatizar-facturas-con-n8n",
       "cuanto-cuesta-automatizar-barcelona",
-      "automatizacion-procesos-barcelona",
-      "n8n-vs-make-vs-zapier-barcelona",
-      "errores-automatizar-empresa-barcelona",
+      "automatizar-cobros-y-facturas-impagadas",
     ],
     content: `Una asesoría recibe cada mes facturas de sus clientes por correo, WhatsApp o en papel, y alguien las pasa a mano al programa contable. Este artículo es un ejemplo ilustrativo de cómo automatizar ese proceso: qué pasos se automatizan, con qué herramientas y qué hay que vigilar. No describe a ningún cliente. *(¿Buscas el contexto general? Lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
@@ -598,7 +593,7 @@ Con los supuestos de ${ASSUMPTIONS.hourlyCostEUR} €/h y ${ASSUMPTIONS.weeksPer
 | Inversión desde | ${formatEUR(EX_F_N.plan.fromEUR)} |
 | Recuperación | unos ${EX_F_N.payback} días |
 
-Es una estimación, no un resultado. Parte de que esas horas desaparecen por completo, y siempre quedará algo de revisión humana.
+Es una estimación, no un resultado. Parte de que esas horas desaparecen por completo, y siempre quedará algo de revisión humana. Lo que cuesta cada plan está en la [página de precios](/precios).
 
 ---
 
@@ -617,7 +612,7 @@ Es una estimación, no un resultado. Parte de que esas horas desaparecen por com
 - ¿Repites el mismo proceso muchas veces al año?
 - ¿Tienes datos en una hoja y en otro programa que no coinciden?
 
-Si respondes que sí a dos o más, merece la pena hacer los números con tus horas reales.
+Si respondes que sí a dos o más, merece la pena hacer los números con tus horas reales. Si tienes un despacho o una asesoría, mira qué más se suele automatizar en la [página para despachos y otros negocios](/automatizar-otros).
 
 Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 
@@ -651,11 +646,9 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
       { href: "/automatizar", label: "Cómo se aplican estas herramientas en empresas de Barcelona, por sector" },
     ],
     internalLinks: [
-      "automatizacion-procesos-barcelona",
+      "que-es-n8n-y-cuando-usarlo-en-una-pyme",
       "cuanto-cuesta-automatizar-barcelona",
-      "automatizacion-facturacion-40h-4h",
-      "5-procesos-manuales-destructivos-barcelona",
-      "errores-automatizar-empresa-barcelona",
+      "automatizacion-procesos-barcelona",
     ],
     content: `Las tres conectan tus programas para que los datos pasen de uno a otro sin copiarlos a mano. Cambian en cómo cobran, dónde funcionan y cuánto trabajo exige mantenerlas. *(¿Nuevo en automatización? Empieza por la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
@@ -745,7 +738,7 @@ Normalmente no hay una forma directa de pasar los flujos de una a otra: hay que 
 
 ## ¿Y el coste del proyecto?
 
-La suscripción de la herramienta es solo una parte. El montaje se paga aparte, y lo explico en [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona). Si quieres ver una de ellas aplicada a un caso, lee [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h).
+La suscripción de la herramienta es solo una parte. El montaje se paga aparte: tienes los planes en la [página de precios](/precios) y lo explico en [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona). Si quieres ver una de ellas aplicada a un caso, lee [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h).
 
 ---
 
@@ -779,10 +772,8 @@ En una llamada de ${OFFER.freeCallMinutes} minutos vemos tus procesos y te digo 
     ],
     internalLinks: [
       "automatizacion-procesos-barcelona",
-      "n8n-vs-make-vs-zapier-barcelona",
-      "automatizacion-facturacion-40h-4h",
       "5-procesos-manuales-destructivos-barcelona",
-      "cuanto-cuesta-automatizar-barcelona",
+      "n8n-vs-make-vs-zapier-barcelona",
     ],
     content: `Montas una automatización, funciona unas semanas y un día deja de hacerlo. Es fácil culpar a la herramienta, pero muchas veces el problema está en cómo se planteó.
 

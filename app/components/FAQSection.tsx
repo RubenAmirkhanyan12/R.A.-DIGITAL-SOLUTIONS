@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Plus, Minus } from "lucide-react";
 import AnimateOnScroll from "./AnimateOnScroll";
 import { OFFER, PLANS, SITE } from "../lib/site-config";
@@ -104,7 +105,7 @@ export default function FAQSection() {
                 ["Cuánto cuesta automatizar procesos en Barcelona", "/blog/cuanto-cuesta-automatizar-barcelona"],
                 ["Cómo automatizar la facturación de una asesoría", "/blog/automatizacion-facturacion-40h-4h"],
                 ["7 errores al automatizar una empresa y cómo evitarlos", "/blog/errores-automatizar-empresa-barcelona"],
-                ["n8n vs Make vs Zapier: Cuál elegir en Barcelona", "/blog/n8n-vs-make-vs-zapier-barcelona"],
+                ["n8n vs Make vs Zapier: cuál elegir en 2026", "/blog/n8n-vs-make-vs-zapier-barcelona"],
               ].map(([label, href]) => (
                 <a
                   key={href}
@@ -116,6 +117,13 @@ export default function FAQSection() {
                 </a>
               ))}
             </div>
+            <p className="text-white/45 text-sm mt-5">
+              Si prefieres verlo por sectores, mira la página de{" "}
+              <Link href="/automatizar" className="text-[#B8860B] hover:underline">
+                automatización de procesos en Barcelona
+              </Link>
+              .
+            </p>
           </div>
         </AnimateOnScroll>
 

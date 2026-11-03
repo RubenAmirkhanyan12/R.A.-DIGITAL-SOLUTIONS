@@ -6,6 +6,8 @@ const LOCAL = `http://localhost:${PORT}`;
 const SITE = "https://www.ras-tech.es";
 const HUB = "/automatizar";
 const EXACT_ANCHOR = "automatización de procesos en barcelona";
+const MAX_EXACT_ANCHOR_PAGES = 3;
+const MIN_INBOUND = 2;
 const UNPROVABLE = /730|2\.?800 ?%|51k|51[.,]840|ROI garantizado/i;
 
 const EXPECTED_TITLES = {
@@ -72,6 +74,10 @@ function headingSkips(html) {
   return [...new Set(skips)];
 }
 
+// El menú (<header>) y el pie (<footer>) no cuentan como enlaces de contenido
+const contentOnly = (html) =>
+  html.replace(/<header\b[\s\S]*?<\/header>/gi, "").replace(/<footer\b[\s\S]*?<\/footer>/gi, "");
+
 function analyse(path, status, html) {
   const title = decode(html.match(/<title>(.*?)<\/title>/is)?.[1] ?? "");
   const description = metaContent(html, "name", "description");
@@ -82,10 +88,14 @@ function analyse(path, status, html) {
   const ld = jsonLd.join(" ");
   const links = new Set();
   let exactAnchors = 0;
-  for (const m of html.matchAll(/<a\b[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gis)) {
+  let selfLinks = 0;
+  for (const m of contentOnly(html).matchAll(/<a\b[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gis)) {
     const target = internalPath(m[1]);
     if (target === null) continue;
-    if (target !== path) links.add(target);
+    // Un salto a una sección de la misma página (/#contacto) no es un autoenlace
+    if (target === path) {
+      if (!decode(m[1]).includes("#")) selfLinks++;
+    } else links.add(target);
     if (target === HUB && stripTags(m[2]).toLowerCase() === EXACT_ANCHOR) exactAnchors++;
   }
   const noindex = /<meta[^>]*name="robots"[^>]*noindex/i.test(html);
@@ -100,7 +110,7 @@ function analyse(path, status, html) {
     review: /"review"/i.test(ld),
     unprovable: [title, description, ogTitle, ogDescription, twitterDescription, ld].some((t) => UNPROVABLE.test(t)),
     ogMatches: ogTitle === title && ogDescription === description,
-    links, exactAnchors, noindex,
+    links, exactAnchors, selfLinks, noindex,
     skips: headingSkips(html),
     keywordsMeta: /<meta[^>]*name="keywords"/i.test(html),
   };
@@ -124,7 +134,8 @@ function checks(p, inbound) {
   if (p.lang !== "es") errors.push(`lang ${p.lang}`);
   if (p.aggregateRating) errors.push("aggregateRating");
   if (p.review) errors.push("review");
-  if (inbound < 2) errors.push(`${inbound} entrantes`);
+  if (inbound < MIN_INBOUND) errors.push(`${inbound} entrantes desde el contenido`);
+  if (p.selfLinks) errors.push(`se enlaza a sí misma (${p.selfLinks})`);
   if (EXPECTED_TITLES[p.path] !== p.title) errors.push("title no coincide");
   if (!EXPECTED_TITLES[p.path]) errors.push("sin title esperado");
   if (!p.ogMatches) errors.push("OG distinto");
@@ -146,6 +157,13 @@ async function waitForServer() {
 }
 
 if (!process.argv.includes("--skip-build")) execSync("npm run build", { stdio: "ignore" });
+
+// Si ya hay algo en el puerto, se estaría comprobando una build vieja
+const busy = await fetch(LOCAL).then(() => true, () => false);
+if (busy) {
+  console.error(`El puerto ${PORT} ya está en uso: cierra ese servidor y vuelve a ejecutar.`);
+  process.exit(1);
+}
 
 const server = spawn("npx", ["next", "start", "-p", String(PORT)], { stdio: "ignore", detached: true });
 let failed = 0;
@@ -171,6 +189,16 @@ try {
     }
   }
 
+  const known = new Set(paths);
+  const broken = [];
+  for (const target of new Set(pages.flatMap((p) => [...p.links]))) {
+    if (known.has(target)) continue;
+    const status = (await fetch(`${LOCAL}${target}`)).status;
+    if (status !== 200) broken.push(`${target} (${status}) desde ${pages.filter((p) => p.links.has(target)).map((p) => p.path).join(", ")}`);
+  }
+  const exactPages = pages.filter((p) => p.exactAnchors > 0);
+  const anchorError = exactPages.length > MAX_EXACT_ANCHOR_PAGES;
+
   console.log("| URL | Status | Title (long.) | Desc. (long.) | Canonical | H1 | lang | JSON-LD | aggRating/review | Sal. | Ent. | Resultado |");
   console.log("|---|---|---|---|---|---|---|---|---|---|---|---|");
   for (const p of pages) {
@@ -183,6 +211,12 @@ try {
   }
 
   const warned = pages.map((p) => [p.path, warnings(p)]).filter(([, w]) => w.length);
+  console.log(`\nEnlaces internos rotos: ${broken.length}`);
+  for (const b of broken) console.log(`  ERROR ${b}`);
+  console.log(
+    `Ancla exacta «${EXACT_ANCHOR}» en ${exactPages.length} páginas (máx. ${MAX_EXACT_ANCHOR_PAGES}): ${exactPages.map((p) => p.path).join(", ") || "ninguna"}${anchorError ? " — ERROR" : ""}`,
+  );
+  if (broken.length || anchorError) failed++;
   console.log(`\n${pages.length} URLs, ${failed} con ERROR, ${warned.length} con WARN`);
   for (const [path, w] of warned) console.log(`  WARN ${path}: ${w.join("; ")}`);
   const skipped = pages.filter((p) => p.skips.length);

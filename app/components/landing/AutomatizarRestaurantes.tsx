@@ -324,10 +324,10 @@ export default function AutomatizarRestaurantes() {
               ))}
             </div>
             <Link
-              href="/blog/automatizacion-facturacion-40h-4h"
+              href="/casos"
               className="text-[#B8860B] text-sm hover:underline flex items-center gap-1 shrink-0"
             >
-              Ver un ejemplo de facturación <ArrowRight size={13} />
+              Ver más escenarios en los casos de uso <ArrowRight size={13} />
             </Link>
           </div>
         </section>
@@ -413,6 +413,13 @@ export default function AutomatizarRestaurantes() {
 
             <p className="text-white/40 text-[13px] max-w-xl leading-relaxed">
               El precio final se cierra por escrito antes de empezar. Depende del alcance y de las herramientas que ya usas. </p>
+            <p className="text-white/40 text-[13px] max-w-xl leading-relaxed mt-4">
+              Tienes el detalle de cada plan y lo que queda fuera en la{" "}
+              <Link href="/precios" className="text-[#B8860B] hover:underline">
+                página de precios
+              </Link>
+              .
+            </p>
             <VatNote className="mt-4" />
           </div>
         </section>
@@ -443,7 +450,7 @@ export default function AutomatizarRestaurantes() {
           </div>
         </section>
 
-        <RelatedGuides guides={[GUIDES.pedidosRestaurante, GUIDES.facturas, GUIDES.cobros]} hubLabel="Ver qué se automatiza en otros sectores" />
+        <RelatedGuides guides={[GUIDES.pedidosRestaurante, GUIDES.facturas, GUIDES.cobros]} hubLabel="Ver todos los sectores" />
 
         <Footer />
       </div>
