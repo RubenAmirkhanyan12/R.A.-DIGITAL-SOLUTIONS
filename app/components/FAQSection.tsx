@@ -77,7 +77,7 @@ export default function FAQSection() {
             Preguntas frecuentes
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl font-bold text-white mb-4">
-            Preguntas sobre Automatización de Procesos{" "}
+            Preguntas sobre automatización de procesos{" "}
             <span className="text-[#B8860B]">en Barcelona</span>
           </h2>
           <p className="text-white/50 text-base">

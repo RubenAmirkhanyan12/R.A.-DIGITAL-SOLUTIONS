@@ -38,8 +38,8 @@ export default function ROICalculator() {
             Calculadora ROI
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
-            ¿Cuánto Pierdes{" "}
-            <span className="text-[#B8860B]">Cada Mes?</span>
+            ¿Cuánto pierdes{" "}
+            <span className="text-[#B8860B]">cada mes?</span>
           </h2>
           <p className="text-white/55 text-lg max-w-xl mx-auto">
             Mueve los sliders. Ve el resultado en tiempo real.

@@ -83,9 +83,13 @@ const failures = [];
 const warnings = [];
 
 function titleCaseWords(text) {
-  return text
-    .split(/[\s:·—–-]+/)
-    .filter((w) => /^[A-ZÁÉÍÓÚÑ][a-záéíóúñü]/.test(w) && !PROPER.has(w.replace(/[^\wÁÉÍÓÚÑáéíóúñü]/g, ""))).length;
+  const words = text.split(/[\s:·—–-]+/).map((w) => w.replace(/^[(¿¡"«]+/, ""));
+  const capitalised = words.filter(
+    (w) => /^[A-ZÁÉÍÓÚÑ][a-záéíóúñü]/.test(w) && !PROPER.has(w.replace(/[^\wÁÉÍÓÚÑáéíóúñü]/g, "")),
+  ).length;
+  // «A», «Y», «O», «E», «U» en mayúscula a mitad de titular
+  const midLetters = words.slice(1).filter((w) => /^[AYOEU]$/.test(w)).length;
+  return capitalised + (midLetters ? 3 : 0);
 }
 
 function headingTexts(text) {

@@ -29,17 +29,17 @@ const EX_F_N = EX_A_N;
 
 // Precios de terceros citados en la comparativa de herramientas
 const TOOL_PRICE = {
-  n8nStarter: "20 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
-  n8nPro: "50 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
-  n8nBusiness: "667 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
-  n8nProYear: "600 €", // check-site:ok https://n8n.io/pricing/ (Pro × 12) consultado el 2026-11-03
-  zapierFree: "0 $", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierProAnnual: "19,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierProMonthly: "29,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierTeamAnnual: "69 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierTeamMonthly: "103,50 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierPro5000: "89 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
-  zapierPro5000Year: "1.068 $", // check-site:ok https://zapier.com/pricing (89 × 12) consultado el 2026-11-03
+  n8nStarter: "20 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-04
+  n8nPro: "50 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-04
+  n8nBusiness: "667 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-04
+  n8nProYear: "600 €", // check-site:ok https://n8n.io/pricing/ (Pro × 12) consultado el 2026-11-04
+  zapierFree: "0 $", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierProAnnual: "19,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierProMonthly: "29,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierTeamAnnual: "69 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierTeamMonthly: "103,50 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierPro5000: "89 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-04
+  zapierPro5000Year: "1.068 $", // check-site:ok https://zapier.com/pricing (89 × 12) consultado el 2026-11-04
 };
 
 export const blogPosts: BlogPost[] = [
@@ -179,7 +179,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     answer: `Los cinco que más se repiten son la facturación, pasar datos de clientes de un programa a otro, los informes semanales, el seguimiento de clientes y los cobros pendientes. Conviene empezar por el que más horas te quite cada semana. Lo que haces pocas veces al mes suele poder esperar.`,
     author: AUTHOR,
     publishDate: "2026-06-18",
-    updatedDate: "2026-11-03",
+    updatedDate: "2026-11-04",
     readTime: 10,
     category: "Automatización",
     featured: true,
@@ -211,7 +211,7 @@ Estos son cinco de los procesos que suelen consumir más tiempo y cómo automati
 
 ---
 
-## Proceso manual #1: facturación en Excel (El clásico)
+## Proceso manual #1: facturación en Excel (el clásico)
 
 ### El problema
 
@@ -232,7 +232,7 @@ Además: clientes faltando en reportes, importes copiados mal, PDFs sin enviar.
 
 ---
 
-## Proceso manual #2: entrada de datos en CRM (Sales repite lo mismo)
+## Proceso manual #2: entrada de datos en el CRM (ventas repite lo mismo)
 
 ### El problema
 
@@ -253,7 +253,7 @@ Resultado: leads duplicados, campos vacíos, y sales tan ocupado copiando que no
 
 ---
 
-## Proceso manual #3: reportes del lunes A las 7am
+## Proceso manual #3: reportes del lunes a las 7 de la mañana
 
 ### El problema
 
@@ -273,7 +273,7 @@ Encima, los datos del viernes a veces no están actualizados. Los números no cu
 
 ---
 
-## Proceso manual #4: seguimiento de clientes (El que se olvida)
+## Proceso manual #4: seguimiento de clientes (el que se olvida)
 
 ### El problema
 
@@ -294,7 +294,7 @@ Resultado: se olvidan llamadas, clientes que podrían recomprar se enfrían, ven
 
 ---
 
-## Proceso manual #5: cobros Y seguimiento de facturas (El que duele)
+## Proceso manual #5: cobros y seguimiento de facturas (el que duele)
 
 ### El problema
 
@@ -630,11 +630,11 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "n8n-vs-make-vs-zapier-barcelona",
     description:
       "Comparativa de n8n, Make y Zapier para pymes: diferencias, límites de cada plan y cuál elegir según tus procesos. Con enlaces a las páginas oficiales.",
-    answer: `Depende de quién vaya a mantener los flujos y de cuánto se vayan a usar. Zapier y Make funcionan en su nube y cobran según el consumo. n8n también puede instalarse en tu propio servidor, lo que da más control pero exige mantenerlo. Prueba primero tu flujo principal en el plan gratuito o de prueba.`,
+    answer: `Depende de quién vaya a mantener los flujos y de cuánto se vayan a usar. Make y Zapier se usan en su nube y cobran según el consumo. n8n también puede instalarse en tu propio servidor, lo que da más control pero exige mantenerlo. Prueba primero tu flujo principal en el plan gratuito o de prueba.`,
     author: AUTHOR,
     publishDate: "2026-06-28",
-    updatedDate: "2026-11-03",
-    readTime: 11,
+    updatedDate: "2026-11-04",
+    readTime: 6,
     category: "Herramientas",
     featured: false,
     footerFeatured: true,
@@ -657,237 +657,101 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
       "5-procesos-manuales-destructivos-barcelona",
       "errores-automatizar-empresa-barcelona",
     ],
-    content: `Decidiste automatizar. Abriste Google. "¿Cuál herramienta uso?" Tres opciones populares: n8n, Make, Zapier. Las tres funcionan. Las tres son diferentes. Una se puede autoalojar sin pagar licencia; las otras dos se pagan según el volumen de uso.
+    content: `Las tres conectan tus programas para que los datos pasen de uno a otro sin copiarlos a mano. Cambian en cómo cobran, dónde funcionan y cuánto trabajo exige mantenerlas. *(¿Nuevo en automatización? Empieza por la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona).)*
 
-Esta comparativa usa los precios publicados en las páginas oficiales de cada herramienta. No "mejor o peor" — sino cuál es mejor **para tu caso**. *(¿Nuevo en automatización? Primero lee la [guía de automatización de procesos](/blog/automatizacion-procesos-barcelona))*
-
----
-
-## ¿Qué son n8n, Make y Zapier?
-
-Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. La diferencia está en el precio, la complejidad y el control.
-
-**Zapier** — La "Netflix del workflow". La más antigua (2011), la más cara, la más estable. Empresa de EEUU.
-
-**Make** (antes Integromat) — La alternativa a Zapier con editor visual de escenarios.
-
-**n8n** — Se distribuye con licencia fair-code ([Sustainable Use License](https://docs.n8n.io/n8n-community-license/community-license)), que no es open source en sentido estricto. Autoalojado o en la nube de n8n. Empresa alemana (startup).
-
-*Precios consultados el 2 de noviembre de 2026; pueden cambiar. Páginas oficiales: [n8n](https://n8n.io/pricing/), [Make](https://www.make.com/en/pricing) y [Zapier](https://zapier.com/pricing).*
+Los datos de este artículo salen de las páginas oficiales de cada herramienta, consultadas el 4 de noviembre de 2026: [precios de n8n](https://n8n.io/pricing/), [precios de Make](https://www.make.com/en/pricing) y [precios de Zapier](https://zapier.com/pricing). Las tarifas cambian, así que revísalas antes de decidir.
 
 ---
 
-## Tabla comparativa
+## ¿En qué se diferencian n8n, Make y Zapier?
 
-| Característica | n8n | Make | Zapier |
+| | n8n | Make | Zapier |
 |---|---|---|---|
-| Plan de entrada | Community gratis (autoalojado); nube desde ${TOOL_PRICE.n8nStarter} con pago anual | Free (1.000 créditos/mes) | Free (100 tareas/mes) |
-| Unidad de cobro | Ejecuciones de workflow (nube) | Créditos | Tareas |
-| Catálogo de integraciones | [n8n.io/integrations](https://n8n.io/integrations/) | [make.com/en/integrations](https://www.make.com/en/integrations) | 9.000+ apps ([zapier.com/pricing](https://zapier.com/pricing)) |
-| Curva de aprendizaje | Media-Alta | Media | Baja |
-| Soporte | Community | Email + Chat | Email + Chat + Teléfono |
-| UI/UX | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Self-hosted | ✅ Sí | ❌ No | ❌ No |
-| API personalizada | ✅ Sí | Limitada | Limitada |
-| Para principiantes | ❌ No | ✅ Sí | ✅✅ El mejor |
+| Cómo cobra | Por ejecuciones de flujo, en su nube | Por créditos | Por tareas |
+| Para probar | Prueba gratuita en su nube | Plan Free con 1.000 créditos al mes | Plan Free con 100 tareas al mes |
+| En tu propio servidor | Sí, con la versión autoalojada | Su página de precios no lo ofrece | Su página de precios no lo ofrece |
+| Aplicaciones que conecta | [n8n.io/integrations](https://n8n.io/integrations/) | [make.com/en/integrations](https://www.make.com/en/integrations) | Más de 9.000, según su página de precios |
 
 ---
 
-## Zapier — para empresas que no quieren problemas
+## ¿Cuánto cuesta Zapier?
 
-### Precios
+Zapier publica sus precios en dólares. Esta tabla recoge el primer tramo de cada plan.
 
-Zapier publica sus precios en dólares. El coste de cada plan depende de las tareas que contrates; esta tabla recoge el primer tramo.
-
-| Plan | Pago anual | Pago mensual | Tareas/mes |
+| Plan | Pago anual | Pago mensual | Tareas al mes |
 |---|---|---|---|
 | Free | ${TOOL_PRICE.zapierFree} | ${TOOL_PRICE.zapierFree} | 100 |
 | Professional | desde ${TOOL_PRICE.zapierProAnnual} | desde ${TOOL_PRICE.zapierProMonthly} | 750 |
 | Team | desde ${TOOL_PRICE.zapierTeamAnnual} | desde ${TOOL_PRICE.zapierTeamMonthly} | 2.000 |
 | Enterprise | A medida | A medida | A medida |
 
-Como referencia, Professional con 5.000 tareas al mes cuesta ${TOOL_PRICE.zapierPro5000} con pago anual. Fuente: [zapier.com/pricing](https://zapier.com/pricing).
-
-### Ventajas
-
-**Facilidad máxima** — Drag & drop super intuitivo. Sin pensar en flujos. Conectas y configuras. Un día de aprendizaje.
-
-**Más de 9.000 apps conectadas** — Es el catálogo más amplio de los tres: conviene mirar antes si tu aplicación está.
-
-**Trayectoria** — Es una de las herramientas más veteranas del sector.
-
-### Desventajas
-
-**Caro** — El precio sube rápido con el volumen de tareas. Para startups puede ser demasiado.
-
-**Pricing por tasks** — Cada acción consume tasks. Si creces, el coste crece con sorpresas.
-
-**Sin self-hosted** — Tus datos pasan por sus servidores; revisa sus condiciones si tratas datos sensibles.
-
-### Mejor para
-
-✅ CEOs sin perfil técnico · ✅ Presupuesto disponible · ✅ Workflows simples · ✅ Soporte empresarial crítico
-
-❌ Startups con presupuesto bajo · ❌ Datos sensibles (RGPD) · ❌ Workflows muy complejos
+El precio sube con las tareas: Professional con 5.000 tareas al mes cuesta ${TOOL_PRICE.zapierPro5000} con pago anual. Antes de elegir plan, calcula cuántas tareas harán tus flujos al mes.
 
 ---
 
-## Make — el equilibrio entre precio y potencia
+## ¿Cuánto cuesta Make?
 
-### Precios
+Make cobra por créditos: cada acción de un escenario gasta un número fijo de créditos, normalmente uno. El plan Free incluye 1.000 créditos al mes. Por encima están Core, Pro, Teams y Enterprise, con un precio que depende de los créditos que contrates.
 
-Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encima están Core, Pro, Teams y Enterprise, cuyo precio depende de los créditos que contrates y de si pagas al año o al mes. Consulta las tarifas vigentes en [make.com/en/pricing](https://www.make.com/en/pricing). La propia página indica que el pago anual sale más barato que el mensual.
-
-### Ventajas
-
-**Plan gratuito para empezar** — Con 1.000 créditos al mes puedes probar un flujo real antes de pagar.
-
-**Visual e intuitivo** — Interface clara con nodos conectados. Ves el flujo entero. 1-2 días de aprendizaje.
-
-**Consumo por créditos** — Conviene vigilarlo: según Make, si se agotan los créditos los escenarios se detienen.
-
-### Desventajas
-
-**Soporte limitado en planes bajos** — Revisa en su página qué soporte incluye cada plan antes de decidir.
-
-**No self-hosted** — Tus datos pasan por los servidores de Make, no por el tuyo.
-
-**Catálogo más corto que el de Zapier** — Comprueba que tus aplicaciones están antes de decidir.
-
-### Mejor para
-
-✅ Startups Barcelona (presupuesto bajo) · ✅ Workflows medianos (15-30 integraciones) · ✅ Relación precio-potencia · ✅ Equipo sin perfil técnico profundo
-
-❌ Grandes empresas (soporte limitado) · ❌ Requisitos de servidor propio · ❌ Workflows ultra-complejos con lógica custom
+Según la propia Make, el pago anual sale más barato que el mensual. Si se agotan los créditos, los escenarios se detienen hasta que añades más.
 
 ---
 
-## n8n — para quienes quieren control total
+## ¿Cuánto cuesta n8n?
 
-### Precios
+En su nube, n8n cobra por ejecuciones de flujo. Estos son sus planes, con pago anual:
 
-**Planes de pago** (precios con pago anual):
-
-| Plan | Precio | Ejecuciones/mes | Alojamiento |
+| Plan | Precio | Ejecuciones al mes | Dónde funciona |
 |---|---|---|---|
 | Starter | ${TOOL_PRICE.n8nStarter} | 2.500 | Nube de n8n |
 | Pro | ${TOOL_PRICE.n8nPro} | 10.000 | Nube de n8n |
-| Business | ${TOOL_PRICE.n8nBusiness} | 40.000 | Autoalojado |
-| Enterprise | A consultar | A medida | Nube o autoalojado |
+| Business | ${TOOL_PRICE.n8nBusiness} | 40.000 | Tu servidor |
+| Enterprise | A consultar | A medida | Nube de n8n o tu servidor |
 
-No hay plan gratuito permanente en la nube: se prueba con un periodo de prueba gratuito. Fuente: [n8n.io/pricing](https://n8n.io/pricing/).
-
-**n8n Community (autoalojado):**
-- Licencia gratuita bajo la Sustainable Use License
-- Pagas el servidor y el tiempo de mantenerlo
-
-### Ventajas
-
-**Sin coste de licencia si lo autoalojas** — La versión Community no se paga; el coste es el servidor y su mantenimiento.
-
-**Código disponible (fair-code)** — Puedes ver el código, aunque la licencia limita el uso a fines internos de negocio, personales o no comerciales.
-
-**Self-hosted = datos tuyos** — Decides en qué servidor están los datos y quién accede a ellos.
-
-**Sin límites reales** — API custom, lógica compleja, loops, condicionales. Si lo puedes imaginar, lo puedes construir.
-
-### Desventajas
-
-**Curva de aprendizaje alta** — No es "arrastra y suelta". Requiere pensar en flujos. 1-2 semanas para dominar.
-
-**Sin soporte oficial** — Community en Slack/Discord. Si algo rompe, tú lo arreglas o buscas en foros.
-
-**Self-hosted = tú administras** — Servidor, updates, backups: responsabilidad tuya. Requiere algo de DevOps.
-
-**Menos integraciones nativas que Zapier** — Pero puedes conectar cualquier API con el nodo HTTP Request. La limitación es menor de lo que parece.
-
-### Mejor para
-
-✅ Desarrolladores y perfiles técnicos · ✅ Presupuesto de licencias ajustado · ✅ Workflows complejos con lógica avanzada · ✅ Privacidad crítica · ✅ Datos sensibles (banca, salud, legal)
-
-❌ CEOs sin perfil técnico · ❌ Empresas que necesitan soporte con plazos de respuesta por contrato · ❌ Workflows simples (es overkill)
+Starter y Pro se pueden probar gratis. También hay una versión autoalojada en GitHub, que se instala en tu propio servidor. Se distribuye con la [Sustainable Use License](https://docs.n8n.io/n8n-community-license/community-license) (consultada el 4 de noviembre de 2026), que da derecho gratuito a usarla para los fines internos de tu negocio. n8n la describe como fair-code y no como open source. No pagas licencia, pero sí el servidor y el tiempo de mantenerlo.
 
 ---
 
-## Comparativa de coste en un año (ejemplo ilustrativo)
+## ¿Cuánto costaría en un año?
 
-**Supuesto:** unas 3.000 ejecuciones al mes, que en Zapier equivaldrían a unas 5.000 tareas, con pago anual.
+Las tres miden el consumo de forma distinta, así que no se pueden comparar una a una. Como orientación, con pago anual:
 
-| Herramienta | Plan | Coste anual |
-|---|---|---|
-| Zapier | Professional (5.000 tareas) | ${TOOL_PRICE.zapierPro5000Year} |
-| Make | Según créditos | Ver [página oficial](https://www.make.com/en/pricing) |
-| n8n Cloud | Pro (10.000 ejecuciones) | ${TOOL_PRICE.n8nProYear} |
-| n8n autoalojado | Community | Sin licencia; pagas servidor y mantenimiento |
+- Zapier Professional con 5.000 tareas al mes: ${TOOL_PRICE.zapierPro5000Year} al año.
+- n8n Pro en su nube, con 10.000 ejecuciones al mes: ${TOOL_PRICE.n8nProYear} al año.
+- Make: depende de los créditos que gasten tus escenarios.
 
-Zapier factura en dólares y n8n en euros, y cada una mide el consumo de forma distinta. Úsalo como orientación y calcúlalo con tu volumen real.
+Zapier fija sus precios en dólares y n8n, en euros. Calcúlalo con tu volumen real.
 
 ---
 
-## ¿Cuál elegir? la respuesta honesta
+## ¿Cuál elegir?
 
-No existe "la mejor". Existe la mejor **para tu situación ahora mismo**.
+Depende de quién vaya a mantener los flujos, de cuánto se vayan a usar y de dónde quieras que estén los datos.
 
-**Eres gerente o CEO sin perfil técnico →** **Zapier**
-- UI más sencilla del mercado
-- Plan gratuito para probar
-- Tranquilidad total
-- Coste: según tus tareas al mes (aceptable si el ahorro de tiempo lo justifica)
+- **Si nadie en tu equipo es técnico**, normalmente compensa empezar por el plan gratuito de Make o de Zapier.
+- **Si tu volumen va a crecer**, calcula cuánto te costarían tus flujos en cada una: una cobra por tareas, otra por créditos y otra por ejecuciones.
+- **Si quieres los datos en un servidor tuyo**, n8n autoalojado lo permite, pero alguien tiene que mantener ese servidor al día.
+- **Si tratas datos sensibles**, el cumplimiento del RGPD depende de cómo se configure todo, no solo de la herramienta.
 
-**Eres startup Barcelona con presupuesto ajustado →** **Make, empezando por el plan Free**
-- Puedes probarlo con 1.000 créditos al mes
-- Visual y aprendible en 2 días
-- Si creces, escalas el plan
-
-**Tienes perfil técnico o desarrollador en el equipo →** **n8n Self-Hosted**
-- Sin coste de licencia
-- Control total de datos
-- Coste real: el servidor y tu tiempo
-
-**Tratas datos sensibles (pacientes, clientes financieros, datos legales) →** **n8n Self-Hosted**
-- Datos en un servidor que controlas tú
-- Menos terceros implicados en el tratamiento
-- El cumplimiento del RGPD depende de cómo lo configures, no de la herramienta
+Lo más fiable es montar tu flujo principal en el plan gratuito o de prueba de cada una y quedarte con la que te resulte más cómoda.
 
 ---
 
-## ¿Es fácil cambiar de herramienta?
+## ¿Es fácil cambiar de herramienta después?
 
-| Migración | Dificultad | Tiempo |
-|---|---|---|
-| Zapier → Make | Media | 1-2 semanas |
-| Make → Zapier | Media | 1-2 semanas |
-| Zapier/Make → n8n | Alta | 3-4 semanas |
-| n8n → Zapier/Make | Media | 2-3 semanas |
-
-El salto más difícil es hacia n8n: estructura diferente, requiere perfil técnico. El consejo: empieza donde estés más cómodo. Cuando crezcas, reevalúa.
+Normalmente no hay una forma directa de pasar los flujos de una a otra: hay que rehacerlos. Cuantos más flujos tengas, más trabajo supone, así que conviene elegir pensando a medio plazo. *(Antes de empezar, repasa los [7 errores al automatizar una empresa](/blog/errores-automatizar-empresa-barcelona).)*
 
 ---
 
-## Recomendación final
+## ¿Y el coste del proyecto?
 
-**Primera vez automatizando →** Make, empezando por su plan Free. Visual y sin coste para probar. *(¿Cuánto cuesta todo el proyecto? Consulta la [guía de precios de automatización en Barcelona](/blog/cuanto-cuesta-automatizar-barcelona))*
-
-**Ya tienes 10+ workflows →** Reevalúa: si Zapier da mejor soporte para tu tamaño, cambia. Si Make funciona, sigue. Si necesitas tener los datos en tu servidor, migra a n8n.
-
-**Nunca empieces en n8n self-hosted** si no tienes perfil técnico — es overkill y te frustrará en la primera semana. *(Antes de empezar cualquier herramienta: [7 errores que arruinan una automatización](/blog/errores-automatizar-empresa-barcelona))*
-
-Make y Zapier tienen plan gratuito y n8n Cloud ofrece un periodo de prueba. Prueba un flujo real en cada una y elige la que más cómoda te resulte.
+La suscripción de la herramienta es solo una parte. El montaje se paga aparte, y lo explico en [cuánto cuesta automatizar procesos](/blog/cuanto-cuesta-automatizar-barcelona). Si quieres ver una de ellas aplicada a un caso, lee [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h).
 
 ---
 
-## Necesitas ayuda eligiendo
+## ¿Necesitas ayuda para elegir?
 
-En ${OFFER.freeCallMinutes} minutos vemos tus procesos y te digo qué herramienta encaja mejor. Sin compromiso.
-
-📧 ${SITE.email}
-📱 ${SITE.phone}
-
-O reserva en el [formulario de contacto](/#contacto).
-
----
-
-*¿Quieres ver n8n aplicado a un ejemplo? Lee: [cómo automatizar la facturación de una asesoría](/blog/automatizacion-facturacion-40h-4h)*`,
+En una llamada de ${OFFER.freeCallMinutes} minutos vemos tus procesos y te digo qué herramienta encaja mejor, sin compromiso. [Cuéntame tu caso](/#contacto).`,
   },
   {
     title: "7 errores al automatizar una empresa y cómo evitarlos",
@@ -897,7 +761,7 @@ O reserva en el [formulario de contacto](/#contacto).
     answer: `El error más común es automatizar lo fácil en vez de lo que más tiempo te quita. Le siguen no enseñar al equipo a usarlo, montar flujos demasiado grandes de golpe y no enterarse cuando algo falla. Casi todos se evitan empezando por un solo proceso, probándolo con tus datos y dejando alertas.`,
     author: AUTHOR,
     publishDate: "2026-06-29",
-    updatedDate: "2026-11-03",
+    updatedDate: "2026-11-04",
     readTime: 10,
     category: "Educación",
     featured: false,
@@ -944,7 +808,7 @@ Ejemplo ilustrativo: generar un PDF lleva unos minutos al día y pasar contactos
 
 ---
 
-## Error #2: no entrenar al equipo (Y culpar la herramienta)
+## Error #2: no formar al equipo (y culpar a la herramienta)
 
 ### Qué sucede
 
@@ -964,7 +828,7 @@ Es poco tiempo y marca la diferencia entre un sistema que se usa y otro que se i
 
 ---
 
-## Error #3: flujos demasiado complejos (El síndrome del todo A la vez)
+## Error #3: flujos demasiado complejos (todo a la vez)
 
 ### Qué sucede
 
@@ -1012,7 +876,7 @@ Rutina: lunes 9am, 10 minutos revisar reporte semanal. ¿Errores? Arregla. ¿Tod
 
 ---
 
-## Error #5: integración frágil (Cuando la API cambia, todo rompe)
+## Error #5: integración frágil (cuando un programa cambia, el flujo se rompe)
 
 ### Qué sucede
 
@@ -1089,7 +953,7 @@ Sistema lanzado. Funcionando. "Misión cumplida, nos relajamos."
 
 ---
 
-## ¿Ya cometiste alguno? no importa.
+## ¿Ya has cometido alguno? No pasa nada
 
 Si tu automatización falla ahora:
 
