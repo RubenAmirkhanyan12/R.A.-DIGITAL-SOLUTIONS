@@ -18,7 +18,6 @@ import FAQSection from "./components/FAQSection";
 import ROICalculator from "./components/ROICalculator";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
-import CookiesBanner from "./components/CookiesBanner";
 
 export default function Home() {
   return (
@@ -37,7 +36,6 @@ export default function Home() {
         <CTASection />
       </main>
       <Footer />
-      <CookiesBanner />
     </>
   );
 }

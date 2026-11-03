@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
-import { ASSUMPTIONS, formatEUR, OFFER, planById, roiNet, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
+import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm, { type FormField } from "./LandingContactForm";
 import {
   CheckCircle,
@@ -107,7 +107,6 @@ const roiNumbers = [
   { v: formatEUR(plan.fromEUR), l: "Inversión desde" },
   { v: `${formatEUR(saving)}/mes`, l: "Ahorro estimado" },
   { v: `${payback} días`, l: "Recuperación" },
-  { v: `${roiNet(saving * 12, plan.fromEUR)} %`, l: "ROI neto, año 1" },
 ];
 
 const starterFeatures = [
@@ -213,7 +212,7 @@ export default function AutomatizarEcommerce() {
                 </div>
 
                 <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white leading-[1.1] mb-5">
-                  Automatiza Tu E-commerce Barcelona — De 25h Gestión Pedidos a 3h Automático
+                  Automatiza tu e-commerce en Barcelona: pedidos, stock y facturas sin copiar a mano
                 </h1>
 
                 <p className="text-white/65 text-lg leading-relaxed mb-8 max-w-xl">

@@ -21,7 +21,7 @@ const cards: Card[] = [
   {
     icon: <Utensils size={28} className="text-[#B8860B]" />,
     title: "Restaurantes",
-    pain: "40h/semana en facturación, reservas y pedidos manuales",
+    pain: "Horas semanales en facturación, reservas y pedidos manuales",
     points: [
       "Facturación automática (pedido → factura → envío)",
       "Reservas centralizadas (tel + email + web = 1 calendario)",
@@ -36,7 +36,7 @@ const cards: Card[] = [
   {
     icon: <Package size={28} className="text-[#B8860B]" />,
     title: "E-commerce",
-    pain: "25h/semana en gestión pedidos, stock desincronizado, 8% errores",
+    pain: "Pedidos gestionados a mano, stock desincronizado entre canales y errores al copiar datos",
     points: [
       "Gestión pedidos automática (Shopify → factura → confirmación)",
       "Stock sincronizado real-time (tienda = almacén = proveedor)",
@@ -51,12 +51,12 @@ const cards: Card[] = [
   {
     icon: <BarChart3 size={28} className="text-[#B8860B]" />,
     title: "Agencias",
-    pain: "6h/cliente/semana en reportes, facturas manuales, hitos olvidados",
+    pain: "Reportes, facturas e hitos que dependen de que alguien se acuerde",
     points: [
       "Reportes automáticos cada lunes (GA + Ads + Conversiones)",
       "Facturas recurrentes automáticas (Stripe)",
       "Alertas de hitos automáticas",
-      "Escalabilidad: de 5 clientes a 15 sin contratar",
+      "Atender más clientes sin sumar trabajo administrativo",
     ],
     saving: savingLabel("agencia"),
     cta: "Automatizar Agencia",
@@ -94,8 +94,8 @@ const whyItems = [
   },
   {
     icon: "📈",
-    title: "Escala sin contratar",
-    desc: "Con automatización puedes triplicar clientes o producción sin añadir personal admin. La automatización escala; el equipo humano se dedica a crear valor.",
+    title: "Más trabajo con el mismo equipo",
+    desc: "Con los procesos repetitivos automatizados, el mismo equipo puede atender más trabajo sin añadir personal administrativo.",
   },
   {
     icon: "😌",
@@ -134,7 +134,7 @@ const whatWeAutomate = [
 const nextSteps = [
   { num: "1", label: "Selecciona tu sector", desc: "Elige arriba la opción que más se parece a tu empresa." },
   { num: "2", label: "Mira los casos de uso", desc: "Escenarios ilustrativos con los supuestos a la vista.", href: "/casos" },
-  { num: "3", label: "Agenda análisis gratuito", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: "/#contacto" },
+  { num: "3", label: "Reserva tu llamada", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: "/#contacto" },
 ];
 
 export default function AutomatizarSelector() {
@@ -183,7 +183,7 @@ export default function AutomatizarSelector() {
             <div className="text-center mb-12">
               <span className="text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase">¿Por qué ahora?</span>
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mt-3">
-                3 Razones Para Automatizar Tu Empresa
+                3 razones para automatizar tu empresa
               </h2>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -203,10 +203,10 @@ export default function AutomatizarSelector() {
           <div className="text-center mb-12">
             <span className="text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase">Elige tu sector</span>
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mt-3 mb-3">
-              Soluciones Específicas por Sector
+              Soluciones específicas por sector
             </h2>
             <p className="text-white/45 text-sm max-w-xl mx-auto">
-              Cada sector tiene procesos distintos. Hemos documentado exactamente qué automatizar en cada caso.
+              Cada sector tiene procesos distintos. Aquí tienes qué se suele automatizar en cada sector.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -257,7 +257,7 @@ export default function AutomatizarSelector() {
             <div className="text-center mb-12">
               <span className="text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase">Alcance</span>
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mt-3 mb-3">
-                ¿Qué Podemos Automatizar en Tu Empresa?
+                ¿Qué se puede automatizar en tu empresa?
               </h2>
               <p className="text-white/45 text-sm max-w-xl mx-auto">
                 Cualquier proceso repetitivo que consume tiempo sin aportar valor diferencial.
@@ -290,7 +290,7 @@ export default function AutomatizarSelector() {
           <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
             <span className="text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase">¿Cómo empezar?</span>
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mt-3 mb-12">
-              Próximos Pasos
+              Próximos pasos
             </h2>
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {nextSteps.map(({ num, label, desc, href }) => (
@@ -337,17 +337,17 @@ export default function AutomatizarSelector() {
           <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
             <div className="bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F] border border-[#1A3A52]/50 p-10">
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-4">
-                ¿No Sabes Por Dónde Empezar?
+                ¿No sabes por dónde empezar?
               </h2>
               <p className="text-white/60 text-base leading-relaxed mb-8">
-                Agenda un análisis gratuito de 30 min. Sin compromiso.
+                Reserva tu llamada gratuita de {OFFER.freeCallMinutes} min. Sin compromiso.
                 Te decimos exactamente qué automatizar y cuánto ahorrarías.
               </p>
               <Link
                 href="/#contacto"
                 className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-base px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.4)]"
               >
-                Agendar análisis gratuito (30 min) →
+                Reserva tu llamada ({OFFER.freeCallMinutes} min) →
               </Link>
               <div className="mt-5 flex flex-wrap justify-center gap-5 text-xs text-white/30">
                 {["Sin compromiso", `Respondo en ${OFFER.responseTime}`, "Llamada gratuita"].map((t) => (

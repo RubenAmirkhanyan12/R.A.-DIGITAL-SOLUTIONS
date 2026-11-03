@@ -8,7 +8,6 @@ import {
   paybackDays,
   planById,
   PLANS,
-  roiNet,
   SCENARIOS,
   scenarioNumbers,
   SITE,
@@ -564,7 +563,6 @@ Con los supuestos de ${ASSUMPTIONS.hourlyCostEUR} €/h y ${ASSUMPTIONS.weeksPer
 | Plan orientativo | ${EX_F_N.plan.name} |
 | Inversión desde | ${formatEUR(EX_F_N.plan.fromEUR)} |
 | Recuperación | unos ${EX_F_N.payback} días |
-| ROI neto, año 1 | ${roiNet(EX_F_N.saving * 12, EX_F_N.plan.fromEUR)} % |
 
 Es una estimación, no un resultado. Parte de que esas horas desaparecen por completo, y siempre quedará algo de revisión humana.
 

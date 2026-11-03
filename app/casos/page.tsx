@@ -5,7 +5,6 @@ import {
   OFFER,
   PLANS,
   REAL_CASES,
-  roiNet,
   SCENARIOS,
   scenarioNumbers,
   SITE,
@@ -123,7 +122,6 @@ export default function CasosPage() {
                 ["Ahorro estimado", `${formatEUR(saving)}/mes`],
                 ["Plan orientativo", `${plan.name}, desde ${formatEUR(plan.fromEUR)}`],
                 ["Recuperación", `unos ${payback} días`],
-                ["ROI neto, año 1", `${roiNet(saving * 12, plan.fromEUR)} %`],
               ];
               return (
                 <article

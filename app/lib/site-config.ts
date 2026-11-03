@@ -30,7 +30,7 @@ export const OFFER = {
   trainingHours: 1,
   guaranteeDays: 60,
   guarantee:
-    "Si a los 60 días el sistema no hace lo acordado en la propuesta, lo corrijo sin coste; y si no lo consigo, te devuelvo el importe del proyecto.",
+    "Si a los 60 días el sistema no hace lo acordado en la propuesta, lo corrijo sin coste.",
   payment: "Pago único por proyecto, fraccionable en dos pagos (mitad al empezar, mitad al entregar).",
   noHiddenCosts: "Todo lo que no esté en la propuesta se presupuesta por escrito antes de hacerlo.",
 };

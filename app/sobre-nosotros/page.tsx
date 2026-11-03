@@ -265,7 +265,7 @@ export default function SobreNosotros() {
               </span>
             </div>
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
-              Rubén Amirkhanyan — Especialista n8n y Make en Barcelona
+              Rubén Amirkhanyan: automatización con n8n y Make en Barcelona
             </h1>
             <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-semibold text-[#B8860B] mb-6 leading-snug">
               Automatización de procesos · RASTECH
