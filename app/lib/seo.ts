@@ -26,6 +26,7 @@ export function pageMetadata({
   tags,
 }: PageMetadataInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  const images = ["/opengraph-image"];
   const base = {
     title,
     description,
@@ -40,8 +41,8 @@ export function pageMetadata({
     alternates: { canonical: url },
     openGraph:
       type === "article"
-        ? { ...base, type, publishedTime, modifiedTime, authors, tags }
-        : { ...base, type },
-    twitter: { card: "summary", title, description },
+        ? { ...base, images, type, publishedTime, modifiedTime, authors, tags }
+        : { ...base, images, type },
+    twitter: { card: "summary_large_image", title, description, images },
   };
 }

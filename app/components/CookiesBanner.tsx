@@ -31,11 +31,7 @@ export default function CookiesBanner() {
       <div className="max-w-3xl mx-auto bg-[#141414] border border-white/10 shadow-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1">
           <p className="text-white/80 text-sm">
-            Usamos cookies para mejorar tu experiencia.{" "}
-            <a href="#" className="text-[#B8860B] hover:underline">
-              Política de privacidad
-            </a>
-            .
+            Usamos cookies para mejorar tu experiencia.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">

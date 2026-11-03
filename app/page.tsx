@@ -19,7 +19,6 @@ import ROICalculator from "./components/ROICalculator";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 import CookiesBanner from "./components/CookiesBanner";
-import LeadMagnetPopup from "./components/LeadMagnetPopup";
 
 export default function Home() {
   return (
@@ -39,7 +38,6 @@ export default function Home() {
       </main>
       <Footer />
       <CookiesBanner />
-      <LeadMagnetPopup />
     </>
   );
 }

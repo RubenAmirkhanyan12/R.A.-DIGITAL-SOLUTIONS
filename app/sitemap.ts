@@ -4,16 +4,16 @@ import { SITE_URL } from "./lib/seo";
 
 // Fecha del último commit que tocó cada página; actualizar al cambiarla.
 const STATIC_PAGES: Record<string, string> = {
-  "/": "2026-11-02",
-  "/automatizar": "2026-11-02",
-  "/automatizar-restaurantes": "2026-11-02",
-  "/automatizar-ecommerce": "2026-11-02",
-  "/automatizar-agencias": "2026-11-02",
-  "/automatizar-otros": "2026-11-02",
-  "/precios": "2026-11-02",
-  "/casos": "2026-11-02",
-  "/sobre-nosotros": "2026-11-02",
-  "/blog": "2026-11-02",
+  "/": "2026-11-03",
+  "/automatizar": "2026-11-03",
+  "/automatizar-restaurantes": "2026-11-03",
+  "/automatizar-ecommerce": "2026-11-03",
+  "/automatizar-agencias": "2026-11-03",
+  "/automatizar-otros": "2026-11-03",
+  "/precios": "2026-11-03",
+  "/casos": "2026-11-03",
+  "/sobre-nosotros": "2026-11-03",
+  "/blog": "2026-11-03",
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
