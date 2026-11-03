@@ -6,6 +6,7 @@ import {
   OFFER,
   OWNER_INTRO,
   paybackDays,
+  processesInWords,
   planById,
   PLANS,
   SCENARIOS,
@@ -48,6 +49,7 @@ export const blogPosts: BlogPost[] = [
     slug: "automatizacion-procesos-barcelona",
     description:
       "Qué es la automatización de procesos, qué procesos conviene automatizar primero en una pyme y con qué herramientas empezar.",
+    answer: `Empieza por una tarea que se repita cada semana, siga siempre los mismos pasos y te quite tiempo, como pasar facturas a mano o copiar pedidos de un programa a otro. Se conectan los programas que ya usas con n8n o Make, y un primer proyecto cuesta desde ${formatEUR(EX_PLAN.fromEUR)}. Si la tarea cambia cada vez, normalmente no compensa.`,
     author: AUTHOR,
     publishDate: "2026-06-18",
     updatedDate: "2026-11-03",
@@ -174,6 +176,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "5-procesos-manuales-destructivos-barcelona",
     description:
       "Cinco procesos manuales que suelen consumir horas cada semana en una pyme y cómo automatizarlos con n8n o Make.",
+    answer: `Los cinco que más se repiten son la facturación, pasar datos de clientes de un programa a otro, los informes semanales, el seguimiento de clientes y los cobros pendientes. Conviene empezar por el que más horas te quite cada semana. Lo que haces pocas veces al mes suele poder esperar.`,
     author: AUTHOR,
     publishDate: "2026-06-18",
     updatedDate: "2026-11-03",
@@ -356,6 +359,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "cuanto-cuesta-automatizar-barcelona",
     description:
       "De qué depende el precio de automatizar procesos en una pyme de Barcelona, qué suele incluir y cómo estimar el ahorro antes de decidir.",
+    answer: `Desde ${formatEUR(EX_PLAN.fromEUR)} para ${processesInWords(EX_PLAN)} procesos, con el precio cerrado por escrito antes de empezar. Sube con el número de procesos y con las herramientas que haya que conectar. Las suscripciones de n8n o Make se pagan aparte, directamente al proveedor.`,
     author: AUTHOR,
     publishDate: "2026-06-26",
     updatedDate: "2026-11-03",
@@ -488,6 +492,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizacion-facturacion-40h-4h",
     description:
       "Ejemplo de cómo automatizar la facturación de una asesoría: qué pasos se automatizan, con qué herramientas y qué hay que vigilar.",
+    answer: `El flujo recoge las facturas que llegan por correo o por un formulario, lee sus datos, los comprueba con tu lista de clientes y los registra en el programa contable. Lo que no cuadra se aparta para que lo revise una persona. Funciona si tu programa contable permite conectarse con otros.`,
     author: AUTHOR,
     publishDate: "2026-06-26",
     updatedDate: "2026-11-03",
@@ -611,6 +616,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "n8n-vs-make-vs-zapier-barcelona",
     description:
       "Comparativa de n8n, Make y Zapier para pymes: diferencias, límites de cada plan y cuál elegir según tus procesos. Con enlaces a las páginas oficiales.",
+    answer: `Depende de quién vaya a mantener los flujos y de cuánto se vayan a usar. Zapier y Make funcionan en su nube y cobran según el consumo. n8n también puede instalarse en tu propio servidor, lo que da más control pero exige mantenerlo. Prueba primero tu flujo principal en el plan gratuito o de prueba.`,
     author: AUTHOR,
     publishDate: "2026-06-28",
     updatedDate: "2026-11-03",
@@ -874,6 +880,7 @@ O reserva en el [formulario de contacto](/#contacto).
     slug: "errores-automatizar-empresa-barcelona",
     description:
       "Los 7 errores más habituales al automatizar los procesos de una empresa y cómo evitarlos antes de empezar.",
+    answer: `El error más común es automatizar lo fácil en vez de lo que más tiempo te quita. Le siguen no enseñar al equipo a usarlo, montar flujos demasiado grandes de golpe y no enterarse cuando algo falla. Casi todos se evitan empezando por un solo proceso, probándolo con tus datos y dejando alertas.`,
     author: AUTHOR,
     publishDate: "2026-06-29",
     updatedDate: "2026-11-03",
@@ -1094,6 +1101,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-facturas-con-n8n",
     description:
       "Cómo automatizar facturas con n8n paso a paso: del pedido o cobro a la factura enviada y registrada, con los errores típicos que conviene evitar.",
+    answer: `El flujo tiene tres partes: n8n detecta la venta o el cobro, prepara los datos de la factura y los envía a tu programa de facturación, y al final avisa al cliente. n8n no sustituye a ese programa ni al criterio fiscal de tu gestor.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
@@ -1187,6 +1195,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-pedidos-a-proveedores-restaurante",
     description:
       "Cómo automatizar los pedidos a proveedores de un restaurante: stock mínimo, pedido automático y aviso al proveedor, paso a paso con n8n o Make.",
+    answer: `Apuntas el stock en una hoja o en tu programa de gestión y fijas un mínimo para cada producto. Cuando algo baja de ese mínimo, el flujo prepara el pedido de cada proveedor y te lo enseña antes de enviarlo. Con el producto fresco, normalmente conviene que lo revises tú, porque depende de las reservas.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
@@ -1276,6 +1285,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-pedidos-shopify-woocommerce",
     description:
       "Cómo automatizar los pedidos de Shopify y WooCommerce: del pedido al aviso de envío, el stock y la factura, con n8n o Make y los fallos que evitar.",
+    answer: `Lo primero que suele compensar es que cada pedido pagado llegue solo a almacén o a logística, sin copiarlo a mano. Después vienen el aviso de envío al cliente, el ajuste del stock en los demás canales y la factura. Se puede hacer con n8n o Make si tu tienda y tu operador permiten conectarse.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
@@ -1373,6 +1383,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "reportes-automaticos-para-agencias-de-marketing",
     description:
       "Cómo montar reportes automáticos para los clientes de una agencia de marketing: datos, plantilla y envío programado con n8n o Make.",
+    answer: `Se automatiza la parte mecánica: recoger cada mes los datos de analítica y de anuncios de cada cliente, colocarlos en tu plantilla y programar el envío. El comentario sobre qué ha pasado y qué hacer después lo sigue escribiendo una persona, y conviene revisar cada informe antes de que salga.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 5,
@@ -1463,6 +1474,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "automatizar-cobros-y-facturas-impagadas",
     description:
       "Cómo automatizar los cobros y los recordatorios de facturas impagadas en una pyme: avisos escalonados, registro y cuándo intervenir a mano.",
+    answer: `Cada mañana el flujo revisa qué facturas siguen sin cobrar y envía el recordatorio que toca: antes del vencimiento, al vencer y unos días después. Las que ya están pagadas dejan de recibir avisos. En el último escalón no escribe al cliente: te avisa a ti para que le llames.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,
@@ -1567,6 +1579,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     slug: "que-es-n8n-y-cuando-usarlo-en-una-pyme",
     description:
       "Qué es n8n, cómo funciona, qué opciones de uso tiene (autoalojado o en la nube) y cuándo conviene a una pyme frente a Make o Zapier.",
+    answer: `n8n es una herramienta que conecta tus programas para que los datos pasen de uno a otro solos, siguiendo pasos que dibujas en pantalla. Puedes usarla en su nube, con una cuota, o instalarla en tu propio servidor. Suele compensar cuando tienes varios flujos o quieres decidir dónde están tus datos.`,
     author: AUTHOR,
     publishDate: "2026-11-02",
     readTime: 6,

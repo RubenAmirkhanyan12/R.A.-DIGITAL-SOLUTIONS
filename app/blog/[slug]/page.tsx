@@ -12,6 +12,7 @@ import { CONTACT_HREF, pageMetadata, SITE_URL } from "../../lib/seo";
 import { OFFER } from "../../lib/site-config";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import ShortAnswer from "../../components/ShortAnswer";
 import { Clock, Calendar, ArrowLeft, ArrowRight, Share2, ExternalLink, Mail } from "lucide-react";
 
 /* ── Heading slug helper ─────────────────────────────── */
@@ -210,6 +211,8 @@ export default async function BlogPostPage({ params }: Props) {
             <h1 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
               {post.title}
             </h1>
+
+            {post.answer && <ShortAnswer text={post.answer} />}
 
             {/* Description */}
             <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-2xl">

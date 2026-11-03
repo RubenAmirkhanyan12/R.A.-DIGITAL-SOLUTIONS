@@ -1,4 +1,4 @@
-import { DELIVERY_WEEKS, formatEUR, OFFER, planById, SHARED_COPY } from "./site-config";
+import { DELIVERY_WEEKS, formatEUR, OFFER, planById, processesInWords, SHARED_COPY } from "./site-config";
 
 export interface Faq {
   q: string;
@@ -7,15 +7,12 @@ export interface Faq {
   link?: { text: string; href: string };
 }
 
-const NUMBER_WORDS = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis"];
-const inWords = (range: string) => range.split("-").map((n) => NUMBER_WORDS[Number(n)] ?? n).join(" o ");
-
 const starter = planById("starter");
 
 export const HUB_FAQS: Faq[] = [
   {
     q: "¿Cuánto cuesta automatizar un proceso?",
-    a: `Desde ${formatEUR(starter.fromEUR)} para ${inWords(starter.processes)} procesos, con el precio cerrado por escrito antes de empezar. Está todo en la página de precios.`,
+    a: `Desde ${formatEUR(starter.fromEUR)} para ${processesInWords(starter)} procesos, con el precio cerrado por escrito antes de empezar. Está todo en la página de precios.`,
     link: { text: "página de precios", href: "/precios" },
   },
   {

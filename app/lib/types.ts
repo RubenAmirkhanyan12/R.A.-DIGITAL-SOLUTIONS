@@ -3,6 +3,7 @@ export interface BlogPost {
   seoTitle?: string; // <title>; si falta, se usa title (que es el H1)
   slug: string;
   description: string;
+  answer?: string; // «Respuesta corta» bajo el H1
   content: string;
   author: {
     name: string;

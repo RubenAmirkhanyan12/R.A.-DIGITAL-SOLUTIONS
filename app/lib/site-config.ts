@@ -207,6 +207,16 @@ export function planById(id: string): Plan {
   return plan;
 }
 
+const NUMBER_WORDS = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis"];
+
+// "1-2" -> "uno o dos"
+export function processesInWords(plan: Plan): string {
+  return plan.processes
+    .split("-")
+    .map((n) => NUMBER_WORDS[Number(n)] ?? n)
+    .join(" o ");
+}
+
 export function scenarioNumbers(scenario: { hoursPerWeek: number; planId: string }) {
   const plan = planById(scenario.planId);
   const saving = monthlySaving(scenario.hoursPerWeek);
