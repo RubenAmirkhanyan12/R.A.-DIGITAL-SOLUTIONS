@@ -56,7 +56,7 @@ const solutionWeeks = [
   {
     n: "01",
     title: "Llamada gratuita",
-    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimamos cuánto te cuestan y decidimos qué conviene automatizar primero.`,
+    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimo cuánto te cuestan y decidimos juntos qué conviene automatizar primero.`,
     cost: "Gratis y sin compromiso",
   },
   {
@@ -134,7 +134,7 @@ const faqs = [
   },
   {
     q: "¿Cómo se mantiene el stock entre canales?",
-    a: "Decidimos qué sistema manda y trabajamos con ajustes de unidades, para que dos sistemas no se pisen.",
+    a: "Decidimos juntos qué sistema manda y trabajo con ajustes de unidades, para que dos sistemas no se pisen.",
   },
   {
     q: "¿Y si mi proveedor no tiene API?",
@@ -262,7 +262,7 @@ export default function AutomatizarEcommerce() {
               Ejemplo ilustrativo: {scenario.hoursPerWeek} h/semana × {ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas × {ASSUMPTIONS.hourlyCostEUR} €/h ={" "}
               <span className="text-[#B8860B]">{formatEUR(saving)}/mes</span>
             </p>
-            <p className="text-white/50 text-sm">Es una estimación; lo calculamos con tus horas reales en la llamada gratuita.</p>
+            <p className="text-white/50 text-sm">Es una estimación; lo calculo con tus horas reales en la llamada gratuita.</p>
           </div>
         </section>
 

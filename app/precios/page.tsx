@@ -92,7 +92,7 @@ const priceDrivers = [
 ];
 
 const timeline = [
-  { week: "Paso 1", phase: "Llamada gratuita", desc: "Vemos tus procesos, estimamos su coste y decidimos qué conviene automatizar primero." },
+  { week: "Paso 1", phase: "Llamada gratuita", desc: "Vemos tus procesos, estimo su coste y decidimos juntos qué conviene automatizar primero." },
   { week: "Paso 2", phase: "Propuesta y diseño", desc: "Recibes la propuesta con precio cerrado. Diseño los flujos con las herramientas que ya usas." },
   { week: "Paso 3", phase: "Pruebas con tus datos", desc: "Hago pruebas con tus datos antes de activar, incluidos los casos raros." },
   { week: "Paso 4", phase: "Puesta en marcha y soporte", desc: `Activo el sistema sin parar tu negocio y dedico ${OFFER.trainingHours} hora a formar a tu equipo.` },
@@ -111,7 +111,7 @@ const faqs = [
   { q: "¿Qué pasa si no funciona como acordamos?", a: OFFER.guarantee },
   { q: "¿Puedo empezar con STARTER y subir a GROWTH?", a: `Sí. Puedes empezar con ${planById("starter").processes} procesos y ampliar después. Lo ya hecho se aprovecha.` },
   { q: "¿Qué herramientas necesito tener?", a: "Normalmente ninguna nueva. Trabajo con lo que ya tienes, como Gmail, Google Sheets o Shopify. n8n y Make se conectan con cientos de aplicaciones." },
-  { q: "¿La llamada inicial es gratis?", a: `Sí. Son ${OFFER.freeCallMinutes} minutos sin compromiso: vemos tus procesos y estimamos cuánto te cuestan.` },
+  { q: "¿La llamada inicial es gratis?", a: `Sí. Son ${OFFER.freeCallMinutes} minutos sin compromiso: vemos tus procesos y estimo cuánto te cuestan.` },
 ];
 
 const schemaOrg = {

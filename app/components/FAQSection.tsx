@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "¿Necesito cambiar mis herramientas actuales?",
-    a: "Normalmente no. n8n y Make se conectan con cientos de aplicaciones, como Gmail, Outlook, Google Sheets, Shopify, WooCommerce o HubSpot. Si la tuya no aparece, reviso si tiene API antes de proponerte nada.",
+    a: "Normalmente no. n8n y Make se conectan con cientos de aplicaciones, como Gmail, Outlook, Google Sheets, Shopify, WooCommerce o HubSpot. Si la tuya no aparece, reviso si se puede conectar con tus otros programas antes de proponerte nada.",
   },
   {
     q: "¿Es seguro? ¿Dónde van mis datos?",
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "¿Cómo sé si voy a recuperar la inversión?",
-    a: `En la llamada gratuita estimamos tus horas y su coste. Si los números no lo justifican, te lo digo. Además: ${OFFER.guarantee}`,
+    a: `En la llamada gratuita estimo tus horas y su coste. Si los números no lo justifican, te lo digo. Además: ${OFFER.guarantee}`,
   },
   {
     q: "¿Qué incluye el soporte después de la entrega?",

@@ -331,7 +331,12 @@ export default async function BlogPostPage({ params }: Props) {
                   Llamada gratuita de {OFFER.freeCallMinutes} minutos
                 </h2>
                 <p className="text-white/55 text-base leading-relaxed mb-6">
-                  Vemos cuántas horas y cuánto dinero puedes ahorrar en tu empresa. Sin compromiso.
+                  Vemos cuántas horas y cuánto dinero puedes ahorrar en tu empresa, sin compromiso. Si
+                  quieres una primera cifra antes, prueba la{" "}
+                  <Link href="/#calculadora" className="text-[#B8860B] hover:underline">
+                    calculadora de ahorro
+                  </Link>
+                  .
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
@@ -341,12 +346,6 @@ export default async function BlogPostPage({ params }: Props) {
                     Reserva tu llamada
                     <ArrowRight size={15} />
                   </Link>
-                  <a
-                    href="/#calculadora"
-                    className="inline-flex items-center gap-2 border border-white/20 hover:border-[#B8860B]/50 text-white/70 hover:text-[#B8860B] font-semibold text-sm px-7 py-3.5 transition-all"
-                  >
-                    Calcular mi ahorro →
-                  </a>
                 </div>
               </div>
 

@@ -8,6 +8,7 @@ import FitCheck from "../FitCheck";
 import FaqList from "../FaqList";
 import { OTROS_FAQS } from "../../lib/faqs";
 import { OFFER, OFFER_SUMMARY } from "../../lib/site-config";
+import { Calendar } from "lucide-react";
 
 const fit = {
   yes: [
@@ -116,7 +117,16 @@ export default function AutomatizarOtros() {
               Ofrezco servicios de automatización de procesos de negocio a medida: primero
               entiendo cómo trabajas y después conecto las herramientas que ya usas.
             </p>
-            <p className="text-white/55 text-sm mt-6">{OFFER_SUMMARY}</p>
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-8">
+              <a
+                href="#form"
+                className="inline-flex items-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] text-white font-bold text-sm tracking-wide px-7 py-4 transition-all hover:shadow-[0_0_25px_rgba(26,58,82,0.6)]"
+              >
+                <Calendar size={15} />
+                Reserva tu llamada
+              </a>
+              <span className="text-white/55 text-xs">{OFFER_SUMMARY}</span>
+            </div>
           </div>
         </section>
 
@@ -204,7 +214,7 @@ export default function AutomatizarOtros() {
         <RelatedGuides guides={[GUIDES.facturas, GUIDES.cobros, GUIDES.n8n]} />
 
         {/* ── FORM ── */}
-        <section className="py-20 bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F]">
+        <section id="form" className="py-20 bg-gradient-to-br from-[#1A3A52]/20 to-[#0F0F0F]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <LandingContactForm
               title="Cuéntame tu caso"

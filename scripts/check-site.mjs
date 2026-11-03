@@ -45,7 +45,7 @@ const FORBIDDEN = [
   /aggregateRating/,
 ];
 
-const PRICE = /\d[\d.,]*\s?[€$](?!\{)|€\s?\d|\$\d/;
+const PRICE = /\d[\d.,]*\s?[€$](?!\{)|€\s?\d|\$\d|\d[\d.,]*\s?(?:euros?|EUR)\b/i;
 const OK_MARK = "check-site:ok";
 const VALID_MARK = /https:\/\/\S+.*\d{4}-\d{2}-\d{2}|\d{4}-\d{2}-\d{2}.*https:\/\/\S+/;
 

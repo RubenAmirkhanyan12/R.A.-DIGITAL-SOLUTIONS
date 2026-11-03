@@ -46,7 +46,7 @@ export default function CTASection() {
                     Llamada gratuita de {OFFER.freeCallMinutes} minutos
                   </h3>
                   <p className="text-white/60 text-sm leading-relaxed mb-4">
-                    Analizamos tus procesos, estimamos cuánto te cuestan y vemos qué
+                    Analizo tus procesos, estimo cuánto te cuestan y vemos juntos qué
                     conviene automatizar primero. Sales con una idea clara antes de invertir nada.
                   </p>
                   <div className="flex flex-wrap gap-3 text-xs text-white/40">

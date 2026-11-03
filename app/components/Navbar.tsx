@@ -9,7 +9,7 @@ import { SITE } from "../lib/site-config";
 
 const navLinks = [
   { label: "Inicio",         href: "#inicio" },
-  { label: "Sobre Mí",      href: "/sobre-nosotros" },
+  { label: "Sobre mí",      href: "/sobre-nosotros" },
   { label: "Automatizar",   href: "/automatizar" },
   { label: "¿Por qué?",     href: "#problemas" },
   { label: "Cómo funciona", href: "#como-funciona" },

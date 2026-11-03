@@ -23,7 +23,7 @@ export default function Footer({
                 <span className="text-white font-bold text-base tracking-[0.18em] uppercase block">
                   RASTECH
                 </span>
-                <span className="text-white/30 text-xs">Automatización de Procesos · Barcelona</span>
+                <span className="text-white/30 text-xs">Automatización de procesos · Barcelona</span>
               </div>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs mb-5">
@@ -55,7 +55,7 @@ export default function Footer({
             <ul className="space-y-2.5">
               {[
                 ["Inicio", "/"],
-                ["Sobre Nosotros", "/sobre-nosotros"],
+                ["Sobre mí", "/sobre-nosotros"],
                 ["Casos de uso", "/casos"],
                 ["Precios", "/precios"],
                 ["Blog", "/blog"],

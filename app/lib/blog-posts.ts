@@ -27,6 +27,9 @@ const EX_B_N = scenarioNumbers(EX_B);
 const EX_F = EX_A;
 const EX_F_N = EX_A_N;
 
+// Importe legal citado en la guía de cobros (Ley 3/2004, art. 8)
+const LAW_COLLECTION_FEE = "40 euros"; // check-site:ok https://www.boe.es/buscar/act.php?id=BOE-A-2004-21830 consultado el 2026-11-04
+
 // Precios de terceros citados en la comparativa de herramientas
 const TOOL_PRICE = {
   n8nStarter: "20 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-04
@@ -455,7 +458,7 @@ Las suscripciones de n8n o Make van aparte y las pagas directamente a cada prove
 
 ## ¿Cómo se cierra el presupuesto?
 
-1. **Llamada gratuita.** Vemos tus procesos y estimamos cuánto te cuestan.
+1. **Llamada gratuita.** Vemos tus procesos y estimo cuánto te cuestan.
 2. **Propuesta por escrito.** Qué incluye, qué no, plazo y precio cerrado.
 3. **Montaje y pruebas.** Con tus datos, antes de activar.
 4. **Entrega y soporte.** Según tu plan.
@@ -1380,7 +1383,7 @@ Si ya tienes el flujo de [automatizar facturas con n8n](/blog/automatizar-factur
 
 ## ¿Qué dice la ley sobre los plazos de pago?
 
-Para fijar los escalones conviene conocer el marco. Según la [Ley 3/2004 de lucha contra la morosidad](https://www.boe.es/buscar/act.php?id=BOE-A-2004-21830) (texto consolidado, última actualización publicada el 1 de octubre de 2014), entre empresas el plazo es de treinta días naturales si no se ha pactado otro, y el acuerdo entre las partes no puede ampliarlo más allá de sesenta. La misma ley prevé una cantidad fija de 40 euros por costes de cobro cuando hay mora.
+Para fijar los escalones conviene conocer el marco. Según la [Ley 3/2004 de lucha contra la morosidad](https://www.boe.es/buscar/act.php?id=BOE-A-2004-21830) (texto consolidado, última actualización publicada el 1 de octubre de 2014), entre empresas el plazo es de treinta días naturales si no se ha pactado otro, y el acuerdo entre las partes no puede ampliarlo más allá de sesenta. La misma ley prevé una cantidad fija de ${LAW_COLLECTION_FEE} por costes de cobro cuando hay mora.
 
 Esto es información general. Antes de citar la ley en un aviso o de reclamar intereses, consúltalo con tu asesoría.
 

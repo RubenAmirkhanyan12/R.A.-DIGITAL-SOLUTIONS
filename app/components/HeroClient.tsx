@@ -56,7 +56,7 @@ export default function HeroClient() {
           <div ref={overlineRef} className="flex items-center gap-2 mb-6">
             <span className="w-8 h-px bg-[#B8860B]" />
             <span className="text-[#B8860B] text-xs font-bold tracking-[0.25em] uppercase">
-              Automatización de Procesos · Barcelona
+              Automatización de procesos · Barcelona
             </span>
           </div>
 

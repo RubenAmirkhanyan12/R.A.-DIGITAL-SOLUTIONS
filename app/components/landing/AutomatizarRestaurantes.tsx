@@ -56,7 +56,7 @@ const solutionWeeks = [
   {
     n: "01",
     title: "Llamada gratuita",
-    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimamos cuánto te cuestan y decidimos qué conviene automatizar primero.`,
+    body: `En ${OFFER.freeCallMinutes} minutos vemos tus procesos, estimo cuánto te cuestan y decidimos juntos qué conviene automatizar primero.`,
     cost: "Gratis y sin compromiso",
   },
   {
@@ -258,7 +258,7 @@ export default function AutomatizarRestaurantes() {
               Ejemplo ilustrativo: {scenario.hoursPerWeek} h/semana × {ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas × {ASSUMPTIONS.hourlyCostEUR} €/h ={" "}
               <span className="text-[#B8860B]">{formatEUR(saving)}/mes</span>
             </p>
-            <p className="text-white/50 text-sm">Es una estimación; lo calculamos con tus horas reales en la llamada gratuita.</p>
+            <p className="text-white/50 text-sm">Es una estimación; lo calculo con tus horas reales en la llamada gratuita.</p>
           </div>
         </section>
 

@@ -78,17 +78,17 @@ const cards: Card[] = [
   },
   {
     icon: <Sparkles size={28} className="text-[#B8860B]" />,
-    title: "Tu Empresa",
-    pain: "¿Abogado, consultor, veterinario, gym, academia u otro sector? Automatizamos procesos en cualquier tipo de empresa.",
+    title: "Tu empresa",
+    pain: "¿Abogado, consultor, veterinario, gym, academia u otro sector? Automatizo procesos en cualquier tipo de empresa.",
     points: [
       "Análisis personalizado de tus procesos",
       "Propuesta creada específicamente para ti",
       "Precio cerrado por escrito, adaptado a tu caso",
       "Solución a medida para tu sector",
     ],
-    saving: "Propuesta Personalizada",
-    savingSubtext: "Cada empresa es diferente. Hablamos contigo y llegamos a un acuerdo.",
-    cta: "Automatizar Mi Empresa",
+    saving: "Propuesta personalizada",
+    savingSubtext: "Cada empresa es diferente. Hablo contigo y llegamos a un acuerdo.",
+    cta: "Automatizar mi empresa",
     href: "/automatizar-otros",
     meta: "¿Tu sector no está arriba? Aquí sí.",
   },
@@ -149,7 +149,7 @@ const whatWeAutomate = [
 const nextSteps = [
   { num: "1", label: "Selecciona tu sector", desc: "Elige arriba la opción que más se parece a tu empresa." },
   { num: "2", label: "Mira los casos de uso", desc: "Escenarios ilustrativos con los supuestos a la vista.", href: "/casos" },
-  { num: "3", label: "Reserva tu llamada", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: CONTACT_HREF },
+  { num: "3", label: "Reserva tu llamada", desc: "30 min. Sin compromiso. Estimo cuánto puedes ahorrar.", href: CONTACT_HREF },
 ];
 
 export default function AutomatizarSelector() {
@@ -188,7 +188,7 @@ export default function AutomatizarSelector() {
             </div>
 
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-              Cada sector tiene procesos diferentes. Aquí mostramos cómo automatizamos
+              Cada sector tiene procesos diferentes. Aquí te enseño cómo automatizo
               empresas como la tuya.
             </p>
 
@@ -384,7 +384,7 @@ export default function AutomatizarSelector() {
               </h2>
               <p className="text-white/60 text-base leading-relaxed mb-8">
                 Reserva tu llamada gratuita de {OFFER.freeCallMinutes} min. Sin compromiso.
-                Te decimos exactamente qué automatizar y cuánto ahorrarías.
+                Te digo qué automatizar y cuánto ahorrarías.
               </p>
               <Link
                 href={CONTACT_HREF}
