@@ -40,7 +40,11 @@ export const OFFER = {
     "Si a los 60 días el sistema no hace lo acordado en la propuesta, lo corrijo sin coste.",
   payment: "Pago único por proyecto, fraccionable en dos pagos (mitad al empezar, mitad al entregar).",
   noHiddenCosts: "Todo lo que no esté en la propuesta se presupuesta por escrito antes de hacerlo.",
+  // Línea sobre impuestos: vacía hasta que la gestoría la confirme (mientras tanto no se muestra nada)
+  vatNote: "",
 };
+
+export const WHY_CHEAPER = `Soy estudiante y estoy empezando: trabajo solo, sin estructura de agencia y con proyectos de alcance acotado. A cambio, aún no tengo casos de clientes que enseñar; por eso el precio es cerrado y la garantía es de corrección durante ${OFFER.guaranteeDays} días.`;
 
 export type Plan = {
   id: string;

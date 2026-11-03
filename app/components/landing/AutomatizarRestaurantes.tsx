@@ -6,6 +6,7 @@ import { GUIDES } from "../../lib/guides";
 import { ASSUMPTIONS, formatEUR, OFFER, OFFER_SUMMARY, planById, SCENARIOS, scenarioNumbers, SHARED_COPY } from "../../lib/site-config";
 import LandingContactForm from "./LandingContactForm";
 import FitCheck from "../FitCheck";
+import VatNote from "../VatNote";
 import {
   CheckCircle,
   X,
@@ -412,6 +413,7 @@ export default function AutomatizarRestaurantes() {
 
             <p className="text-white/40 text-[13px] max-w-xl leading-relaxed">
               El precio final se cierra por escrito antes de empezar. Depende del alcance y de las herramientas que ya usas. </p>
+            <VatNote className="mt-4" />
           </div>
         </section>
 

@@ -6,6 +6,7 @@ import { GUIDES } from "../../lib/guides";
 import { ASSUMPTIONS, formatEUR, OFFER, OFFER_SUMMARY, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm from "./LandingContactForm";
 import FitCheck from "../FitCheck";
+import VatNote from "../VatNote";
 import {
   CheckCircle,
   X,
@@ -407,6 +408,7 @@ export default function AutomatizarAgencias() {
                 </a>
               </div>
             </div>
+            <VatNote className="mt-4" />
           </div>
         </section>
 

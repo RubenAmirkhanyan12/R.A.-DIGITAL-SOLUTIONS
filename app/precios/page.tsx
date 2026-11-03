@@ -3,7 +3,18 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ROICalculator from "../components/ROICalculator";
-import { formatEUR, OFFER, planById, SITE } from "../lib/site-config";
+import VatNote from "../components/VatNote";
+import {
+  DELIVERY_LABEL,
+  formatEUR,
+  OFFER,
+  planById,
+  PLANS,
+  SCENARIOS,
+  scenarioNumbers,
+  SITE,
+  WHY_CHEAPER,
+} from "../lib/site-config";
 
 export const metadata = pageMetadata({
   title: "Precios de automatización de procesos en Barcelona | RASTECH",
@@ -42,7 +53,7 @@ const tiers = [
     tagline: "Sistema completo",
     includes: [
       "Todo lo del STARTER",
-      "3-5 procesos automatizados",
+      `${planById("growth").processes} procesos automatizados`,
       "Integración con tus herramientas actuales",
     ],
     highlight: true,
@@ -53,11 +64,31 @@ const tiers = [
     tagline: "Automatización de varias áreas",
     includes: [
       "Todo lo del GROWTH",
-      "6+ procesos automatizados",
+      `${planById("enterprise").processes} procesos automatizados`,
     ],
     highlight: false,
     cta: "Reserva tu llamada",
   },
+];
+
+const included = [
+  `La llamada inicial, de ${OFFER.freeCallMinutes} minutos`,
+  "El diseño de los flujos",
+  "Las pruebas con tus datos antes de activar",
+  `La formación de tu equipo (${OFFER.trainingHours} hora)`,
+  ...PLANS.map((p) => `Soporte del plan ${p.name}: ${p.support.charAt(0).toLowerCase()}${p.support.slice(1)}`),
+];
+
+const excluded = [
+  "Lo que pagas al proveedor, como las suscripciones de n8n, Make y otras herramientas",
+  `Todo lo que no esté en la propuesta. ${OFFER.noHiddenCosts}`,
+];
+
+const priceDrivers = [
+  "El número de procesos.",
+  "Los programas que hay que conectar.",
+  "Los programas que no permiten conectarse con otros: hay que buscar otra vía, como el correo o un archivo.",
+  "Los datos que haya que ordenar antes, como clientes repetidos u hojas a medias.",
 ];
 
 const timeline = [
@@ -78,7 +109,7 @@ const faqs = [
   { q: "¿Hay costes ocultos?", a: `El precio se cierra por escrito antes de empezar. ${OFFER.noHiddenCosts} Las suscripciones de herramientas de terceros, si las necesitas, las pagas directamente a cada proveedor.` },
   { q: "¿Cómo se paga?", a: OFFER.payment },
   { q: "¿Qué pasa si no funciona como acordamos?", a: OFFER.guarantee },
-  { q: "¿Puedo empezar con STARTER y subir a GROWTH?", a: "Sí. Puedes empezar con 1-2 procesos y ampliar después. Lo ya hecho se aprovecha." },
+  { q: "¿Puedo empezar con STARTER y subir a GROWTH?", a: `Sí. Puedes empezar con ${planById("starter").processes} procesos y ampliar después. Lo ya hecho se aprovecha.` },
   { q: "¿Qué herramientas necesito tener?", a: "Normalmente ninguna nueva. Trabajo con lo que ya tienes, como Gmail, Google Sheets o Shopify. n8n y Make se conectan con cientos de aplicaciones." },
   { q: "¿La llamada inicial es gratis?", a: `Sí. Son ${OFFER.freeCallMinutes} minutos sin compromiso: vemos tus procesos y estimamos cuánto te cuestan.` },
 ];
@@ -137,7 +168,11 @@ export default function PreciosPage() {
               Precio Automatización Procesos Barcelona:{" "}
               <span className="text-[#B8860B]">{`Desde €${planById("starter").fromEUR}`}</span>
             </h1>
-            <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-4">
+              Estos son los precios de mis proyectos de automatización para pymes de Barcelona: pago único y
+              precio cerrado por escrito antes de empezar.
+            </p>
+            <p className="text-white/50 text-base leading-relaxed max-w-2xl mx-auto mb-8">
               Cada empresa es diferente: llamada gratuita, precio cerrado por escrito y garantía de {OFFER.guaranteeDays} días.
             </p>
             <div className="inline-flex items-center gap-2 bg-[#10B981]/10 border border-[#10B981]/25 px-5 py-2.5">
@@ -219,6 +254,8 @@ export default function PreciosPage() {
             ))}
           </div>
 
+          <VatNote className="text-center mb-6" />
+
           <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/30 p-5 text-center">
             <p className="text-white/50 text-sm">
               ¿No sabes qué plan necesitas?{" "}
@@ -233,6 +270,97 @@ export default function PreciosPage() {
               </Link>
               .
             </p>
+          </div>
+        </section>
+
+        {/* ── QUÉ INCLUYE ── */}
+        <section id="que-incluye-cada-plan" className="py-20 bg-[#0A0A0A] scroll-mt-24">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-6">
+              Qué incluye cada plan y qué queda fuera
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="min-w-0 bg-[#111111] border border-white/5 p-6">
+                <p className="text-[#10B981] text-xs font-bold tracking-widest uppercase mb-4">Incluye</p>
+                <ul className="space-y-2.5">
+                  {included.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-white/65 leading-relaxed">
+                      <span className="text-[#10B981] mt-0.5 shrink-0 text-xs">✓</span>
+                      <span className="min-w-0">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="min-w-0 bg-[#111111] border border-white/5 p-6">
+                <p className="text-white/45 text-xs font-bold tracking-widest uppercase mb-4">Queda fuera</p>
+                <ul className="space-y-2.5">
+                  {excluded.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-white/65 leading-relaxed">
+                      <span className="text-white/35 mt-0.5 shrink-0 text-xs">✕</span>
+                      <span className="min-w-0">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── QUÉ HACE SUBIR EL PRECIO ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-6">
+              Qué hace subir el precio
+            </h2>
+            <ul className="space-y-3 max-w-2xl">
+              {priceDrivers.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-white/65 text-[15px] leading-relaxed">
+                  <span className="text-[#B8860B] shrink-0">·</span>
+                  <span className="min-w-0">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── QUÉ PLAN ENCAJA ── */}
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-6">
+              ¿Qué plan encaja en cada caso?
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+              {SCENARIOS.map((s) => {
+                const { plan } = scenarioNumbers(s);
+                return (
+                  <div key={s.id} className="min-w-0 bg-[#111111] border border-white/5 p-5">
+                    <p className="text-white/35 text-[10px] font-bold tracking-widest uppercase mb-2">Escenario ilustrativo</p>
+                    <h3 className="text-white font-bold text-[15px] mb-1">{s.sector}</h3>
+                    <p className="text-white/50 text-sm leading-relaxed mb-3">{s.title} · {s.hoursPerWeek} h/semana</p>
+                    <p className="text-[#B8860B] text-sm font-semibold">
+                      Plan orientativo: {plan.name}, desde {formatEUR(plan.fromEUR)}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-white/45 text-sm">
+              Son ejemplos, no clientes. Tienes los supuestos de cada uno en los{" "}
+              <Link href="/casos" className="text-[#B8860B] hover:underline">
+                casos de uso
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
+
+        {/* ── POR QUÉ CUESTA MENOS ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-6">
+              ¿Por qué cuesta menos que una agencia?
+            </h2>
+            <p className="text-white/65 text-base leading-relaxed">{WHY_CHEAPER}</p>
           </div>
         </section>
 
@@ -265,7 +393,7 @@ export default function PreciosPage() {
               <span className="text-[#B8860B] text-xs font-bold tracking-[0.22em] uppercase">El proceso</span>
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
                 De la llamada al sistema funcionando:{" "}
-                <span className="text-[#B8860B]">2-4 semanas</span>
+                <span className="text-[#B8860B]">{DELIVERY_LABEL}</span>
               </h2>
               <p className="text-white/45 text-base max-w-xl mx-auto">
                 Sabes qué pasa en cada fase. El plazo exacto depende del plan.

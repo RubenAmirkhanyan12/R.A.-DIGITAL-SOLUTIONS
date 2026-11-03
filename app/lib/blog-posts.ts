@@ -362,7 +362,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
     answer: `Desde ${formatEUR(EX_PLAN.fromEUR)} para ${processesInWords(EX_PLAN)} procesos, con el precio cerrado por escrito antes de empezar. Sube con el número de procesos y con las herramientas que haya que conectar. Las suscripciones de n8n o Make se pagan aparte, directamente al proveedor.`,
     author: AUTHOR,
     publishDate: "2026-06-26",
-    updatedDate: "2026-11-03",
+    updatedDate: "2026-11-04",
     readTime: 8,
     category: "Precios",
     featured: false,
@@ -399,7 +399,7 @@ Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#cont
 | Alcance | Plan | Precio |
 |---|---|---|
 ${PLANS.map((p) => `| ${p.processes} procesos | ${p.name} | desde ${formatEUR(p.fromEUR)} |`).join("\n")}
-
+${OFFER.vatNote ? `\n${OFFER.vatNote}\n` : ""}
 ### Complejidad de las integraciones
 
 No es lo mismo conectar tu correo con una hoja de cálculo que enlazar un programa de gestión, una tienda online y un operador logístico. Cuantas más aplicaciones y excepciones haya, más trabajo requiere montarlo y probarlo.
@@ -448,7 +448,11 @@ Son estimaciones con supuestos a la vista. Tu resultado dependerá de tus horas 
 - Suscripciones de herramientas de terceros, que pagas directamente a cada proveedor
 - Lo que no figure en la propuesta. ${OFFER.noHiddenCosts}
 
-Tienes el detalle en la página de [precios](/precios).
+---
+
+## ¿Cuánto cuestan las herramientas?
+
+Las suscripciones de n8n o Make van aparte y las pagas directamente a cada proveedor. Sus tarifas cambian, así que mira sus páginas oficiales: [precios de n8n](https://n8n.io/pricing/) y [precios de Make](https://www.make.com/en/pricing) (consultadas el 4 de noviembre de 2026). Las dos dejan probar antes de pagar: Make tiene un plan gratuito y n8n, una prueba gratuita en su nube.
 
 ---
 
@@ -477,9 +481,19 @@ El plan más sencillo parte de ${formatEUR(PLANS[0].fromEUR)}. Si tu caso no jus
 
 ---
 
+## ¿Cuándo no compensa?
+
+- Cuando la tarea se hace pocas veces al año.
+- Cuando cada caso es distinto y depende de tu criterio.
+- Cuando lo que te falta es un programa, y no te sobran tareas a mano.
+
+Si es tu caso, te lo digo en la llamada.
+
+---
+
 ## ¿Por dónde empiezo?
 
-Si aún no tienes claro qué automatizar, lee [5 procesos de tu pyme que conviene automatizar](/blog/5-procesos-manuales-destructivos-barcelona).
+Si quieres el detalle, mira [qué incluye cada plan](/precios#que-incluye-cada-plan). Si aún no tienes claro qué automatizar, lee [5 procesos de tu pyme que conviene automatizar](/blog/5-procesos-manuales-destructivos-barcelona) o la [página de automatización por sectores](/automatizar). Si empiezas por la facturación, la [guía de facturas con n8n](/blog/automatizar-facturas-con-n8n) explica el flujo paso a paso.
 
 Si prefieres que lo monte yo, [cuéntame tu caso en una llamada gratuita](/#contacto).
 

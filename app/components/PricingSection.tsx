@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
+import VatNote from "./VatNote";
 import { formatEUR, OFFER, PLANS } from "../lib/site-config";
 import { CONTACT_HREF } from "../lib/seo";
 
@@ -66,6 +67,8 @@ export default function PricingSection() {
             </AnimateOnScroll>
           ))}
         </div>
+
+        <VatNote className="text-center -mt-4 mb-8" />
 
         {/* CTA to full pricing page */}
         <AnimateOnScroll delay={250} className="text-center">
