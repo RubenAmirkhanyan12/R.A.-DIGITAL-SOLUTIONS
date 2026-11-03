@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { CheckCircle, ArrowRight, TrendingDown } from "lucide-react";
-import { formatEUR, monthlySaving, OFFER, OWNER_INTRO, PLANS, SCENARIOS } from "../lib/site-config";
+import { DELIVERY_LABEL, formatEUR, monthlySaving, OFFER, OWNER_INTRO, PLANS, SCENARIOS } from "../lib/site-config";
 
 const trustSignals = [
   `Llamada gratuita de ${OFFER.freeCallMinutes} min`,
@@ -209,7 +209,7 @@ export default function HeroClient() {
           {[
             { value: `${OFFER.freeCallMinutes} min`, label: "Llamada gratuita" },
             { value: "Precio cerrado", label: "Antes de empezar" },
-            { value: "2–4 semanas", label: "Según el plan" },
+            { value: DELIVERY_LABEL, label: "Según el plan" },
             { value: `${OFFER.guaranteeDays} días`, label: "Garantía" },
           ].map(({ value, label }) => (
             <div key={label}>

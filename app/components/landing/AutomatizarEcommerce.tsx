@@ -3,8 +3,9 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
-import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
+import { ASSUMPTIONS, formatEUR, OFFER, OFFER_SUMMARY, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm from "./LandingContactForm";
+import FitCheck from "../FitCheck";
 import {
   CheckCircle,
   X,
@@ -156,6 +157,19 @@ const faqs = [
   },
 ];
 
+const fit = {
+  yes: [
+    "Copias los pedidos a mano a la hoja de almacén o al programa de gestión.",
+    "El stock no coincide entre la web, el almacén y otros canales.",
+    "Avisas a mano a cada cliente del envío o de su devolución.",
+  ],
+  no: [
+    "Recibes pocos pedidos y los gestionas en un rato.",
+    "Tu plataforma ya hace todo esto sin copiar nada.",
+    "Lo que te preocupa es la tienda en sí (diseño, pagos o anuncios), no la gestión de pedidos.",
+  ],
+};
+
 /* ── Component ─────────────────────────────────────────────────── */
 
 export default function AutomatizarEcommerce() {
@@ -200,7 +214,7 @@ export default function AutomatizarEcommerce() {
                     <Calendar size={15} />
                     Reserva tu llamada
                   </a>
-                  <span className="text-white/35 text-xs self-center">{OFFER.freeCallMinutes} min · Sin compromiso</span>
+                  <span className="text-white/55 text-xs self-center">{OFFER_SUMMARY}</span>
                 </div>
               </div>
 
@@ -251,11 +265,13 @@ export default function AutomatizarEcommerce() {
           </div>
         </section>
 
+        <FitCheck {...fit} />
+
         {/* ── SOLUCIÓN ── */}
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-              Cómo lo haría en tu e-commerce
+              ¿Cómo lo haría en tu e-commerce?
             </h2>
 
             <div className="space-y-0">
@@ -323,7 +339,7 @@ export default function AutomatizarEcommerce() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
-              Inversión para tu e-commerce
+              ¿Cuánto cuesta automatizar un e-commerce?
             </h2>
             <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso. El precio exacto se cierra por escrito antes de empezar.</p>
 

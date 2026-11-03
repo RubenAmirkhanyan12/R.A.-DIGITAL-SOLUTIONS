@@ -33,6 +33,23 @@ export const HUB_FAQS: Faq[] = [
   },
 ];
 
+export const OTROS_FAQS: Faq[] = [
+  {
+    q: "¿Mi sector encaja?",
+    a: "Si en tu negocio hay tareas de oficina que se repiten igual cada semana, normalmente sí. En la llamada vemos tu caso y, si no compensa, te lo digo.",
+  },
+  {
+    q: "¿Qué necesito para empezar?",
+    a: "Saber qué tarea te quita más tiempo y tener acceso a los programas con los que la haces. Lo demás lo vemos juntos en la llamada.",
+  },
+  {
+    q: "¿Qué pasa con los datos de mis clientes?",
+    a: "Trabajo con tus datos conforme al RGPD: viajan cifrados (HTTPS) y se quedan en tus propias cuentas.",
+  },
+  { ...HUB_FAQS[0], q: "¿Cuánto cuesta?" },
+  { ...HUB_FAQS[1], q: "¿Cuánto tarda?" },
+];
+
 export function faqJsonLd(faqs: Faq[]) {
   return {
     "@type": "FAQPage",

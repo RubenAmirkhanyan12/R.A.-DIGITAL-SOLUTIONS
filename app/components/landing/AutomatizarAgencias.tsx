@@ -3,8 +3,9 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
-import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
+import { ASSUMPTIONS, formatEUR, OFFER, OFFER_SUMMARY, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
 import LandingContactForm from "./LandingContactForm";
+import FitCheck from "../FitCheck";
 import {
   CheckCircle,
   X,
@@ -156,6 +157,19 @@ const faqs = [
   },
 ];
 
+const fit = {
+  yes: [
+    "El informe mensual de cada cliente te lleva horas de copiar datos.",
+    "Emites a mano facturas recurrentes que son iguales cada mes.",
+    "Te enteras tarde de hitos o entregas que se pasan de fecha.",
+  ],
+  no: [
+    "Tienes pocos clientes y cada informe es distinto.",
+    "Tu herramienta de gestión ya prepara los informes y las facturas.",
+    "Lo que necesitas es mejorar las campañas, no la operativa.",
+  ],
+};
+
 /* ── Component ─────────────────────────────────────────────────── */
 
 export default function AutomatizarAgencias() {
@@ -200,7 +214,7 @@ export default function AutomatizarAgencias() {
                     <Calendar size={15} />
                     Reserva tu llamada
                   </a>
-                  <span className="text-white/35 text-xs self-center">{OFFER.freeCallMinutes} min · Sin compromiso</span>
+                  <span className="text-white/55 text-xs self-center">{OFFER_SUMMARY}</span>
                 </div>
               </div>
 
@@ -251,11 +265,13 @@ export default function AutomatizarAgencias() {
           </div>
         </section>
 
+        <FitCheck {...fit} />
+
         {/* ── SOLUCIÓN ── */}
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-10">
-              Cómo lo haría en tu agencia
+              ¿Cómo lo haría en tu agencia?
             </h2>
 
             <div className="space-y-0">
@@ -323,7 +339,7 @@ export default function AutomatizarAgencias() {
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2">
-              Inversión para tu agencia
+              ¿Cuánto cuesta automatizar una agencia?
             </h2>
             <p className="text-white/50 text-[15px] mb-10">Precios desde, adaptados a tu caso. El precio exacto se cierra por escrito antes de empezar.</p>
 

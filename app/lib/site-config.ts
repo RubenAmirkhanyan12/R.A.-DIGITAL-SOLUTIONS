@@ -76,6 +76,7 @@ export const PLANS: Plan[] = [
 // Plazo total de entrega, del plan más corto al más largo
 const planWeeks = PLANS.flatMap((p) => p.weeks.split("-").map(Number));
 export const DELIVERY_WEEKS = { min: Math.min(...planWeeks), max: Math.max(...planWeeks) };
+export const DELIVERY_LABEL = `${DELIVERY_WEEKS.min}–${DELIVERY_WEEKS.max} semanas`;
 
 // Textos que se repiten igual en varias páginas
 export const SHARED_COPY = {
@@ -222,3 +223,6 @@ export function scenarioNumbers(scenario: { hoursPerWeek: number; planId: string
   const saving = monthlySaving(scenario.hoursPerWeek);
   return { plan, saving, payback: paybackDays(plan.fromEUR, saving) };
 }
+
+// Línea corta de la primera pantalla de las landings
+export const OFFER_SUMMARY = `Desde ${formatEUR(planById("starter").fromEUR)} · ${DELIVERY_LABEL} según el plan · Primera llamada gratuita de ${OFFER.freeCallMinutes} minutos`;

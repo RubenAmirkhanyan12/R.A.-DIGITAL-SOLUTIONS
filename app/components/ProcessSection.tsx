@@ -1,6 +1,6 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import { Search, Lightbulb, FlaskConical, Rocket, TrendingUp } from "lucide-react";
-import { OFFER } from "../lib/site-config";
+import { DELIVERY_LABEL, OFFER } from "../lib/site-config";
 
 const steps = [
   {
@@ -140,7 +140,7 @@ export default function ProcessSection() {
         <AnimateOnScroll delay={550} className="mt-16">
           <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/30 p-8 grid md:grid-cols-3 gap-6 text-center">
             {[
-              { stat: "2–4 semanas", label: "Según el plan" },
+              { stat: DELIVERY_LABEL, label: "Según el plan" },
               { stat: "Precio cerrado", label: "Antes de empezar" },
               { stat: `${OFFER.guaranteeDays} días`, label: "Garantía" },
             ].map(({ stat, label }) => (

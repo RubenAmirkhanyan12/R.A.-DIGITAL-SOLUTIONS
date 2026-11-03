@@ -1,6 +1,6 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import { BadgeCheck, FlaskConical, ShieldCheck } from "lucide-react";
-import { OFFER } from "../lib/site-config";
+import { DELIVERY_LABEL, OFFER } from "../lib/site-config";
 
 const commitments = [
   {
@@ -23,7 +23,7 @@ const commitments = [
 const facts = [
   { value: `${OFFER.freeCallMinutes} min`, label: "Llamada gratuita" },
   { value: "Precio cerrado", label: "Antes de empezar" },
-  { value: "2–4 semanas", label: "Según el plan" },
+  { value: DELIVERY_LABEL, label: "Según el plan" },
   { value: `${OFFER.guaranteeDays} días`, label: "Garantía" },
 ];
 

@@ -4,7 +4,23 @@ import Footer from "../Footer";
 import LandingContactForm from "./LandingContactForm";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
-import { OFFER } from "../../lib/site-config";
+import FitCheck from "../FitCheck";
+import FaqList from "../FaqList";
+import { OTROS_FAQS } from "../../lib/faqs";
+import { OFFER, OFFER_SUMMARY } from "../../lib/site-config";
+
+const fit = {
+  yes: [
+    "Repites cada semana las mismas tareas de oficina: avisos, altas o documentos.",
+    "Pasas datos de un programa a otro a mano.",
+    "Dependes de que alguien se acuerde de fechas y plazos.",
+  ],
+  no: [
+    "Cada caso es distinto y depende de tu criterio.",
+    "Haces estas tareas pocas veces al mes.",
+    "Lo que te falta es un programa, no te sobran tareas a mano.",
+  ],
+};
 
 const method = [
   {
@@ -86,7 +102,7 @@ export default function AutomatizarOtros() {
             <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-8 h-px bg-[#B8860B]" />
               <span className="text-[#B8860B] text-xs font-bold tracking-[0.25em] uppercase">
-                Propuesta Personalizada · RASTECH
+                Propuesta personalizada · RASTECH
               </span>
               <span className="w-8 h-px bg-[#B8860B]" />
             </div>
@@ -100,6 +116,7 @@ export default function AutomatizarOtros() {
               Ofrezco servicios de automatización de procesos de negocio a medida: primero
               entiendo cómo trabajas y después conecto las herramientas que ya usas.
             </p>
+            <p className="text-white/55 text-sm mt-6">{OFFER_SUMMARY}</p>
           </div>
         </section>
 
@@ -107,7 +124,7 @@ export default function AutomatizarOtros() {
         <section className="py-20 bg-[#0F0F0F]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-6">
-              Qué hace una empresa de automatización de procesos de negocio
+              ¿Qué hace una empresa de automatización de procesos de negocio?
             </h2>
             <p className="text-white/60 text-base leading-relaxed mb-4">
               Conecta las aplicaciones de tu negocio para que las tareas repetitivas se hagan
@@ -139,11 +156,13 @@ export default function AutomatizarOtros() {
           </div>
         </section>
 
+        <FitCheck {...fit} />
+
         {/* ── EJEMPLOS ── */}
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-4">
-              Ejemplos por tipo de negocio
+              ¿Qué se puede automatizar en cada tipo de negocio?
             </h2>
             <p className="text-white/50 text-sm leading-relaxed mb-10">
               Cada bloque es un ejemplo ilustrativo de procesos habituales en ese tipo de negocio,
@@ -165,6 +184,16 @@ export default function AutomatizarOtros() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-10">
+              Preguntas frecuentes
+            </h2>
+            <FaqList faqs={OTROS_FAQS} />
           </div>
         </section>
 
