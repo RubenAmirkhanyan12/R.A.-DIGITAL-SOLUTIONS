@@ -1,80 +1,14 @@
-"use client";
-
-import { useState } from "react";
-import { CheckCircle, ArrowRight } from "lucide-react";
-import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "../Consent";
-import { OFFER, SITE } from "../../lib/site-config";
-
-export interface FormField {
-  name: string;
-  label: string;
-  type: "text" | "email" | "number" | "select" | "textarea";
-  required?: boolean;
-  options?: string[];
-}
+import ContactForm from "../ContactForm";
+import ContactAlternatives from "../ContactAlternatives";
+import NextSteps from "../NextSteps";
 
 interface Props {
   title: string;
   description: string;
-  fields: FormField[];
-  buttonText: string;
   sector: string;
 }
 
-export default function LandingContactForm({ title, description, fields, buttonText, sector }: Props) {
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [consent, setConsent] = useState(false);
-  const [consentError, setConsentError] = useState("");
-  const [sendError, setSendError] = useState(false);
-
-  const set = (name: string, value: string) => {
-    setValues(v => ({ ...v, [name]: value }));
-    setErrors(e => ({ ...e, [name]: "" }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const errs: Record<string, string> = {};
-    fields.forEach(f => {
-      if (f.required && !values[f.name]?.trim()) errs[f.name] = "Requerido";
-      if (f.type === "email" && values[f.name] && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values[f.name]))
-        errs[f.name] = "Email no válido";
-    });
-    setConsentError(consent ? "" : CONSENT_ERROR);
-    if (Object.keys(errs).length || !consent) { setErrors(errs); return; }
-    setLoading(true);
-    setSendError(false);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sector, ...values, consent }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setSubmitted(true);
-    } catch {
-      setSendError(true);
-    }
-    setLoading(false);
-  };
-
-  if (submitted) {
-    return (
-      <div className="text-center py-14">
-        <CheckCircle size={52} className="text-[#10B981] mx-auto mb-5" />
-        <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white mb-2">
-          Solicitud enviada
-        </h3>
-        <p className="text-white/55 text-sm">
-          Te responderé en {OFFER.responseTime}.
-        </p>
-      </div>
-    );
-  }
-
+export default function LandingContactForm({ title, description, sector }: Props) {
   return (
     <div className="max-w-lg mx-auto">
       <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-2 text-center">
@@ -82,73 +16,9 @@ export default function LandingContactForm({ title, description, fields, buttonT
       </h2>
       <p className="text-white/50 text-sm text-center mb-8 leading-relaxed">{description}</p>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4">
-        {fields.map(f => (
-          <div key={f.name}>
-            <label htmlFor={f.name} className="block text-white/65 text-sm mb-1.5 font-medium">
-              {f.label}
-              {f.required && <span className="text-[#B8860B] ml-0.5">*</span>}
-            </label>
-
-            {f.type === "select" ? (
-              <select
-                id={f.name}
-                value={values[f.name] || ""}
-                onChange={e => set(f.name, e.target.value)}
-                className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/50 rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors"
-              >
-                <option value="" disabled>Selecciona…</option>
-                {f.options?.map(o => <option key={o} value={o}>{o}</option>)}
-              </select>
-            ) : f.type === "textarea" ? (
-              <textarea
-                id={f.name}
-                value={values[f.name] || ""}
-                onChange={e => set(f.name, e.target.value)}
-                placeholder={f.label}
-                rows={4}
-                className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/50 rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors placeholder-white/20 resize-none"
-              />
-            ) : (
-              <input
-                id={f.name}
-                type={f.type}
-                value={values[f.name] || ""}
-                onChange={e => set(f.name, e.target.value)}
-                placeholder={f.label}
-                className="w-full bg-white/5 border border-white/10 focus:border-[#B8860B]/50 rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors placeholder-white/20"
-              />
-            )}
-
-            {errors[f.name] && (
-              <p role="alert" className="text-red-400 text-xs mt-1 pl-1">{errors[f.name]}</p>
-            )}
-          </div>
-        ))}
-
-        <ConsentCheckbox
-          id={`consent-${sector}`}
-          checked={consent}
-          onChange={e => { setConsent(e.target.checked); setConsentError(""); }}
-          error={consentError}
-        />
-
-        {sendError && (
-          <p role="alert" className="text-red-400 text-xs">
-            No se ha podido enviar. Escríbeme a {SITE.email} o llama al {SITE.phone}.
-          </p>
-        )}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full flex items-center justify-center gap-2 bg-[#1A3A52] hover:bg-[#22496A] disabled:opacity-60 text-white font-bold text-sm tracking-wide py-4 rounded-lg transition-colors mt-2"
-        >
-          {loading ? "Enviando…" : <>{buttonText} <ArrowRight size={15} /></>}
-        </button>
-
-        <ConsentNotice />
-      </form>
+      <ContactForm sector={sector} />
+      <ContactAlternatives className="mt-5 justify-center" />
+      <NextSteps className="mt-8" />
 
       <p className="text-white/25 text-xs text-center mt-5">
         Sin spam ni compromiso. Solo uso estos datos para responderte.

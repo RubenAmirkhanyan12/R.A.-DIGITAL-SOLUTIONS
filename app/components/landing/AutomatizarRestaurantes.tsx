@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
 import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
-import LandingContactForm, { type FormField } from "./LandingContactForm";
+import LandingContactForm from "./LandingContactForm";
 import {
   CheckCircle,
   X,
@@ -150,33 +150,6 @@ const faqs = [
     q: "¿Es seguro? ¿Dónde van mis datos?",
     a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD.",
   },
-];
-
-const formFields: FormField[] = [
-  { name: "nombre", label: "Tu nombre", type: "text", required: true },
-  { name: "email", label: "Email", type: "email", required: true },
-  { name: "restaurante", label: "Nombre restaurante", type: "text", required: true },
-  {
-    name: "tipo",
-    label: "Tipo de restaurante",
-    type: "select",
-    required: true,
-    options: ["Restaurante", "Bar", "Catering", "Otro"],
-  },
-  {
-    name: "dolor",
-    label: "Tu principal dolor",
-    type: "select",
-    required: true,
-    options: [
-      "Facturación manual",
-      "Reservas fragmentadas",
-      "Pedidos proveedores",
-      "Dinero no cobrado",
-      "Todas las anteriores",
-    ],
-  },
-  { name: "facturas", label: "Facturas/día aproximadamente", type: "number" },
 ];
 
 /* ── Component ─────────────────────────────────────────────────── */
@@ -447,8 +420,6 @@ export default function AutomatizarRestaurantes() {
             <LandingContactForm
               title="Llamada gratuita para tu restaurante"
               description="Sin compromiso. Vemos cuánto te cuesta cada proceso antes de que inviertas nada."
-              fields={formFields}
-              buttonText="Reserva tu llamada"
               sector="restaurantes"
             />
           </div>

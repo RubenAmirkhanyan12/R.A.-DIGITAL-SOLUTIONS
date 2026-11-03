@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
 import { formatEUR, OFFER, PLANS } from "../lib/site-config";
+import { CONTACT_HREF } from "../lib/seo";
 
 const tiers = PLANS.map((plan) => ({
   label: plan.name,
@@ -80,7 +81,7 @@ export default function PricingSection() {
               Ver planes completos con detalles →
             </Link>
             <Link
-              href="/#contacto"
+              href={CONTACT_HREF}
               className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-[#B8860B]/40 text-white/60 hover:text-white font-bold text-sm px-8 py-4 transition-all"
             >
               Reserva tu llamada

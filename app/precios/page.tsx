@@ -1,4 +1,4 @@
-import { pageMetadata } from "../lib/seo";
+import { CONTACT_HREF, pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -206,7 +206,7 @@ export default function PreciosPage() {
                 </ul>
 
                 <Link
-                  href="/#contacto"
+                  href={CONTACT_HREF}
                   className={`block text-center font-bold text-sm py-3.5 px-6 transition-all ${
                     t.highlight
                       ? "bg-[#B8860B] hover:bg-[#9A7009] text-white hover:shadow-[0_0_20px_rgba(184,134,11,0.3)]"
@@ -222,7 +222,7 @@ export default function PreciosPage() {
           <div className="bg-[#1A3A52]/10 border border-[#1A3A52]/30 p-5 text-center">
             <p className="text-white/50 text-sm">
               ¿No sabes qué plan necesitas?{" "}
-              <Link href="/#contacto" className="text-[#B8860B] hover:underline font-medium">
+              <Link href={CONTACT_HREF} className="text-[#B8860B] hover:underline font-medium">
                 Lo vemos en la llamada gratuita de {OFFER.freeCallMinutes} min →
               </Link>
             </p>
@@ -369,10 +369,10 @@ export default function PreciosPage() {
               {OFFER.freeCallMinutes} minutos, sin compromiso. Si los números no justifican la inversión, te lo digo.
             </p>
             <Link
-              href="/#contacto"
+              href={CONTACT_HREF}
               className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-base px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.4)]"
             >
-              Reserva tu llamada ({OFFER.freeCallMinutes} min) →
+              Reserva tu llamada
             </Link>
             <div className="flex flex-wrap justify-center gap-6 mt-6 text-xs text-white/30">
               {["Sin compromiso", `Respondo en ${OFFER.responseTime}`, "Llamada gratuita"].map((t) => (

@@ -19,6 +19,9 @@ export const SITE = {
   phone: "+34 613 361 175",
   phoneHref: "tel:+34613361175",
   email: "rubenamirkhanyan12@gmail.com",
+  // Vías secundarias de contacto: apagadas hasta que el dueño decida
+  whatsappEnabled: false,
+  bookingUrl: "",
 };
 
 export const OWNER_INTRO =

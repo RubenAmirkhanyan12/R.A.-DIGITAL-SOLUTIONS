@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
 import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
-import LandingContactForm, { type FormField } from "./LandingContactForm";
+import LandingContactForm from "./LandingContactForm";
 import {
   CheckCircle,
   X,
@@ -153,33 +153,6 @@ const faqs = [
   {
     q: "¿Es seguro? ¿Dónde van mis datos?",
     a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD.",
-  },
-];
-
-const formFields: FormField[] = [
-  { name: "nombre", label: "Tu nombre", type: "text", required: true },
-  { name: "email", label: "Email", type: "email", required: true },
-  { name: "agencia", label: "Nombre agencia", type: "text", required: true },
-  {
-    name: "tipo",
-    label: "Tipo de agencia",
-    type: "select",
-    required: true,
-    options: ["Marketing", "Diseño", "Desarrollo", "Otro"],
-  },
-  { name: "clientes", label: "Clientes activos ahora", type: "number" },
-  {
-    name: "dolor",
-    label: "Tu principal dolor",
-    type: "select",
-    required: true,
-    options: [
-      "Reportes manuales",
-      "Facturas manual",
-      "Hitos olvidados",
-      "Demasiada operativa para crecer",
-      "Todas las anteriores",
-    ],
   },
 ];
 
@@ -442,8 +415,6 @@ export default function AutomatizarAgencias() {
             <LandingContactForm
               title="Llamada gratuita para tu agencia"
               description="Sin compromiso. Vemos cuánto te cuesta cada proceso antes de que inviertas nada."
-              fields={formFields}
-              buttonText="Reserva tu llamada"
               sector="agencias"
             />
           </div>

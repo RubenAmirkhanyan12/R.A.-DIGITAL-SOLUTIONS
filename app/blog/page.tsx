@@ -1,4 +1,4 @@
-import { pageMetadata } from "../lib/seo";
+import { CONTACT_HREF, pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import { getAllPublishedPosts, formatDate } from "../lib/blog-posts";
 import { Clock, Calendar, ArrowRight, Tag } from "lucide-react";
@@ -143,7 +143,7 @@ export default function BlogPage() {
             Llamada gratuita de {OFFER.freeCallMinutes} minutos para estimar cuánto puedes ahorrar en tu empresa.
           </p>
           <Link
-            href="/#contacto"
+            href={CONTACT_HREF}
             className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-sm tracking-wide px-8 py-4 transition-all hover:shadow-[0_0_25px_rgba(184,134,11,0.35)]"
           >
             Reserva tu llamada

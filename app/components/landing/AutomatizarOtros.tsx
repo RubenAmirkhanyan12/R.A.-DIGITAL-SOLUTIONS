@@ -1,43 +1,10 @@
 import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import LandingContactForm, { type FormField } from "./LandingContactForm";
+import LandingContactForm from "./LandingContactForm";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
 import { OFFER } from "../../lib/site-config";
-import { Search, Phone, FileText } from "lucide-react";
-
-const formFields: FormField[] = [
-  { name: "nombre", label: "Tu nombre", type: "text", required: true },
-  { name: "email", label: "Email", type: "email", required: true },
-  { name: "empresa", label: "Nombre de tu empresa", type: "text", required: true },
-  { name: "industria", label: "Sector / Industria (ej: Abogacía, Veterinaria, Gym…)", type: "text", required: true },
-  {
-    name: "procesos",
-    label: "¿Qué procesos quieres automatizar?",
-    type: "textarea",
-    required: true,
-  },
-  { name: "telefono", label: "Teléfono (opcional)", type: "text" },
-];
-
-const steps = [
-  {
-    icon: <Search size={24} className="text-[#B8860B]" />,
-    title: "Leo tu caso",
-    desc: "Reviso tu solicitud antes de hablar contigo.",
-  },
-  {
-    icon: <Phone size={24} className="text-[#B8860B]" />,
-    title: "Te llamo",
-    desc: "Hablamos para entender tus procesos.",
-  },
-  {
-    icon: <FileText size={24} className="text-[#B8860B]" />,
-    title: "Propuesta",
-    desc: "Te envío una propuesta con precio cerrado.",
-  },
-];
 
 const method = [
   {
@@ -201,34 +168,6 @@ export default function AutomatizarOtros() {
           </div>
         </section>
 
-        {/* ── QUÉ PASA DESPUÉS ── */}
-        <section className="py-20 bg-[#0F0F0F]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-12 text-center">
-              ¿Qué pasa después?
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {steps.map(({ icon, title, desc }) => (
-                <div key={title} className="text-center">
-                  <div className="inline-flex items-center justify-center bg-[#1A3A52]/30 border border-[#1A3A52]/60 w-14 h-14 mb-5">
-                    {icon}
-                  </div>
-                  <h3 className="text-white font-bold text-[15px] mb-2">{title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-[#1A3A52]/15 border border-[#1A3A52]/50 p-8 text-center">
-              <p className="text-white/70 text-[15px] leading-relaxed">
-                <span className="text-[#B8860B] font-bold">Cada empresa es diferente.</span>{" "}
-                {OFFER.noHiddenCosts}
-              </p>
-            </div>
-          </div>
-        </section>
-
         <RelatedGuides guides={[GUIDES.facturas, GUIDES.cobros, GUIDES.n8n]} />
 
         {/* ── FORM ── */}
@@ -237,8 +176,6 @@ export default function AutomatizarOtros() {
             <LandingContactForm
               title="Cuéntame tu caso"
               description={`Cuéntame tu sector y tus procesos. Te respondo en ${OFFER.responseTime}.`}
-              fields={formFields}
-              buttonText="Reserva tu llamada"
               sector="otros"
             />
           </div>

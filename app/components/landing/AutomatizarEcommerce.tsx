@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
 import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
-import LandingContactForm, { type FormField } from "./LandingContactForm";
+import LandingContactForm from "./LandingContactForm";
 import {
   CheckCircle,
   X,
@@ -154,33 +154,6 @@ const faqs = [
     q: "¿Es seguro? ¿Dónde van mis datos?",
     a: "Tus datos viajan cifrados (HTTPS) y se quedan en tus propias cuentas. Trabajo con tus datos conforme al RGPD.",
   },
-];
-
-const formFields: FormField[] = [
-  { name: "nombre", label: "Tu nombre", type: "text", required: true },
-  { name: "email", label: "Email", type: "email", required: true },
-  { name: "tienda", label: "Nombre tienda online", type: "text", required: true },
-  {
-    name: "plataforma",
-    label: "Plataforma",
-    type: "select",
-    required: true,
-    options: ["Shopify", "WooCommerce", "Otra"],
-  },
-  {
-    name: "dolor",
-    label: "Tu principal dolor",
-    type: "select",
-    required: true,
-    options: [
-      "Gestión manual pedidos",
-      "Stock desincronizado",
-      "Tasa de error alta",
-      "Devoluciones caóticas",
-      "Todas las anteriores",
-    ],
-  },
-  { name: "pedidos", label: "Pedidos/día aproximadamente", type: "number" },
 ];
 
 /* ── Component ─────────────────────────────────────────────────── */
@@ -442,8 +415,6 @@ export default function AutomatizarEcommerce() {
             <LandingContactForm
               title="Llamada gratuita para tu e-commerce"
               description="Sin compromiso. Vemos cuánto te cuesta cada proceso antes de que inviertas nada."
-              fields={formFields}
-              buttonText="Reserva tu llamada"
               sector="ecommerce"
             />
           </div>

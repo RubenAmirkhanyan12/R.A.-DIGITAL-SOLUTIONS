@@ -44,6 +44,8 @@ export function ConsentNotice() {
         {SITE.email}
       </a>
       . Más información: política de privacidad (en preparación).
+      {SITE.whatsappEnabled &&
+        " Si me escribes por WhatsApp, el mensaje pasa por WhatsApp, un servicio de terceros con su propia política de privacidad."}
     </p>
   );
 }

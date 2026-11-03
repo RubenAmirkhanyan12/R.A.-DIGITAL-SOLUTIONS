@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { GUIDES } from "../../lib/guides";
+import { CONTACT_HREF } from "../../lib/seo";
 import { ASSUMPTIONS, formatEUR, monthlySaving, OFFER, SCENARIOS } from "../../lib/site-config";
 import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
@@ -134,7 +135,7 @@ const whatWeAutomate = [
 const nextSteps = [
   { num: "1", label: "Selecciona tu sector", desc: "Elige arriba la opción que más se parece a tu empresa." },
   { num: "2", label: "Mira los casos de uso", desc: "Escenarios ilustrativos con los supuestos a la vista.", href: "/casos" },
-  { num: "3", label: "Reserva tu llamada", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: "/#contacto" },
+  { num: "3", label: "Reserva tu llamada", desc: "30 min. Sin compromiso. Estimamos cuánto puedes ahorrar.", href: CONTACT_HREF },
 ];
 
 export default function AutomatizarSelector() {
@@ -344,10 +345,10 @@ export default function AutomatizarSelector() {
                 Te decimos exactamente qué automatizar y cuánto ahorrarías.
               </p>
               <Link
-                href="/#contacto"
+                href={CONTACT_HREF}
                 className="inline-flex items-center gap-3 bg-[#B8860B] hover:bg-[#9A7009] text-white font-bold text-base px-8 py-4 transition-all hover:shadow-[0_0_30px_rgba(184,134,11,0.4)]"
               >
-                Reserva tu llamada ({OFFER.freeCallMinutes} min) →
+                Reserva tu llamada
               </Link>
               <div className="mt-5 flex flex-wrap justify-center gap-5 text-xs text-white/30">
                 {["Sin compromiso", `Respondo en ${OFFER.responseTime}`, "Llamada gratuita"].map((t) => (

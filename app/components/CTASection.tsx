@@ -1,6 +1,8 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import ContactForm from "./ContactForm";
-import { Phone, CalendarCheck, Clock } from "lucide-react";
+import ContactAlternatives from "./ContactAlternatives";
+import NextSteps from "./NextSteps";
+import { Phone, CalendarCheck } from "lucide-react";
 import { OFFER, SITE } from "../lib/site-config";
 
 export default function CTASection() {
@@ -64,11 +66,11 @@ export default function CTASection() {
                   </span>
                 </div>
                 <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white mb-2">
-                  Llamada o WhatsApp
+                  {SITE.whatsappEnabled ? "Llamada o WhatsApp" : "Llamada o correo"}
                 </h3>
                 <p className="text-white/55 text-sm leading-relaxed mb-4">
                   ¿Tienes una necesidad concreta y quieres hablar sin rodeos?
-                  Llámame o escríbeme por WhatsApp.
+                  {SITE.whatsappEnabled ? " Llámame o escríbeme por WhatsApp." : " Llámame o escríbeme un correo."}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
@@ -86,15 +88,7 @@ export default function CTASection() {
                 </div>
               </div>
 
-              {/* Guarantee */}
-              <div className="flex items-start gap-4 pt-1">
-                <Clock size={15} className="text-[#10B981] mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-white/65 text-sm font-medium">
-                    Respondo en {OFFER.responseTime}.
-                  </p>
-                </div>
-              </div>
+              <NextSteps />
             </div>
           </AnimateOnScroll>
 
@@ -108,6 +102,7 @@ export default function CTASection() {
                 Rellena el formulario · Respondo en {OFFER.responseTime} · Sin spam
               </p>
               <ContactForm />
+              <ContactAlternatives className="mt-5" />
             </div>
           </AnimateOnScroll>
         </div>
