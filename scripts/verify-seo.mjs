@@ -106,6 +106,12 @@ function analyse(path, status, html) {
   };
 }
 
+function warnings(p) {
+  const warns = [];
+  if (p.title.length > 60 && p.path === HUB) warns.push(`title ${p.title.length}>60 (congelado a propósito)`);
+  return warns;
+}
+
 function checks(p, inbound) {
   const errors = [];
   const expectedCanonical = p.path === "/" ? SITE : `${SITE}${p.path}`;
@@ -176,7 +182,9 @@ try {
     );
   }
 
-  console.log(`\n${pages.length} URLs, ${failed} con ERROR`);
+  const warned = pages.map((p) => [p.path, warnings(p)]).filter(([, w]) => w.length);
+  console.log(`\n${pages.length} URLs, ${failed} con ERROR, ${warned.length} con WARN`);
+  for (const [path, w] of warned) console.log(`  WARN ${path}: ${w.join("; ")}`);
   const skipped = pages.filter((p) => p.skips.length);
   console.log(`\nSaltos de encabezado: ${skipped.length ? "" : "ninguno"}`);
   for (const p of skipped) console.log(`  ${p.path}: ${p.skips.join(", ")}`);

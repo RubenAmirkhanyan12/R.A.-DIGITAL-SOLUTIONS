@@ -4,6 +4,9 @@ import { useState } from "react";
 import { ArrowRight, TrendingDown, TrendingUp, Zap } from "lucide-react";
 import { ASSUMPTIONS, formatEUR, OFFER, paybackDays, PLANS } from "../lib/site-config";
 
+const RATE_MIN = 10;
+const RATE_MAX = 150;
+
 export default function ROICalculator() {
   const [hours, setHours] = useState(15);
   const [hourCost, setHourCost] = useState<number>(ASSUMPTIONS.hourlyCostEUR);
@@ -90,19 +93,19 @@ export default function ROICalculator() {
               </div>
               <input
                 type="range"
-                min={10}
-                max={150}
+                min={RATE_MIN}
+                max={RATE_MAX}
                 step={5}
                 value={hourCost}
                 onChange={(e) => setHourCost(Number(e.target.value))}
                 className="w-full h-2 appearance-none cursor-pointer rounded-full"
                 style={{
-                  background: `linear-gradient(to right, #B8860B ${((hourCost - 10) / 140) * 100}%, rgba(255,255,255,0.1) ${((hourCost - 10) / 140) * 100}%)`,
+                  background: `linear-gradient(to right, #B8860B ${((hourCost - RATE_MIN) / (RATE_MAX - RATE_MIN)) * 100}%, rgba(255,255,255,0.1) ${((hourCost - RATE_MIN) / (RATE_MAX - RATE_MIN)) * 100}%)`,
                 }}
               />
               <div className="flex justify-between text-white/25 text-xs mt-2">
-                <span>€10</span>
-                <span>€150</span>
+                <span>{`€${RATE_MIN}`}</span>
+                <span>{`€${RATE_MAX}`}</span>
               </div>
               <p className="text-white/35 text-xs mt-2">
                 Incluye salario + costes sociales + espacio de trabajo

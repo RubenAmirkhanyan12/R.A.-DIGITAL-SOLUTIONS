@@ -135,7 +135,7 @@ export default function PreciosPage() {
             </div>
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
               Precio Automatización Procesos Barcelona:{" "}
-              <span className="text-[#B8860B]">Desde €700</span>
+              <span className="text-[#B8860B]">{`Desde €${planById("starter").fromEUR}`}</span>
             </h1>
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
               Cada empresa es diferente: llamada gratuita, precio cerrado por escrito y garantía de {OFFER.guaranteeDays} días.

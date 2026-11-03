@@ -26,6 +26,21 @@ const EX_B_N = scenarioNumbers(EX_B);
 const EX_F = EX_A;
 const EX_F_N = EX_A_N;
 
+// Precios de terceros citados en la comparativa de herramientas
+const TOOL_PRICE = {
+  n8nStarter: "20 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
+  n8nPro: "50 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
+  n8nBusiness: "667 €/mes", // check-site:ok https://n8n.io/pricing/ consultado el 2026-11-03
+  n8nProYear: "600 €", // check-site:ok https://n8n.io/pricing/ (Pro × 12) consultado el 2026-11-03
+  zapierFree: "0 $", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierProAnnual: "19,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierProMonthly: "29,99 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierTeamAnnual: "69 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierTeamMonthly: "103,50 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierPro5000: "89 $/mes", // check-site:ok https://zapier.com/pricing consultado el 2026-11-03
+  zapierPro5000Year: "1.068 $", // check-site:ok https://zapier.com/pricing (89 × 12) consultado el 2026-11-03
+};
+
 export const blogPosts: BlogPost[] = [
   {
     title: "Automatización de procesos: guía para pymes (2026)",
@@ -646,7 +661,7 @@ Las tres hacen lo mismo: conectar aplicaciones automáticamente, sin programar. 
 
 | Característica | n8n | Make | Zapier |
 |---|---|---|---|
-| Plan de entrada | Community gratis (autoalojado); nube desde 20 €/mes con pago anual | Free (1.000 créditos/mes) | Free (100 tareas/mes) |
+| Plan de entrada | Community gratis (autoalojado); nube desde ${TOOL_PRICE.n8nStarter} con pago anual | Free (1.000 créditos/mes) | Free (100 tareas/mes) |
 | Unidad de cobro | Ejecuciones de workflow (nube) | Créditos | Tareas |
 | Catálogo de integraciones | [n8n.io/integrations](https://n8n.io/integrations/) | [make.com/en/integrations](https://www.make.com/en/integrations) | 9.000+ apps ([zapier.com/pricing](https://zapier.com/pricing)) |
 | Curva de aprendizaje | Media-Alta | Media | Baja |
@@ -666,12 +681,12 @@ Zapier publica sus precios en dólares. El coste de cada plan depende de las tar
 
 | Plan | Pago anual | Pago mensual | Tareas/mes |
 |---|---|---|---|
-| Free | 0 $ | 0 $ | 100 |
-| Professional | desde 19,99 $/mes | desde 29,99 $/mes | 750 |
-| Team | desde 69 $/mes | desde 103,50 $/mes | 2.000 |
+| Free | ${TOOL_PRICE.zapierFree} | ${TOOL_PRICE.zapierFree} | 100 |
+| Professional | desde ${TOOL_PRICE.zapierProAnnual} | desde ${TOOL_PRICE.zapierProMonthly} | 750 |
+| Team | desde ${TOOL_PRICE.zapierTeamAnnual} | desde ${TOOL_PRICE.zapierTeamMonthly} | 2.000 |
 | Enterprise | A medida | A medida | A medida |
 
-Como referencia, Professional con 5.000 tareas al mes cuesta 89 $/mes con pago anual. Fuente: [zapier.com/pricing](https://zapier.com/pricing).
+Como referencia, Professional con 5.000 tareas al mes cuesta ${TOOL_PRICE.zapierPro5000} con pago anual. Fuente: [zapier.com/pricing](https://zapier.com/pricing).
 
 ### Ventajas
 
@@ -713,7 +728,7 @@ Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encim
 
 ### Desventajas
 
-**Soporte limitado en planes bajos** — Solo email. Respuesta en 24-48h. Sin teléfono.
+**Soporte limitado en planes bajos** — Revisa en su página qué soporte incluye cada plan antes de decidir.
 
 **No self-hosted** — Tus datos pasan por los servidores de Make, no por el tuyo.
 
@@ -735,9 +750,9 @@ Make cobra por créditos. El plan Free incluye 1.000 créditos al mes; por encim
 
 | Plan | Precio | Ejecuciones/mes | Alojamiento |
 |---|---|---|---|
-| Starter | 20 €/mes | 2.500 | Nube de n8n |
-| Pro | 50 €/mes | 10.000 | Nube de n8n |
-| Business | 667 €/mes | 40.000 | Autoalojado |
+| Starter | ${TOOL_PRICE.n8nStarter} | 2.500 | Nube de n8n |
+| Pro | ${TOOL_PRICE.n8nPro} | 10.000 | Nube de n8n |
+| Business | ${TOOL_PRICE.n8nBusiness} | 40.000 | Autoalojado |
 | Enterprise | A consultar | A medida | Nube o autoalojado |
 
 No hay plan gratuito permanente en la nube: se prueba con un periodo de prueba gratuito. Fuente: [n8n.io/pricing](https://n8n.io/pricing/).
@@ -770,7 +785,7 @@ No hay plan gratuito permanente en la nube: se prueba con un periodo de prueba g
 
 ✅ Desarrolladores y perfiles técnicos · ✅ Presupuesto de licencias ajustado · ✅ Workflows complejos con lógica avanzada · ✅ Privacidad crítica · ✅ Datos sensibles (banca, salud, legal)
 
-❌ CEOs sin perfil técnico · ❌ Empresas que necesitan soporte garantizado · ❌ Workflows simples (es overkill)
+❌ CEOs sin perfil técnico · ❌ Empresas que necesitan soporte con plazos de respuesta por contrato · ❌ Workflows simples (es overkill)
 
 ---
 
@@ -780,9 +795,9 @@ No hay plan gratuito permanente en la nube: se prueba con un periodo de prueba g
 
 | Herramienta | Plan | Coste anual |
 |---|---|---|
-| Zapier | Professional (5.000 tareas) | 1.068 $ |
+| Zapier | Professional (5.000 tareas) | ${TOOL_PRICE.zapierPro5000Year} |
 | Make | Según créditos | Ver [página oficial](https://www.make.com/en/pricing) |
-| n8n Cloud | Pro (10.000 ejecuciones) | 600 € |
+| n8n Cloud | Pro (10.000 ejecuciones) | ${TOOL_PRICE.n8nProYear} |
 | n8n autoalojado | Community | Sin licencia; pagas servidor y mantenimiento |
 
 Zapier factura en dólares y n8n en euros, y cada una mide el consumo de forma distinta. Úsalo como orientación y calcúlalo con tu volumen real.

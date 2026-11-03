@@ -1,5 +1,8 @@
 import { pageMetadata } from "../lib/seo";
-import { SITE } from "../lib/site-config";
+import { formatNumber, planById, SITE } from "../lib/site-config";
+
+const starter = planById("starter");
+const enterprise = planById("enterprise");
 import AutomatizarSelector from "../components/landing/AutomatizarSelector";
 
 export const metadata = pageMetadata({
@@ -35,7 +38,7 @@ const schemaOrg = {
           "name": "¿Cuánto cuesta automatizar procesos en Barcelona?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Desde €700 para 1-2 procesos (STARTER) hasta €1.650+ para proyectos enterprise. El análisis inicial es gratuito y el precio se cierra antes de empezar.",
+            "text": `Desde €${starter.fromEUR} para ${starter.processes} procesos (${starter.name}) hasta €${formatNumber(enterprise.fromEUR)}+ para proyectos enterprise. El análisis inicial es gratuito y el precio se cierra antes de empezar.`,
           },
         },
       ],

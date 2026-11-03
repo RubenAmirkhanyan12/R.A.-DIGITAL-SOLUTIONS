@@ -2,7 +2,7 @@ import Link from "next/link";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { GUIDES } from "../../lib/guides";
-import { formatEUR, monthlySaving, OFFER, SCENARIOS } from "../../lib/site-config";
+import { ASSUMPTIONS, formatEUR, monthlySaving, OFFER, SCENARIOS } from "../../lib/site-config";
 import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
 interface Card {
@@ -90,7 +90,7 @@ const whyItems = [
   {
     icon: "💶",
     title: "Ahorro que puedes calcular",
-    desc: "Cada hora manual que eliminas es dinero que recuperas. Multiplica tus horas por 4,33 semanas y por 25 €/h, y tendrás una primera estimación mensual.",
+    desc: `Cada hora manual que eliminas es dinero que recuperas. Multiplica tus horas por ${ASSUMPTIONS.weeksPerMonth.toString().replace(".", ",")} semanas y por ${ASSUMPTIONS.hourlyCostEUR} €/h, y tendrás una primera estimación mensual.`,
   },
   {
     icon: "📈",
