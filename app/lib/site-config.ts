@@ -27,6 +27,10 @@ export const SITE = {
 export const OWNER_INTRO =
   "Soy Rubén, estudio Informática en la UPC y automatizo procesos con n8n y Make para pymes de Barcelona. Estoy empezando, por eso cuido cada proyecto de principio a fin.";
 
+// Versión corta de la presentación, para encabezar páginas
+export const OWNER_SHORT =
+  "Soy Rubén, estudio Informática en la UPC y estoy empezando: por eso cuido cada proyecto de principio a fin.";
+
 export const OFFER = {
   freeCallMinutes: 30,
   responseTime: "24 horas laborables",
@@ -68,6 +72,16 @@ export const PLANS: Plan[] = [
     support: "Retainer mensual opcional (se presupuesta aparte)",
   },
 ];
+
+// Plazo total de entrega, del plan más corto al más largo
+const planWeeks = PLANS.flatMap((p) => p.weeks.split("-").map(Number));
+export const DELIVERY_WEEKS = { min: Math.min(...planWeeks), max: Math.max(...planWeeks) };
+
+// Textos que se repiten igual en varias páginas
+export const SHARED_COPY = {
+  tools:
+    "Normalmente no. Conecto lo que ya usas, con herramientas como n8n o Make. Si tu programa no permite conectarse con otros, buscamos otra vía o te digo que no compensa.",
+};
 
 // Estimación, no garantía
 export const ASSUMPTIONS = { hourlyCostEUR: 25, weeksPerMonth: 4.33, reductionPct: 85 };

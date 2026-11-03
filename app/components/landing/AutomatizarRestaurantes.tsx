@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import RelatedGuides from "./RelatedGuides";
 import { GUIDES } from "../../lib/guides";
-import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers } from "../../lib/site-config";
+import { ASSUMPTIONS, formatEUR, OFFER, planById, SCENARIOS, scenarioNumbers, SHARED_COPY } from "../../lib/site-config";
 import LandingContactForm from "./LandingContactForm";
 import {
   CheckCircle,
@@ -132,7 +132,7 @@ const faqs = [
   },
   {
     q: "¿Tengo que cambiar mis herramientas?",
-    a: "Normalmente no. Conecto lo que ya usas. Si tu programa no tiene API, buscamos otra vía o te digo que no compensa.",
+    a: SHARED_COPY.tools,
   },
   {
     q: "¿Se pueden pedir productos frescos automáticamente?",

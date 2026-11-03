@@ -1,8 +1,6 @@
 import { pageMetadata } from "../lib/seo";
-import { formatNumber, planById, SITE } from "../lib/site-config";
-
-const starter = planById("starter");
-const enterprise = planById("enterprise");
+import { SITE } from "../lib/site-config";
+import { faqJsonLd, HUB_FAQS } from "../lib/faqs";
 import AutomatizarSelector from "../components/landing/AutomatizarSelector";
 
 export const metadata = pageMetadata({
@@ -22,27 +20,7 @@ const schemaOrg = {
         { "@type": "ListItem", "position": 2, "name": "Automatizar", "item": `${SITE.url}/automatizar` },
       ],
     },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "¿Qué procesos se pueden automatizar en una empresa?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Facturación, emails de seguimiento, reportes, cobros, pedidos a proveedores, gestión de clientes, onboarding, dashboards. Cualquier tarea repetitiva que consume tiempo sin aportar valor.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "¿Cuánto cuesta automatizar procesos en Barcelona?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": `Desde €${starter.fromEUR} para ${starter.processes} procesos (${starter.name}) hasta €${formatNumber(enterprise.fromEUR)}+ para proyectos enterprise. El análisis inicial es gratuito y el precio se cierra antes de empezar.`,
-          },
-        },
-      ],
-    },
+    faqJsonLd(HUB_FAQS),
   ],
 };
 

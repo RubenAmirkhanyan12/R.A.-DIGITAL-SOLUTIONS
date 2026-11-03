@@ -16,6 +16,7 @@ const FORBIDDEN = [
   /24\/7/,
   /cero errores/i,
   /agendar/i,
+  /presupuesto flexible/i,
   /te devuelvo/i,
   /devoluci[oó]n del importe/i,
   /triplicar/i,

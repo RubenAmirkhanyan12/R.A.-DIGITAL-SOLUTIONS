@@ -3,7 +3,19 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { GUIDES } from "../../lib/guides";
 import { CONTACT_HREF } from "../../lib/seo";
-import { ASSUMPTIONS, formatEUR, monthlySaving, OFFER, SCENARIOS } from "../../lib/site-config";
+import FaqList from "../FaqList";
+import { HUB_FAQS } from "../../lib/faqs";
+import {
+  ASSUMPTIONS,
+  DELIVERY_WEEKS,
+  formatEUR,
+  monthlySaving,
+  OFFER,
+  OWNER_SHORT,
+  planById,
+  SCENARIOS,
+  SITE,
+} from "../../lib/site-config";
 import { Utensils, Package, BarChart3, Sparkles } from "lucide-react";
 
 interface Card {
@@ -71,7 +83,7 @@ const cards: Card[] = [
     points: [
       "Análisis personalizado de tus procesos",
       "Propuesta creada específicamente para ti",
-      "Presupuesto flexible — negociamos juntos",
+      "Precio cerrado por escrito, adaptado a tu caso",
       "Solución a medida para tu sector",
     ],
     saving: "Propuesta Personalizada",
@@ -81,6 +93,8 @@ const cards: Card[] = [
     meta: "¿Tu sector no está arriba? Aquí sí.",
   },
 ];
+
+const answer = `Hago automatización de procesos en ${SITE.city} para pymes: dejo que tus herramientas de siempre hagan solas las tareas repetitivas (facturas, pedidos, reservas, reportes, cobros). Los proyectos cuestan desde ${formatEUR(planById("starter").fromEUR)}, con el precio cerrado por escrito antes de empezar, y llevan de ${DELIVERY_WEEKS.min} a ${DELIVERY_WEEKS.max} semanas según el plan. La primera llamada, de ${OFFER.freeCallMinutes} minutos, es gratis.`;
 
 function savingLabel(id: string) {
   const scenario = SCENARIOS.find((c) => c.id === id)!;
@@ -162,6 +176,16 @@ export default function AutomatizarSelector() {
               Automatización de Procesos:{" "}
               <span className="text-[#B8860B]">Elige Tu Sector</span>
             </h1>
+
+            <div className="bg-[#0F0F0F]/60 border border-[#B8860B]/30 p-6 text-left max-w-3xl mx-auto mb-8">
+              <p className="text-white/85 text-base md:text-lg leading-relaxed">{answer}</p>
+              <p className="text-white/55 text-sm leading-relaxed mt-4">
+                {OWNER_SHORT}{" "}
+                <Link href="/sobre-nosotros" className="text-[#B8860B] hover:underline">
+                  Quién soy
+                </Link>
+              </p>
+            </div>
 
             <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
               Cada sector tiene procesos diferentes. Aquí mostramos cómo automatizamos
@@ -252,6 +276,24 @@ export default function AutomatizarSelector() {
           </div>
         </section>
 
+        {/* ── QUÉ ES ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold text-white mb-6">
+              ¿Qué es automatizar procesos en una pyme?
+            </h2>
+            <p className="text-white/60 text-base leading-relaxed mb-5">
+              Es dejar que el ordenador haga los pasos repetitivos de un proceso (copiar un pedido a la
+              hoja de almacén, crear y enviar una factura, avisar de un cobro pendiente) siguiendo las
+              reglas que tú defines. No es automatización industrial, con robots y maquinaria: son tareas
+              de oficina de una empresa pequeña, con herramientas como Gmail, Google Sheets o Shopify.
+            </p>
+            <Link href="/blog/automatizacion-procesos-barcelona" className="text-[#B8860B] hover:underline text-sm font-medium">
+              Léelo con más calma en la guía completa →
+            </Link>
+          </div>
+        </section>
+
         {/* ── ¿QUÉ PODEMOS AUTOMATIZAR? ── */}
         <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
@@ -270,7 +312,7 @@ export default function AutomatizarSelector() {
                   <summary className="flex items-center justify-between py-5 px-7 cursor-pointer list-none">
                     <div className="flex items-center gap-4">
                       <span className="text-[#B8860B] font-bold text-xs w-4 text-right shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="text-white/80 group-hover:text-white font-medium text-sm transition-colors">{item.title}</span>
+                      <h3 className="text-white/80 group-hover:text-white font-medium text-sm transition-colors">{item.title}</h3>
                     </div>
                     <span className="shrink-0 w-6 h-6 flex items-center justify-center border border-white/10 text-white/40 ml-4 group-open:border-[#B8860B]/40 group-open:text-[#B8860B]">
                       +
@@ -358,6 +400,16 @@ export default function AutomatizarSelector() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── PREGUNTAS FRECUENTES ── */}
+        <section className="py-20 bg-[#0F0F0F]">
+          <div className="max-w-3xl mx-auto px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-white mb-10">
+              Preguntas frecuentes
+            </h2>
+            <FaqList faqs={HUB_FAQS} />
           </div>
         </section>
 
