@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ROICalculator from "../components/ROICalculator";
+import { formatEUR, planById, SITE } from "../lib/site-config";
 
 export const metadata = pageMetadata({
   title: "Precios de automatización de procesos en Barcelona | RASTECH",
@@ -11,14 +12,22 @@ export const metadata = pageMetadata({
   path: "/precios",
 });
 
+function tierFields(id: string) {
+  const plan = planById(id);
+  return {
+    label: plan.name,
+    fromEUR: plan.fromEUR,
+    price: formatEUR(plan.fromEUR),
+    processes: `${plan.processes} procesos`,
+    timeline: `${plan.weeks} semanas`,
+    support: plan.support,
+  };
+}
+
 const tiers = [
   {
-    label: "STARTER",
+    ...tierFields("starter"),
     tagline: "Para empezar a ahorrar rápido",
-    price: "€700",
-    processes: "1-2 procesos",
-    timeline: "2 semanas",
-    support: "30 días soporte",
     includes: [
       "Análisis y mapeado de procesos",
       "Diseño de flujos automatizados",
@@ -30,12 +39,8 @@ const tiers = [
     cta: "Agendar análisis",
   },
   {
-    label: "GROWTH",
-    tagline: "El más elegido — sistema completo",
-    price: "€1.150",
-    processes: "3-5 procesos",
-    timeline: "2-3 semanas",
-    support: "60 días + revisión mes 1",
+    ...tierFields("growth"),
+    tagline: "Sistema completo",
     includes: [
       "Todo lo del STARTER",
       "3-5 procesos automatizados",
@@ -47,12 +52,8 @@ const tiers = [
     cta: "Empezar ahora",
   },
   {
-    label: "ENTERPRISE",
-    tagline: "Transformación completa de procesos",
-    price: "€1.650",
-    processes: "6+ procesos",
-    timeline: "3-4 semanas",
-    support: "Retainer mensual disponible",
+    ...tierFields("enterprise"),
+    tagline: "Automatización de varias áreas",
     includes: [
       "Todo lo del GROWTH",
       "6+ procesos automatizados",
@@ -94,8 +95,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
-        { "@type": "ListItem", "position": 2, "name": "Precios", "item": "https://www.ras-tech.es/precios" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": SITE.url },
+        { "@type": "ListItem", "position": 2, "name": "Precios", "item": `${SITE.url}/precios` },
       ],
     },
     {
@@ -106,11 +107,11 @@ const schemaOrg = {
       "offers": tiers.map((t) => ({
         "@type": "Offer",
         "name": t.label,
-        "price": t.price.replace("€", ""),
+        "price": String(t.fromEUR),
         "priceCurrency": "EUR",
         "description": `${t.tagline}. ${t.processes}. Timeline: ${t.timeline}.`,
         "availability": "https://schema.org/InStock",
-        "url": "https://www.ras-tech.es/precios",
+        "url": `${SITE.url}/precios`,
       })),
     },
   ],

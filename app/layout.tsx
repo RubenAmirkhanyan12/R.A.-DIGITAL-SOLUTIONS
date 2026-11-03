@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Script from "next/script";
 import { SITE_URL } from "./lib/seo";
+import { PLANS, SITE } from "./lib/site-config";
 import "./globals.css";
 
 /* ── Pon aquí tu Measurement ID de Google Analytics 4 ───────── */
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   title: "RASTECH | Automatización de Procesos Barcelona",
   description:
     "Automatización de procesos en Barcelona. RASTECH: especialistas en n8n y Make. 15+ empresas automatizadas. Auditoría gratis sin compromiso.",
-  authors: [{ name: "Rubén Amirkhanyan" }],
+  authors: [{ name: SITE.owner }],
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -53,44 +54,27 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "RASTECH",
-              "url": SITE_URL,
+              "name": SITE.name,
+              "url": SITE.url,
               "description": "Automatización de procesos para pymes de Barcelona con n8n y Make.",
-              "telephone": "+34 613 361 175",
-              "email": "rubenamirkhanyan12@gmail.com",
-              "priceRange": "€700 - €15.000",
+              "telephone": SITE.phone,
+              "email": SITE.email,
               "provider": {
                 "@type": "Person",
-                "name": "Rubén Amirkhanyan",
+                "name": SITE.owner,
               },
-              "areaServed": "Barcelona",
+              "areaServed": SITE.city,
               "availableLanguage": ["es"],
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": "Paquetes de automatización",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "name": "STARTER",
-                    "price": "700",
-                    "priceCurrency": "EUR",
-                    "description": "1-2 procesos, 2 semanas, soporte 30 días",
-                  },
-                  {
-                    "@type": "Offer",
-                    "name": "GROWTH",
-                    "price": "1150",
-                    "priceCurrency": "EUR",
-                    "description": "3-5 procesos, 2-3 semanas, soporte 60 días",
-                  },
-                  {
-                    "@type": "Offer",
-                    "name": "ENTERPRISE",
-                    "price": "1650",
-                    "priceCurrency": "EUR",
-                    "description": "6+ procesos, 3-4 semanas, retainer mensual disponible",
-                  },
-                ],
+                "itemListElement": PLANS.map((plan) => ({
+                  "@type": "Offer",
+                  "name": plan.name,
+                  "price": String(plan.fromEUR),
+                  "priceCurrency": "EUR",
+                  "description": `${plan.processes} procesos, ${plan.weeks} semanas. ${plan.support}.`,
+                })),
               },
             }),
           }}

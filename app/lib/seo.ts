@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { SITE } from "./site-config";
 
-export const SITE_URL = "https://www.ras-tech.es";
+export const SITE_URL = SITE.url;
 export const CONTACT_HREF = "/#contacto";
 
 type PageMetadataInput = {
@@ -29,7 +30,7 @@ export function pageMetadata({
     title,
     description,
     url,
-    siteName: "RASTECH",
+    siteName: SITE.name,
     locale: "es_ES",
   };
 

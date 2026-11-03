@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { SITE } from "../../lib/site-config";
 
-const TO = "rubenamirkhanyan12@gmail.com";
+const TO = SITE.email;
 const FROM = "RASTECH Leads <onboarding@resend.dev>";
 
 function formatRows(data: Record<string, string>): string {
@@ -68,8 +69,8 @@ Recibimos tu solicitud correctamente.
 En las próximas 24-48 horas Rubén se pondrá en contacto contigo con una propuesta personalizada.
 
 Contacto directo:
-  Email: rubenamirkhanyan12@gmail.com
-  Tel:   +34 613 361 175
+  Email: ${SITE.email}
+  Tel:   ${SITE.phone}
 
 Un saludo,
 Rubén — RASTECH Barcelona`.trim(),

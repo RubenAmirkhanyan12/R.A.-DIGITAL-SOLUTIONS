@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "../Consent";
+import { SITE } from "../../lib/site-config";
 
 export interface FormField {
   name: string;
@@ -134,7 +135,7 @@ export default function LandingContactForm({ title, description, fields, buttonT
 
         {sendError && (
           <p role="alert" className="text-red-400 text-xs">
-            No se ha podido enviar. Escríbeme a rubenamirkhanyan12@gmail.com o llama al +34 613 361 175.
+            No se ha podido enviar. Escríbeme a {SITE.email} o llama al {SITE.phone}.
           </p>
         )}
 

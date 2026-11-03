@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import AnimateOnScroll from "./AnimateOnScroll";
+import { SITE } from "../lib/site-config";
 
 const faqs = [
   {
@@ -80,7 +81,7 @@ export default function FAQSection() {
             <span className="text-[#B8860B]">en Barcelona</span>
           </h2>
           <p className="text-white/50 text-base">
-            Si tu pregunta no está aquí, escríbeme directamente a rubenamirkhanyan12@gmail.com
+            Si tu pregunta no está aquí, escríbeme directamente a {SITE.email}
           </p>
         </AnimateOnScroll>
 
@@ -124,10 +125,10 @@ export default function FAQSection() {
             ¿Tienes una pregunta que no está aquí?
           </p>
           <a
-            href="mailto:rubenamirkhanyan12@gmail.com"
+            href={`mailto:${SITE.email}`}
             className="inline-flex items-center gap-2 text-[#B8860B] hover:text-[#D4A017] text-sm font-semibold transition-colors"
           >
-            rubenamirkhanyan12@gmail.com →
+            {SITE.email} →
           </a>
         </AnimateOnScroll>
       </div>

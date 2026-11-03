@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import { CONSENT_ERROR, ConsentCheckbox, ConsentNotice } from "./Consent";
+import { SITE } from "../lib/site-config";
 
 type FormValues = {
   name: string;
@@ -194,7 +195,7 @@ export default function ContactForm() {
 
       {sendError && (
         <p role="alert" className="text-[#EF4444] text-xs">
-          No se ha podido enviar. Escríbeme a rubenamirkhanyan12@gmail.com o llama al +34 613 361 175.
+          No se ha podido enviar. Escríbeme a {SITE.email} o llama al {SITE.phone}.
         </p>
       )}
 

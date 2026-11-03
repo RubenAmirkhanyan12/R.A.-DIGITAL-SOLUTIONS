@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RastechLogo from "./RastechLogo";
 import { CONTACT_HREF } from "../lib/seo";
+import { SITE } from "../lib/site-config";
 
 export default function Footer({
   hubLabel = "Automatización de procesos en Barcelona",
@@ -31,16 +32,16 @@ export default function Footer({
             </p>
             <div className="flex flex-col gap-1 text-sm">
               <a
-                href="mailto:rubenamirkhanyan12@gmail.com"
+                href={`mailto:${SITE.email}`}
                 className="text-white/40 hover:text-[#B8860B] transition-colors"
               >
-                rubenamirkhanyan12@gmail.com
+                {SITE.email}
               </a>
               <a
-                href="tel:+34613361175"
+                href={SITE.phoneHref}
                 className="text-white/40 hover:text-[#B8860B] transition-colors"
               >
-                +34 613 361 175
+                {SITE.phone}
               </a>
               <span className="text-white/25 text-xs">Barcelona · España</span>
             </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import RastechLogo from "./RastechLogo";
 import { Calculator, Mail, Phone, Menu, X } from "lucide-react";
+import { SITE } from "../lib/site-config";
 
 const navLinks = [
   { label: "Inicio",         href: "#inicio" },
@@ -120,18 +121,18 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-[8px]">
             <a
-              href="mailto:rubenamirkhanyan12@gmail.com"
+              href={`mailto:${SITE.email}`}
               className="flex items-center gap-[6px] text-[13px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors whitespace-nowrap"
             >
               <Mail size={13} />
-              rubenamirkhanyan12@gmail.com
+              {SITE.email}
             </a>
             <a
-              href="tel:+34613361175"
+              href={SITE.phoneHref}
               className="flex items-center gap-[6px] text-[13px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors whitespace-nowrap"
             >
               <Phone size={13} />
-              +34 613 361 175
+              {SITE.phone}
             </a>
           </div>
         </div>
@@ -182,18 +183,18 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-3 pt-5">
             <a
-              href="mailto:rubenamirkhanyan12@gmail.com"
+              href={`mailto:${SITE.email}`}
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 text-[14px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors"
             >
-              <Mail size={14} /> rubenamirkhanyan12@gmail.com
+              <Mail size={14} /> {SITE.email}
             </a>
             <a
-              href="tel:+34613361175"
+              href={SITE.phoneHref}
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 text-[14px] text-[#F8F9FA] hover:text-[#B8860B] transition-colors"
             >
-              <Phone size={14} /> +34 613 361 175
+              <Phone size={14} /> {SITE.phone}
             </a>
           </div>
 

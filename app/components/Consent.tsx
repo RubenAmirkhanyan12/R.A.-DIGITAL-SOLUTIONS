@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes, Ref } from "react";
+import { SITE } from "../lib/site-config";
 
 export const CONSENT_ERROR = "Marca la casilla para poder enviar el formulario.";
 
@@ -39,8 +40,8 @@ export function ConsentNotice() {
       Responsable: Rubén Amirkhanyan. Finalidad: responder a tu consulta. Legitimación:
       tu consentimiento. Destinatarios: los proveedores necesarios para alojar la web y
       enviar el correo. Derechos: acceso, rectificación, supresión y otros, escribiendo a{" "}
-      <a href="mailto:rubenamirkhanyan12@gmail.com" className="underline hover:text-white/60">
-        rubenamirkhanyan12@gmail.com
+      <a href={`mailto:${SITE.email}`} className="underline hover:text-white/60">
+        {SITE.email}
       </a>
       . Más información: política de privacidad (en preparación).
     </p>

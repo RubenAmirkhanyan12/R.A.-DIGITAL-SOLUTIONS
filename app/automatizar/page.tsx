@@ -1,4 +1,5 @@
 import { pageMetadata } from "../lib/seo";
+import { SITE } from "../lib/site-config";
 import AutomatizarSelector from "../components/landing/AutomatizarSelector";
 
 export const metadata = pageMetadata({
@@ -14,8 +15,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
-        { "@type": "ListItem", "position": 2, "name": "Automatizar", "item": "https://www.ras-tech.es/automatizar" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": SITE.url },
+        { "@type": "ListItem", "position": 2, "name": "Automatizar", "item": `${SITE.url}/automatizar` },
       ],
     },
     {

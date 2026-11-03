@@ -1,4 +1,5 @@
 import { pageMetadata } from "../lib/seo";
+import { SITE } from "../lib/site-config";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -159,8 +160,8 @@ const schemaOrg = {
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.ras-tech.es" },
-        { "@type": "ListItem", "position": 2, "name": "Casos de Éxito", "item": "https://www.ras-tech.es/casos" },
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": SITE.url },
+        { "@type": "ListItem", "position": 2, "name": "Casos de Éxito", "item": `${SITE.url}/casos` },
       ],
     },
     {

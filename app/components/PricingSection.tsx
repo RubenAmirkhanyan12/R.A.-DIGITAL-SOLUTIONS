@@ -1,32 +1,15 @@
 import Link from "next/link";
 import AnimateOnScroll from "./AnimateOnScroll";
+import { formatEUR, PLANS } from "../lib/site-config";
 
-const tiers = [
-  {
-    label: "STARTER",
-    price: "€700",
-    processes: "1-2 procesos",
-    timeline: "2 semanas",
-    support: "30 días soporte",
-    highlight: false,
-  },
-  {
-    label: "GROWTH",
-    price: "€1.150",
-    processes: "3-5 procesos",
-    timeline: "2-3 semanas",
-    support: "60 días + revisión",
-    highlight: true,
-  },
-  {
-    label: "ENTERPRISE",
-    price: "€1.650",
-    processes: "6+ procesos",
-    timeline: "3-4 semanas",
-    support: "Retainer mensual",
-    highlight: false,
-  },
-];
+const tiers = PLANS.map((plan) => ({
+  label: plan.name,
+  price: formatEUR(plan.fromEUR),
+  processes: `${plan.processes} procesos`,
+  timeline: `${plan.weeks} semanas`,
+  support: plan.support,
+  highlight: Boolean(plan.recommended),
+}));
 
 export default function PricingSection() {
   return (
@@ -40,7 +23,7 @@ export default function PricingSection() {
           </span>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-white mb-5">
             Precio Automatización Procesos Barcelona:{" "}
-            <span className="text-[#B8860B]">Desde €700 Según Tu Caso</span>
+            <span className="text-[#B8860B]">Desde {formatEUR(PLANS[0].fromEUR)} Según Tu Caso</span>
           </h2>
           <p className="text-white/50 text-lg max-w-xl mx-auto leading-relaxed">
             Precio exacto se cierra en el análisis gratuito.{" "}

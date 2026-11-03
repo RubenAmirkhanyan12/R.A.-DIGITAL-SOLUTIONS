@@ -11,6 +11,7 @@ import {
   Zap,
   TrendingUp,
 } from "lucide-react";
+import { SITE } from "../lib/site-config";
 
 /* ── Metadata ────────────────────────────────────────────────── */
 export const metadata = pageMetadata({
@@ -25,12 +26,12 @@ export const metadata = pageMetadata({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Rubén Amirkhanyan",
+  name: SITE.owner,
   jobTitle: "Especialista en Automatización de Procesos (n8n, Make, Zapier)",
   areaServed: "Barcelona, España",
-  email: "rubenamirkhanyan12@gmail.com",
-  telephone: "+34 613 361 175",
-  url: "https://www.ras-tech.es/sobre-nosotros",
+  email: SITE.email,
+  telephone: SITE.phone,
+  url: `${SITE.url}/sobre-nosotros`,
   knowsAbout: [
     "n8n",
     "Make",
@@ -45,7 +46,7 @@ const jsonLd = {
   worksFor: {
     "@type": "Organization",
     name: "RASTECH",
-    url: "https://www.ras-tech.es",
+    url: SITE.url,
   },
   description: "Especialista n8n, Make y Zapier en Barcelona. Fundador de RASTECH.",
 };
@@ -188,18 +189,18 @@ function ContactSidebar() {
       {/* Contact info */}
       <div className="flex flex-col gap-3">
         <a
-          href="mailto:rubenamirkhanyan12@gmail.com"
+          href={`mailto:${SITE.email}`}
           className="flex items-center gap-2.5 text-[13px] text-white/55 hover:text-[#B8860B] transition-colors break-all"
         >
           <Mail size={13} className="shrink-0" />
-          rubenamirkhanyan12@gmail.com
+          {SITE.email}
         </a>
         <a
-          href="tel:+34613361175"
+          href={SITE.phoneHref}
           className="flex items-center gap-2.5 text-[13px] text-white/55 hover:text-[#B8860B] transition-colors"
         >
           <Phone size={13} className="shrink-0" />
-          +34 613 361 175
+          {SITE.phone}
         </a>
       </div>
 

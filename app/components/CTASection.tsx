@@ -1,6 +1,7 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import ContactForm from "./ContactForm";
 import { Phone, CalendarCheck, Clock, AlertCircle } from "lucide-react";
+import { SITE } from "../lib/site-config";
 
 export default function CTASection() {
   return (
@@ -83,16 +84,16 @@ export default function CTASection() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+34613361175"
+                    href={SITE.phoneHref}
                     className="inline-flex items-center gap-2 text-[#B8860B] font-bold text-sm hover:text-[#D4A017] transition-colors"
                   >
-                    +34 613 361 175
+                    {SITE.phone}
                   </a>
                   <a
-                    href="mailto:rubenamirkhanyan12@gmail.com"
+                    href={`mailto:${SITE.email}`}
                     className="inline-flex items-center gap-2 text-white/40 text-sm hover:text-[#B8860B] transition-colors"
                   >
-                    rubenamirkhanyan12@gmail.com
+                    {SITE.email}
                   </a>
                 </div>
               </div>
